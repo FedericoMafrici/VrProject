@@ -11,5 +11,5 @@ Esempio:
 - NomeClasse per indicare il nome della classe
 - NomeMetodo per indicare il nome dei metodi
 - nomeParametro per indicare il nome di un parametro passato a un metodo
-- NomeVariabile per indicare il nome di una variabile pubblica
+- nomeVariabile per indicare il nome di una variabile pubblica
 - _nomeVariabile per indicare il nome di una variabile privata
