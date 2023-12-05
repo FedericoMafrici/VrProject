@@ -10,4 +10,5 @@ Esempio:
 - is[QUALCOSA] per indicare il nome di TUTTE le variabili booleane
 - NomeClasse per indicare il nome della classe
 - NomeMetodo per indicare il nome dei metodi
+- nomeParametro per indicare il nome di un parametro passato a un metodo
 - nomeVariabile per indicare il nome di una variabile
