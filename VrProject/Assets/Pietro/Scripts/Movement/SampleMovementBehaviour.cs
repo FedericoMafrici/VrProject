@@ -1,11 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SampleMovementBehaviour : MovementBehaviour {
+
+    private Transform _target;
+
+    public SampleMovementBehaviour(Transform toMoveTransform, Transform target) : base(toMoveTransform) {
+        _target = target;
+        validateParameters();
+    }
+
     public override void Move(Transform objectToMove) {
-        if (Input.GetKey(KeyCode.W)) {
-            objectToMove.Translate(objectToMove.forward * 1 * Time.deltaTime, Space.World);
+        updateTarget();
+    }
+
+    private void validateParameters() {
+        if (_target == null) {
+            Debug.LogWarning("No target set for " + _toMoveTransform.name + ", disabling movement");
+            HasValidParameters = false;
+        }
+    }
+
+    private void updateTarget() {
+        if (HasValidParameters) {
+            _agent.destination = _target.position;
         }
     }
 
