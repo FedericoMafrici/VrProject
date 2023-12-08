@@ -18,7 +18,7 @@ public class SampleMovementBehaviour : MovementBehaviour {
 
     private void validateParameters() {
         if (_target == null) {
-            Debug.LogWarning("No target set for " + _toMoveTransform.name + ", disabling movement");
+            Debug.LogWarning("No target set for " + _toMoveTransform.name + ", SampleMovementBehaviour not activated");
             HasValidParameters = false;
         }
     }
