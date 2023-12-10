@@ -65,51 +65,32 @@ public class TargetBehaviour : MovementBehaviour {
         }
     }
 
-    protected override void updateBehaviour() {
-        MovingState nextState = MovingState.PATROL;
-        Targettable target = null;
+    protected override bool wantsToFollowTarget(Targettable targettable) {
+        //first check if base class method allows to follow target
+        bool result = base.wantsToFollowTarget(targettable);
 
-        if (targetInRange(_npcMover.getVeryCloseRadius(), ref target)) {
-            nextState = MovingState.VERY_CLOSE_TO_TARGET;
-        } else if (targetInRange(_npcMover.getCloseRadius(), ref target)) {
-            nextState = MovingState.CLOSE_TO_TARGET;
-        } else if (targetInRange(_npcMover.getInRangeRadius(), ref target)) {
-            nextState = _npcMover.getState();
-        }
+        //if base class method returns true do additional checks
+        if (result)
+            result = prefersTarget(targettable.transform);
 
-        if (nextState != _npcMover.getState() || target.transform != _target) {
-            updateState(nextState, target);
-        }
+        return result;
     }
 
-    protected override bool targetInRange(float range, ref Targettable target) {
-        bool targetFound = false;
-        Collider[] intersectedTargets = Physics.OverlapSphere(_toMoveTransform.position, range, 1 << 6);
+    protected override void manageStateUpdate(MovingState nextState, Targettable newTarget) {
+        // if target a target was found only call the base class method check if new target is different from current one
+        // otherwise just call the base class method
 
-        if (intersectedTargets.Length > 0) {
-            int i = 0;
-            Collider tmpTarget;
-
-            //iterate over all intersected objects
-            while (!targetFound && i < intersectedTargets.Length) {
-                tmpTarget = intersectedTargets[i];
-                Targettable tmpTargettable = tmpTarget.transform.GetComponent<Targettable>();
-
-                //check if intersected object is a Targettable,
-                //if it is check if NPCMover is interested in its type and if target's follower count has not reached its max
-                if (tmpTargettable != null && _npcMover.InterestsSet.Contains(tmpTargettable.getType()) && wantsToFollowTarget(tmpTargettable.transform) && tmpTargettable.canSubscribe(_npcMover)) { //TODO: visibility check through raycast
-                    targetFound = true;
-                    target = tmpTargettable;
-
-                }
-
-                i++;
+        if (newTarget != null) {
+            if (newTarget.transform != _target) {
+                base.manageStateUpdate(nextState, newTarget);
             }
+        } else {
+            base.manageStateUpdate(nextState, newTarget);
         }
-        return targetFound;
     }
 
-    private bool wantsToFollowTarget(Transform target) {
+    private bool prefersTarget(Transform target) {
+
         //might be used to implement a priority system, for now do not follow a target which is different from the one you're currently following
         if (_target == target) {
             return true;

@@ -37,7 +37,7 @@ public abstract class MovementBehaviour {
 
     public abstract void Move(Transform objectToMove);
 
-    protected virtual void updateBehaviour() {
+    protected void updateBehaviour() {
         MovingState nextState = MovingState.PATROL;
         Targettable target = null;
 
@@ -49,12 +49,11 @@ public abstract class MovementBehaviour {
             nextState = _npcMover.getState();
         }
 
-        if (nextState != _npcMover.getState()) {
-            updateState(nextState, target);
-        }
+        manageStateUpdate(nextState, target);
+       
     }
 
-    protected virtual bool targetInRange(float range, ref Targettable target) {
+    protected bool targetInRange(float range, ref Targettable target) {
         bool targetFound = false;
         Collider[] intersectedTargets = Physics.OverlapSphere(_toMoveTransform.position, range, 1 << 6);
 
@@ -69,7 +68,7 @@ public abstract class MovementBehaviour {
 
                 //check if intersected object is a Targettable,
                 //if it is check if NPCMover is interested in its type and if target's follower count has not reached its max
-                if (tmpTargettable != null && _npcMover.InterestsSet.Contains(tmpTargettable.getType()) && tmpTargettable.canSubscribe(_npcMover)) { //TODO: visibility check through raycast
+                if (wantsToFollowTarget(tmpTargettable)) { //TODO: visibility check through raycast
                     targetFound = true;
                     target = tmpTargettable;
 
@@ -81,18 +80,30 @@ public abstract class MovementBehaviour {
         return targetFound;
     }
 
-    protected void updateState(MovingState nextState, Targettable target) {
-        MovingState currentState = _npcMover.getState();
-
-        if (nextState == MovingState.PATROL) {
-            _npcMover.setBehaviour(new PatrolBehaviour(_toMoveTransform, _npcMover.getPatrolArea(), _npcMover.getDelayBounds()));
-            //Debug.Log(_toMoveTransform.name + ": state changed to Patrol");
-
-        
-        } else if (nextState == MovingState.IN_TARGET_RANGE || nextState == MovingState.CLOSE_TO_TARGET || nextState == MovingState.VERY_CLOSE_TO_TARGET) {
-            _npcMover.setBehaviour(new TargetBehaviour(_toMoveTransform, target.transform));
-            //Debug.Log(_toMoveTransform.name + ": State changed to Follow");
+    protected virtual bool wantsToFollowTarget(Targettable targettable) {
+        bool result = false;
+        if (targettable != null && _npcMover.InterestsSet.Contains(targettable.getType()) && targettable.canSubscribe(_npcMover)) { //TODO: visibility check through raycast
+            result = true;
         }
-        _npcMover.setState(nextState);
+
+        return result;
+    }
+
+    protected virtual void manageStateUpdate(MovingState nextState, Targettable newTarget) {
+        if (nextState != _npcMover.getState()) {
+            MovingState currentState = _npcMover.getState();
+
+            if (nextState == MovingState.PATROL) {
+                _npcMover.setBehaviour(new PatrolBehaviour(_toMoveTransform, _npcMover.getPatrolArea(), _npcMover.getDelayBounds()));
+                //Debug.Log(_toMoveTransform.name + ": state changed to Patrol");
+
+
+            } else if (nextState == MovingState.IN_TARGET_RANGE || nextState == MovingState.CLOSE_TO_TARGET || nextState == MovingState.VERY_CLOSE_TO_TARGET) {
+                _npcMover.setBehaviour(new TargetBehaviour(_toMoveTransform, newTarget.transform));
+                //Debug.Log(_toMoveTransform.name + ": State changed to Follow");
+            }
+
+            _npcMover.setState(nextState);
+        }
     }
 }
