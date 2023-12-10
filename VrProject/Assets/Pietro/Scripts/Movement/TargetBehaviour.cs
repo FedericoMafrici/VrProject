@@ -4,6 +4,7 @@ using System.Data;
 using UnityEngine;
 
 public class TargetBehaviour : MovementBehaviour {
+    //TODO: manage destruction of the target
 
     private Transform _target;
     private Targettable _targettable;

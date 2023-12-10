@@ -28,7 +28,7 @@ public class NPCMover : MonoBehaviour {
     [SerializeField] private List<TargetType> _interestsList;
     public HashSet<TargetType> InterestsSet = new HashSet<TargetType>();
 
-    private MovementBehaviour _movementBehaviour;
+    [SerializeField] private MovementBehaviour _movementBehaviour;
     private MovementBehaviour _nextBehaviour;
 
     // Start is called before the first frame update
@@ -40,15 +40,21 @@ public class NPCMover : MonoBehaviour {
         setInterestRadius();
         //adjustInterestRadius();
 
-        //create default behaviour
-        PatrolBehaviour tmpPatrolBehaviour = new PatrolBehaviour(transform, _patrolArea, new Vector2(_minPatrolDelay, _maxPatrolDelay));
+        if (_movementBehaviour == null) {
+            //create default behaviour
+            PatrolBehaviour tmpPatrolBehaviour = new PatrolBehaviour(transform, _patrolArea, new Vector2(_minPatrolDelay, _maxPatrolDelay));
 
-        if (tmpPatrolBehaviour.HasValidParameters) {
-            StartCoroutine(tmpPatrolBehaviour.updateTarget());
-            _movementBehaviour = tmpPatrolBehaviour;
-            _state = MovingState.PATROL;
+            if (tmpPatrolBehaviour.HasValidParameters) {
+                _movementBehaviour = tmpPatrolBehaviour;
+                _state = MovingState.PATROL;
+            } else {
+                _movementBehaviour = null;
+            }
         } else {
-            _movementBehaviour = null;
+            if(!_movementBehaviour.HasValidParameters) {
+                Debug.LogWarning("MovementBehaviour for " + transform.name + " has invalid parameters, disabling behaviour");
+                _movementBehaviour = null;
+            }
         }
 
         _nextBehaviour = null;
@@ -123,8 +129,8 @@ public class NPCMover : MonoBehaviour {
         _inRangeRadius= radiuses[2];
 
         Debug.Log(transform.name + "Very Close Radius: " + _veryCloseRadius);
-        Debug.Log(transform.name + "Very Close Radius: " + _closeRadius);
-        Debug.Log(transform.name + "Very Close Radius: " + _inRangeRadius);
+        Debug.Log(transform.name + "Close Radius: " + _closeRadius);
+        Debug.Log(transform.name + "In Range Radius: " + _inRangeRadius);
 
     }
 
@@ -158,7 +164,6 @@ public class NPCMover : MonoBehaviour {
 
     public void setNextBehaviour(PatrolBehaviour patrolBehaviour) {
         if (patrolBehaviour.HasValidParameters) {
-            StartCoroutine(patrolBehaviour.updateTarget());
             _nextBehaviour = patrolBehaviour;
         } else {
             _nextBehaviour = null;

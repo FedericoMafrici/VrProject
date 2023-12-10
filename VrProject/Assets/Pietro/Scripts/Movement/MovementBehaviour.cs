@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public abstract class MovementBehaviour {
+    //TODO: system to allow a MonoBehaviour script to create a MovementBehaviour
 
-    protected NavMeshAgent _agent;
-    protected NPCMover _npcMover;
-    protected Transform _toMoveTransform;
-    public bool HasValidParameters;
+    [SerializeField] protected NavMeshAgent _agent;
+    [SerializeField] protected NPCMover _npcMover;
+    [SerializeField] protected Transform _toMoveTransform;
+    [HideInInspector] public bool HasValidParameters;
 
     public MovementBehaviour(Transform toMoveTransform) {
         _agent = toMoveTransform.GetComponent<NavMeshAgent>();
