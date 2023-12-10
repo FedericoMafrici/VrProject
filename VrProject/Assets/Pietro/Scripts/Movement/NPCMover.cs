@@ -62,13 +62,16 @@ public class NPCMover : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        
         if (_movementBehaviour != null) {
+            /*
             if (_nextBehaviour != null) {
                 _movementBehaviour.Delete();
                 _movementBehaviour = _nextBehaviour;
                 _nextBehaviour = null;
                
             }
+            */
 
             _movementBehaviour.Move(transform);
         }
@@ -128,10 +131,18 @@ public class NPCMover : MonoBehaviour {
         _closeRadius = radiuses[1];
         _inRangeRadius= radiuses[2];
 
+        /*
         Debug.Log(transform.name + "Very Close Radius: " + _veryCloseRadius);
         Debug.Log(transform.name + "Close Radius: " + _closeRadius);
         Debug.Log(transform.name + "In Range Radius: " + _inRangeRadius);
+        */
 
+    }
+
+    public void DestroyTarget(Transform _target) {
+        if (_target != null) { 
+            Destroy(_target.gameObject);
+        }
     }
 
     public float getInRangeRadius() {
@@ -162,19 +173,22 @@ public class NPCMover : MonoBehaviour {
         return new Vector2(_minPatrolDelay, _maxPatrolDelay);
     }
 
-    public void setNextBehaviour(PatrolBehaviour patrolBehaviour) {
-        if (patrolBehaviour.HasValidParameters) {
-            _nextBehaviour = patrolBehaviour;
-        } else {
-            _nextBehaviour = null;
-        }
-    }
-
     public void setNextBehaviour(MovementBehaviour movementBehaviour) {
         if (movementBehaviour.HasValidParameters) {
             _nextBehaviour = movementBehaviour;
         } else {
             _nextBehaviour = null;  
+        }
+    }
+
+    public void setBehaviour(MovementBehaviour movementBehaviour) {
+        if (movementBehaviour.HasValidParameters) {
+            if (_movementBehaviour != null) {
+                _movementBehaviour.Delete();
+            }
+            _movementBehaviour = movementBehaviour;
+        } else {
+            Debug.LogWarning(transform.name + " tried to set behaviour to an invalid one, behaviour was not set");
         }
     }
 
