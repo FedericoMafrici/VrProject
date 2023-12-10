@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New item", menuName = "Item/Create New Item")]
-public class Item : MonoBehaviour
+public class Item : Grabbable
 {
     public string itemName;
-
-    // public Sprite icon;
-
-    public GameObject mesh;
+    public Image icon;
+    public GameObject obj;
 
     public void Show()
     {
-        mesh.SetActive(true);
+        obj.SetActive(true);
     }
     
     public void Hide()
     {
-        mesh.SetActive(false);
+        obj.SetActive(false);
     }
 
     // public void Use()
