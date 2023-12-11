@@ -10,41 +10,53 @@ public enum TargetType {
 
 public class Targettable : MonoBehaviour {
     [SerializeField] private TargetType _type;
-    [SerializeField] private int maxFollowers = 3;
-    [SerializeField] private int currentFollowers;
+    [SerializeField] private int _maxFollowers = 3;
+    [SerializeField] private int _currentFollowers;
     HashSet<NPCMover> _followers = new HashSet<NPCMover>();
 
     private void Start() {
-        currentFollowers = 0;
+        _currentFollowers = 0;
     }
 
     public TargetType getType() {
         return _type;
     }
 
-    public bool trySubscribe(NPCMover newFollower) {
+    public bool canSubscribe(NPCMover newFollower) {
         bool retValue = true;
-        if (!_followers.Contains(newFollower)) {
-            if (currentFollowers >= maxFollowers)
-                retValue = false;
-            else {
-                _followers.Add(newFollower);
-                currentFollowers++;
-            }
-        }
+
+        if (_currentFollowers >= _maxFollowers)
+            retValue = false;
+
+
+        if (!retValue)
+            Debug.Log(newFollower.transform.name + " tried to subscribe to " + transform.name + " but failed");
+
         return retValue;
+
+    }
+
+    public void subscribe(NPCMover newFollower) {
+        if (!_followers.Contains(newFollower)) {
+
+            _followers.Add(newFollower);
+            _currentFollowers++;
+            Debug.Log(newFollower.transform.name + " subscribed to " + transform.name);
+        }
     }
 
     public void unsubscribe(NPCMover follower) {
         if (_followers.Contains(follower)) {
             _followers.Remove(follower);
-            currentFollowers--;
-            if (currentFollowers < 0) {
-                currentFollowers = 0;
-                Debug.Log("Follower count for " + transform.name + " went below 0, setting follower count to 0");
+            Debug.Log(follower.transform.name + " is unsubscribing from " + transform.name + ", follower count before unsubscribing = " + _currentFollowers);
+            _currentFollowers--;
+            Debug.Log(follower.transform.name + " unsubscribed from " + transform.name + ", follower count = " + _currentFollowers);
+            if (_currentFollowers < 0) {
+                _currentFollowers = 0;
+                Debug.LogWarning("Follower count for " + transform.name + " went below 0, setting follower count to 0");
             }
         } else {
-            Debug.Log("Not subscripted follower " + follower.transform.name + " tried to unsubscribe from Targettable: " + transform.name);
+            Debug.LogWarning("Not subscripted follower " + follower.transform.name + " tried to unsubscribe from Targettable: " + transform.name);
         }
     }
 

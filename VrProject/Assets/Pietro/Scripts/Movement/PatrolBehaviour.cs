@@ -12,57 +12,37 @@ public class PatrolBehaviour : MovementBehaviour {
     private bool _targetOnNavMesh;
     private bool _onlyMoveInSurroundings = false;
     private float _range = 5.0f;
-    private bool _endCoroutine;
+    private float _toWaitForNextTarget;
 
     public PatrolBehaviour(Transform toMoveTransform, BoxCollider patrolArea, Vector2 delayBounds) : base(toMoveTransform) {
         _delayBounds = delayBounds;
         _patrolArea = patrolArea;
-        _endCoroutine = false;
+        _toWaitForNextTarget = 0.0f;
+        _targetReached = true;
         validateParameters();
-    }
-
-    public override void Delete() {
-        _endCoroutine = true;
+    
     }
 
     public override void Move(Transform objectToMove) {
-       //check if target has been reached
-       if (_agent.remainingDistance <= _agent.stoppingDistance) {
-            _targetReached = true;
-        }
-        updateBehaviour();
-    }
-
-    public IEnumerator updateTarget() {
-        //generate random trget inside the patrol area
-        if (HasValidParameters) {
-
-            while (!_endCoroutine) {
 
 
-                //generate random target inside patrol area
-                generateRandomTarget();
-
-                //wait for target to be reached before generating a new one
-                //if target is not on NavMesh and thus cannot be reached do not wait
-                while (_targetOnNavMesh && !_targetReached) {
-                    yield return null;
-                    if (_endCoroutine) {
-                        break;
-                    }
-                }
-                if (_endCoroutine) {
-                    break;
-                }
-
-                float toWait = Random.Range(_delayBounds.x, _delayBounds.y); //random delay befor generating new target
-                Debug.Log(_toMoveTransform.name + ": target reached, waiting " + toWait + " seconds before generating new one");
-                yield return new WaitForSeconds(toWait);
-                if(_endCoroutine) {
-                    break;
-                }
+        //check if target has been reached or is not reachable (not on NavMesh)
+        if (!_targetReached) {
+            if (_agent.remainingDistance <= _agent.stoppingDistance || !_targetOnNavMesh) {
+                _targetReached = true;
             }
         }
+
+       if (_targetReached) {
+            _toWaitForNextTarget -= Time.deltaTime;
+            if (_toWaitForNextTarget <= 0) {
+                generateRandomTarget();
+                _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay befor generating new target
+                //Debug.Log(_toMoveTransform.name + ": target reached, waiting " + _toWaitForNextTarget + " seconds before generating new one");
+            }
+        }
+
+        updateBehaviour();
     }
 
     private void validateParameters() {
@@ -108,8 +88,6 @@ public class PatrolBehaviour : MovementBehaviour {
 
         _agent.destination = _target;
         _targetReached = false;
-        Debug.Log("New patrol destination set");
-
     }
 
     private void bringInsidePatrolArea(ref Vector3 point) {
