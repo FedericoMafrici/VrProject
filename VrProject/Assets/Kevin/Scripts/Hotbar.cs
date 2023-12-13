@@ -86,7 +86,7 @@ public class Hotbar : MonoBehaviour
                 activeItem = null;
             for (int i = 0; i < Constants.Capacity; i++)
             {
-                if (items[i] == item)
+                if (items[i].itemName == item.itemName)
                 {
                     Transform buttonTransform = itemSlotArray[i].transform.Find("ItemButton");
                     Transform imageTransform = buttonTransform.transform.Find("Image");

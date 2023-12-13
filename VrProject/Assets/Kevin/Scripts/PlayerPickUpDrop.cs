@@ -80,6 +80,11 @@ public class PlayerPickUpDrop : MonoBehaviour
 
     public void Drop()
     {
+        if (hotbar.activeItem.isTool)
+        {
+            hotbar.activeItem.StartFading();
+        }
+        
         hotbar.activeItem.Drop();
         Debug.Log(item+" dropped");
         
