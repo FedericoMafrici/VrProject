@@ -73,8 +73,14 @@ public class Item : Grabbable
     IEnumerator StartFadingOut()
     {
         yield return StartCoroutine(FadingOut());
-        //Destroy(gameObject);
         gameObject.SetActive(false);
     }
 
+    public void Show()
+    {
+        Color c = renderer.material.color;
+        c.a = 1;
+        renderer.material.color = c;
+        gameObject.SetActive(true);
+    }
 }

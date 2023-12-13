@@ -51,7 +51,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                         int lastItemIndex = hotbar.Add(item, true);
                         hotbar.Select(lastItemIndex);
                         
-                        item.Grab(objectGrabPointTransform);
+                        item.Grab(objectGrabPointTransform, true);
                         Debug.Log(item+" grabbed");
                     }
                 }
@@ -69,6 +69,8 @@ public class PlayerPickUpDrop : MonoBehaviour
             {
                 if (raycastHit2.transform.TryGetComponent(out item))
                 {
+                    // item.Grab(objectGrabPointTransform, true); // serve a vedere l'effetto di spostamento dell'oggetto emntre lo raccolgo
+                    
                     hotbar.Add(item, false);
                     Debug.Log(item+" added to the hotbar");
                     
