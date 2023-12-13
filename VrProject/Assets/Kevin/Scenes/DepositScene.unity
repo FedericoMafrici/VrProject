@@ -671,7 +671,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 30c2dace9ddc64c318ef828ac17ed1a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -732,6 +732,7 @@ MonoBehaviour:
   isTool: 0
   amount: 0
   icon: {fileID: 21300000, guid: 2873afd8412734500a4afdee29aa9ac3, type: 3}
+  isFading: 0
 --- !u!1001 &650156102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1505,7 +1506,7 @@ MonoBehaviour:
   items: []
   itemSlotArray: []
   firstEmpty: 0
-  numActiveItem: 0
+  numSelectedButton: 0
   activeItem: {fileID: 0}
 --- !u!1 &1195926133
 GameObject:
@@ -1679,6 +1680,7 @@ MonoBehaviour:
   isTool: 1
   amount: 1
   icon: {fileID: 21300000, guid: 567c1dba48fd591478dcf0bb74786ddf, type: 3}
+  isFading: 0
 --- !u!4 &1221228591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4135013735270702856, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
@@ -2428,7 +2430,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 30c2dace9ddc64c318ef828ac17ed1a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2489,6 +2491,7 @@ MonoBehaviour:
   isTool: 0
   amount: 0
   icon: {fileID: 21300000, guid: cf36dfe8f1a0e82469863e44b6425d50, type: 3}
+  isFading: 0
 --- !u!1001 &6470742843235026392
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class Hotbar : MonoBehaviour
     public Transform[] itemSlotArray;
     
     public int firstEmpty = 0;
-    public int numActiveItem;
+    public int numSelectedButton;
     public Item activeItem;
 
     private void Start()
@@ -80,6 +80,8 @@ public class Hotbar : MonoBehaviour
     {
         if (item)
         {
+            if (activeItem == item)
+                activeItem = null;
             for (int i = 0; i < Constants.Capacity; i++)
             {
                 if (items[i] == item)
@@ -109,8 +111,12 @@ public class Hotbar : MonoBehaviour
 
     public void Select(int number)
     {
+        if(activeItem)
+            Destroy(activeItem.gameObject);
+        // TO DO: spawn object SE necessario
+        
         Item item;
-        for (int i = 0; i <= Constants.Capacity; i++)
+        for (int i = 0; i < Constants.Capacity; i++)
         {
             item = items[i];
             Transform buttonTransform = itemSlotArray[i].transform.Find("ItemButton");
@@ -120,51 +126,64 @@ public class Hotbar : MonoBehaviour
             {
                 button.interactable = false;
                 activeItem = items[number];
+                numSelectedButton = number;
             }
             else
             {
                 button.interactable = true;
             }
         }
-        // TO DO: sparisce item dalla mano (se presente) e spawna il nuovo
     }
 
     public void Deselect()
     {
-        if (activeItem)
+        for (int i = 0; i < Constants.Capacity; i++)
         {
-            for (int i = 0; i < Constants.Capacity; i++)
-            {
-                if (items[i])
-                {
-                    Transform buttonTransform = itemSlotArray[i].transform.Find("ItemButton");
-                    Transform imageTransform = buttonTransform.transform.Find("Image");
-                    Button button = buttonTransform.transform.GetComponent<Button>();
-                    button.interactable = true;
-                }
-            }
-            
-            activeItem = null;
-            // TO DO: SPARISCE ITEM DALLA MANO
+            Transform buttonTransform = itemSlotArray[i].transform.Find("ItemButton");
+            Transform imageTransform = buttonTransform.transform.Find("Image");
+            Button button = buttonTransform.transform.GetComponent<Button>();
+            button.interactable = true;
         }
+
+        numSelectedButton = -1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha1) 
+            && numSelectedButton != 0
+            && itemSlotArray[0].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
             Select(0);
-        if (Input.GetKey(KeyCode.Alpha2))
+        if (Input.GetKey(KeyCode.Alpha2) 
+            && numSelectedButton != 1 
+            && itemSlotArray[1].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
             Select(1);
-        if (Input.GetKey(KeyCode.Alpha3))
+        if (Input.GetKey(KeyCode.Alpha3) 
+            && numSelectedButton != 2 
+            && itemSlotArray[2].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
             Select(2);
-        if (Input.GetKey(KeyCode.Alpha4))
+        if (Input.GetKey(KeyCode.Alpha4) 
+            && numSelectedButton != 3 
+            && itemSlotArray[3].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
             Select(3);
-        if (Input.GetKey(KeyCode.Alpha5))
+        if (Input.GetKey(KeyCode.Alpha5) 
+            && numSelectedButton != 4 
+            && itemSlotArray[4].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
             Select(4);
-        if (Input.GetKey(KeyCode.Alpha6))
+        if (Input.GetKey(KeyCode.Alpha6) 
+            && numSelectedButton != 5
+            && itemSlotArray[5].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
             Select(5);
         if (Input.GetKey(KeyCode.Alpha0))
+        {
+            if (activeItem)
+            {
+                Item item = activeItem;
+                activeItem = null;
+                Destroy(item.gameObject);
+            }
             Deselect();
+        }
     }
 }

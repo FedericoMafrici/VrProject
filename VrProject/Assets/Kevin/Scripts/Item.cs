@@ -38,22 +38,13 @@ public class Item : Grabbable
     public Sprite icon;
     
     Renderer renderer;
+    public bool isFading = false;
     
     public Item(ItemName itemNameVar, bool isToolVar, int amountVar = 1)
     {
         itemName = itemNameVar;
         isTool = isToolVar;
         amount = amountVar;
-    }
-
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
-    
-    public void Hide()
-    {
-        gameObject.SetActive(false);
     }
 
     public void Start()
@@ -74,6 +65,7 @@ public class Item : Grabbable
 
     public void StartFading()
     {
+        isFading = true;
         StartCoroutine(StartFadingOut());
     }
 

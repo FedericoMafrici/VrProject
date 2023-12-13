@@ -21,7 +21,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     {
         if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit,
                 pickupDistance, pickupLayerMask)
-            && raycastHit.transform.TryGetComponent(out Item obj)
+            && raycastHit.transform.TryGetComponent(out Item item)
             && hotbar.activeItem == null)
         {
             clue.text = "Press E to grab\nPress Q to collect";
@@ -39,12 +39,12 @@ public class PlayerPickUpDrop : MonoBehaviour
             {
                 if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward,
                         out RaycastHit raycastHit2,
-                        pickupDistance, pickupLayerMask)  && hotbar.firstEmpty <= Constants.Capacity)
+                        pickupDistance, pickupLayerMask)  && hotbar.firstEmpty < Constants.Capacity)
                 {
                     if (raycastHit2.transform.TryGetComponent(out item))
                     {
                         int lastItemIndex = hotbar.Add(item, true);
-                        hotbar.activeItem = hotbar.items[lastItemIndex];
+                        hotbar.Select(lastItemIndex);
                         
                         item.Grab(objectGrabPointTransform);
                         Debug.Log(item+" grabbed");
@@ -60,7 +60,7 @@ public class PlayerPickUpDrop : MonoBehaviour
         {
             if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward,
                     out RaycastHit raycastHit2,
-                    pickupDistance, pickupLayerMask)  && hotbar.firstEmpty <= Constants.Capacity)
+                    pickupDistance, pickupLayerMask)  && hotbar.firstEmpty < Constants.Capacity)
             {
                 if (raycastHit2.transform.TryGetComponent(out item))
                 {
@@ -79,12 +79,12 @@ public class PlayerPickUpDrop : MonoBehaviour
 
     public void Drop()
     {
-        hotbar.Remove(hotbar.activeItem);
-        Debug.Log(item+" removed from the hotbar");
-        
         hotbar.activeItem.Drop();
         Debug.Log(item+" dropped");
         
+        hotbar.Remove(hotbar.activeItem);
+        Debug.Log(item+" removed from the hotbar");
+
         hotbar.Deselect();
     }
 }

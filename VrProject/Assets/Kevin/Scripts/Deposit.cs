@@ -6,35 +6,23 @@ using UnityEngine;
 
 public class Deposit : MonoBehaviour
 {
-    private Dictionary<Item, bool> _items = new Dictionary<Item, bool>();
+    private Dictionary<Item, bool> items = new Dictionary<Item, bool>();
 
     public void Drop(Item item)
     {
-        if (_items.ContainsKey(item))
+        if (items.ContainsKey(item))
         {
-            _items[item] = false;
-            item.Show();
+            items[item] = false;
+            // SHOW OBJ
         }
     }
 
     public void Pick(Item item)
     {
-        if (_items.ContainsKey(item))
+        if (items.ContainsKey(item))
         {
-            _items[item] = true;
-            item.Hide();
+            items[item] = true;
+            // HIDE OBJ
         }
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
