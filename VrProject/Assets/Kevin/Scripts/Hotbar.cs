@@ -13,12 +13,14 @@ static class Constants
 
 public class Hotbar : MonoBehaviour
 {
+    public Deposit deposit;
+    public PlayerPickUpDrop player;
     
     public Item[] items;
     public Transform[] itemSlotArray;
     
     public int firstEmpty = 0;
-    public int numSelectedButton;
+    public int numSelectedButton = -1;
     public Item activeItem;
 
     private void Start()
@@ -151,30 +153,78 @@ public class Hotbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha1) 
-            && numSelectedButton != 0
-            && itemSlotArray[0].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-            Select(0);
-        if (Input.GetKey(KeyCode.Alpha2) 
-            && numSelectedButton != 1 
-            && itemSlotArray[1].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-            Select(1);
-        if (Input.GetKey(KeyCode.Alpha3) 
-            && numSelectedButton != 2 
-            && itemSlotArray[2].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-            Select(2);
-        if (Input.GetKey(KeyCode.Alpha4) 
-            && numSelectedButton != 3 
-            && itemSlotArray[3].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-            Select(3);
-        if (Input.GetKey(KeyCode.Alpha5) 
-            && numSelectedButton != 4 
-            && itemSlotArray[4].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-            Select(4);
-        if (Input.GetKey(KeyCode.Alpha6) 
-            && numSelectedButton != 5
-            && itemSlotArray[5].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-            Select(5);
+        int i = 0;
+        if (Input.GetKey(KeyCode.Alpha1)
+            && numSelectedButton != i
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
+                .sprite)
+        {
+            Select(i);
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[items[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform);
+            activeItem = spawnedGameObject.GetComponent<Item>();
+        }
+
+        i++;
+        if (Input.GetKey(KeyCode.Alpha2)
+            && numSelectedButton != i
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
+                .sprite)
+        {
+            Select(i);
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[items[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform);
+            activeItem = spawnedGameObject.GetComponent<Item>();
+        }
+
+        i++;
+        if (Input.GetKey(KeyCode.Alpha3)
+            && numSelectedButton != i
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
+                .sprite)
+        {
+            Select(i);
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[items[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform);
+            activeItem = spawnedGameObject.GetComponent<Item>();
+        }
+        
+        i++;
+        if (Input.GetKey(KeyCode.Alpha4)
+            && numSelectedButton != i
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
+                .sprite)
+        {
+            Select(i);
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[items[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform);
+            activeItem = spawnedGameObject.GetComponent<Item>();
+        }
+        
+        i++;
+        if (Input.GetKey(KeyCode.Alpha5)
+            && numSelectedButton != i
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
+                .sprite)
+        {
+            Select(i);
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[items[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform);
+            activeItem = spawnedGameObject.GetComponent<Item>();
+        }
+        
+        i++;
+        if (Input.GetKey(KeyCode.Alpha6)
+            && numSelectedButton != i
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
+                .sprite)
+        {
+            Select(i);
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[items[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform);
+            activeItem = spawnedGameObject.GetComponent<Item>();
+        }
+        
         if (Input.GetKey(KeyCode.Alpha0))
         {
             if (activeItem)
@@ -185,5 +235,6 @@ public class Hotbar : MonoBehaviour
             }
             Deselect();
         }
+        
     }
 }

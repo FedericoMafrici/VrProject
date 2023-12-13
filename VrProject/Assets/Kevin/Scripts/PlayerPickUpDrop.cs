@@ -9,13 +9,18 @@ public class PlayerPickUpDrop : MonoBehaviour
 {
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private LayerMask pickupLayerMask;
-    [SerializeField] private Transform objectGrabPointTransform;
+    [SerializeField] public Transform objectGrabPointTransform;
     [SerializeField] private TMP_Text clue;
+    [SerializeField] private Deposit deposit;
     [SerializeField] private Hotbar hotbar;
 
     private float pickupDistance = 5f;
     private Item item;
 
+    public void Start()
+    {
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -69,10 +74,6 @@ public class PlayerPickUpDrop : MonoBehaviour
                     
                     item.StartFading();
                 }
-            }
-            else if (hotbar.activeItem)
-            {
-                Drop();
             }
         }
     }

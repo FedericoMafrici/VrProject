@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Timers;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +40,7 @@ public class Item : Grabbable
     
     Renderer renderer;
     public bool isFading = false;
-    
+
     public Item(ItemName itemNameVar, bool isToolVar, int amountVar = 1)
     {
         itemName = itemNameVar;
@@ -51,7 +52,7 @@ public class Item : Grabbable
     {
         renderer = GetComponent<Renderer>();
     }
-    
+
     IEnumerator FadingOut()
     {
         for (float f = 1f; f >= -0.05; f -= 0.05f)
