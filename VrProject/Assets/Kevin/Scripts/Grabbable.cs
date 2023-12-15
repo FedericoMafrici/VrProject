@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Grabbable : MonoBehaviour
 {
+    private bool isGrabbedFromGround = true;
     private Rigidbody objectRigidBody;
     private Transform objectGrabPointTransform;
 
@@ -12,11 +13,12 @@ public class Grabbable : MonoBehaviour
     {
         objectRigidBody = GetComponent<Rigidbody>();
     }
-    public void Grab(Transform objectGrabPointTransform)
+    public void Grab(Transform objectGrabPointTransform, bool isGrabbedFromGround)
     {
-        this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidBody.useGravity = false;
         objectRigidBody.isKinematic = true;
+        this.isGrabbedFromGround = isGrabbedFromGround;
+        this.objectGrabPointTransform = objectGrabPointTransform;
     }
 
     public void Drop()
@@ -26,13 +28,25 @@ public class Grabbable : MonoBehaviour
         objectRigidBody.isKinematic = false;
     }
 
+    public void Update()
+    {
+        
+    }
+    
     private void FixedUpdate()
     {
         if (objectGrabPointTransform != null)
         {
-            float lerpSpeed = 10;
-            Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
-            objectRigidBody.MovePosition(newPosition);
+            if (isGrabbedFromGround)
+            {
+                float lerpSpeed = 10;
+                Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
+                objectRigidBody.MovePosition(newPosition);
+            }
+            else
+            {
+                objectRigidBody.MovePosition(objectGrabPointTransform.position);
+            }
         }
     }
 }

@@ -6,35 +6,34 @@ using UnityEngine;
 
 public class Deposit : MonoBehaviour
 {
-    private Dictionary<Item, bool> _items = new Dictionary<Item, bool>();
 
+    private Dictionary<Item, bool> items = new Dictionary<Item, bool>();
+    
+    public Dictionary<Item.ItemName, GameObject> itemAssets = new Dictionary<Item.ItemName, GameObject>();
+
+    public void Start()
+    {
+        itemAssets.Add(Item.ItemName.Apple, (GameObject) Resources.Load("Prefabs/Apple", typeof(GameObject)));
+        itemAssets.Add(Item.ItemName.Bucket, (GameObject) Resources.Load("Prefabs/Bucket", typeof(GameObject)));
+        itemAssets.Add(Item.ItemName.Egg, (GameObject) Resources.Load("Prefabs/Egg", typeof(GameObject)));
+    }
+    
     public void Drop(Item item)
     {
-        if (_items.ContainsKey(item))
+        if (items.ContainsKey(item))
         {
-            _items[item] = false;
-            item.Show();
+            items[item] = false;
+            // SHOW OBJ
         }
     }
 
     public void Pick(Item item)
     {
-        if (_items.ContainsKey(item))
+        if (items.ContainsKey(item))
         {
-            _items[item] = true;
-            item.Hide();
+            items[item] = true;
+            // HIDE OBJ
         }
     }
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
