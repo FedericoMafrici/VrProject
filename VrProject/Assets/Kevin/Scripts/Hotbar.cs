@@ -15,17 +15,20 @@ public class Hotbar : MonoBehaviour
 {
     public Deposit deposit;
     public PlayerPickUpDrop player;
-    
-    public Item[] items;
+
+    public ItemWrapper[] itemWrappers;
+    //public Item[] itemWrappers;
     public Transform[] itemSlotArray;
     
     public int firstEmpty = 0;
     public int numSelectedButton = -1;
-    public Item activeItem;
+    public ItemWrapper activeItemWrapper;
+    public Item activeItemObj;
 
     private void Start()
     {
-        items = new Item[Constants.Capacity];
+        itemWrappers = new ItemWrapper[Constants.Capacity];
+        // itemWrappers = new Item[Constants.Capacity];
         itemSlotArray = new Transform[Constants.Capacity];
         
         Transform itemParentTransform = gameObject.transform.Find("ItemParent");
@@ -48,20 +51,20 @@ public class Hotbar : MonoBehaviour
     {
         if (item)
         {
-            // Item già presente nella lista di items: incremento il suo amount
+            // Item già presente nella lista di itemWrappers: incremento il suo amount
             for (int i = 0; i < Constants.Capacity; i++)
             {
-                if (items[i] && items[i].itemName == item.itemName)
+                if (itemWrappers[i] != null && itemWrappers[i].itemName == item.itemName)
                 {
-                    items[i].amount++;
+                    itemWrappers[i].amount++;
                     return i;
                 }
             }
             
-            // Item non presente nella lista di items: lo inserisco nel primo slot libero
+            // Item non presente nella lista di itemWrappers: lo inserisco nel primo slot libero
             if (firstEmpty < Constants.Capacity)
             {
-                items[firstEmpty] = item;
+                itemWrappers[firstEmpty] = new ItemWrapper(item.itemName, item.itemCategory);
                 Transform buttonTransform = itemSlotArray[firstEmpty].transform.Find("ItemButton");
                 Transform imageTransform = buttonTransform.transform.Find("Image");
                 if (buttonTransform && imageTransform)
@@ -81,7 +84,7 @@ public class Hotbar : MonoBehaviour
 
                 int lastAddedItemPos = firstEmpty;
                 firstEmpty++;
-                while (items[firstEmpty] != null && firstEmpty != Constants.Capacity)
+                while (itemWrappers[firstEmpty] != null && firstEmpty != Constants.Capacity)
                 {
                     firstEmpty++;
                 }
@@ -92,13 +95,13 @@ public class Hotbar : MonoBehaviour
         return -1;
     }
 
-    public void Remove(Item item)
+    public void Remove(ItemWrapper itemWrapper)
     {
-        if (item)
+        if (itemWrapper != null)
         {
             for (int i = 0; i < Constants.Capacity; i++)
             {
-                if (items[i] && items[i].itemName == item.itemName)
+                if (itemWrappers[i] != null && itemWrappers[i].itemName == itemWrapper.itemName)
                 {
                     Transform buttonTransform = itemSlotArray[i].transform.Find("ItemButton");
                     Transform imageTransform = buttonTransform.transform.Find("Image");
@@ -114,7 +117,7 @@ public class Hotbar : MonoBehaviour
                         image.color = color;
                     }
                     
-                    items[i] = null;
+                    itemWrappers[i] = null;
                     if (i < firstEmpty)
                         firstEmpty = i;
                     break;
@@ -125,21 +128,19 @@ public class Hotbar : MonoBehaviour
 
     public void Select(int number)
     {
-        if(activeItem)
-            activeItem.gameObject.SetActive(false);
-        // TO DO: spawn object SE necessario
-        
-        Item item;
+        if(activeItemObj)
+            Destroy(activeItemObj.gameObject);
+
+        Item item;        
         for (int i = 0; i < Constants.Capacity; i++)
         {
-            item = items[i];
             Transform buttonTransform = itemSlotArray[i].transform.Find("ItemButton");
             Transform imageTransform = buttonTransform.transform.Find("Image");
             Button button = buttonTransform.transform.GetComponent<Button>();
             if (i == number)
             {
                 button.interactable = false;
-                activeItem = items[number];
+                activeItemWrapper = itemWrappers[number];
                 numSelectedButton = number;
             }
             else
@@ -168,82 +169,84 @@ public class Hotbar : MonoBehaviour
         int i = 0;
         if (Input.GetKey(KeyCode.Alpha1)
             && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
-                .sprite)
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
+            
             Select(i);
-            items[i].Grab(player.objectGrabPointTransform, false);
-            items[i].Show();
-            activeItem = items[i];
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
+            activeItemObj = spawnedGameObject.GetComponent<Item>();
+            activeItemWrapper = itemWrappers[i];
         }
 
         i++;
         if (Input.GetKey(KeyCode.Alpha2)
             && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
-                .sprite)
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            items[i].Grab(player.objectGrabPointTransform, false);
-            items[i].Show();
-            activeItem = items[i];
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
+            activeItemObj = spawnedGameObject.GetComponent<Item>();
+            activeItemWrapper = itemWrappers[i];
         }
 
         i++;
         if (Input.GetKey(KeyCode.Alpha3)
             && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
-                .sprite)
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            items[i].Grab(player.objectGrabPointTransform, false);
-            items[i].Show();
-            activeItem = items[i];
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
+            activeItemObj = spawnedGameObject.GetComponent<Item>();
+            activeItemWrapper = itemWrappers[i];
         }
         
         i++;
         if (Input.GetKey(KeyCode.Alpha4)
             && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
-                .sprite)
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            items[i].Grab(player.objectGrabPointTransform, false);
-            items[i].Show();
-            activeItem = items[i];
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
+            activeItemObj = spawnedGameObject.GetComponent<Item>();
+            activeItemWrapper = itemWrappers[i];
         }
         
         i++;
         if (Input.GetKey(KeyCode.Alpha5)
             && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
-                .sprite)
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            items[i].Grab(player.objectGrabPointTransform, false);
-            items[i].Show();
-            activeItem = items[i];
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
+            activeItemObj = spawnedGameObject.GetComponent<Item>();
+            activeItemWrapper = itemWrappers[i];
         }
         
         i++;
         if (Input.GetKey(KeyCode.Alpha6)
             && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>()
-                .sprite)
+            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            items[i].Grab(player.objectGrabPointTransform, false);
-            items[i].Show();
-            activeItem = items[i];
+            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
+            activeItemObj = spawnedGameObject.GetComponent<Item>();
+            activeItemWrapper = itemWrappers[i];
         }
         
         if (Input.GetKey(KeyCode.Alpha0))
         {
-            if (activeItem)
+            if (activeItemObj && activeItemWrapper != null)
             {
-                Item item = activeItem;
-                activeItem = null;
-                item.gameObject.SetActive(false);
+                activeItemWrapper = null;
+                Item item = activeItemObj;
+                activeItemObj = null;
+                Destroy(item.gameObject);
             }
             Deselect();
         }

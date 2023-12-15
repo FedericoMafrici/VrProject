@@ -32,20 +32,25 @@ public class Item : Grabbable
         Pomade
     }
 
+    public enum ItemCategory
+    {
+        Tool,
+        Product,
+        Food
+    }
+
     public ItemName itemName;
-    public bool isTool;
-    public int amount;
+    public ItemCategory itemCategory;
     
     public Sprite icon;
     
     Renderer renderer;
     public bool isFading = false;
 
-    public Item(ItemName itemNameVar, bool isToolVar, int amountVar = 1)
+    public Item(ItemName itemName, ItemCategory itemCategory)
     {
-        itemName = itemNameVar;
-        isTool = isToolVar;
-        amount = amountVar;
+        this.itemName = itemName;
+        this.itemCategory = itemCategory;
     }
 
     public void Start()
@@ -73,14 +78,14 @@ public class Item : Grabbable
     IEnumerator StartFadingOut()
     {
         yield return StartCoroutine(FadingOut());
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
-    public void Show()
+    /*public void Show()
     {
         Color c = renderer.material.color;
         c.a = 1;
         renderer.material.color = c;
         gameObject.SetActive(true);
-    }
+    }*/
 }

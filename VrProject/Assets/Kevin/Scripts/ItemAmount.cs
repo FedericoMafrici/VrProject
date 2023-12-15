@@ -11,9 +11,9 @@ public class ItemAmount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hotbar.items[slot])
+        if (hotbar.itemWrappers[slot] != null)
         {
-            int amount = hotbar.items[slot].amount;
+            int amount = hotbar.itemWrappers[slot].amount;
             if (amount == 0 || amount == 1)
             {
                 gameObject.GetComponent<TMP_Text>().text = "";

@@ -7,7 +7,7 @@ using UnityEngine;
 public class Deposit : MonoBehaviour
 {
 
-    private Dictionary<Item, bool> items = new Dictionary<Item, bool>();
+    private Dictionary<Item, bool> itemWrappers = new Dictionary<Item, bool>();
     
     public Dictionary<Item.ItemName, GameObject> itemAssets = new Dictionary<Item.ItemName, GameObject>();
 
@@ -20,18 +20,18 @@ public class Deposit : MonoBehaviour
     
     public void Drop(Item item)
     {
-        if (items.ContainsKey(item))
+        if (itemWrappers.ContainsKey(item))
         {
-            items[item] = false;
+            itemWrappers[item] = false;
             // SHOW OBJ
         }
     }
 
     public void Pick(Item item)
     {
-        if (items.ContainsKey(item))
+        if (itemWrappers.ContainsKey(item))
         {
-            items[item] = true;
+            itemWrappers[item] = true;
             // HIDE OBJ
         }
     }

@@ -27,7 +27,7 @@ public class PlayerPickUpDrop : MonoBehaviour
         if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit,
                 pickupDistance, pickupLayerMask)
             && raycastHit.transform.TryGetComponent(out Item item)
-            && hotbar.activeItem == null)
+            && hotbar.activeItemObj == null)
         {
             clue.text = "Press E to grab\nPress Q to collect";
             if (hotbar.firstEmpty == 6)
@@ -40,7 +40,7 @@ public class PlayerPickUpDrop : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (hotbar.activeItem == null)
+            if (hotbar.activeItemObj == null)
             {
                 if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward,
                         out RaycastHit raycastHit2,
@@ -50,7 +50,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                     {
                         int lastItemIndex = hotbar.Add(item, true);
                         hotbar.Select(lastItemIndex);
-                        
+                        hotbar.activeItemObj = item;
                         item.Grab(objectGrabPointTransform, true);
                         Debug.Log(item+" grabbed");
                     }
@@ -82,23 +82,23 @@ public class PlayerPickUpDrop : MonoBehaviour
 
     public void Drop()
     {
-        if (hotbar.activeItem.isTool)
+        if (hotbar.activeItemObj.itemCategory == Item.ItemCategory.Tool)
         {
-            hotbar.activeItem.StartFading();
+            hotbar.activeItemObj.StartFading();
         }
         
-        hotbar.activeItem.Drop();
+        hotbar.activeItemObj.Drop();
         Debug.Log(item+" dropped");
 
-        hotbar.activeItem.amount--;
-        if (hotbar.activeItem.amount == 0)
+        hotbar.activeItemWrapper.amount--;
+        if (hotbar.activeItemWrapper.amount == 0)
         {
-            hotbar.Remove(hotbar.activeItem);
+            hotbar.Remove(hotbar.activeItemWrapper);
             Debug.Log(item+" removed from the hotbar");
         }
         
-        if (hotbar.activeItem)
-            hotbar.activeItem = null;
+        if (hotbar.activeItemObj)
+            hotbar.activeItemObj = null;
 
         hotbar.Deselect();
     }
