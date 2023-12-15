@@ -46,35 +46,49 @@ public class Hotbar : MonoBehaviour
     
     public int Add(Item item, bool isGrabbed)
     {
-        if (item && firstEmpty < Constants.Capacity)
+        if (item)
         {
-            items[firstEmpty] = item;
-            Transform buttonTransform = itemSlotArray[firstEmpty].transform.Find("ItemButton");
-            Transform imageTransform = buttonTransform.transform.Find("Image");
-            if (buttonTransform && imageTransform)
+            // Item già presente nella lista di items: incremento il suo amount
+            for (int i = 0; i < Constants.Capacity; i++)
             {
-                if (isGrabbed)
+                if (items[i] && items[i].itemName == item.itemName)
                 {
-                    Button button = buttonTransform.transform.GetComponent<Button>();
-                    button.interactable = false;
+                    items[i].amount++;
+                    return i;
                 }
-                
-                Image image = imageTransform.transform.GetComponent<Image>();
-                image.sprite = item.icon;
-                Color color = image.color;
-                color.a = 1;
-                image.color = color;
             }
-
-            int lastAddedItemPos = firstEmpty;
-            firstEmpty++;
-            while (items[firstEmpty] != null && firstEmpty != Constants.Capacity)
+            
+            // Item non presente nella lista di items: lo inserisco nel primo slot libero
+            if (firstEmpty < Constants.Capacity)
             {
-                firstEmpty++;
-            }
-            return lastAddedItemPos;
-        }
+                items[firstEmpty] = item;
+                Transform buttonTransform = itemSlotArray[firstEmpty].transform.Find("ItemButton");
+                Transform imageTransform = buttonTransform.transform.Find("Image");
+                if (buttonTransform && imageTransform)
+                {
+                    if (isGrabbed)
+                    {
+                        Button button = buttonTransform.transform.GetComponent<Button>();
+                        button.interactable = false;
+                    }
+                
+                    Image image = imageTransform.transform.GetComponent<Image>();
+                    image.sprite = item.icon;
+                    Color color = image.color;
+                    color.a = 1;
+                    image.color = color;
+                }
 
+                int lastAddedItemPos = firstEmpty;
+                firstEmpty++;
+                while (items[firstEmpty] != null && firstEmpty != Constants.Capacity)
+                {
+                    firstEmpty++;
+                }
+                return lastAddedItemPos;
+            }
+        }
+        
         return -1;
     }
 
@@ -82,8 +96,6 @@ public class Hotbar : MonoBehaviour
     {
         if (item)
         {
-            if (activeItem == item)
-                activeItem = null;
             for (int i = 0; i < Constants.Capacity; i++)
             {
                 if (items[i] && items[i].itemName == item.itemName)

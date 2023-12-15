@@ -89,9 +89,16 @@ public class PlayerPickUpDrop : MonoBehaviour
         
         hotbar.activeItem.Drop();
         Debug.Log(item+" dropped");
+
+        hotbar.activeItem.amount--;
+        if (hotbar.activeItem.amount == 0)
+        {
+            hotbar.Remove(hotbar.activeItem);
+            Debug.Log(item+" removed from the hotbar");
+        }
         
-        hotbar.Remove(hotbar.activeItem);
-        Debug.Log(item+" removed from the hotbar");
+        if (hotbar.activeItem)
+            hotbar.activeItem = null;
 
         hotbar.Deselect();
     }
