@@ -15,7 +15,6 @@ public class RangeVolume : MonoBehaviour {
         if (col != null) {
             _radius = col.radius;
             _collider = col;
-            Debug.Log(transform.name + " radius: " + _radius);
         } else {
             float defaultRadiusValue = 2.0f;
             Debug.LogWarning(transform.name + " is a RangeVolume but has no SphereCollider, setting Radius to " + defaultRadiusValue);

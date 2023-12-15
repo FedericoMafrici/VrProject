@@ -10,12 +10,19 @@ public class TargetBehaviour : MovementBehaviour {
 
     private Transform _target;
     private Targettable _targettable;
-    private const float _rotationDotThreshold = 0.99f; //if dot product between agent direction and target direction is above this threshold then agent is looking at it
+    private const float _rotationAngleThreshold = 15f; //if angle between agent forward vector and target direction wrt to agent is lower than this value
+                                                      //then the agent stops rotating towards target
+                                                      //expressed in degs
+
     public TargetBehaviour(Transform toMoveTransform, Transform target) : base(toMoveTransform) {
         _target = target;
         _targettable = target.GetComponent<Targettable>();
         validateParameters();
         if(HasValidParameters) {
+
+            if (!_targettable.canSubscribe(_npcMover))
+                Debug.LogWarning(_toMoveTransform.name + " couldn't subscribe to " + _targettable.transform.name + " but subscribed nonetheless");
+
             _targettable.subscribe(_npcMover);
         }
     }
@@ -24,7 +31,7 @@ public class TargetBehaviour : MovementBehaviour {
         deleteTarget();
     }
 
-    public override void Move(Transform objectToMove) {
+    public override void Move() {
         updateMovement();
         updateBehaviour();
     }
@@ -44,19 +51,26 @@ public class TargetBehaviour : MovementBehaviour {
     private void updateMovement() {
         if (HasValidParameters && _target != null) {
             if (_npcMover.getState() == MovingState.VERY_CLOSE_TO_TARGET) {
+                
                 _agent.destination = _toMoveTransform.position;
-                //rotate towards target
                 Vector3 targetDirection = _target.position - _toMoveTransform.position;
 
-                float rotationStep = 10.0f * Time.deltaTime; 
-                Vector3 newDirection = Vector3.RotateTowards(_toMoveTransform.forward, targetDirection, rotationStep, 0.0f);
-                newDirection.y = _toMoveTransform.forward.y;
-                Debug.DrawRay(_toMoveTransform.position, newDirection, Color.red);
-                _toMoveTransform.rotation = Quaternion.LookRotation(newDirection);
+                //check if agent is not facing towards the target
+                //if it's not rotate it towards the target
+                //otherwise destoy the target
 
-                //if agent is very close to target and is looking at it destory the target
-                if (_npcMover.getState() == MovingState.VERY_CLOSE_TO_TARGET && Vector3.Dot(_toMoveTransform.forward, targetDirection) >= _rotationDotThreshold) {
-                    //_npcMover.DestroyTarget(_target);
+                if (Vector3.Angle(_toMoveTransform.forward, targetDirection) > _rotationAngleThreshold) {
+                    //rotate towards target
+
+                    float rotationStep = 10.0f * Time.deltaTime;
+                    Vector3 newDirection = Vector3.RotateTowards(_toMoveTransform.forward, targetDirection, rotationStep, 0.0f);
+                    newDirection.y = _toMoveTransform.forward.y;
+                    Debug.DrawRay(_toMoveTransform.position, newDirection, Color.red);
+                    _toMoveTransform.rotation = Quaternion.LookRotation(newDirection);
+
+                } else {
+                    //if agent is looking at target destroy it
+                    _npcMover.DestroyTarget(_target);
                 }
 
             } else {
@@ -65,51 +79,33 @@ public class TargetBehaviour : MovementBehaviour {
         }
     }
 
-    protected override void updateBehaviour() {
-        MovingState nextState = MovingState.PATROL;
-        Targettable target = null;
+    protected override bool wantsToFollowTarget(Targettable targettable) {
+        //first check if base class method allows to follow target
+        bool result = base.wantsToFollowTarget(targettable);
 
-        if (targetInRange(_npcMover.getVeryCloseRadius(), ref target)) {
-            nextState = MovingState.VERY_CLOSE_TO_TARGET;
-        } else if (targetInRange(_npcMover.getCloseRadius(), ref target)) {
-            nextState = MovingState.CLOSE_TO_TARGET;
-        } else if (targetInRange(_npcMover.getInRangeRadius(), ref target)) {
-            nextState = _npcMover.getState();
-        }
+        //if base class method returns true do additional checks
+        if (result)
+            result = prefersTarget(targettable.transform);
 
-        if (nextState != _npcMover.getState() || target.transform != _target) {
-            updateState(nextState, target);
-        }
+        return result;
     }
 
-    protected override bool targetInRange(float range, ref Targettable target) {
-        bool targetFound = false;
-        Collider[] intersectedTargets = Physics.OverlapSphere(_toMoveTransform.position, range, 1 << 6);
+    protected override void manageStateUpdate(MovingState nextState, Targettable newTarget) {
+        // if target a target was found only call the base class method check if new target is different from current one
+        // otherwise just call the base class method
 
-        if (intersectedTargets.Length > 0) {
-            int i = 0;
-            Collider tmpTarget;
-
-            //iterate over all intersected objects
-            while (!targetFound && i < intersectedTargets.Length) {
-                tmpTarget = intersectedTargets[i];
-                Targettable tmpTargettable = tmpTarget.transform.GetComponent<Targettable>();
-
-                //check if intersected object is a Targettable,
-                //if it is check if NPCMover is interested in its type and if target's follower count has not reached its max
-                if (tmpTargettable != null && _npcMover.InterestsSet.Contains(tmpTargettable.getType()) && wantsToFollowTarget(tmpTargettable.transform) && tmpTargettable.canSubscribe(_npcMover)) { //TODO: visibility check through raycast
-                    targetFound = true;
-                    target = tmpTargettable;
-
-                }
-
-                i++;
+        if (newTarget != null) {
+            if (newTarget.transform != _target) {
+                Debug.Log(_toMoveTransform.name + " found new target");
+                base.manageStateUpdate(nextState, newTarget);
             }
+        } else {
+            base.manageStateUpdate(nextState, newTarget);
         }
-        return targetFound;
     }
 
-    private bool wantsToFollowTarget(Transform target) {
+    private bool prefersTarget(Transform target) {
+
         //might be used to implement a priority system, for now do not follow a target which is different from the one you're currently following
         if (_target == target) {
             return true;
@@ -118,6 +114,7 @@ public class TargetBehaviour : MovementBehaviour {
     }
 
     private void deleteTarget() {
+        Debug.Log("Destroying " + _npcMover.name +  " TargetBehaviour");
         if (_targettable != null) {
             _targettable.unsubscribe(_npcMover);
             _targettable = null;

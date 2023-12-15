@@ -12,7 +12,7 @@ public class SampleMovementBehaviour : MovementBehaviour {
         validateParameters();
     }
 
-    public override void Move(Transform objectToMove) {
+    public override void Move() {
         updateTarget();
     }
 
