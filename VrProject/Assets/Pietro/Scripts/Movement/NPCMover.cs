@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,24 +13,32 @@ public enum MovingState {
     CLOSE_TO_TARGET,
     VERY_CLOSE_TO_TARGET
 }
+
+public enum SpecialBehaviourID {
+    BASIC_FOLLOW_PATH
+}
+
 public class NPCMover : MonoBehaviour {
 
     private MovingState _state = MovingState.PATROL;
 
-    [SerializeField] private Transform _target;
+    [Header("Patrol Behaviour parameters")]
     [SerializeField] private BoxCollider _patrolArea;
-
     [SerializeField] private float _minPatrolDelay = 5.0f; //minimum amount of time (in seconds) that needs to pass before generating a new target when patrolling an area
     [SerializeField] private float _maxPatrolDelay = 15.0f; //maximum amount of time (in seconds) that needs to pass before generating a new target when patrolling an area
 
     private float _inRangeRadius = 5.0f;
     private float _closeRadius = 2.0f;
     private float _veryCloseRadius = .5f;
+
+    [Header("Interests")]
     [SerializeField] private List<TargetType> _interestsList;
     public HashSet<TargetType> InterestsSet = new HashSet<TargetType>();
+    private MovementBehaviour _movementBehaviour;
 
-    [SerializeField] private MovementBehaviour _movementBehaviour;
-    private MovementBehaviour _nextBehaviour;
+    [Header("Behaviour generator parameters")]
+    [SerializeField] SpecialBehaviourID _startingSpecialBehaviour;
+    SpecialBehaviourGenerator _specialBehaviourGenerator;
 
     // Start is called before the first frame update
     void Start() {
@@ -40,6 +49,9 @@ public class NPCMover : MonoBehaviour {
         setInterestRadius();
         //adjustInterestRadius();
 
+        _specialBehaviourGenerator = GetComponentInChildren<SpecialBehaviourGenerator>();
+        generateStartingBehaviour();
+
         if (_movementBehaviour == null) {
             //create default behaviour
             PatrolBehaviour tmpPatrolBehaviour = new PatrolBehaviour(transform, _patrolArea, new Vector2(_minPatrolDelay, _maxPatrolDelay));
@@ -47,17 +59,15 @@ public class NPCMover : MonoBehaviour {
             if (tmpPatrolBehaviour.HasValidParameters) {
                 _movementBehaviour = tmpPatrolBehaviour;
                 _state = MovingState.PATROL;
-            } else {
-                _movementBehaviour = null;
-            }
-        } else {
-            if(!_movementBehaviour.HasValidParameters) {
-                Debug.LogWarning("MovementBehaviour for " + transform.name + " has invalid parameters, disabling behaviour");
-                _movementBehaviour = null;
             }
         }
 
-        _nextBehaviour = null;
+        if (!_movementBehaviour.HasValidParameters) {
+            Debug.LogWarning("MovementBehaviour for " + transform.name + " has invalid parameters, disabling behaviour");
+            _movementBehaviour = null;
+        }
+     
+
     }
 
     // Update is called once per frame
@@ -73,7 +83,7 @@ public class NPCMover : MonoBehaviour {
             }
             */
 
-            _movementBehaviour.Move(transform);
+            _movementBehaviour.Move();
         }
     }
 
@@ -139,6 +149,13 @@ public class NPCMover : MonoBehaviour {
 
     }
 
+    private void generateStartingBehaviour() {
+        if (_specialBehaviourGenerator != null) {
+            Debug.Log("Generating starting behaviour");
+            _movementBehaviour = _specialBehaviourGenerator.generateBehaviour(_startingSpecialBehaviour, this);
+        }
+    }
+
     public void DestroyTarget(Transform _target) {
         if (_target != null) { 
             Destroy(_target.gameObject);
@@ -171,14 +188,6 @@ public class NPCMover : MonoBehaviour {
 
     public Vector2 getDelayBounds() {
         return new Vector2(_minPatrolDelay, _maxPatrolDelay);
-    }
-
-    public void setNextBehaviour(MovementBehaviour movementBehaviour) {
-        if (movementBehaviour.HasValidParameters) {
-            _nextBehaviour = movementBehaviour;
-        } else {
-            _nextBehaviour = null;  
-        }
     }
 
     public void setBehaviour(MovementBehaviour movementBehaviour) {

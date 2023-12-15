@@ -5,7 +5,9 @@ using UnityEngine;
 public enum TargetType {
     DEFAULT,
     TARGET_1,
-    TARGET_2
+    TARGET_2,
+    TARGET_3,
+    TARGET_4
 }
 
 public class Targettable : MonoBehaviour {
@@ -25,12 +27,14 @@ public class Targettable : MonoBehaviour {
     public bool canSubscribe(NPCMover newFollower) {
         bool retValue = true;
 
-        if (_currentFollowers >= _maxFollowers)
+        //if new follower is not yet contained in followers set check if it can be added
+        if (!_followers.Contains(newFollower) && _currentFollowers >= _maxFollowers)
             retValue = false;
 
 
-        if (!retValue)
-            Debug.Log(newFollower.transform.name + " tried to subscribe to " + transform.name + " but failed");
+        if (!retValue) {
+            //Debug.Log(newFollower.transform.name + " tried to subscribe to " + transform.name + " but failed");
+        }
 
         return retValue;
 
@@ -41,16 +45,17 @@ public class Targettable : MonoBehaviour {
 
             _followers.Add(newFollower);
             _currentFollowers++;
-            Debug.Log(newFollower.transform.name + " subscribed to " + transform.name);
+            //Debug.Log(newFollower.transform.name + " subscribed to " + transform.name);
         }
     }
 
     public void unsubscribe(NPCMover follower) {
+        
         if (_followers.Contains(follower)) {
             _followers.Remove(follower);
-            Debug.Log(follower.transform.name + " is unsubscribing from " + transform.name + ", follower count before unsubscribing = " + _currentFollowers);
+            //Debug.Log(follower.transform.name + " is unsubscribing from " + transform.name + ", follower count before unsubscribing = " + _currentFollowers);
             _currentFollowers--;
-            Debug.Log(follower.transform.name + " unsubscribed from " + transform.name + ", follower count = " + _currentFollowers);
+            //Debug.Log(follower.transform.name + " unsubscribed from " + transform.name + ", follower count = " + _currentFollowers);
             if (_currentFollowers < 0) {
                 _currentFollowers = 0;
                 Debug.LogWarning("Follower count for " + transform.name + " went below 0, setting follower count to 0");
@@ -58,6 +63,7 @@ public class Targettable : MonoBehaviour {
         } else {
             Debug.LogWarning("Not subscripted follower " + follower.transform.name + " tried to unsubscribe from Targettable: " + transform.name);
         }
+        
     }
 
 }

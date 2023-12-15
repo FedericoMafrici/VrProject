@@ -35,7 +35,7 @@ public abstract class MovementBehaviour {
         }
     }
 
-    public abstract void Move(Transform objectToMove);
+    public abstract void Move();
 
     protected void updateBehaviour() {
         MovingState nextState = MovingState.PATROL;
@@ -50,7 +50,7 @@ public abstract class MovementBehaviour {
         }
 
         manageStateUpdate(nextState, target);
-       
+        _npcMover.setState(nextState);
     }
 
     protected bool targetInRange(float range, ref Targettable target) {
@@ -66,8 +66,7 @@ public abstract class MovementBehaviour {
                 tmpTarget = intersectedTargets[i];
                 Targettable tmpTargettable = tmpTarget.transform.GetComponent<Targettable>();
 
-                //check if intersected object is a Targettable,
-                //if it is check if NPCMover is interested in its type and if target's follower count has not reached its max
+               
                 if (wantsToFollowTarget(tmpTargettable)) { //TODO: visibility check through raycast
                     targetFound = true;
                     target = tmpTargettable;
@@ -82,6 +81,9 @@ public abstract class MovementBehaviour {
 
     protected virtual bool wantsToFollowTarget(Targettable targettable) {
         bool result = false;
+
+        //check if intersected object is a Targettable,
+        //if it is check if NPCMover is interested in its type and if target's follower count has not reached its max
         if (targettable != null && _npcMover.InterestsSet.Contains(targettable.getType()) && targettable.canSubscribe(_npcMover)) { //TODO: visibility check through raycast
             result = true;
         }
@@ -94,16 +96,23 @@ public abstract class MovementBehaviour {
             MovingState currentState = _npcMover.getState();
 
             if (nextState == MovingState.PATROL) {
-                _npcMover.setBehaviour(new PatrolBehaviour(_toMoveTransform, _npcMover.getPatrolArea(), _npcMover.getDelayBounds()));
+                setNewPatrolBehaviour();
                 //Debug.Log(_toMoveTransform.name + ": state changed to Patrol");
 
 
             } else if (nextState == MovingState.IN_TARGET_RANGE || nextState == MovingState.CLOSE_TO_TARGET || nextState == MovingState.VERY_CLOSE_TO_TARGET) {
-                _npcMover.setBehaviour(new TargetBehaviour(_toMoveTransform, newTarget.transform));
+                setNewTargetBehaviour(newTarget.transform);
                 //Debug.Log(_toMoveTransform.name + ": State changed to Follow");
             }
-
-            _npcMover.setState(nextState);
         }
     }
-}
+
+    protected void setNewPatrolBehaviour() {
+        _npcMover.setBehaviour(new PatrolBehaviour(_toMoveTransform, _npcMover.getPatrolArea(), _npcMover.getDelayBounds()));
+    }
+
+    protected void setNewTargetBehaviour(Transform target) {
+        _npcMover.setBehaviour(new TargetBehaviour(_toMoveTransform, target));
+    }
+
+    }

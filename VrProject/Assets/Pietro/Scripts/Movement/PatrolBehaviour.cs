@@ -23,7 +23,7 @@ public class PatrolBehaviour : MovementBehaviour {
     
     }
 
-    public override void Move(Transform objectToMove) {
+    public override void Move() {
 
 
         //check if target has been reached or is not reachable (not on NavMesh)
