@@ -9,7 +9,6 @@ using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "New item", menuName = "Item/Create New Item")]
 public class Item : Grabbable
 {
     public enum ItemName
@@ -36,17 +35,20 @@ public class Item : Grabbable
     {
         Tool,
         Product,
-        Food
+        Consumable
     }
 
     public ItemName itemName;
     public ItemCategory itemCategory;
     
     public Sprite icon;
-    
     Renderer renderer;
+    
     public bool isFading = false;
-
+    public bool isCollected = false;
+    
+    public Item() {}
+    
     public Item(ItemName itemName, ItemCategory itemCategory)
     {
         this.itemName = itemName;
