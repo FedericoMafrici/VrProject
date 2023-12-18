@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class Petter : MonoBehaviour
@@ -7,15 +8,15 @@ public class Petter : MonoBehaviour
 
    
     [SerializeField] Camera _playerCamera;
-    float _petTravelledDistance = 0;
-    float _minTravelledDistance = 1.0f;
-    float _lastPetElapsed = 0f;
-    float _samplePeriod = 0.5f;
+    private const float _distanceEpsilon = 0.01f;
+    private const float _minTravelledDistance = 0.5f;
+    private float _accumulatedDistance = 0;
+    //private float _minTravelledDistance = 1.0f;
     private bool _can_pet = true;
-    private float _petdistance = 100f; //defines distance at which petter can interact with pettables
+    private const float _petdistance = 100f; //defines distance at which petter can interact with pettables
     private bool _isPetting = false;
-    Pettable _lastPetted = null;
-    Vector3 _lastPetPosition = Vector3.zero;
+    private Pettable _lastPetted = null;
+    private Vector3 _lastPetPosition = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -39,37 +40,49 @@ public class Petter : MonoBehaviour
 
                 //check if intersected object is child of a "Pettable"
                 if (petted == null) {
-                    if (hitTransform.parent != null) { 
+                    if (hitTransform.parent != null) {
+                        Transform parent = hitTransform.parent;
                         petted = hitTransform.parent.GetComponent<Pettable>();
+                        if (petted!= null) {
+                        }
                     }
                 }
 
                 if (petted != null) {
                     if (Input.GetMouseButton(1)) {
                         if (_isPetting == true && _lastPetted != null && _lastPetted == petted) {
-                            Vector3 distance = hit.point - _lastPetPosition;
-                            Vector3 distancePerp = (Vector3.Dot(distance, _playerCamera.transform.forward)
-                                                    / Vector3.Dot(_playerCamera.transform.forward, _playerCamera.transform.forward))
-                                                    * _playerCamera.transform.forward;
-                            float distanceOnCameraPlane = (distance - distancePerp).magnitude;
+                            float petTravelledDistance = GetPetDistance(hit);
+                            
 
-                            _petTravelledDistance += distanceOnCameraPlane;
-                            if (_petTravelledDistance >= _minTravelledDistance) {
-                                //call pet method
-                                petted.Pet(this, _petTravelledDistance);
+                            //if movement is too small it won't be recorded
+                            if (petTravelledDistance >= _distanceEpsilon) {
+                                
+                                _accumulatedDistance += petTravelledDistance;
+                                //accumulated distance should be at least equal to a minimum required distance before calling Pet()
+                                if (_accumulatedDistance >= _minTravelledDistance) {
+                                    //call pet method
+                                    petted.Pet(this, _accumulatedDistance);
+                                    _accumulatedDistance = 0;
+                                }
 
-                                //reset travelled distance
-                                _petTravelledDistance= 0;
+                                //"hand" movement recorded, update pet method
+                                _lastPetPosition = hit.point;
                             }
 
+                            Vector3 direction = hit.point - _lastPetPosition;
+
+                            // Draw the ray in the Scene view
+                            Debug.DrawRay(_lastPetPosition, direction, Color.green);
+
                         } else {
-                            _petTravelledDistance= 0;
+                            _accumulatedDistance = 0;
                             _isPetting = true;
                             _lastPetted = petted;
+                            _lastPetPosition = hit.point;
                         }
 
                         didPet = true;
-                        _lastPetPosition = hit.point;
+                        
                     }
                     
                 }
@@ -77,23 +90,23 @@ public class Petter : MonoBehaviour
         }
 
         if (!didPet) {
-            _petTravelledDistance= 0;
+            _accumulatedDistance = 0;
             _isPetting= false;
             _lastPetted = null;
         }
         
     }
 
-    public void set_can_pet(bool cp) {
-        _can_pet = cp;
-    }
-
-    private void samplePets(RaycastHit hit) {
-        //TODO: this
+    private float GetPetDistance(RaycastHit hit) {
+        //project the distance between current hit point and last one onto camera viewport plane
         Vector3 distance = hit.point - _lastPetPosition;
         Vector3 distancePerp = (Vector3.Dot(distance, _playerCamera.transform.forward)
-                                / Vector3.Dot(_playerCamera.transform.forward, _playerCamera.transform.forward))
-                                * _playerCamera.transform.forward;
+                                   / Vector3.Dot(_playerCamera.transform.forward, _playerCamera.transform.forward))
+                                   * _playerCamera.transform.forward;
         float distanceOnCameraPlane = (distance - distancePerp).magnitude;
+        return distanceOnCameraPlane;
+
+
     }
+
 }
