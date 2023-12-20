@@ -6,6 +6,7 @@ public class Pettable : MonoBehaviour
 {
     private const float _maxFriendship = 100.0f;
     private float _friendship;
+    private bool _isAtMaxFriendship;
     [SerializeField] private float _friendshipGrowthRate;
     [SerializeField] private Bar _progressBar;
 
@@ -21,6 +22,9 @@ public class Pettable : MonoBehaviour
             _friendship += travelledDistance * _friendshipGrowthRate;
             if (_friendship >= _maxFriendship) {
                 _friendship = _maxFriendship;
+                _isAtMaxFriendship = true;
+                if (!_progressBar.IsHidden())
+                    _progressBar.Hide();
             }
             _progressBar.SetValue(_friendship);
             //Debug.Log("Petted " + transform.name + " travelled distance = " + travelledDistance);
@@ -34,6 +38,8 @@ public class Pettable : MonoBehaviour
     }
 
     public void ShowProgressBar() {
-        _progressBar.Show();
+        if (!_isAtMaxFriendship) {
+            _progressBar.Show();
+        }
     }
 }

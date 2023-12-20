@@ -17,6 +17,7 @@ public class Bar : MonoBehaviour
 
     [SerializeField] protected CanvasGroup _barCanvasGroup;
     [SerializeField] protected bool _startHidden = true;
+    protected bool _isHidden;
 
     public void Start() {
         if (_barCanvasGroup == null)
@@ -32,6 +33,7 @@ public class Bar : MonoBehaviour
         } else {
             _barCanvasGroup.alpha = 1.0f;
         }
+        _isHidden = _startHidden;
     }
 
     public void Increase(float delta) {
@@ -70,9 +72,15 @@ public class Bar : MonoBehaviour
 
     public virtual void Hide() {
         _barCanvasGroup.alpha = 0;
+        _isHidden = true;
     }
 
     public virtual void Show() {
         _barCanvasGroup.alpha =1.0f;
+        _isHidden = false;
+    }
+
+    public bool IsHidden() {
+        return _isHidden;
     }
 }

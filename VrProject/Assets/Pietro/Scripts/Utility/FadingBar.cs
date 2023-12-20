@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class FadingBar : Bar {
     private Coroutine _fadeCoroutine;
-    private bool _isFadingOut;
 
     new void Start() {
         base.Start();
-        _isFadingOut = _startHidden;
     }
 
     private IEnumerator Fade(bool isFadingOut) {
@@ -42,26 +40,26 @@ public class FadingBar : Bar {
 
 
     public override void Show() {
-        if (_isFadingOut && _fadeCoroutine != null) {
+        if (_isHidden && _fadeCoroutine != null) {
             StopCoroutine(_fadeCoroutine);
             _fadeCoroutine = null;
         }
 
         if (_fadeCoroutine == null) {
             _fadeCoroutine = StartCoroutine(Fade(false));
-            _isFadingOut=false;
+            _isHidden=false;
         }
     }
 
     public override void Hide() {
-        if(!_isFadingOut && _fadeCoroutine != null) {
+        if(!_isHidden && _fadeCoroutine != null) {
             StopCoroutine(_fadeCoroutine);
             _fadeCoroutine = null;
         }
 
-        if (!_isFadingOut) {
+        if (!_isHidden) {
             _fadeCoroutine = StartCoroutine(Fade(true));
-            _isFadingOut=true;
+            _isHidden=true;
         }
     }
 
