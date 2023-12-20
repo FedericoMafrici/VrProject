@@ -6,7 +6,7 @@ public class FadingBar : Bar {
     private Coroutine _fadeCoroutine;
     private bool _isFadingOut;
 
-    void Start() {
+    new void Start() {
         base.Start();
         _isFadingOut = _startHidden;
     }
