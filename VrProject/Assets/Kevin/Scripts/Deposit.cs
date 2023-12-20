@@ -1,39 +1,44 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using System.Numerics;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 
 public class Deposit : MonoBehaviour
 {
-
-    private Dictionary<Item, bool> itemWrappers = new Dictionary<Item, bool>();
-    
+    public PlayerPickUpDrop player;
     public Dictionary<Item.ItemName, GameObject> itemAssets = new Dictionary<Item.ItemName, GameObject>();
+    public Dictionary<Item.ItemName, GameObject> itemCounters = new Dictionary<Item.ItemName, GameObject>();
 
     public void Start()
     {
-        itemAssets.Add(Item.ItemName.Apple, (GameObject) Resources.Load("Prefabs/Apple", typeof(GameObject)));
-        itemAssets.Add(Item.ItemName.Bucket, (GameObject) Resources.Load("Prefabs/Bucket", typeof(GameObject)));
-        itemAssets.Add(Item.ItemName.Egg, (GameObject) Resources.Load("Prefabs/Egg", typeof(GameObject)));
-    }
-    
-    public void Drop(Item item)
-    {
-        if (itemWrappers.ContainsKey(item))
+        Vector3 itemCounterPosition;
+        Array itemNames = Enum.GetValues(typeof(Item.ItemName));
+        foreach(Item.ItemName itemName in itemNames)
         {
-            itemWrappers[item] = false;
-            // SHOW OBJ
+            // TODO: if da rimuovere quando gli oggetti saranno pronti
+            if (itemName == Item.ItemName.Apple
+                || itemName == Item.ItemName.Bucket
+                || itemName == Item.ItemName.Egg)
+            {
+                itemAssets.Add(itemName, (GameObject) Resources.Load("Prefabs/"+itemName, typeof(GameObject)));
+                itemCounters.Add(itemName, (GameObject) Resources.Load("Prefabs/ItemDepositCounter", typeof(GameObject)));
+                itemCounterPosition = itemAssets[itemName].GetComponent<Item>().depositPosition;
+                itemCounterPosition.x += (float) 0.3;
+                itemCounterPosition.y -= (float) 0.6;
+                GameObject itemCounterObject = Instantiate(itemCounters[itemName], itemCounterPosition, new Quaternion(0,0,0,0));
+                itemCounterObject.GetComponent<ItemDepositCounter>().player = player;
+                itemCounters[itemName] = itemCounterObject;
+                
+            }
         }
+        
+        // TODO: per ogni oggetto, con degli if va settato il valore predefinito di counter nel deposito
+        itemCounters[Item.ItemName.Apple].GetComponent<ItemDepositCounter>().counter = 1;
+        itemCounters[Item.ItemName.Bucket].GetComponent<ItemDepositCounter>().counter = 1;
+        itemCounters[Item.ItemName.Egg].GetComponent<ItemDepositCounter>().counter = 1;
     }
 
-    public void Pick(Item item)
-    {
-        if (itemWrappers.ContainsKey(item))
-        {
-            itemWrappers[item] = true;
-            // HIDE OBJ
-        }
-    }
-    
 }

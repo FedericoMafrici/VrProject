@@ -8,8 +8,9 @@ using UnityEditor;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class Item : Grabbable
+public /*abstract*/ class Item : Grabbable
 {
     public enum ItemName
     {
@@ -40,11 +41,13 @@ public class Item : Grabbable
 
     public ItemName itemName;
     public ItemCategory itemCategory;
+    public Vector3 depositPosition;
     
     public Sprite icon;
     Renderer renderer;
     
     public bool isFading = false;
+    public bool isDeposited = false;
     public bool isCollected = false;
     
     public Item() {}
@@ -82,12 +85,6 @@ public class Item : Grabbable
         yield return StartCoroutine(FadingOut());
         Destroy(gameObject);
     }
-
-    /*public void Show()
-    {
-        Color c = renderer.material.color;
-        c.a = 1;
-        renderer.material.color = c;
-        gameObject.SetActive(true);
-    }*/
+    
+    // public abstract void Use();
 }

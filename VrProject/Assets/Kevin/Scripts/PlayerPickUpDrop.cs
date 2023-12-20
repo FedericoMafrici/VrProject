@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,11 +12,11 @@ public class PlayerPickUpDrop : MonoBehaviour
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private LayerMask pickupLayerMask;
     [SerializeField] private TMP_Text clue;
-    [SerializeField] private Deposit deposit;
     [SerializeField] private Hotbar hotbar;
     
     private float pickupDistance = 5f;
     private Item item;
+    public Deposit deposit;
     
     public Transform objectGrabPointTransform;
 
@@ -26,6 +27,9 @@ public class PlayerPickUpDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        // ------------- AGGIORNAMENTO INFORMAZIONI TESTUALI SOTTO IL CURSORE -------------
+        
         if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit,
                 pickupDistance, pickupLayerMask)
             && raycastHit.transform.TryGetComponent(out Item item)
@@ -37,63 +41,122 @@ public class PlayerPickUpDrop : MonoBehaviour
                 clue.text += "\n\n Release an item to grab or collect another object!";
             }
         }
+        
+        else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit2,
+                pickupDistance, pickupLayerMask)
+            && raycastHit2.transform.TryGetComponent(out Item item2)
+            && hotbar.activeItemObj != null
+            && item2 != hotbar.activeItemObj)
+        {
+            clue.text = "Press Q to collect";
+            if (hotbar.firstEmpty == 6)
+            {
+                clue.text += "\n\n Release an item to collect another object!";
+            }
+        }
+        
+        else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
+                   && hotbar.activeItemObj != null)
+        {
+            clue.text = "Press Q to release the item";
+        }
+        
         else
             clue.text = "";
 
+        // ------------- PRESSIONE TASTO E -------------
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (hotbar.activeItemObj == null)
             {
                 if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward,
-                        out RaycastHit raycastHit2,
-                        pickupDistance, pickupLayerMask) && hotbar.firstEmpty < Constants.Capacity)
+                        out RaycastHit raycastHit3,
+                        pickupDistance, pickupLayerMask) 
+                    && raycastHit3.transform.TryGetComponent(out item)
+                    && hotbar.firstEmpty < Constants.Capacity)
                 {
-                    if (raycastHit2.transform.TryGetComponent(out item))
+                    int lastItemIndex = hotbar.Add(item, true);
+                    hotbar.Select(lastItemIndex);
+                    hotbar.activeItemObj = item;
+                    item.Grab(objectGrabPointTransform, true);
+                    Debug.Log(item + " grabbed");
+                    
+                    if (item.isDeposited)
                     {
-                        int lastItemIndex = hotbar.Add(item, true);
-                        hotbar.Select(lastItemIndex);
-                        hotbar.activeItemObj = item;
-                        item.Grab(objectGrabPointTransform, true);
-                        Debug.Log(item + " grabbed");
+                        item.isDeposited = false;
+                        if (--deposit.itemCounters[item.itemName].GetComponent<ItemDepositCounter>().counter != 0)
+                        {
+                            StartSpawning();
+                        }
                     }
                 }
             }
-            else
+            
+            else if(hotbar.activeItemObj.itemCategory != Item.ItemCategory.Tool)
             {
                 Drop();
             }
         }
+        
+        // ------------- PRESSIONE TASTO Q -------------
+        
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward,
-                    out RaycastHit raycastHit2,
-                    pickupDistance, pickupLayerMask) && hotbar.firstEmpty < Constants.Capacity)
+                    out RaycastHit raycastHit4, pickupDistance, pickupLayerMask) 
+                && raycastHit4.transform.TryGetComponent(out item)
+                && hotbar.firstEmpty < Constants.Capacity)
             {
-                if (raycastHit2.transform.TryGetComponent(out item))
+                // item.Grab(objectGrabPointTransform, true); // TODO: lascio? Serve a vedere l'effetto di spostamento dell'oggetto mentre lo raccolgo
+
+                hotbar.Add(item, false);
+                Debug.Log(item + " added to the hotbar");
+
+                if (item.isDeposited)
                 {
-                    // item.Grab(objectGrabPointTransform, true); // TO DO: lasscio? Serve a vedere l'effetto di spostamento dell'oggetto mentre lo raccolgo
-
-                    hotbar.Add(item, false);
-                    Debug.Log(item + " added to the hotbar");
-
-                    item.StartFading();
+                    item.isDeposited = false;
+                    if (--deposit.itemCounters[item.itemName].GetComponent<ItemDepositCounter>().counter != 0)
+                    {
+                        GameObject spawnedItem = SpawnItem(item.itemName);
+                        spawnedItem.GetComponent<Item>().isDeposited = true;
+                    }
                 }
+                
+                item.StartFading();
             }
+            
+            else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
+                     && hotbar.activeItemObj != null)
+            {
+                hotbar.activeItemObj.StartFading();
+                if (deposit.itemCounters[hotbar.activeItemObj.itemName].GetComponent<ItemDepositCounter>().counter == 0)
+                {
+                    GameObject spawnedItem = SpawnItem(hotbar.activeItemObj.itemName);
+                    spawnedItem.GetComponent<Item>().isDeposited = true;
+                }
+                deposit.itemCounters[hotbar.activeItemObj.itemName].GetComponent<ItemDepositCounter>().counter++;
+                Debug.Log(hotbar.activeItemObj + " released into the deposit");
+                Drop(false);
+            }
+            
         }
     }
 
-    public void Drop()
+    /// <summary>
+    /// Rimuove l'oggetto attivo dalla mano, lo rimuove dalla hotbar se necessario e ne deseleziona il bottone corrispondente.
+    /// </summary>
+    /// <param name="isFalling">
+    /// Serve a distinguere se sto droppando l'oggetto dalla mano oppure se lo sto mettendo solo nel deposito.
+    /// Se true (default), invoco Drop() di Grabbable.cs e vedo l'oggetto cadere; se false, lo vedo solo sparire.
+    /// </param>
+    public void Drop(bool isFalling = true)
     {
-        if (hotbar.activeItemObj.itemCategory == Item.ItemCategory.Tool)
+        if (isFalling)
         {
-            hotbar.activeItemObj.StartFading();
-            Instantiate(deposit.itemAssets[hotbar.activeItemObj.itemName], 
-                deposit.itemAssets[hotbar.activeItemObj.itemName].GetComponent<ItemTool>().depositPosition, 
-                Quaternion.Euler(0,0,0));
+            hotbar.activeItemObj.Drop();
+            Debug.Log(item+" dropped");
         }
-        
-        hotbar.activeItemObj.Drop();
-        Debug.Log(item+" dropped");
 
         hotbar.activeItemWrapper.amount--;
         if (hotbar.activeItemWrapper.amount == 0)
@@ -107,4 +170,28 @@ public class PlayerPickUpDrop : MonoBehaviour
 
         hotbar.Deselect();
     }
+
+    public GameObject SpawnItem(Item.ItemName itemName)
+    {
+        return Instantiate(deposit.itemAssets[itemName], 
+            deposit.itemAssets[itemName].GetComponent<Item>().depositPosition, 
+            Quaternion.Euler(0,0,0));
+    }
+
+    /// <summary>
+    /// Invoca una Coroutine che attende 0.3 secondi prima di istanziare un nuovo Item nel deposito.
+    /// </summary>
+    private void StartSpawning()
+    {
+        StartCoroutine(Spawn());
+    }
+    
+    IEnumerator Spawn()
+    {
+        yield return new WaitForSeconds(0.1F);
+        GameObject spawnedItem = SpawnItem(hotbar.activeItemObj.itemName);
+        spawnedItem.GetComponent<Item>().isDeposited = true;
+    }
+    
+
 }

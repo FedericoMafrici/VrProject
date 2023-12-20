@@ -479,7 +479,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2a011d7cab75949a5913cd3cbe21eccc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -719,10 +719,10 @@ MonoBehaviour:
   playerCameraTransform: {fileID: 1323609067}
   pickupLayerMask:
     serializedVersion: 2
-    m_Bits: 115
+    m_Bits: 123
   clue: {fileID: 1566996456}
-  deposit: {fileID: 1540641883}
   hotbar: {fileID: 1137210520}
+  deposit: {fileID: 1540641882}
   objectGrabPointTransform: {fileID: 525292098}
 --- !u!1001 &650156102
 PrefabInstance:
@@ -1088,6 +1088,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5604366374845260409, guid: 101c8753c92a1495f960f59ef53a25c7, type: 3}
+      propertyPath: isDeposited
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604366374845260409, guid: 101c8753c92a1495f960f59ef53a25c7, type: 3}
       propertyPath: depositPosition.x
       value: -2.609
       objectReference: {fileID: 0}
@@ -1275,6 +1279,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4084395969216349494, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
+      propertyPath: isDeposited
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084395969216349494, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
+      propertyPath: depositPosition.x
+      value: -2.591
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084395969216349494, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
+      propertyPath: depositPosition.y
+      value: -1.269
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084395969216349494, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
+      propertyPath: depositPosition.z
+      value: -11.278427
+      objectReference: {fileID: 0}
     - target: {fileID: 6803906121427460509, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
       propertyPath: m_Name
       value: Apple (1)
@@ -1360,7 +1380,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: abc60364fc48f404b85bea7c22345864, type: 3}
   m_PrefabInstance: {fileID: 1621279892}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1540641883
+--- !u!114 &1540641882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1372,6 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce2c70a00ede45ee91085f8c6b57eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 597312560}
 --- !u!114 &1566996456 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 432817907808961041, guid: 29beb6a9a391b4913bfb6c54c970718a, type: 3}
@@ -1453,7 +1474,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abc60364fc48f404b85bea7c22345864, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1540641883}
+      addedObject: {fileID: 1540641882}
   m_SourcePrefab: {fileID: 100100000, guid: abc60364fc48f404b85bea7c22345864, type: 3}
 --- !u!1001 &1727016155
 PrefabInstance:
@@ -1722,6 +1743,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Egg
       objectReference: {fileID: 0}
+    - target: {fileID: 6954296779612124807, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+      propertyPath: isDeposited
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6954296779612124807, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+      propertyPath: depositPosition.x
+      value: -1.070116
+      objectReference: {fileID: 0}
+    - target: {fileID: 6954296779612124807, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+      propertyPath: depositPosition.y
+      value: -2.383
+      objectReference: {fileID: 0}
+    - target: {fileID: 6954296779612124807, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+      propertyPath: depositPosition.z
+      value: -11.837336
+      objectReference: {fileID: 0}
     - target: {fileID: 7757197061922521932, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.070116
@@ -1814,6 +1851,18 @@ PrefabInstance:
     - target: {fileID: 3073543955506102723, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084395969216349494, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
+      propertyPath: depositPosition.x
+      value: -1.795
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084395969216349494, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
+      propertyPath: depositPosition.y
+      value: -1.9160249
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084395969216349494, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
+      propertyPath: depositPosition.z
+      value: -11.553717
       objectReference: {fileID: 0}
     - target: {fileID: 6803906121427460509, guid: fa47997b4ac3d4a5c9c73827dcda5ba7, type: 3}
       propertyPath: m_Name
@@ -2169,7 +2218,7 @@ PrefabInstance:
     - target: {fileID: 8351870926342757273, guid: daf2808f1847d4a7aae1cf900c33bf8f, type: 3}
       propertyPath: deposit
       value: 
-      objectReference: {fileID: 1540641883}
+      objectReference: {fileID: 1540641882}
     - target: {fileID: 8459132947019426740, guid: daf2808f1847d4a7aae1cf900c33bf8f, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0

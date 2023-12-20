@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7214146011715175557}
   - component: {fileID: 7250086211697251941}
   - component: {fileID: 6954296779612124807}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,5 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 7
   itemCategory: 1
+  depositPosition: {x: -0.2, y: -1.6346807, z: -11.75}
   icon: {fileID: 21300000, guid: 2873afd8412734500a4afdee29aa9ac3, type: 3}
   isFading: 0
+  isCollected: 0

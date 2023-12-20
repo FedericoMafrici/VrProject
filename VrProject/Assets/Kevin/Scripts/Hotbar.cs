@@ -13,11 +13,9 @@ static class Constants
 
 public class Hotbar : MonoBehaviour
 {
-    public Deposit deposit;
     public PlayerPickUpDrop player;
 
     public ItemWrapper[] itemWrappers;
-    //public Item[] itemWrappers;
     public Transform[] itemSlotArray;
     
     public int firstEmpty = 0;
@@ -29,7 +27,7 @@ public class Hotbar : MonoBehaviour
     {
         itemWrappers = new ItemWrapper[Constants.Capacity];
         itemSlotArray = new Transform[Constants.Capacity];
-        
+
         Transform itemParentTransform = gameObject.transform.Find("ItemParent");
 
         if (itemParentTransform)
@@ -172,7 +170,7 @@ public class Hotbar : MonoBehaviour
         {
             
             Select(i);
-            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            GameObject spawnedGameObject = Instantiate(player.deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
             spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
             activeItemObj = spawnedGameObject.GetComponent<Item>();
             activeItemWrapper = itemWrappers[i];
@@ -184,7 +182,7 @@ public class Hotbar : MonoBehaviour
             && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            GameObject spawnedGameObject = Instantiate(player.deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
             spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
             activeItemObj = spawnedGameObject.GetComponent<Item>();
             activeItemWrapper = itemWrappers[i];
@@ -196,7 +194,7 @@ public class Hotbar : MonoBehaviour
             && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            GameObject spawnedGameObject = Instantiate(player.deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
             spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
             activeItemObj = spawnedGameObject.GetComponent<Item>();
             activeItemWrapper = itemWrappers[i];
@@ -208,7 +206,7 @@ public class Hotbar : MonoBehaviour
             && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            GameObject spawnedGameObject = Instantiate(player.deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
             spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
             activeItemObj = spawnedGameObject.GetComponent<Item>();
             activeItemWrapper = itemWrappers[i];
@@ -220,7 +218,7 @@ public class Hotbar : MonoBehaviour
             && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            GameObject spawnedGameObject = Instantiate(player.deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
             spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
             activeItemObj = spawnedGameObject.GetComponent<Item>();
             activeItemWrapper = itemWrappers[i];
@@ -232,7 +230,7 @@ public class Hotbar : MonoBehaviour
             && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
         {
             Select(i);
-            GameObject spawnedGameObject = Instantiate(deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
+            GameObject spawnedGameObject = Instantiate(player.deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(0,0,0));
             spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
             activeItemObj = spawnedGameObject.GetComponent<Item>();
             activeItemWrapper = itemWrappers[i];
