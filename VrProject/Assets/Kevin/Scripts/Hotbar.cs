@@ -28,7 +28,6 @@ public class Hotbar : MonoBehaviour
     private void Start()
     {
         itemWrappers = new ItemWrapper[Constants.Capacity];
-        // itemWrappers = new Item[Constants.Capacity];
         itemSlotArray = new Transform[Constants.Capacity];
         
         Transform itemParentTransform = gameObject.transform.Find("ItemParent");
