@@ -6,45 +6,46 @@ using UnityEngine;
 public class Petter : MonoBehaviour
 {
 
-   
+    [SerializeField] SpriteManager _cameraSpriteManager;
     [SerializeField] Camera _playerCamera;
     private const float _distanceEpsilon = 0.01f;
     private const float _minTravelledDistance = 0.5f;
     private float _accumulatedDistance = 0;
     //private float _minTravelledDistance = 1.0f;
-    private bool _can_pet = true;
-    private const float _petdistance = 100f; //defines distance at which petter can interact with pettables
+    private bool _canPet = true;
+    private const float _petDistance = 1.5f; //defines distance at which petter can interact with pettables
     private bool _isPetting = false;
     private Pettable _lastPetted = null;
     private Vector3 _lastPetPosition = Vector3.zero;
+    private bool _previousRayDidHit = false; //bool value used to manage sprite changes in order to give cues to the player
 
     // Start is called before the first frame update
     void Start()
     {
         if (_playerCamera == null)
             Debug.LogError("No camera associated to " + transform.name);
+        if(_cameraSpriteManager == null)
+            Debug.LogError("no sprite manager detected for " + transform.name);
 
     }
 
     // Update is called once per frame
     void Update() {
 
+        Pettable petted = null;
         bool didPet = false;
 
-        if (_can_pet) {
+        if (_canPet) {
             RaycastHit hit;
             
-            if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _petdistance)) {
+            if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _petDistance)) {
                 Transform hitTransform = hit.transform;
-                Pettable petted = hitTransform.GetComponent<Pettable>();
+                petted = hitTransform.GetComponent<Pettable>();
 
                 //check if intersected object is child of a "Pettable"
                 if (petted == null) {
                     if (hitTransform.parent != null) {
-                        Transform parent = hitTransform.parent;
                         petted = hitTransform.parent.GetComponent<Pettable>();
-                        if (petted!= null) {
-                        }
                     }
                 }
 
@@ -52,11 +53,10 @@ public class Petter : MonoBehaviour
                     if (Input.GetMouseButton(1)) {
                         if (_isPetting == true && _lastPetted != null && _lastPetted == petted) {
                             float petTravelledDistance = GetPetDistance(hit);
-                            
 
                             //if movement is too small it won't be recorded
                             if (petTravelledDistance >= _distanceEpsilon) {
-                                
+
                                 _accumulatedDistance += petTravelledDistance;
                                 //accumulated distance should be at least equal to a minimum required distance before calling Pet()
                                 if (_accumulatedDistance >= _minTravelledDistance) {
@@ -75,24 +75,43 @@ public class Petter : MonoBehaviour
                             Debug.DrawRay(_lastPetPosition, direction, Color.green);
 
                         } else {
+                            if (_lastPetted != null) {
+                                _lastPetted.HideProgressBar();
+                            }
+                            petted.ShowProgressBar();
                             _accumulatedDistance = 0;
-                            _isPetting = true;
-                            _lastPetted = petted;
-                            _lastPetPosition = hit.point;
+
                         }
 
                         didPet = true;
-                        
+                        _isPetting = true;
+                        _lastPetted = petted;
+                        _lastPetPosition = hit.point;
                     }
-                    
                 }
             }
         }
 
         if (!didPet) {
+            if (_lastPetted != null) {
+                _lastPetted.HideProgressBar();
+            }
+
             _accumulatedDistance = 0;
             _isPetting= false;
             _lastPetted = null;
+
+            _cameraSpriteManager.UpdateCurrentSprite(SpriteType.DOT);
+            if (petted != null && !_previousRayDidHit) {
+                _cameraSpriteManager.SetCurrentSpriteColor(Color.green);
+            } else if (petted == null && _previousRayDidHit) {
+                _cameraSpriteManager.SetCurrentSpriteColor(Color.white);
+            }
+
+            _previousRayDidHit = (petted != null);
+        } else {
+            _cameraSpriteManager.UpdateCurrentSprite(SpriteType.HAND);
+            _previousRayDidHit = true;
         }
         
     }

@@ -17,26 +17,26 @@ public class TargetBehaviour : MovementBehaviour {
     public TargetBehaviour(Transform toMoveTransform, Transform target) : base(toMoveTransform) {
         _target = target;
         _targettable = target.GetComponent<Targettable>();
-        validateParameters();
+        ValidateParameters();
         if(HasValidParameters) {
 
-            if (!_targettable.canSubscribe(_npcMover))
+            if (!_targettable.CanSubscribe(_npcMover))
                 Debug.LogWarning(_toMoveTransform.name + " couldn't subscribe to " + _targettable.transform.name + " but subscribed nonetheless");
 
-            _targettable.subscribe(_npcMover);
+            _targettable.Subscribe(_npcMover);
         }
     }
 
     public override void Delete() {
-        deleteTarget();
+        DeleteTarget();
     }
 
     public override void Move() {
-        updateMovement();
-        updateBehaviour();
+        UpdateMovement();
+        UpdateBehaviour();
     }
 
-    private void validateParameters() {
+    private void ValidateParameters() {
         if (_target == null) {
             Debug.LogWarning("No target set for " + _toMoveTransform.name + ", TargetBehaviour not activated");
             HasValidParameters = false;
@@ -48,9 +48,9 @@ public class TargetBehaviour : MovementBehaviour {
         }
     }
 
-    private void updateMovement() {
+    private void UpdateMovement() {
         if (HasValidParameters && _target != null) {
-            if (_npcMover.getState() == MovingState.VERY_CLOSE_TO_TARGET) {
+            if (_npcMover.GetState() == MovingState.VERY_CLOSE_TO_TARGET) {
                 
                 _agent.destination = _toMoveTransform.position;
                 Vector3 targetDirection = _target.position - _toMoveTransform.position;
@@ -79,32 +79,32 @@ public class TargetBehaviour : MovementBehaviour {
         }
     }
 
-    protected override bool wantsToFollowTarget(Targettable targettable) {
+    protected override bool WantsToFollowTarget(Targettable targettable) {
         //first check if base class method allows to follow target
-        bool result = base.wantsToFollowTarget(targettable);
+        bool result = base.WantsToFollowTarget(targettable);
 
         //if base class method returns true do additional checks
         if (result)
-            result = prefersTarget(targettable.transform);
+            result = PrefersTarget(targettable.transform);
 
         return result;
     }
 
-    protected override void manageStateUpdate(MovingState nextState, Targettable newTarget) {
+    protected override void ManageStateUpdate(MovingState nextState, Targettable newTarget) {
         // if target a target was found only call the base class method check if new target is different from current one
         // otherwise just call the base class method
 
         if (newTarget != null) {
             if (newTarget.transform != _target) {
                 Debug.Log(_toMoveTransform.name + " found new target");
-                base.manageStateUpdate(nextState, newTarget);
+                base.ManageStateUpdate(nextState, newTarget);
             }
         } else {
-            base.manageStateUpdate(nextState, newTarget);
+            base.ManageStateUpdate(nextState, newTarget);
         }
     }
 
-    private bool prefersTarget(Transform target) {
+    private bool PrefersTarget(Transform target) {
 
         //might be used to implement a priority system, for now do not follow a target which is different from the one you're currently following
         if (_target == target) {
@@ -113,10 +113,10 @@ public class TargetBehaviour : MovementBehaviour {
         return false;
     }
 
-    private void deleteTarget() {
+    private void DeleteTarget() {
         Debug.Log("Destroying " + _npcMover.name +  " TargetBehaviour");
         if (_targettable != null) {
-            _targettable.unsubscribe(_npcMover);
+            _targettable.Unsubscribe(_npcMover);
             _targettable = null;
         }
 

@@ -9,21 +9,21 @@ public class SampleMovementBehaviour : MovementBehaviour {
 
     public SampleMovementBehaviour(Transform toMoveTransform, Transform target) : base(toMoveTransform) {
         _target = target;
-        validateParameters();
+        ValidateParameters();
     }
 
     public override void Move() {
-        updateTarget();
+        UpdateTarget();
     }
 
-    private void validateParameters() {
+    private void ValidateParameters() {
         if (_target == null) {
             Debug.LogWarning("No target set for " + _toMoveTransform.name + ", SampleMovementBehaviour not activated");
             HasValidParameters = false;
         }
     }
 
-    private void updateTarget() {
+    private void UpdateTarget() {
         if (HasValidParameters) {
             _agent.destination = _target.position;
         }

@@ -19,7 +19,7 @@ public class PatrolBehaviour : MovementBehaviour {
         _patrolArea = patrolArea;
         _toWaitForNextTarget = 0.0f;
         _targetReached = true;
-        validateParameters();
+        ValidateParameters();
     
     }
 
@@ -36,16 +36,16 @@ public class PatrolBehaviour : MovementBehaviour {
        if (_targetReached) {
             _toWaitForNextTarget -= Time.deltaTime;
             if (_toWaitForNextTarget <= 0) {
-                generateRandomTarget();
+                GenerateRandomTarget();
                 _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay befor generating new target
                 //Debug.Log(_toMoveTransform.name + ": target reached, waiting " + _toWaitForNextTarget + " seconds before generating new one");
             }
         }
 
-        updateBehaviour();
+        UpdateBehaviour();
     }
 
-    private void validateParameters() {
+    private void ValidateParameters() {
         float _minPatrolSecondsDelayThreshold = 0.0f; //_delayBounds.x cannot be lower than this value
 
         if (_patrolArea == null) {
@@ -66,7 +66,7 @@ public class PatrolBehaviour : MovementBehaviour {
 
     }
 
-    private void generateRandomTarget() {
+    private void GenerateRandomTarget() {
         NavMeshHit hit;
         Vector3 tmpTarget;
 
@@ -74,7 +74,7 @@ public class PatrolBehaviour : MovementBehaviour {
             tmpTarget = new Vector3(Random.Range(_patrolArea.bounds.min.x, _patrolArea.bounds.max.x), _toMoveTransform.position.y, Random.Range(_patrolArea.bounds.min.z, _patrolArea.bounds.max.z));
         } else {
             tmpTarget = _toMoveTransform.position + Random.insideUnitSphere * _range; //random point in a sphere surrounding the agent
-            bringInsidePatrolArea(ref tmpTarget);
+            BringInsidePatrolArea(ref tmpTarget);
         }
 
         //find closest point on NavMesh within 1 unit
@@ -90,7 +90,7 @@ public class PatrolBehaviour : MovementBehaviour {
         _targetReached = false;
     }
 
-    private void bringInsidePatrolArea(ref Vector3 point) {
+    private void BringInsidePatrolArea(ref Vector3 point) {
         //if a point is outside of patrol area bring it back inside
         if (point.x < _patrolArea.bounds.min.x)
             point.x = _patrolArea.bounds.min.x;
