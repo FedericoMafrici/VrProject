@@ -6,7 +6,7 @@ public class SpecialBehaviourGenerator : MonoBehaviour {
     [Header("Basic Follow Path Attributes")]
     [SerializeField] private Transform _path;
 
-    public MovementBehaviour generateBehaviour(SpecialBehaviourID behaviourID, NPCMover npcMover) {
+    public MovementBehaviour GenerateBehaviour(SpecialBehaviourID behaviourID, NPCMover npcMover) {
         MovementBehaviour newBehaviour = null;
         switch (behaviourID) {
 

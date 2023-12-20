@@ -23,7 +23,7 @@ public class RangeVolume : MonoBehaviour {
         
     }
 
-    public float getRadius() {
+    public float GetRadius() {
         return _radius;
     }
 

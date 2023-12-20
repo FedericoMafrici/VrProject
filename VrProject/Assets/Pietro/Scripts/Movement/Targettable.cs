@@ -20,11 +20,11 @@ public class Targettable : MonoBehaviour {
         _currentFollowers = 0;
     }
 
-    public TargetType getType() {
+    public TargetType GetTargetType() {
         return _type;
     }
 
-    public bool canSubscribe(NPCMover newFollower) {
+    public bool CanSubscribe(NPCMover newFollower) {
         bool retValue = true;
 
         //if new follower is not yet contained in followers set check if it can be added
@@ -40,7 +40,7 @@ public class Targettable : MonoBehaviour {
 
     }
 
-    public void subscribe(NPCMover newFollower) {
+    public void Subscribe(NPCMover newFollower) {
         if (!_followers.Contains(newFollower)) {
 
             _followers.Add(newFollower);
@@ -49,7 +49,7 @@ public class Targettable : MonoBehaviour {
         }
     }
 
-    public void unsubscribe(NPCMover follower) {
+    public void Unsubscribe(NPCMover follower) {
         
         if (_followers.Contains(follower)) {
             _followers.Remove(follower);

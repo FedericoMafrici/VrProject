@@ -46,11 +46,11 @@ public class NPCMover : MonoBehaviour {
             InterestsSet.Add(type);
         }
 
-        setInterestRadius();
+        SetInterestRadius();
         //adjustInterestRadius();
 
         _specialBehaviourGenerator = GetComponentInChildren<SpecialBehaviourGenerator>();
-        generateStartingBehaviour();
+        GenerateStartingBehaviour();
 
         if (_movementBehaviour == null) {
             //create default behaviour
@@ -87,7 +87,8 @@ public class NPCMover : MonoBehaviour {
         }
     }
 
-    void adjustInterestRadius() {
+    /*
+    void AdjustInterestRadius() {
         BoxCollider bbox = transform.GetComponent<BoxCollider>();
 
 
@@ -122,8 +123,9 @@ public class NPCMover : MonoBehaviour {
             _inRangeRadius = _closeRadius + 3.0f;
         }
     }
+    */
 
-    void setInterestRadius() {
+    void SetInterestRadius() {
         
         RangeVolume[] rangeVolumes = GetComponentsInChildren<RangeVolume>();
         if (rangeVolumes.Length < 3) {
@@ -134,7 +136,7 @@ public class NPCMover : MonoBehaviour {
         }
 
         //get RangeVolumes, sort them and use their radius to define interest radius
-        float[] radiuses = { rangeVolumes[0].getRadius(), rangeVolumes[1].getRadius(), rangeVolumes[2].getRadius() };
+        float[] radiuses = { rangeVolumes[0].GetRadius(), rangeVolumes[1].GetRadius(), rangeVolumes[2].GetRadius() };
         System.Array.Sort(radiuses);
 
         _veryCloseRadius = radiuses[0];
@@ -149,10 +151,10 @@ public class NPCMover : MonoBehaviour {
 
     }
 
-    private void generateStartingBehaviour() {
+    private void GenerateStartingBehaviour() {
         if (_specialBehaviourGenerator != null) {
             Debug.Log("Generating starting behaviour");
-            _movementBehaviour = _specialBehaviourGenerator.generateBehaviour(_startingSpecialBehaviour, this);
+            _movementBehaviour = _specialBehaviourGenerator.GenerateBehaviour(_startingSpecialBehaviour, this);
         }
     }
 
@@ -162,35 +164,35 @@ public class NPCMover : MonoBehaviour {
         }
     }
 
-    public float getInRangeRadius() {
+    public float GetInRangeRadius() {
         return _inRangeRadius;
     }
 
-    public float getCloseRadius() {
+    public float GetCloseRadius() {
         return _closeRadius;
     }
 
-    public float getVeryCloseRadius() {
+    public float GetVeryCloseRadius() {
         return _veryCloseRadius;
     }
 
-    public MovingState getState() {
+    public MovingState GetState() {
         return _state;
     }
 
-    public void setState(MovingState _newState) {
+    public void SetState(MovingState _newState) {
         _state = _newState;
     }
 
-    public BoxCollider getPatrolArea() {
+    public BoxCollider GetPatrolArea() {
         return _patrolArea;
     }
 
-    public Vector2 getDelayBounds() {
+    public Vector2 GetDelayBounds() {
         return new Vector2(_minPatrolDelay, _maxPatrolDelay);
     }
 
-    public void setBehaviour(MovementBehaviour movementBehaviour) {
+    public void SetBehaviour(MovementBehaviour movementBehaviour) {
         if (movementBehaviour.HasValidParameters) {
             if (_movementBehaviour != null) {
                 _movementBehaviour.Delete();

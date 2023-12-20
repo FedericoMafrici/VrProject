@@ -12,8 +12,8 @@ public class Petter : MonoBehaviour
     private const float _minTravelledDistance = 0.5f;
     private float _accumulatedDistance = 0;
     //private float _minTravelledDistance = 1.0f;
-    private bool _can_pet = true;
-    private const float _petdistance = 100f; //defines distance at which petter can interact with pettables
+    private bool _canPet = true;
+    private const float _petDistance = 1.5f; //defines distance at which petter can interact with pettables
     private bool _isPetting = false;
     private Pettable _lastPetted = null;
     private Vector3 _lastPetPosition = Vector3.zero;
@@ -31,10 +31,10 @@ public class Petter : MonoBehaviour
 
         bool didPet = false;
 
-        if (_can_pet) {
+        if (_canPet) {
             RaycastHit hit;
             
-            if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _petdistance)) {
+            if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _petDistance)) {
                 Transform hitTransform = hit.transform;
                 Pettable petted = hitTransform.GetComponent<Pettable>();
 
@@ -75,6 +75,11 @@ public class Petter : MonoBehaviour
                             Debug.DrawRay(_lastPetPosition, direction, Color.green);
 
                         } else {
+                            if (_lastPetted != null) {
+                                _lastPetted.HideProgressBar();
+                            }
+                            petted.ShowProgressBar();
+
                             _accumulatedDistance = 0;
                             _isPetting = true;
                             _lastPetted = petted;
@@ -90,6 +95,10 @@ public class Petter : MonoBehaviour
         }
 
         if (!didPet) {
+            if (_lastPetted != null) {
+                _lastPetted.HideProgressBar();
+            }
+
             _accumulatedDistance = 0;
             _isPetting= false;
             _lastPetted = null;

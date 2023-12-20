@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicFollowPathBehaviour : MovementBehaviour {
-    Transform[] waypoints;
-    int _waypointId;
+    private Transform[] _waypoints;
+    private int _waypointId;
 
     public BasicFollowPathBehaviour(Transform toMoveTransform, Transform[] path) : base(toMoveTransform) {
-        waypoints = path;
-        validateParameters();
+        _waypoints = path;
+        ValidateParameters();
         if (HasValidParameters) {
             _waypointId = 0;
-            _agent.destination = waypoints[_waypointId].position;
+            _agent.destination = _waypoints[_waypointId].position;
         }  else {
             _waypointId = -1;
         }
@@ -24,12 +24,12 @@ public class BasicFollowPathBehaviour : MovementBehaviour {
             _waypointId++;
             //Debug.Log(_toMoveTransform.name + " going for: " + waypoints[_waypointId].name);
 
-            if (_waypointId >= waypoints.Length) {
+            if (_waypointId >= _waypoints.Length) {
                 _waypointId = -1; //set waypoint ID to invalid
             }
 
             if (_waypointId >= 0) {
-            Transform currentTarget = waypoints[_waypointId];
+            Transform currentTarget = _waypoints[_waypointId];
 
             if (currentTarget != null) {
                 _agent.destination = currentTarget.position;
@@ -45,18 +45,18 @@ public class BasicFollowPathBehaviour : MovementBehaviour {
 
         //if no waypoint was found change to patrol behaviour
         if (_waypointId < 0) {
-            setNewPatrolBehaviour();
+            SetNewPatrolBehaviour();
         }
 
 
     }
 
-    private void validateParameters() {
+    private void ValidateParameters() {
         if (HasValidParameters) {
-            if (waypoints == null) {
+            if (_waypoints == null) {
                 Debug.LogWarning("No path set for " + _toMoveTransform.name + ", BasicFollowPathBehaviour not activated");
                 HasValidParameters = false;
-            } else if (waypoints.Length <= 0) {
+            } else if (_waypoints.Length <= 0) {
                 Debug.LogWarning("Path set for " + _toMoveTransform.name + "has no waypoints, BasicFollowPathBehaviour not activated");
             }
         }
