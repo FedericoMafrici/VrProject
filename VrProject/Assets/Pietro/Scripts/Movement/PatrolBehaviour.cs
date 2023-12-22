@@ -27,22 +27,25 @@ public class PatrolBehaviour : MovementBehaviour {
 
 
         //check if target has been reached or is not reachable (not on NavMesh)
-        if (!_targetReached) {
-            if (_agent.remainingDistance <= _agent.stoppingDistance || !_targetOnNavMesh) {
-                _targetReached = true;
+        if (!_agent.isStopped) {
+            if (!_targetReached) {
+                if (_agent.remainingDistance <= _agent.stoppingDistance || !_targetOnNavMesh) {
+                    _targetReached = true;
+                }
             }
-        }
 
-       if (_targetReached) {
-            _toWaitForNextTarget -= Time.deltaTime;
-            if (_toWaitForNextTarget <= 0) {
-                GenerateRandomTarget();
-                _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay befor generating new target
-                //Debug.Log(_toMoveTransform.name + ": target reached, waiting " + _toWaitForNextTarget + " seconds before generating new one");
+
+            if (_targetReached) {
+                _toWaitForNextTarget -= Time.deltaTime;
+                if (_toWaitForNextTarget <= 0) {
+                    GenerateRandomTarget();
+                    _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay befor generating new target
+                                                                                         //Debug.Log(_toMoveTransform.name + ": target reached, waiting " + _toWaitForNextTarget + " seconds before generating new one");
+                }
             }
-        }
 
-        UpdateBehaviour();
+            UpdateBehaviour();
+        }
     }
 
     private void ValidateParameters() {
@@ -107,4 +110,13 @@ public class PatrolBehaviour : MovementBehaviour {
         point.y = _toMoveTransform.position.y;
     }
 
+    public override void Stop() {
+        _agent.isStopped= true;
+        base.Stop();
+    }
+
+    public override void Start() {
+        _agent.isStopped= false;
+        base.Start();
+    }
 }

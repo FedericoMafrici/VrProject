@@ -36,7 +36,7 @@ public class SpriteManager : MonoBehaviour {
     private Dictionary<SpriteType, SpriteData> _spritesDataDict = new Dictionary<SpriteType, SpriteData>();
 
     // Start is called before the first frame update
-    void Start() {
+    protected virtual void Start() {
 
         foreach (SpriteData sd in _spriteDataList) { 
             _spritesDataDict.Add(sd.Type, sd);

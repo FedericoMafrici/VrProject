@@ -203,4 +203,12 @@ public class NPCMover : MonoBehaviour {
         }
     }
 
+    public void StartMoving() {
+        _movementBehaviour.Start();
+    }
+
+    public void StopMoving() {
+        _movementBehaviour.Stop();
+    }
+
 }
