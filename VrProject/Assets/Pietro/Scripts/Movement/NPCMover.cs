@@ -60,9 +60,8 @@ public class NPCMover : MonoBehaviour {
                 _movementBehaviour = tmpPatrolBehaviour;
                 _state = MovingState.PATROL;
             }
-        }
 
-        if (!_movementBehaviour.HasValidParameters) {
+        } else if (!_movementBehaviour.HasValidParameters) {
             Debug.LogWarning("MovementBehaviour for " + transform.name + " has invalid parameters, disabling behaviour");
             _movementBehaviour = null;
         }
