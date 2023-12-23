@@ -5,26 +5,26 @@ using UnityEngine;
 public class RemovablesCounter : MonoBehaviour
 {
 
-    private int _yetToRemove;
+    private int _yetToRemoveNumber;
     void Start() {
         for (int i = 0; i < transform.childCount; i++) {
-            _yetToRemove = 0;
+            _yetToRemoveNumber = 0;
             Transform child = transform.GetChild(i);
             RemovablePart remPart = child.GetComponent<RemovablePart>();
             if (remPart != null ) {
-                _yetToRemove++;
+                _yetToRemoveNumber++;
                 remPart.PartRemoved += OnPartRemoved;
             }
         }
 
-        if (_yetToRemove == 0) {
+        if (_yetToRemoveNumber == 0) {
             Debug.LogWarning(transform.name + " has no RemovablePart in its children");
         }
     }
 
     private void OnPartRemoved() {
-        _yetToRemove--;
-        if (_yetToRemove == 0 ) {
+        _yetToRemoveNumber--;
+        if (_yetToRemoveNumber == 0 ) {
             //Do Something
         }
     }
