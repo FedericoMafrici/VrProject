@@ -21,11 +21,15 @@ public class PetSpriteManager : SpriteManager {
     }
 
     public void WhenInPetRange(object sender, EventArgs args) {
-        SetCurrentSpriteColor(Color.green);
+        if (_currentSpriteData.Type == SpriteType.DOT) {
+            SetCurrentSpriteColor(Color.green);
+        }
     }
 
     public void WhenOutOfPetRange(object sender, EventArgs args) {
-        ResetCurrentSpriteColor();
+        if (_currentSpriteData.Type == SpriteType.DOT) {
+            ResetCurrentSpriteColor();
+        }
     }
 
 }

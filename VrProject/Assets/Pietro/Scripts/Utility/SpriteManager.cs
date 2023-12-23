@@ -10,7 +10,7 @@ public enum SpriteType {
     HAND,
 }
 [System.Serializable]
-struct SpriteData {
+public struct SpriteData {
     public SpriteData(SpriteType t, float s, Sprite sr, Color c) {
         Type = t;
         DefaultScale = s;
@@ -32,7 +32,7 @@ public class SpriteManager : MonoBehaviour {
     [SerializeField] private List<SpriteData> _spriteDataList = new List<SpriteData>();
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
-    private SpriteData _currentSpriteData;
+    protected SpriteData _currentSpriteData;
     private Dictionary<SpriteType, SpriteData> _spritesDataDict = new Dictionary<SpriteType, SpriteData>();
 
     // Start is called before the first frame update
