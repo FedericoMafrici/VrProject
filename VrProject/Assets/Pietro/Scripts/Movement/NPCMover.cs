@@ -203,11 +203,13 @@ public class NPCMover : MonoBehaviour {
     }
 
     public void StartMoving() {
-        _movementBehaviour.Start();
+        if (_movementBehaviour != null)
+            _movementBehaviour.Start();
     }
 
     public void StopMoving() {
-        _movementBehaviour.Stop();
+        if (_movementBehaviour != null)
+            _movementBehaviour.Stop();
     }
 
 }
