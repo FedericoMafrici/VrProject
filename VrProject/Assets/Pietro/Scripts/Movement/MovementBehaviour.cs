@@ -115,4 +115,12 @@ public abstract class MovementBehaviour {
         _npcMover.SetBehaviour(new TargetBehaviour(_toMoveTransform, target));
     }
 
+    virtual public void Stop() {
+        _agent.isStopped = true;
+    }
+
+    virtual public void Start() {
+        _agent.isStopped = false;
+    }
+
     }

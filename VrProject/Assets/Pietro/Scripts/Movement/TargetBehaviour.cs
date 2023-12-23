@@ -32,8 +32,10 @@ public class TargetBehaviour : MovementBehaviour {
     }
 
     public override void Move() {
-        UpdateMovement();
-        UpdateBehaviour();
+        if (!_agent.isStopped) {
+            UpdateMovement();
+            UpdateBehaviour();
+        }
     }
 
     private void ValidateParameters() {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -6,7 +7,6 @@ using UnityEngine;
 public class Petter : MonoBehaviour
 {
 
-    [SerializeField] SpriteManager _cameraSpriteManager;
     [SerializeField] Camera _playerCamera;
     private const float _distanceEpsilon = 0.01f;
     private const float _minTravelledDistance = 0.5f;
@@ -19,13 +19,16 @@ public class Petter : MonoBehaviour
     private Vector3 _lastPetPosition = Vector3.zero;
     private bool _previousRayDidHit = false; //bool value used to manage sprite changes in order to give cues to the player
 
+    public static event EventHandler StartedPetting;
+    public static event EventHandler StoppedPetting;
+    public static event EventHandler InPetRange;
+    public static event EventHandler OutOfPetRange;
+
     // Start is called before the first frame update
     void Start()
     {
         if (_playerCamera == null)
             Debug.LogError("No camera associated to " + transform.name);
-        if(_cameraSpriteManager == null)
-            Debug.LogError("no sprite manager detected for " + transform.name);
 
     }
 
@@ -76,9 +79,14 @@ public class Petter : MonoBehaviour
 
                         } else {
                             if (_lastPetted != null) {
-                                _lastPetted.HideProgressBar();
+                                _lastPetted.PettingStopped();
+                                //_lastPetted.HideProgressBar();
+                            } else {
+                                //just started petting a Pettable, send event
+                                StartedPetting(this, EventArgs.Empty);
                             }
-                            petted.ShowProgressBar();
+                            //petted.ShowProgressBar();
+                            petted.PettingStarted();
                             _accumulatedDistance = 0;
 
                         }
@@ -94,23 +102,22 @@ public class Petter : MonoBehaviour
 
         if (!didPet) {
             if (_lastPetted != null) {
-                _lastPetted.HideProgressBar();
+                _lastPetted.PettingStopped();
+                StoppedPetting(this, EventArgs.Empty);
             }
 
             _accumulatedDistance = 0;
             _isPetting= false;
             _lastPetted = null;
 
-            _cameraSpriteManager.UpdateCurrentSprite(SpriteType.DOT);
             if (petted != null && !_previousRayDidHit) {
-                _cameraSpriteManager.SetCurrentSpriteColor(Color.green);
+                InPetRange(this, EventArgs.Empty);
             } else if (petted == null && _previousRayDidHit) {
-                _cameraSpriteManager.SetCurrentSpriteColor(Color.white);
+                OutOfPetRange(this, EventArgs.Empty);
             }
 
             _previousRayDidHit = (petted != null);
         } else {
-            _cameraSpriteManager.UpdateCurrentSprite(SpriteType.HAND);
             _previousRayDidHit = true;
         }
         
