@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayerUIController : MonoBehaviour
 {
-    public bool currState=true;
+    private bool currState=false;
     public GameObject canvasTrigger;
     // Start is called before the first frame update
-    
+    public UiGameManager UiManager;
     void Start()
     {
-        canvasTrigger=GameObject.FindWithTag("AnimalsUI");
-        
+        canvasTrigger.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,10 +18,11 @@ public class PlayerUIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
     {
-        Debug.Log(currState);
         currState=!currState;
+        Debug.Log(currState);
         canvasTrigger.SetActive(currState);
-        
+        if(currState==false)
+        UiManager.CloseUI();
     }
     }
 }
