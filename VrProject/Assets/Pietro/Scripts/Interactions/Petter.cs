@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 
-public class Petter : MonoBehaviour
-{
+public class Petter : MonoBehaviour {
 
     [SerializeField] Camera _playerCamera;
     [SerializeField] private const float _petDistance = 1.5f;
@@ -119,12 +118,10 @@ public class Petter : MonoBehaviour
                 if (previousPetted != null) {
                     previousPetted.PettingStopped();
                 }
-                Debug.Log("Started Petting");
                 petted.PettingStarted();
                 StartedPetting(this, EventArgs.Empty);
             }
         } else if (previousPetted != null) {
-            Debug.Log("Stopped petting");
                 previousPetted.PettingStopped();
                 StoppedPetting(this, EventArgs.Empty);
         }

@@ -10,7 +10,7 @@ public enum RemovableType {
 
 public abstract class RemovablePart : MonoBehaviour {
     private bool _isRemoved;
-    private Renderer _renderer;
+    protected Renderer _renderer;
     [SerializeField] private RemovableType _type;
 
     public event Action PartRemoved;
@@ -24,6 +24,7 @@ public abstract class RemovablePart : MonoBehaviour {
     }
     public virtual void Remove() {
         PartRemoved();
+        RemovalStopped();
         _isRemoved = true;
     }
 
@@ -56,5 +57,8 @@ public abstract class RemovablePart : MonoBehaviour {
     public bool IsRemoved() {
         return _isRemoved;
     }
+
+    public virtual void RemovalStarted() { }
+    public virtual void RemovalStopped() { }
 
 }
