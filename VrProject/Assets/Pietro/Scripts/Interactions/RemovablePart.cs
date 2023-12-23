@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public abstract class RemovablePart : MonoBehaviour {
     private Renderer _renderer;
     [SerializeField] private RemovableType _type;
 
+    public event Action PartRemoved;
+
     protected virtual void Start() {
         _renderer = GetComponent<Renderer>();
         if (_renderer == null ) {
@@ -20,11 +23,11 @@ public abstract class RemovablePart : MonoBehaviour {
         _isRemoved= false;
     }
     public virtual void Remove() {
+        PartRemoved();
         _isRemoved = true;
     }
 
     protected IEnumerator FadeOut() {
-        Debug.Log("Fading out");
         float timeDelta = 0.05f;
         float deltaAlpha = timeDelta;
 
@@ -40,11 +43,9 @@ public abstract class RemovablePart : MonoBehaviour {
             }
 
             _renderer.material.color = newColor;
-            Debug.Log(transform.name + ": new color alpha is: " + _renderer.material.color.a);
 
             yield return new WaitForSeconds(timeDelta);
         }
-        Debug.Log("Destroying part");
         Destroy(gameObject);
     }
 

@@ -47,8 +47,13 @@ public class Petter : MonoBehaviour
 
                 //check if intersected object is child of a "Pettable"
                 if (petted == null) {
-                    if (hitTransform.parent != null) {
-                        petted = hitTransform.parent.GetComponent<Pettable>();
+                    Transform tmpTransform = hitTransform;
+                    int maxDepth = 5;
+                    int curDepth = 0;
+                    while (petted == null && tmpTransform.parent != null && curDepth < maxDepth) {
+                        curDepth++;
+                        petted = tmpTransform.parent.GetComponent<Pettable>();
+                        tmpTransform = tmpTransform.parent;
                     }
                 }
 
