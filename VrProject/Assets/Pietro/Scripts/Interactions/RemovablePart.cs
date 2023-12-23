@@ -45,7 +45,7 @@ public abstract class RemovablePart : MonoBehaviour {
             yield return new WaitForSeconds(timeDelta);
         }
         Debug.Log("Destroying part");
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     public RemovableType GetRemovableType() {
