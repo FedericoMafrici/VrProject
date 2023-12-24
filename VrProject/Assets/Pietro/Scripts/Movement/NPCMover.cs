@@ -60,9 +60,8 @@ public class NPCMover : MonoBehaviour {
                 _movementBehaviour = tmpPatrolBehaviour;
                 _state = MovingState.PATROL;
             }
-        }
 
-        if (!_movementBehaviour.HasValidParameters) {
+        } else if (!_movementBehaviour.HasValidParameters) {
             Debug.LogWarning("MovementBehaviour for " + transform.name + " has invalid parameters, disabling behaviour");
             _movementBehaviour = null;
         }
@@ -204,11 +203,13 @@ public class NPCMover : MonoBehaviour {
     }
 
     public void StartMoving() {
-        _movementBehaviour.Start();
+        if (_movementBehaviour != null)
+            _movementBehaviour.Start();
     }
 
     public void StopMoving() {
-        _movementBehaviour.Stop();
+        if (_movementBehaviour != null)
+            _movementBehaviour.Stop();
     }
 
 }
