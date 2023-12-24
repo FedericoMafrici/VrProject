@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering;
+
 
 public class Bar : MonoBehaviour
 {
     [SerializeField] private float _maxValue;
     private float _currentValue = 0.0f;
 
-    [SerializeField] private RectTransform _bar;
+    [SerializeField] private RectTransform _barRectTransform;
+    [SerializeField] private RectTransform _barBackgroundTransform;
+    [SerializeField] private ProgressBarManager _barManager;
     private float _fullWidth;
     private float _curWidth = 0.0f;
 
@@ -19,14 +24,25 @@ public class Bar : MonoBehaviour
     [SerializeField] protected bool _startHidden = true;
     protected bool _isHidden;
 
+    public event EventHandler<BarEventArgs> BarShown;
+    public event EventHandler<BarEventArgs> BarHidden;
+
     public void Start() {
         if (_barCanvasGroup == null)
             Debug.LogError(transform.name + ": no bar canvas set");
 
-        if (_bar == null)
+        if (_barBackgroundTransform == null)
+            Debug.LogError(transform.name + ": not RectTransform reference to bar background");
+
+        if (_barRectTransform == null)
             Debug.LogError(transform.name + ": not RectTransform reference to represent the bar");
-        _fullWidth = _bar.rect.width;
-        _bar.sizeDelta = new Vector2(0, _bar.rect.height);
+
+        if (_barManager != null) {
+            _barManager.RegisterProgressBar(this);
+        }
+
+        _fullWidth = _barRectTransform.rect.width;
+        _barRectTransform.sizeDelta = new Vector2(0, _barRectTransform.rect.height);
 
         if (_startHidden) {
             _barCanvasGroup.alpha = 0.0f;
@@ -62,7 +78,7 @@ public class Bar : MonoBehaviour
                 isFull = true;
             }
 
-            _bar.sizeDelta = new Vector2(Mathf.Lerp(_bar.rect.width, _curWidth, Time.deltaTime * _animationSpeed), _bar.rect.height);
+            _barRectTransform.sizeDelta = new Vector2(Mathf.Lerp(_barRectTransform.rect.width, _curWidth, Time.deltaTime * _animationSpeed), _barRectTransform.rect.height);
             
 
             yield return null;
@@ -73,14 +89,39 @@ public class Bar : MonoBehaviour
     public virtual void Hide() {
         _barCanvasGroup.alpha = 0;
         _isHidden = true;
+        ThrowHiddenEvent();
     }
 
     public virtual void Show() {
         _barCanvasGroup.alpha =1.0f;
         _isHidden = false;
+        ThrowShownEvent();
     }
 
     public bool IsHidden() {
         return _isHidden;
+    }
+
+    protected void ThrowHiddenEvent() {
+        if (BarHidden != null) {
+            BarHidden(this, new BarEventArgs(this));
+        }
+    }  
+
+    protected void ThrowShownEvent() {
+        if (BarShown != null) {
+            BarShown(this, new BarEventArgs(this));
+        }
+    }
+
+    public RectTransform GetBackgroundRectTransform() {
+        return _barBackgroundTransform;
+    }
+}
+
+public class BarEventArgs : EventArgs {
+    public Bar bar;
+    public BarEventArgs(Bar b) {
+        bar = b;
     }
 }

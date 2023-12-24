@@ -119,17 +119,23 @@ public class Petter : MonoBehaviour {
                     previousPetted.PettingStopped();
                 }
                 petted.PettingStarted();
-                StartedPetting(this, EventArgs.Empty);
+                if (StartedPetting != null)
+                    StartedPetting(this, EventArgs.Empty);
             }
         } else if (previousPetted != null) {
                 previousPetted.PettingStopped();
-                StoppedPetting(this, EventArgs.Empty);
+                if (StoppedPetting != null)
+                    StoppedPetting(this, EventArgs.Empty);
         }
 
         if (previousRayDidHit && !currentRayDidHit) {
-            OutOfPetRange(this, EventArgs.Empty);
+            if (OutOfPetRange != null)
+                OutOfPetRange(this, EventArgs.Empty);
+
         } else if (currentRayDidHit && !previousRayDidHit) {
-            InPetRange(this, EventArgs.Empty);
+
+            if (InPetRange != null)
+                InPetRange(this, EventArgs.Empty);
         }
 
         if (rubResult.canCallBehaviour && petted != null) {
