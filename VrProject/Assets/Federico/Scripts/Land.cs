@@ -24,7 +24,7 @@ public class Land : MonoBehaviour
             
             cropPlanted = cropObject.GetComponent<CropBehaviour>();
             //Plant it with the seed's information
-            cropPlanted.land=this
+            
             cropPlanted.Plant();
 
             }
