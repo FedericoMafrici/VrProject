@@ -128,7 +128,7 @@ namespace StarterAssets
 				UICamera.SetActive(true);
 				CinemachineCameraTarget.SetActive(false);
 				//dobbiamo disabilitare il controllo dello script due?
-				}
+				} 
 				else
 				{
 				Cursor.lockState = CursorLockMode.Locked ;
