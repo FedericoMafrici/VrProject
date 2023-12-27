@@ -52,11 +52,11 @@ public /*abstract*/ class Item : Grabbable
     
     public Item() {}
     
-    public Item(ItemName itemName, ItemCategory itemCategory)
+    /*public Item(ItemName itemName, ItemCategory itemCategory)
     {
         this.itemName = itemName;
         this.itemCategory = itemCategory;
-    }
+    }*/
 
     public void Start()
     {

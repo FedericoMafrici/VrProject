@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public enum RemovableType {
@@ -9,21 +10,27 @@ public enum RemovableType {
 }
 
 public abstract class RemovablePart : MonoBehaviour {
-    private bool _isRemoved;
+    protected bool _isRemoved;
     protected Renderer _renderer;
+
     [SerializeField] private RemovableType _type;
+    [SerializeField] protected NPCMover _npcMover;
 
     public event Action PartRemoved;
 
     protected virtual void Start() {
         _renderer = GetComponent<Renderer>();
-        if (_renderer == null ) {
+        if (_renderer == null) {
             Debug.LogError(transform.name + " no renderer assigned");
         }
+
         _isRemoved= false;
     }
     public virtual void Remove() {
-        PartRemoved();
+        if (PartRemoved != null) {
+            PartRemoved();
+        }
+
         RemovalStopped();
         _isRemoved = true;
     }
@@ -58,7 +65,23 @@ public abstract class RemovablePart : MonoBehaviour {
         return _isRemoved;
     }
 
-    public virtual void RemovalStarted() { }
-    public virtual void RemovalStopped() { }
+    public virtual void RemovalStarted() {}
+    public virtual void RemovalStopped() {}
+
+    protected void MakeNPCStartMoving() {
+        if (_npcMover != null) {
+            _npcMover.StartMoving();
+        } else {
+            Debug.LogWarning(transform.name + " is a removable that has no reference to an NPCMover");
+        }
+    }
+
+    protected void MakeNPCStopMoving(float seconds = 0f) {
+        if (_npcMover != null) {
+            _npcMover.StopMoving(seconds);
+        } else {
+            Debug.LogWarning(transform.name + " is a removable that has no reference to an NPCMover");
+        }
+    }
 
 }

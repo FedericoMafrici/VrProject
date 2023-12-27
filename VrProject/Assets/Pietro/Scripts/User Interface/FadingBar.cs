@@ -16,6 +16,8 @@ public class FadingBar : Bar {
         if (isFadingOut) {
             deltaAlpha = -deltaAlpha;
             targetAlpha = 0.0f;
+        } else {
+            ThrowShownEvent();
         }
 
         bool isCompleted = false;
@@ -30,6 +32,10 @@ public class FadingBar : Bar {
         }
         _fadeCoroutine = null;
         
+        if (isFadingOut) {
+            ThrowHiddenEvent();
+        }
+
         /*
         for (float alpha = 1f; alpha >= -0.05; alpha -= 0.05f) {
             c.a = f;

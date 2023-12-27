@@ -113,26 +113,56 @@ public class Petter : MonoBehaviour {
         Pettable petted = rubResult.currentRubbed;
         bool currentRayDidHit = rubResult.currentRayDidHit;
         bool previousRayDidHit = rubResult.previousRayDidHit;
-        if (didPet) {
-            if (previousPetted != petted) {
-                if (previousPetted != null) {
-                    previousPetted.PettingStopped();
-                }
-                petted.PettingStarted();
+
+        if (rubResult.interactedWithNewTarget) {
+            petted.PettingStarted();
+            if (StartedPetting != null)
                 StartedPetting(this, EventArgs.Empty);
-            }
-        } else if (previousPetted != null) {
-                previousPetted.PettingStopped();
+        }
+
+        if (rubResult.abandonedPreviousTarget) {
+            previousPetted.PettingStopped();
+            if (StoppedPetting != null)
                 StoppedPetting(this, EventArgs.Empty);
         }
 
-        if (previousRayDidHit && !currentRayDidHit) {
-            OutOfPetRange(this, EventArgs.Empty);
-        } else if (currentRayDidHit && !previousRayDidHit) {
-            InPetRange(this, EventArgs.Empty);
+        if (rubResult.enteredRange) {
+            if (InPetRange != null)
+                InPetRange(this, EventArgs.Empty);
+        } else if (rubResult.exitedRange) {
+            if (OutOfPetRange != null)
+                OutOfPetRange(this, EventArgs.Empty);
         }
 
-        if (rubResult.canCallBehaviour && petted != null) {
+        /*if (didPet) {
+            if (previousPetted != petted) {
+                if (previousPetted != null) {
+                    previousPetted.PettingStopped();
+                    if (StoppedPetting != null)
+                        StoppedPetting(this, EventArgs.Empty);
+                }
+
+                petted.PettingStarted();
+                if (StartedPetting != null)
+                    StartedPetting(this, EventArgs.Empty);
+            }
+        } else if (previousPetted != null) {
+                previousPetted.PettingStopped();
+                if (StoppedPetting != null)
+                    StoppedPetting(this, EventArgs.Empty);
+        }
+
+        if (previousRayDidHit && !currentRayDidHit) {
+            if (OutOfPetRange != null)
+                OutOfPetRange(this, EventArgs.Empty);
+
+        } else if (currentRayDidHit && !previousRayDidHit) {
+
+            if (InPetRange != null)
+                InPetRange(this, EventArgs.Empty);
+        }*/
+
+        if (rubResult.canCallBehaviour) {
             petted.Pet(this, rubResult.travelledDistance);
         }
 

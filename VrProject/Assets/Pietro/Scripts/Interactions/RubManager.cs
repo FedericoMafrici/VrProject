@@ -9,6 +9,10 @@ public struct RubbingResult<T> {
     public bool didRub;
     public bool previousRayDidHit;
     public bool currentRayDidHit;
+    public bool enteredRange;
+    public bool exitedRange;
+    public bool interactedWithNewTarget;
+    public bool abandonedPreviousTarget;
     public float travelledDistance;
     public T currentRubbed;
     public T previousRubbed;
@@ -21,7 +25,7 @@ public class RubManager<T> where T : class {
     private float _distanceEpsilon = 0.01f;
     private float _accumulatedDistance = 0f;
     private float _minTravelledDistance = 0.5f;
-    private Vector3 _lastRubPosition = Vector3.zero;
+    private Vector3 _previousHitPosition = Vector3.zero;
     private bool _isRubbing = false;
     private bool _previousRayDidHit = false;
     private bool _canRub = true;
@@ -42,6 +46,10 @@ public class RubManager<T> where T : class {
         result.previousRubbed = _previousRubbed;
         result.currentRayDidHit= false;
         result.previousRayDidHit = _previousRayDidHit;
+        result.enteredRange = false;
+        result.exitedRange = false;
+        result.interactedWithNewTarget = false;
+        result.abandonedPreviousTarget = false;
 
         if (_canRub) {
             if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _range)) {
@@ -77,15 +85,9 @@ public class RubManager<T> where T : class {
                                     result.canCallBehaviour = true;
                                     _accumulatedDistance = 0;
                                 }
-
-
-                                _lastRubPosition = hit.point;
                             }
 
-                            Vector3 direction = hit.point - _lastRubPosition;
-
-                            // Draw the ray in the Scene view
-                            Debug.DrawRay(_lastRubPosition, direction, Color.green);
+                            Vector3 direction = hit.point - _previousHitPosition;
 
                         } else {
                             _accumulatedDistance = 0;
@@ -93,35 +95,74 @@ public class RubManager<T> where T : class {
 
                         didRub = true;
                         _isRubbing = true;
-                        _previousRubbed = rubbed;
-                        _lastRubPosition = hit.point;
+                        _previousHitPosition = hit.point;
                     }
                 }
 
-                if (!didRub) {                    
+                if (!didRub) { 
                     _isRubbing = false;
                     _accumulatedDistance = 0;
-                    _previousRubbed = null;
                 }
             }
         }
 
         result.currentRayDidHit = (rubbed != null);
-
         result.didRub = didRub;
         result.currentRubbed = rubbed;
+
+        //check if the user entered or exited the range needed to perform the action
+        if (result.currentRayDidHit && !_previousRayDidHit) {
+            result.enteredRange = true;
+        } else if (!result.currentRayDidHit && _previousRayDidHit) {
+            result.exitedRange = true;
+        }
+
+        //check if the user interacted with a new target and/or abandoned a target it was interacting with
+        if (didRub) {
+            if (rubbed != _previousRubbed) {
+                if (rubbed != null) {
+                    result.interactedWithNewTarget = true;
+                }
+
+                if (_previousRubbed != null) {
+                    //Debug.Log("Abandoned previous target");
+                    result.abandonedPreviousTarget = true;
+                }
+            }
+
+            _previousRubbed = rubbed;
+        } else {
+            if (_previousRubbed != null) {
+                result.abandonedPreviousTarget = true;
+            }
+
+
+            //user did not rub anything during this call
+            _previousRubbed = null;
+        }
+
+        //keep memory of this execution
         _previousRayDidHit = result.currentRayDidHit;
         return result;
     }
 
     private float GetRubDistance(RaycastHit hit) {
+        Vector3 distance = hit.point - _previousHitPosition;
+        /*
         //project the distance between current hit point and last one onto camera viewport plane
-        Vector3 distance = hit.point - _lastRubPosition;
-        Vector3 distancePerp = (Vector3.Dot(distance, _playerCamera.transform.forward)
-                                   / Vector3.Dot(_playerCamera.transform.forward, _playerCamera.transform.forward))
+
+        Vector3 distancePerp = ((Vector3.Dot(distance, _playerCamera.transform.forward))
+                                   / (Vector3.Dot(_playerCamera.transform.forward, _playerCamera.transform.forward)))
                                    * _playerCamera.transform.forward;
-        float distanceOnCameraPlane = (distance - distancePerp).magnitude;
-        return distanceOnCameraPlane;
+        Vector3 distanceParallelToPlane = distance - distancePerp;
+        */
+
+
+        float travelledDistance = distance.magnitude;
+
+        // Draw the ray in the Scene view
+        Debug.DrawRay(_previousHitPosition, distance, Color.green);
+        return travelledDistance;
 
 
     }

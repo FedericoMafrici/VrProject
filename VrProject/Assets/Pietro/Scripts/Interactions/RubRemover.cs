@@ -3,14 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MudRemover : AnimalPartRemover {
+public class RubRemover : AnimalPartRemover {
 
     private RubManager<RemovablePart> _rubber;
-    // Start is called before the first frame update
     protected override void Start() {
         base.Start();
         _rubber = new RubManager<RemovablePart>(_playerCamera, _interactRange);
-        _targetType = RemovableType.MUD;
     }
 
     // Update is called once per frame
@@ -24,13 +22,28 @@ public class MudRemover : AnimalPartRemover {
         }
 
 
-        if (rubResult.previousRayDidHit && !rubResult.currentRayDidHit) {
-            //went out of range
-        } else if (rubResult.currentRayDidHit && !rubResult.previousRayDidHit) {
+        if (rubResult.enteredRange) {
             //went in range
+        } else if (rubResult.exitedRange) {
+            //went out of range
         }
 
-        if (rubResult.didRub) {
+        if (rubResult.interactedWithNewTarget) {
+            toRemove.RemovalStarted();
+        }
+
+        if (rubResult.abandonedPreviousTarget) {
+            previousRemovable.RemovalStopped();
+        }
+
+        if (rubResult.previousRayDidHit && !rubResult.currentRayDidHit) {
+
+        } else if (rubResult.currentRayDidHit && !rubResult.previousRayDidHit) {
+
+        }
+
+
+        /*if (rubResult.didRub) {
             if (previousRemovable != toRemove) {
                 if (previousRemovable != null) {
                     previousRemovable.RemovalStopped();
@@ -39,7 +52,7 @@ public class MudRemover : AnimalPartRemover {
             }
         } else if (previousRemovable != null) {
             previousRemovable.RemovalStopped();
-        }
+        }*/
 
     }
 }

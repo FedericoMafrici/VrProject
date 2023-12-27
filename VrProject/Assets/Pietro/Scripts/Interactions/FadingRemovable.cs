@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FadingRemovable : RemovablePart {
     [SerializeField] private float _alphaStep = 0.2f;
-    [SerializeField] private NPCMover _npcMover;
 
     private float _maxAlphaBeforeDestroying = 0.5f;
     private float _targetAlpha = 1.0f;
@@ -12,9 +11,6 @@ public class FadingRemovable : RemovablePart {
     private Coroutine _fadingCoroutine = null;
 
     protected override void Start() {
-        if (_npcMover == null) {
-            Debug.LogError("No NPCMover specified for " + transform.name);
-        }
         base.Start();
     }
 
@@ -62,13 +58,5 @@ public class FadingRemovable : RemovablePart {
 
     public override void RemovalStopped() {
         MakeNPCStartMoving();
-    }
-
-    private void MakeNPCStopMoving() {
-        _npcMover.StopMoving();
-    }
-
-    private void MakeNPCStartMoving() {
-        _npcMover.StartMoving();
     }
 }

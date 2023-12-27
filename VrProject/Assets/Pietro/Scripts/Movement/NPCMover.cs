@@ -22,14 +22,16 @@ public class NPCMover : MonoBehaviour {
 
     private MovingState _state = MovingState.PATROL;
 
+    private float _inRangeRadius = 5.0f;
+    private float _closeRadius = 2.0f;
+    private float _veryCloseRadius = .5f;
+    private float _toWaitBeforeMoving = 0.0f;
+    private Coroutine _waitingCoroutine = null;
+
     [Header("Patrol Behaviour parameters")]
     [SerializeField] private BoxCollider _patrolArea;
     [SerializeField] private float _minPatrolDelay = 5.0f; //minimum amount of time (in seconds) that needs to pass before generating a new target when patrolling an area
     [SerializeField] private float _maxPatrolDelay = 15.0f; //maximum amount of time (in seconds) that needs to pass before generating a new target when patrolling an area
-
-    private float _inRangeRadius = 5.0f;
-    private float _closeRadius = 2.0f;
-    private float _veryCloseRadius = .5f;
 
     [Header("Interests")]
     [SerializeField] private List<TargetType> _interestsList;
@@ -207,9 +209,40 @@ public class NPCMover : MonoBehaviour {
             _movementBehaviour.Start();
     }
 
-    public void StopMoving() {
+    public void StopMoving(float seconds = 0f) {
         if (_movementBehaviour != null)
             _movementBehaviour.Stop();
+
+        if (seconds > 0f) {
+            //Only stop for the given amount of time, then start moving again
+            if (_toWaitBeforeMoving < seconds) {
+                _toWaitBeforeMoving = seconds;
+            }
+
+            if (_waitingCoroutine == null) {
+                _waitingCoroutine = StartCoroutine(WaitBeforeMoving());
+            }
+
+        } else {
+            //ensure that the NPC stops indefinetely
+            if (_waitingCoroutine != null) {
+                StopCoroutine(_waitingCoroutine);
+                _waitingCoroutine = null;
+            }
+        }
+    }
+
+    private IEnumerator WaitBeforeMoving() {
+
+        //waits until _toWaitBeforeMoving reaches 0, then starts moving again
+        while (_toWaitBeforeMoving > 0f) {
+            float waited = _toWaitBeforeMoving;
+            _toWaitBeforeMoving -= waited;  
+            yield return new WaitForSeconds(waited);
+        }
+
+        _waitingCoroutine = null;
+        StartMoving();
     }
 
 }

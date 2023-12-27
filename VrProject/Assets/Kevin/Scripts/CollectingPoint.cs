@@ -52,7 +52,6 @@ public class CollectingPoint : MonoBehaviour
 
     void Update()
     {
-        int i;
     }
     
 }

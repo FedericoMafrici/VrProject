@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 5482730258720931913}
   - {fileID: 4114636582866275089}
+  - {fileID: 3029898614263978968}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9116079816611367307
@@ -120,8 +121,7 @@ Transform:
   m_LocalPosition: {x: 0.04399991, y: 0.783507, z: 1.13}
   m_LocalScale: {x: 0.6718466, y: 0.5600849, z: 0.6718466}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3029898614263978968}
+  m_Children: []
   m_Father: {fileID: 5280463151732544732}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -180.006}
 --- !u!33 &7771069821918707882
@@ -308,7 +308,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4114636582866275089}
+    m_TransformParent: {fileID: 5280463151732544732}
     m_Modifications:
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_Name
@@ -316,43 +316,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.4884346
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4884348
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.7854434
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000010395982
+      value: 0.043999672
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.10745728
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.72407913
+      value: 1.1899998
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7072415
+      value: -0.00005722045
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7069721
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000039200677
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000015307887
+      value: -1.5797945e-11
       objectReference: {fileID: 0}
     - target: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -385,11 +385,6 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 5956817117790157840, guid: ddac45297f8e371418fb933c1db33083, type: 3}
   m_PrefabInstance: {fileID: 9107231472717696443}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &5421859670636735896 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3845285050527064099, guid: ddac45297f8e371418fb933c1db33083, type: 3}
-  m_PrefabInstance: {fileID: 9107231472717696443}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7530823270394995488 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
@@ -408,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxValue: 100
-  _bar: {fileID: 5421859670636735896}
+  _barRectTransform: {fileID: 0}
   _animationSpeed: 10
   _barCanvasGroup: {fileID: 3227321018892792235}
   _startHidden: 1
