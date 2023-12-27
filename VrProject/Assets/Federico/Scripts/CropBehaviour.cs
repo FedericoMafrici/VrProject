@@ -11,24 +11,29 @@ public class CropBehaviour : MonoBehaviour
     public GameObject seed;
     private GameObject seedling;
     private GameObject harvestable;
-    public  SeedData tmp; // oggetto tmp usato perchè non ho la hotbar al momento  
+    public  SeedData tmp; // temporary object used for debugging purpose 
    
+     // this field will be asggined with the land where the crop is planted 
+    public Land farmland;
     public CropState cropState;
     // Start is called before the first frame update
     public int growth=0;
     public enum CropState
     {
-        Seed,SeedLing,Harvestable
+        Seed,SeedLing,Harvestable,Harvested
     }
 
     // PLANTING SYSTEM //it should receive the seedData from outside 
     public void Plant( )
     { 
-        SeedData seedToGrow=tmp; //usiamo il tmp come placeholder per inserire i cambi seedling e harvestable
+        SeedData seedToGrow=tmp; 
         this.seedToGrow=seedToGrow;
         seedling = Instantiate(seedToGrow.seedling,transform);
+         seedling.transform.localPosition = Vector3.zero;
         ItemData cropToYield=seedToGrow.cropToYield;
         harvestable = Instantiate(cropToYield.gameModel,transform);
+        harvestable.transform.localPosition = Vector3.zero;
+
         switchState(CropState.Seed);
     }
     //GROWTH SYSTEM
@@ -42,6 +47,8 @@ public class CropBehaviour : MonoBehaviour
             case 1: switchState(CropState.SeedLing);
             break;
             case 2: switchState(CropState.Harvestable);
+            break;
+            case 3: switchState(CropState.Harvested);
             break;
         }
     }
@@ -60,9 +67,11 @@ public void switchState(CropState stateToSwitch)
          seedling.SetActive(true);
         break;
          case CropState.Harvestable:
-         harvestable.SetActive(true);
-        break;
-
+       //  harvestable.SetActive(true);
+         harvestable.transform.parent=  null;
+         Debug.Log("harvestable");
+         Destroy(gameObject);
+       break;
     }
     
     cropState=stateToSwitch;

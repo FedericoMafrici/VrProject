@@ -9,6 +9,7 @@ public class growthInteractionManager : MonoBehaviour
     [SerializeField] private float _interactionDistance;
     private CharacterController _character;
     private Land _pointingAtLand=null;
+    private HarvestableBehaviour _pointingAtHarvestable=null;
   //  private Interactable _pointingInteractable;
     private Vector3 _rayOrigin;
 
@@ -48,7 +49,14 @@ private void CheckInteraction()
                    
                     _pointingAtLand.Interact();
             }
-
+          
+           _pointingAtHarvestable=hit.transform.GetComponent<HarvestableBehaviour>();
+            if (_pointingAtHarvestable && Input.GetMouseButtonDown(0)) // se l'oggetto interactable è diverso da null  
+            { 
+                    _pointingAtHarvestable.Interact();
+                    //distruggi ora il seme e reinizializza la terra 
+                   
+            }
          
         }
         //If NOTHING is detected set all to null
