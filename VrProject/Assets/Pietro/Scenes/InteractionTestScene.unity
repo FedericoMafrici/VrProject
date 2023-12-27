@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 951067723}
     m_Modifications:
+    - target: {fileID: 380484154824201119, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 724365627721354173, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
@@ -138,6 +142,10 @@ PrefabInstance:
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_Name
       value: FriendshipProgressBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_IsActive
@@ -163,6 +171,10 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2928043539143455131, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -174,6 +186,10 @@ PrefabInstance:
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878326719580504525, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4111155636885257225, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: _barManager
@@ -278,7 +294,7 @@ GameObject:
   - component: {fileID: 57238755}
   - component: {fileID: 57238754}
   - component: {fileID: 57238753}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 97820152}
   - component: {fileID: 97820153}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,6 +459,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1019341354}
+  - {fileID: 166146945}
   m_Father: {fileID: 199625926}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &97820153
@@ -457,6 +474,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc67f1c625582934eba5e07a0e56e1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 397302859}
+  _toSpawn: {fileID: 8907723555309784255, guid: ac87e8f9fb5a7a34eb4a427be0690a53, type: 3}
+  _spawnPoint: {fileID: 166146945}
 --- !u!1 &105525602
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +491,7 @@ GameObject:
   - component: {fileID: 105525606}
   - component: {fileID: 105525605}
   - component: {fileID: 105525604}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,6 +625,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105525602}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &166146944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166146945}
+  m_Layer: 9
+  m_Name: ItemSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &166146945
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166146944}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.87, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 97820152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &199625926 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5482730258720931913, guid: f452545cf95179443af413f768973e44, type: 3}
@@ -631,6 +682,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08fdcb509a54604bb21bae65db1feb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &285152053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 285152055}
+  - component: {fileID: 285152054}
+  m_Layer: 0
+  m_Name: UIInteractTextManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &285152054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285152053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2952456fa4d0e1b4fa980e555fa7943a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvas: {fileID: 2102720108}
+  _fontAsset: {fileID: 0}
+--- !u!4 &285152055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285152053}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.8492173, y: 0.17904806, z: -1.5570323}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &320750566
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +742,7 @@ GameObject:
   - component: {fileID: 320750570}
   - component: {fileID: 320750569}
   - component: {fileID: 320750568}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -925,6 +1022,11 @@ MonoBehaviour:
   _playerCamera: {fileID: 2118045848}
   _targetType: 1
   _interactRange: 1.5
+--- !u!4 &397302859 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8997996947095583982, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+  m_PrefabInstance: {fileID: 2075626626}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &400805559
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +1041,7 @@ GameObject:
   - component: {fileID: 400805563}
   - component: {fileID: 400805562}
   - component: {fileID: 400805561}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1087,7 +1189,7 @@ GameObject:
   - component: {fileID: 407413639}
   - component: {fileID: 407413638}
   - component: {fileID: 407413637}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1234,6 +1336,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1999147864}
     m_Modifications:
+    - target: {fileID: 380484154824201119, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 724365627721354173, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
@@ -1241,6 +1347,10 @@ PrefabInstance:
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_Name
       value: ShearingProgressBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_IsActive
@@ -1266,6 +1376,10 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2928043539143455131, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1277,6 +1391,10 @@ PrefabInstance:
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878326719580504525, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4111155636885257225, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: _barManager
@@ -1398,7 +1516,7 @@ GameObject:
   - component: {fileID: 497507782}
   - component: {fileID: 497507786}
   - component: {fileID: 497507787}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1542,7 +1660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 534325351}
   - component: {fileID: 534325352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1591,6 +1709,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc67f1c625582934eba5e07a0e56e1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 397302859}
+  _toSpawn: {fileID: 8907723555309784255, guid: ac87e8f9fb5a7a34eb4a427be0690a53, type: 3}
+  _spawnPoint: {fileID: 534325351}
 --- !u!224 &550958910 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
@@ -1607,6 +1728,10 @@ PrefabInstance:
     - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_Name
       value: AnimalToClean
+      objectReference: {fileID: 0}
+    - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_IsActive
@@ -1660,6 +1785,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: f2e0bb51e124b7b4da1541e6298e7b60, type: 2}
+    - target: {fileID: 6253250959242510692, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931581151226406914, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7803176291589383973, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1772,7 +1905,7 @@ GameObject:
   - component: {fileID: 691392026}
   - component: {fileID: 691392025}
   - component: {fileID: 691392024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MudStain (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1909,6 +2042,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1391343182}
     m_Modifications:
+    - target: {fileID: 380484154824201119, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 724365627721354173, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
@@ -1916,6 +2053,10 @@ PrefabInstance:
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_Name
       value: ShearingProgressBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_IsActive
@@ -1941,6 +2082,10 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2928043539143455131, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -1952,6 +2097,10 @@ PrefabInstance:
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878326719580504525, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4111155636885257225, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: _barManager
@@ -2155,7 +2304,7 @@ GameObject:
   - component: {fileID: 789247151}
   - component: {fileID: 789247150}
   - component: {fileID: 789247149}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MudStain (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2281,6 +2430,10 @@ PrefabInstance:
       value: AnimalToShear2
       objectReference: {fileID: 0}
     - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -2332,6 +2485,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: acdf1757438a840448a0406173e9d482, type: 2}
+    - target: {fileID: 6253250959242510692, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931581151226406914, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7273479792885374045, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2343,9 +2504,8 @@ PrefabInstance:
     - target: {fileID: 9116079816611367307, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: _progressBar
       value: 
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9116079816611367307, guid: f452545cf95179443af413f768973e44, type: 3}
+      objectReference: {fileID: 326593176}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7530823270394995488, guid: f452545cf95179443af413f768973e44, type: 3}
     m_AddedGameObjects:
@@ -2362,9 +2522,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1391343178}
-    - targetCorrespondingSourceObject: {fileID: 6931581151226406914, guid: f452545cf95179443af413f768973e44, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1334957993}
   m_SourcePrefab: {fileID: 100100000, guid: f452545cf95179443af413f768973e44, type: 3}
 --- !u!1 &909272618
 GameObject:
@@ -2380,7 +2537,7 @@ GameObject:
   - component: {fileID: 909272622}
   - component: {fileID: 909272621}
   - component: {fileID: 909272620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2544,7 +2701,7 @@ GameObject:
   - component: {fileID: 1005218316}
   - component: {fileID: 1005218315}
   - component: {fileID: 1005218314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2692,7 +2849,7 @@ GameObject:
   - component: {fileID: 1019341351}
   - component: {fileID: 1019341350}
   - component: {fileID: 1019341355}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2952,7 +3109,7 @@ GameObject:
   - component: {fileID: 1167586028}
   - component: {fileID: 1167586027}
   - component: {fileID: 1167586026}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3091,6 +3248,65 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3845285050527064099, guid: ddac45297f8e371418fb933c1db33083, type: 3}
   m_PrefabInstance: {fileID: 1432218518}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1220364539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1220364541}
+  - component: {fileID: 1220364540}
+  m_Layer: 0
+  m_Name: UISpriteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1220364540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220364539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 162bb81cbd56c2647ba03e90a5a4e419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteDataList:
+  - Type: 0
+    defaultScale: 10
+    sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - Type: 1
+    defaultScale: 10
+    sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+    color: {r: 0.41450492, g: 1, b: 0.30817604, a: 1}
+  - Type: 2
+    defaultScale: 1
+    sprite: {fileID: 21300000, guid: ab2a7229f988bd24aba83142bb3e0a9f, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+  _spriteRenderer: {fileID: 768919809}
+--- !u!4 &1220364541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220364539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5481215, y: 0.07398218, z: -1.7390957}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1738999808}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1332470837 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4111155636885257225, guid: ddac45297f8e371418fb933c1db33083, type: 3}
@@ -3107,28 +3323,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
   m_PrefabInstance: {fileID: 39301294}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1334957991 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6931581151226406914, guid: f452545cf95179443af413f768973e44, type: 3}
-  m_PrefabInstance: {fileID: 814946821}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1334957992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5482730258720931913, guid: f452545cf95179443af413f768973e44, type: 3}
   m_PrefabInstance: {fileID: 814946821}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1334957993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1334957991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc67f1c625582934eba5e07a0e56e1ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1391343177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
@@ -3172,6 +3371,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 678515388}
     m_Modifications:
+    - target: {fileID: 380484154824201119, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 724365627721354173, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
@@ -3179,6 +3382,10 @@ PrefabInstance:
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_Name
       value: FriendshipProgressBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1915144267357131238, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_Camera
@@ -3196,6 +3403,10 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2928043539143455131, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3207,6 +3418,10 @@ PrefabInstance:
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878326719580504525, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4111155636885257225, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: _barRectTransform
@@ -3275,7 +3490,7 @@ GameObject:
   - component: {fileID: 1498003195}
   - component: {fileID: 1498003194}
   - component: {fileID: 1498003193}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3560,7 +3775,7 @@ GameObject:
   - component: {fileID: 1597604644}
   - component: {fileID: 1597604643}
   - component: {fileID: 1597604642}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MudStain (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3753,7 +3968,7 @@ GameObject:
   - component: {fileID: 1642515688}
   - component: {fileID: 1642515687}
   - component: {fileID: 1642515686}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3917,7 +4132,7 @@ GameObject:
   - component: {fileID: 1736917174}
   - component: {fileID: 1736917173}
   - component: {fileID: 1736917172}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4062,7 +4277,7 @@ GameObject:
   - component: {fileID: 1738999808}
   - component: {fileID: 1738999809}
   m_Layer: 0
-  m_Name: CameraCenterSpriteManager
+  m_Name: PetSpriteManagerWrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4077,11 +4292,11 @@ Transform:
   m_GameObject: {fileID: 1738999806}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710623, z: -0, w: 0.7071074}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.5481215, y: -0.07398218, z: 1.7390957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1220364541}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1738999809
 MonoBehaviour:
@@ -4095,20 +4310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776150c648043ed46b47983381aaf427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteDataList:
-  - Type: 0
-    defaultScale: 10
-    sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-    color: {r: 1, g: 1, b: 1, a: 1}
-  - Type: 2
-    defaultScale: 1
-    sprite: {fileID: 21300000, guid: ab2a7229f988bd24aba83142bb3e0a9f, type: 3}
-    color: {r: 1, g: 1, b: 1, a: 1}
-  - Type: 1
-    defaultScale: 10
-    sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-    color: {r: 0.30066592, g: 0.9622642, b: 0.2602349, a: 1}
-  _spriteRenderer: {fileID: 768919809}
+  _spriteManager: {fileID: 1220364540}
 --- !u!1 &1773224275
 GameObject:
   m_ObjectHideFlags: 0
@@ -4122,7 +4324,7 @@ GameObject:
   - component: {fileID: 1773224279}
   - component: {fileID: 1773224278}
   - component: {fileID: 1773224277}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MudStain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4308,7 +4510,7 @@ GameObject:
   - component: {fileID: 1842183825}
   - component: {fileID: 1842183824}
   - component: {fileID: 1842183823}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MudStain (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4430,7 +4632,7 @@ GameObject:
   - component: {fileID: 1847110791}
   - component: {fileID: 1847110790}
   - component: {fileID: 1847110789}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4578,7 +4780,7 @@ GameObject:
   - component: {fileID: 1849700977}
   - component: {fileID: 1849700976}
   - component: {fileID: 1849700975}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4726,7 +4928,7 @@ GameObject:
   - component: {fileID: 1944956474}
   - component: {fileID: 1944956473}
   - component: {fileID: 1944956472}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WoolPatch (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4889,6 +5091,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1999147864}
     m_Modifications:
+    - target: {fileID: 380484154824201119, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 724365627721354173, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
@@ -4896,6 +5102,10 @@ PrefabInstance:
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_Name
       value: FriendshipProgressBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_IsActive
@@ -4921,6 +5131,10 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2928043539143455131, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -4932,6 +5146,10 @@ PrefabInstance:
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878326719580504525, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4111155636885257225, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: _barManager
@@ -5032,7 +5250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2055405511}
   - component: {fileID: 2055405512}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Mud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5072,6 +5290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc67f1c625582934eba5e07a0e56e1ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 397302859}
+  _toSpawn: {fileID: 0}
+  _spawnPoint: {fileID: 2055405511}
 --- !u!224 &2056478557 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
@@ -5085,9 +5306,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4135013735270702863, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5393215578589016642, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_Name
       value: PlayerCapsule
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       propertyPath: m_IsActive
@@ -5161,6 +5394,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1391343182}
     m_Modifications:
+    - target: {fileID: 380484154824201119, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 724365627721354173, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
@@ -5168,6 +5405,10 @@ PrefabInstance:
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_Name
       value: FriendshipProgressBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1648802455497682587, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_IsActive
@@ -5193,6 +5434,10 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2928043539143455131, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -5204,6 +5449,10 @@ PrefabInstance:
     - target: {fileID: 3365391099348505893, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878326719580504525, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4111155636885257225, guid: ddac45297f8e371418fb933c1db33083, type: 3}
       propertyPath: _barManager
@@ -5311,7 +5560,7 @@ GameObject:
   - component: {fileID: 2098691400}
   - component: {fileID: 2098691399}
   - component: {fileID: 2098691398}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MudStain (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5496,7 +5745,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -5547,6 +5796,10 @@ PrefabInstance:
     - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_Name
       value: AnimalToShear
+      objectReference: {fileID: 0}
+    - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_IsActive
@@ -5600,6 +5853,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c4f59b69b5f70a244bbf7d129e914e8e, type: 2}
+    - target: {fileID: 6253250959242510692, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931581151226406914, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7803176291589383973, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5634,6 +5895,10 @@ PrefabInstance:
     - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_Name
       value: Animal
+      objectReference: {fileID: 0}
+    - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_IsActive
@@ -5683,6 +5948,14 @@ PrefabInstance:
       propertyPath: _patrolArea
       value: 
       objectReference: {fileID: 1631497647}
+    - target: {fileID: 6253250959242510692, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6931581151226406914, guid: f452545cf95179443af413f768973e44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7273479792885374045, guid: f452545cf95179443af413f768973e44, type: 3}
       propertyPath: m_Camera
       value: 
@@ -5712,8 +5985,9 @@ SceneRoots:
   - {fileID: 8719479066900241530}
   - {fileID: 2102720109}
   - {fileID: 1631497648}
-  - {fileID: 1738999808}
   - {fileID: 2142519664}
   - {fileID: 557776855}
   - {fileID: 388288776}
   - {fileID: 814946821}
+  - {fileID: 1220364541}
+  - {fileID: 285152055}

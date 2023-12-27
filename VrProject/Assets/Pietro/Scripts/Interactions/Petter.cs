@@ -8,7 +8,8 @@ public class Petter : MonoBehaviour {
 
     [SerializeField] Camera _playerCamera;
     [SerializeField] private const float _petDistance = 1.5f;
-    private RubManager<Pettable> _rubber;
+    private RaycastManager<Pettable> _raycastManager;
+    private KeyCode _interactKey = KeyCode.Mouse1;
     //defines distance at which petter can interact with pettables
     // private const float _distanceEpsilon = 0.01f;
     // private const float _minTravelledDistance = 0.5f;
@@ -34,12 +35,12 @@ public class Petter : MonoBehaviour {
         if (_playerCamera == null)
             Debug.LogError("No camera associated to " + transform.name);
 
-        _rubber = new RubManager<Pettable>(_playerCamera, _petDistance);
+        _raycastManager = new RaycastManager<Pettable>(_playerCamera, _petDistance, true);
 }
 
     // Update is called once per frame
     void Update() {
-        RubbingResult<Pettable> rubResult = _rubber.CheckRubs(KeyCode.Mouse1);
+        InteractionResult<Pettable> interactResult = _raycastManager.CheckRaycast(_interactKey);
 
         /*
         RaycastHit hit;
@@ -108,28 +109,28 @@ public class Petter : MonoBehaviour {
         }
         */
 
-        bool didPet = rubResult.didRub;
-        Pettable previousPetted = rubResult.previousRubbed;
-        Pettable petted = rubResult.currentRubbed;
-        bool currentRayDidHit = rubResult.currentRayDidHit;
-        bool previousRayDidHit = rubResult.previousRayDidHit;
+        bool didPet = interactResult.didInteract;
+        Pettable previousPetted = interactResult.previousInteracted;
+        Pettable petted = interactResult.currentInteracted;
+        bool currentRayDidHit = interactResult.currentRayDidHit;
+        bool previousRayDidHit = interactResult.previousRayDidHit;
 
-        if (rubResult.interactedWithNewTarget) {
+        if (interactResult.interactedWithNewTarget) {
             petted.PettingStarted();
             if (StartedPetting != null)
                 StartedPetting(this, EventArgs.Empty);
         }
 
-        if (rubResult.abandonedPreviousTarget) {
+        if (interactResult.abandonedPreviousTarget) {
             previousPetted.PettingStopped();
             if (StoppedPetting != null)
                 StoppedPetting(this, EventArgs.Empty);
         }
 
-        if (rubResult.enteredRange) {
+        if (interactResult.enteredRange) {
             if (InPetRange != null)
                 InPetRange(this, EventArgs.Empty);
-        } else if (rubResult.exitedRange) {
+        } else if (interactResult.exitedRange) {
             if (OutOfPetRange != null)
                 OutOfPetRange(this, EventArgs.Empty);
         }
@@ -162,8 +163,8 @@ public class Petter : MonoBehaviour {
                 InPetRange(this, EventArgs.Empty);
         }*/
 
-        if (rubResult.canCallBehaviour) {
-            petted.Pet(this, rubResult.travelledDistance);
+        if (interactResult.canCallBehaviour) {
+            petted.Pet(this, interactResult.travelledDistance);
         }
 
         /*
@@ -202,5 +203,9 @@ public class Petter : MonoBehaviour {
 
 
     }*/
+
+    public string GetPetText() {
+        return "Premi " + _interactKey.ToString() + " per accarezzare";
+    }
 
 }

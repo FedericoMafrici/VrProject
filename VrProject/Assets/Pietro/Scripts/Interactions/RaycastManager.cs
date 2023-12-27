@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public struct RubbingResult<T> {
+public struct InteractionResult<T> {
     public bool canCallBehaviour;
-    public bool didRub;
+    public bool didInteract;
     public bool previousRayDidHit;
     public bool currentRayDidHit;
     public bool enteredRange;
@@ -14,36 +14,38 @@ public struct RubbingResult<T> {
     public bool interactedWithNewTarget;
     public bool abandonedPreviousTarget;
     public float travelledDistance;
-    public T currentRubbed;
-    public T previousRubbed;
+    public T currentInteracted;
+    public T previousInteracted;
 
 }
 
-public class RubManager<T> where T : class {
+public class RaycastManager<T> where T : class {
     private Camera _playerCamera;
     private float _range;
+    private bool useRubs;
     private float _distanceEpsilon = 0.01f;
     private float _accumulatedDistance = 0f;
     private float _minTravelledDistance = 0.5f;
     private Vector3 _previousHitPosition = Vector3.zero;
-    private bool _isRubbing = false;
+    private bool _isInteracting = false;
     private bool _previousRayDidHit = false;
-    private bool _canRub = true;
-    T _previousRubbed = null;
+    private bool _canInteract = true;
+    T _previousInteracted = null;
 
-    public RubManager(Camera cam, float r) {
+    public RaycastManager(Camera cam, float r, bool ur) {
         _playerCamera = cam;
         _range = r;
+        useRubs = ur;
     }
 
-    public RubbingResult<T> CheckRubs(KeyCode inputKey, int maxParentDepth = 5) {
-        bool didRub = false;
-        T rubbed= null;
+    public InteractionResult<T> CheckRaycast(KeyCode inputKey, int maxParentDepth = 5) {
+        bool didInteract = false;
+        T currentInteracted= null;
         RaycastHit hit;
-        RubbingResult<T> result = new RubbingResult<T>();
+        InteractionResult<T> result = new InteractionResult<T>();
         result.canCallBehaviour = false;
         result.travelledDistance = 0;
-        result.previousRubbed = _previousRubbed;
+        result.previousInteracted = _previousInteracted;
         result.currentRayDidHit= false;
         result.previousRayDidHit = _previousRayDidHit;
         result.enteredRange = false;
@@ -51,64 +53,47 @@ public class RubManager<T> where T : class {
         result.interactedWithNewTarget = false;
         result.abandonedPreviousTarget = false;
 
-        if (_canRub) {
+        if (_canInteract) {
             if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _range)) {
                 Transform hitTransform = hit.transform;
-                rubbed = hitTransform.GetComponent<T>();
+                currentInteracted = hitTransform.GetComponent<T>();
 
                 //check if intersected object is child of a "T" class
-                if (rubbed == null) {
+                if (currentInteracted == null) {
                     Transform tmpTransform = hitTransform;
                     int curDepth = 0;
-                    while (rubbed == null && tmpTransform.parent != null && curDepth < maxParentDepth) {
+                    while (currentInteracted == null && tmpTransform.parent != null && curDepth < maxParentDepth) {
                         curDepth++;
-                        rubbed = tmpTransform.parent.GetComponent<T>();
+                        currentInteracted = tmpTransform.parent.GetComponent<T>();
                         tmpTransform = tmpTransform.parent;
                     }
                 }
 
-                if (rubbed != null) {
+                if (currentInteracted != null) {
 
                     if (Input.GetKey(inputKey)) {
-                        if (_isRubbing == true && _previousRubbed != null && _previousRubbed == rubbed) {
-                            float petTravelledDistance = GetRubDistance(hit);
-
-                            //if movement is too small it won't be recorded
-                            if (petTravelledDistance >= _distanceEpsilon) {
-
-                                _accumulatedDistance += petTravelledDistance;
-
-                                //accumulated distance should be at least equal to a minimum required distance
-                                if (_accumulatedDistance >= _minTravelledDistance) {
-                                    //"hand" movement recorded
-                                    result.travelledDistance = _accumulatedDistance;
-                                    result.canCallBehaviour = true;
-                                    _accumulatedDistance = 0;
-                                }
-                            }
-
-                            Vector3 direction = hit.point - _previousHitPosition;
-
+                        if (useRubs) {
+                            CheckRubs(ref currentInteracted, hit, ref result);
                         } else {
-                            _accumulatedDistance = 0;
+                            result.canCallBehaviour = true;
                         }
 
-                        didRub = true;
-                        _isRubbing = true;
+                        didInteract = true;
+                        _isInteracting = true;
                         _previousHitPosition = hit.point;
                     }
                 }
 
-                if (!didRub) { 
-                    _isRubbing = false;
+                if (!didInteract) { 
+                    _isInteracting = false;
                     _accumulatedDistance = 0;
                 }
             }
         }
 
-        result.currentRayDidHit = (rubbed != null);
-        result.didRub = didRub;
-        result.currentRubbed = rubbed;
+        result.currentRayDidHit = (currentInteracted != null);
+        result.didInteract = didInteract;
+        result.currentInteracted = currentInteracted;
 
         //check if the user entered or exited the range needed to perform the action
         if (result.currentRayDidHit && !_previousRayDidHit) {
@@ -118,27 +103,28 @@ public class RubManager<T> where T : class {
         }
 
         //check if the user interacted with a new target and/or abandoned a target it was interacting with
-        if (didRub) {
-            if (rubbed != _previousRubbed) {
-                if (rubbed != null) {
+        if (didInteract) {
+            if (currentInteracted != _previousInteracted) {
+                if (currentInteracted != null) {
                     result.interactedWithNewTarget = true;
                 }
 
-                if (_previousRubbed != null) {
+                if (_previousInteracted != null) {
                     //Debug.Log("Abandoned previous target");
                     result.abandonedPreviousTarget = true;
                 }
             }
 
-            _previousRubbed = rubbed;
+            _previousInteracted = currentInteracted;
+
         } else {
-            if (_previousRubbed != null) {
+            if (_previousInteracted != null) {
                 result.abandonedPreviousTarget = true;
             }
 
 
-            //user did not rub anything during this call
-            _previousRubbed = null;
+            //user did not interact with anything during this call
+            _previousInteracted = null;
         }
 
         //keep memory of this execution
@@ -167,7 +153,29 @@ public class RubManager<T> where T : class {
 
     }
 
+    private void CheckRubs(ref T currentInteracted, RaycastHit hit, ref InteractionResult<T> result) {
+        if (_isInteracting == true && _previousInteracted != null && _previousInteracted == currentInteracted) {
+            float petTravelledDistance = GetRubDistance(hit);
+            //if movement is too small it won't be recorded
+            if (petTravelledDistance >= _distanceEpsilon) {
+
+                _accumulatedDistance += petTravelledDistance;
+
+                //accumulated distance should be at least equal to a minimum required distance
+                if (_accumulatedDistance >= _minTravelledDistance) {
+                    //"hand" movement recorded
+                    result.travelledDistance = _accumulatedDistance;
+                    result.canCallBehaviour = true;
+                    _accumulatedDistance = 0;
+                }
+            }
+
+        } else {
+            _accumulatedDistance = 0;
+        }
+    }
+
     public void SetCanRub(bool value) {
-        _canRub = value;
+        _canInteract = value;
     }
 }
