@@ -1,30 +1,45 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public enum SpriteType {
     DOT,
+    INTERACT_DOT,
     HAND,
 }
 [System.Serializable]
 public struct SpriteData {
-    public SpriteData(SpriteType t, float s, Sprite sr, Color c) {
+    /*
+    public SpriteData(SpriteType t, float s, Sprite sr, UnityEngine.Color c) {
         Type = t;
-        DefaultScale = s;
-        Sprite = sr;
-        DefaultColor = c;
-        if (Sprite == null) {
+        defaultScale = s;
+        sprite = sr;
+        defaultColor = c;
+        currentColor = c;
+        if (sprite == null) {
             Debug.LogError("No sprite reference for the following sprite type: " + Type);
         }
-    } 
+    } */
 
     [SerializeField] public SpriteType Type;
-    public float DefaultScale;
-    public Sprite Sprite;
-    public Color DefaultColor;
+    public float defaultScale;
+    public Sprite sprite;
+    public UnityEngine.Color color;
+    //public UnityEngine.Color currentColor;
+    //public UnityEngine.Color defaultColor;
+
+    /*
+    public void SetCurrentColor(UnityEngine.Color color) {
+        currentColor = color;
+    }
+
+    public void ResetColor() {
+        currentColor = defaultColor;
+    }*/
 }
 
 public class SpriteManager : MonoBehaviour {
@@ -56,12 +71,12 @@ public class SpriteManager : MonoBehaviour {
     private void SetCurrentSprite(SpriteType key) {
         if (_spritesDataDict.ContainsKey(key)) {
             _currentSpriteData = _spritesDataDict.GetValueOrDefault(key);
-            _spriteRenderer.sprite = _currentSpriteData.Sprite;
-            _spriteRenderer.color = _currentSpriteData.DefaultColor;
+            _spriteRenderer.sprite = _currentSpriteData.sprite;
+            _spriteRenderer.color = _currentSpriteData.color;
             RectTransform rectTransform = _spriteRenderer.transform.GetComponent<RectTransform>();
 
             if (rectTransform != null) {
-                rectTransform.localScale = new Vector3(_currentSpriteData.DefaultScale, _currentSpriteData.DefaultScale, _currentSpriteData.DefaultScale);
+                rectTransform.localScale = new Vector3(_currentSpriteData.defaultScale, _currentSpriteData.defaultScale, _currentSpriteData.defaultScale);
             } else {
                 Debug.LogWarning(_spriteRenderer.transform.name + " has no RectTransform component to set scale");
             }
@@ -70,17 +85,21 @@ public class SpriteManager : MonoBehaviour {
     }
 
 
-
-    public void SetCurrentSpriteColor(Color color) {
-        _currentSpriteData.DefaultColor = color;
-        _spriteRenderer.color = _currentSpriteData.DefaultColor;
+    /*
+    public void SetCurrentSpriteColor(UnityEngine.Color color) {
+        if (_spritesDataDict.ContainsKey(_currentSpriteData.Type)) {
+            _spritesDataDict.GetValueOrDefault(_currentSpriteData.Type).SetCurrentColor(color);
+        }
+        _currentSpriteData.currentColor = color;
+        _spriteRenderer.color = color;
     }
 
     public void ResetCurrentSpriteColor() {
         if (_spritesDataDict.ContainsKey(_currentSpriteData.Type)) {
-            _currentSpriteData.DefaultColor = _spritesDataDict.GetValueOrDefault(_currentSpriteData.Type).DefaultColor;
-            _spriteRenderer.color = _currentSpriteData.DefaultColor;
+            _spritesDataDict.GetValueOrDefault(_currentSpriteData.Type).ResetColor();
         }
-    }
+        _currentSpriteData.currentColor = _currentSpriteData.defaultColor;
+        _spriteRenderer.color = _currentSpriteData.currentColor;
+    }*/
 
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class AnimalPartRemover : MonoBehaviour
 {
     [SerializeField] protected Camera _playerCamera;
-    protected RemovableType _targetType;
+    [SerializeField] protected RemovableType _targetType;
     [SerializeField] protected float _interactRange = 1.5f;
 
     protected virtual void Start() {

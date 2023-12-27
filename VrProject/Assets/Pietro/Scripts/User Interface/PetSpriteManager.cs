@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PetSpriteManager : SpriteManager {
+    private bool _petting = false;
+    private bool _inRange = false;
      protected override void Start() {
         base.Start();
         Petter.StartedPetting += OnPettingStarted;
@@ -14,22 +16,25 @@ public class PetSpriteManager : SpriteManager {
 
     public void OnPettingStarted(object sender, EventArgs args) {
         UpdateCurrentSprite(SpriteType.HAND);
+        _petting= true;
     }
 
     public void OnPettingStopped(object sender, EventArgs args) {
-        UpdateCurrentSprite(SpriteType.DOT);
+        SpriteType st = _inRange ? SpriteType.INTERACT_DOT : SpriteType.DOT;
+        UpdateCurrentSprite(st);
+        _petting= false;
     }
 
     public void WhenInPetRange(object sender, EventArgs args) {
-        if (_currentSpriteData.Type == SpriteType.DOT) {
-            SetCurrentSpriteColor(Color.green);
+        if (!_petting) {
+            UpdateCurrentSprite(SpriteType.INTERACT_DOT);
         }
+        _inRange= true;
     }
 
     public void WhenOutOfPetRange(object sender, EventArgs args) {
-        if (_currentSpriteData.Type == SpriteType.DOT) {
-            ResetCurrentSpriteColor();
-        }
+            UpdateCurrentSprite(SpriteType.DOT);
+        _inRange= false;
     }
 
 }

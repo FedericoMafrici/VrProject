@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ShearableRemovable : RemovablePart {
+public class ProgressRemovable : RemovablePart {
     [SerializeField] private Bar _progressBar;
     [SerializeField] private ProgressBarManager _barManager;
-    [SerializeField] private float _removalSpeed = 100f;
+    [SerializeField] private float _removalStep = 10;
     private float _removalPercentage = 0f;
 
     protected override void Start() {
@@ -22,7 +22,7 @@ public class ShearableRemovable : RemovablePart {
 
     public override void Remove() {
         if (_removalPercentage < 100f) {
-            _removalPercentage += _removalSpeed * Time.deltaTime;
+            _removalPercentage += _removalStep;
             if (_removalPercentage >= 100f) {
                 _removalPercentage = 100f;
                 base.Remove();
@@ -34,10 +34,12 @@ public class ShearableRemovable : RemovablePart {
 
     public override void RemovalStarted() {
         _progressBar.Show();
+        MakeNPCStopMoving();
     }
 
     public override void RemovalStopped() {
         _progressBar.Hide();
+        MakeNPCStartMoving();
     }
 
 }

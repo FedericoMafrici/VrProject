@@ -14,13 +14,16 @@ public class RigidbodyRemovable : RemovablePart {
         _rigidbody.isKinematic = true;
     }
     public override void Remove() {
+        MakeNPCStopMoving(2.0f);
         base.Remove();
         _rigidbody.isKinematic= false;
+        _rigidbody.AddForce(transform.forward * 1f, ForceMode.Impulse);
+        _rigidbody.AddForce(transform.up * .5f, ForceMode.Impulse);
         StartCoroutine(WaitBeforeDestroying());
     }
 
     private IEnumerator WaitBeforeDestroying() {
-        float toWait = 2.0f;
+        float toWait = 0.0f;
         yield return new WaitForSeconds(toWait);
         yield return FadeOut();
     }
