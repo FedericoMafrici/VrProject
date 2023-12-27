@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class CropBehaviour : MonoBehaviour
 {
+   /*
     public int daysToGrow;
     public int cropToYield;
-    SeedData seedToGrow;
+    // SeedData seedToGrow;
     [Header("stages of Life")]
+    //game objects 
     public GameObject seed;
-    private GameObject seedling;
-    private GameObject harvestable;
-    public  SeedData tmp; // temporary object used for debugging purpose 
+    public GameObject seedling;
+    public GameObject harvestable;
+   // public  Seed tmp; // temporary object used for debugging purpose 
    
      // this field will be asggined with the land where the crop is planted 
-    public Land farmland;
+    
     public CropState cropState;
     // Start is called before the first frame update
     public int growth=0;
     public enum CropState
     {
-        Seed,SeedLing,Harvestable,Harvested
+        Seed,SeedLing,Harvestable
     }
 
     // PLANTING SYSTEM //it should receive the seedData from outside 
@@ -77,5 +79,5 @@ public void switchState(CropState stateToSwitch)
     cropState=stateToSwitch;
 }
 
-
+   */ 
 }

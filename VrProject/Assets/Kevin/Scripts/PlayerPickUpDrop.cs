@@ -12,7 +12,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private LayerMask pickupLayerMask;
     [SerializeField] private TMP_Text clue;
-    [SerializeField] private Hotbar hotbar;
+    [SerializeField] public Hotbar hotbar;
     
     private float pickupDistance = 5f;
     private Item item;

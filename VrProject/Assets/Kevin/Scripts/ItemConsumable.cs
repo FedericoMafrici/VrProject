@@ -6,7 +6,7 @@ public /*abstract*/ class ItemConsumable : Item
 {
     private List<Item> productItems;
     
-    public ItemConsumable(ItemName itemName)
+    public ItemConsumable(ItemName itemName=ItemName.WheatSeed)
     {
         this.itemName = itemName;
         this.itemCategory = ItemCategory.Consumable;

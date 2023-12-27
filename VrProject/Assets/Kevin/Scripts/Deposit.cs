@@ -21,7 +21,8 @@ public class Deposit : MonoBehaviour
             // TODO: if da rimuovere quando gli oggetti saranno pronti
             if (itemName == Item.ItemName.Apple
                 || itemName == Item.ItemName.Bucket
-                || itemName == Item.ItemName.Egg)
+                || itemName == Item.ItemName.Egg
+                || itemName == Item.ItemName.WheatSeed)
             {
                 itemAssets.Add(itemName, (GameObject) Resources.Load("Prefabs/"+itemName, typeof(GameObject)));
                 itemCounters.Add(itemName, (GameObject) Resources.Load("Prefabs/ItemDepositCounter", typeof(GameObject)));
