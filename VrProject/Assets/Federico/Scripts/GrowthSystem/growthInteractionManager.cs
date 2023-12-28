@@ -70,6 +70,7 @@ private void CheckInteraction()
             { 
                    
                     _pointingAtLand.Interact(seed);
+                    _hotbar.Remove(_hotbar.activeItemWrapper);
             }
           
            _pointingAtHarvestable=hit.transform.GetComponent<HarvestableBehaviour>();
