@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6334209942678190298}
   - component: {fileID: 6095908473199676318}
   - component: {fileID: 1315643035560424100}
-  - component: {fileID: 6155784366782356684}
   - component: {fileID: 8849139232511424838}
   m_Layer: 0
   m_Name: Crop
@@ -85,27 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6155784366782356684
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631713865696746564}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8849139232511424838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,9 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba632aebb54445b1b94fcffc4b84de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  daysToGrow: 2
-  cropToYield: 2
-  seed: {fileID: 631713865696746564}
-  tmp: {fileID: 11400000, guid: 14d8fd791518c43fba672dfe178de1a2, type: 2}
+  seedToGrow: {fileID: 11400000, guid: 344ecbcbe7a184fe39fd4cb60efa5260, type: 2}
+  seed: {fileID: 0}
+  tmp: {fileID: 0}
   cropState: 0
   growth: 0

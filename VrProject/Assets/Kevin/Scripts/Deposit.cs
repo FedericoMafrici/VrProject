@@ -22,7 +22,9 @@ public class Deposit : MonoBehaviour
             if (itemName == Item.ItemName.Apple
                 || itemName == Item.ItemName.Bucket
                 || itemName == Item.ItemName.Egg
-                || itemName == Item.ItemName.WheatSeed)
+                || itemName == Item.ItemName.WheatSeed
+                || itemName == Item.ItemName.WateringCan
+                || itemName == Item.ItemName.EarOfWheat)
             {
                 itemAssets.Add(itemName, (GameObject) Resources.Load("Prefabs/"+itemName, typeof(GameObject)));
                 itemCounters.Add(itemName, (GameObject) Resources.Load("Prefabs/ItemDepositCounter", typeof(GameObject)));

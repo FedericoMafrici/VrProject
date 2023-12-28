@@ -2,24 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [CreateAssetMenu(menuName ="Items/Seed")]
-public class SeedData : ItemConsumable 
+public class SeedData : ItemData
 {
+    //Time it takes before the seed matures into a crop
+    public int daysToGrow;
 
-    //GameObject to be shown in the scene
-    public GameObject SeedGameModel;
     //The crop the seed will yield
-    public GameObject cropToYield; 
-    
+    public ItemData cropToYield; 
     public GameObject seedling;
-   
-   
-    public SeedData(ItemName itemName) : base(itemName)
-    {
-        this.itemName=itemName;
-        this.itemCategory=ItemCategory.Consumable;
-        // il resto dei campi viene passato tramite inspector  
-        
-    }
 }

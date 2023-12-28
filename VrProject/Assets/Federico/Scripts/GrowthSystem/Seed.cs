@@ -5,12 +5,9 @@ using UnityEngine;
 public class Seed : ItemConsumable
 {
    //GameObject to be shown in the scene
-    public GameObject SeedGameModel;
     //The crop the seed will yield
-    public GameObject cropToYield; 
-    
-    public GameObject seedling;
-   
+    public GameObject seed;
+    //Debugging purpose
     public int debug=1;
     
 

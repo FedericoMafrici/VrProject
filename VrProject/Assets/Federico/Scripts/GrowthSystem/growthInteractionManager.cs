@@ -15,6 +15,8 @@ public class growthInteractionManager : MonoBehaviour
     private Vector3 _rayOrigin;
     
     public  Seed seed;
+    
+    public Item tool;
     public Item heldItem;
     public Hotbar _hotbar;
     public PlayerPickUpDrop _playerPickUp;
@@ -71,12 +73,28 @@ private void CheckInteraction()
                    
                     _pointingAtLand.Interact(seed);
                     _hotbar.Remove(_hotbar.activeItemWrapper);
+                    _hotbar.Deselect();
+                    Destroy(_hotbar.activeItemObj.gameObject);
             }
-          
+                //  _pointingAtLand.Interact(seed);
+                    tool=(Item) heldItem;
+                    
+
+             if (_pointingAtLand && Input.GetMouseButtonDown(0) && tool!=null) // se l'oggetto interactable è diverso da null  
+            { 
+                   
+               if(tool.itemName==Item.ItemName.WateringCan)
+                    { 
+                     _pointingAtLand.Interact(seed);
+                    }
+                   
+            }
            _pointingAtHarvestable=hit.transform.GetComponent<HarvestableBehaviour>();
             if (_pointingAtHarvestable && Input.GetMouseButtonDown(0)) // se l'oggetto interactable è diverso da null  
             { 
+                   
                     _pointingAtHarvestable.Interact();
+                    
                     //distruggi ora il seme e reinizializza la terra 
                    
             }
@@ -86,7 +104,9 @@ private void CheckInteraction()
         else
         {
             _pointingAtLand= null;
-        
+            seed=null;
+            tool=null;
+
         }
     }
     

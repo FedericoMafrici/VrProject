@@ -126,9 +126,7 @@ MonoBehaviour:
   isFading: 0
   isDeposited: 0
   isCollected: 0
-  SeedGameModel: {fileID: 631713865696746564, guid: e08aa75121b0a4f47b168b684905c609, type: 3}
-  cropToYield: {fileID: 5180247187803690182, guid: d9620e07421744048869ab73de755ef1, type: 3}
-  seedling: {fileID: 9080210687420565306, guid: de908a72b1f584831bd83cd48f7ca5c0, type: 3}
+  seed: {fileID: 631713865696746564, guid: e08aa75121b0a4f47b168b684905c609, type: 3}
   debug: 1
 --- !u!54 &7781287738289277588
 Rigidbody:

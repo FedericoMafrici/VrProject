@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class FarmingLand : MonoBehaviour
 {
-    
+    float yOffset=1.03f;
     
     Seed seedPlanted=null;
+    GameObject tmp;
+    CropBehaviour  crop=null;
    public  void Interact(Seed seed)
     {
         Debug.Log(" finalmente hai puntato alla terra");
         
-        if(this.seedPlanted==null)
+        if(crop==null)
         {
             // istanzio l'oggetto crop che avrà uno script CropbBehaviour e tengo una reference 
             this.seedPlanted=seed;
-            GameObject cropObject=Instantiate(seedPlanted.SeedGameModel,gameObject.transform);
-            cropObject.transform.localPosition=Vector3.zero;
-            
-            //TO DO 
-            // ADD THE GET COMPONENT OF THE OBJ
-            
+            tmp=Instantiate(seed.seed,gameObject.transform);
+            tmp.transform.localPosition=Vector3.zero;
+            crop=tmp.GetComponent<CropBehaviour>();
+            crop.transform.localPosition=Vector3.zero;
+            crop.Plant();
+
+
+
+        }
+        else
+        {
+           crop.Growth();
         }
     }
 }
