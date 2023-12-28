@@ -16,7 +16,7 @@ public abstract class RemovablePart : MonoBehaviour {
     [SerializeField] private RemovableType _type;
     [SerializeField] protected NPCMover _npcMover;
 
-    public event Action PartRemoved;
+    public event EventHandler<PartEventArgs> PartRemoved;
 
     protected virtual void Start() {
         _renderer = GetComponent<Renderer>();
@@ -28,7 +28,7 @@ public abstract class RemovablePart : MonoBehaviour {
     }
     public virtual void Remove() {
         if (PartRemoved != null) {
-            PartRemoved();
+            PartRemoved(this, new PartEventArgs(this));
         }
 
         RemovalStopped();
@@ -84,4 +84,11 @@ public abstract class RemovablePart : MonoBehaviour {
         }
     }
 
+}
+
+public class PartEventArgs : EventArgs {
+    public RemovablePart removed;
+    public PartEventArgs(RemovablePart r) { 
+        removed= r;
+    }
 }

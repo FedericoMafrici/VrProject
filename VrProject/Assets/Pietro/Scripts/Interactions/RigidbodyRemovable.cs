@@ -13,6 +13,7 @@ public class RigidbodyRemovable : RemovablePart {
         }
         _rigidbody.isKinematic = true;
     }
+
     public override void Remove() {
         MakeNPCStopMoving(2.0f);
         base.Remove();
