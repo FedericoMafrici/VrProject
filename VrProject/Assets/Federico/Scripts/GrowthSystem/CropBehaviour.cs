@@ -26,9 +26,11 @@ public class CropBehaviour : MonoBehaviour
     { 
         seedling = Instantiate(seedToGrow.seedling,transform);
         seedling.transform.localPosition=Vector3.zero;
+        seedling.transform.localScale = Vector3.one;  // Add this line
         ItemData cropToYield=seedToGrow.cropToYield;
         harvestable = Instantiate(cropToYield.gameModel,transform);
         harvestable.transform.localPosition=Vector3.zero;
+        harvestable.transform.localScale = Vector3.one;  // Add this lin
         switchState(CropState.Seed);
     }
     //GROWTH SYSTEM
