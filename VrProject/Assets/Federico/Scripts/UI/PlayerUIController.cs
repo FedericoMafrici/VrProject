@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerUIController : MonoBehaviour
 {
-    private bool currState=false;
+    public bool currState=false;
     public GameObject canvasTrigger;
     // Start is called before the first frame update
     public UiGameManager UiManager;
@@ -20,9 +20,17 @@ public class PlayerUIController : MonoBehaviour
     {
         currState=!currState;
         Debug.Log(currState);
-        canvasTrigger.SetActive(currState);
-        if(currState==false)
+        if(currState)
+        {
+            
+            UiManager.StartUI();
+            
+        }
+        else
+        {
+       
         UiManager.CloseUI();
+        }
     }
     }
 }

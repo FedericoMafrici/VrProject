@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 
@@ -26,6 +27,10 @@ public AnimalData mucca;
 // Informazioni per i controllì
 public ControlSettingsData controlSettings;
 
+//CAMERA
+
+public GameObject playerCamera;
+
 
 // Instanzia quelle che sono i vari componenti del canvas che poi cambieranno a seconda dell'interazione dell'utente 
 
@@ -44,13 +49,14 @@ public TMP_Text additionalRules;
  public GameObject AnimalsCanvas;
  public GameObject ControlSettings;
  public GameObject Menu;
-
+ public PlayerUIController player;
 void Start()
     {
       AnimalData[] animals= {leone, mucca };
       LinkedList<AnimalData> al = new LinkedList<AnimalData>(animals);
        animalList=al;
-    
+
+     
 
       currNode = animalList.First;
        // Debuggin Purpose 
@@ -115,14 +121,64 @@ public void DisplayControlSettings()
    AnimalsCanvas.SetActive(false);
    ControlSettings.SetActive(true);
 }
+public void StartUI()
+{
+   gameObject.SetActive(true);
+   playerCamera.SetActive(false);
+   ControlSettings.SetActive(false);
+   AnimalsCanvas.SetActive(true);
+   Menu.SetActive(false);
+   currNode=animalList.First;
+   Cursor.lockState =  CursorLockMode.None;
+}
 public void CloseUI()
 {
+   gameObject.SetActive(false);
+   playerCamera.SetActive(true);
    ControlSettings.SetActive(false);
    AnimalsCanvas.SetActive(false);
    Menu.SetActive(false);
    currNode=animalList.First;
+   Cursor.lockState = CursorLockMode.Locked ;
 }
+public void CloseUIButton()
+{
+   player.currState=false;
+   CloseUI();
+   
+   
+}
+public void StartGame()
+{
+   // TO DO -- BUILD SETTINGS ADD THE SCENE YOU WANT TO LOAD 
+ //  SceneManager.LoadScene("GrowthSystemF");
+}
+public void ExitGame()
+{
+    Application.Quit();
+}
+public void MuteSounds()
+    {
+        // Trova tutti gli AudioListener nella scena
+        AudioListener[] audioListeners = FindObjectsOfType<AudioListener>();
 
+        // Disabilita gli AudioListener
+        foreach (AudioListener listener in audioListeners)
+        {
+            listener.enabled = false;
+        }
+    }
+public void EnableSounds()
+    {
+        // Trova tutti gli AudioListener nella scena
+        AudioListener[] audioListeners = FindObjectsOfType<AudioListener>();
+
+        // Disabilita gli AudioListener
+        foreach (AudioListener listener in audioListeners)
+        {
+            listener.enabled = true;
+        }
+    }
 
 
 
