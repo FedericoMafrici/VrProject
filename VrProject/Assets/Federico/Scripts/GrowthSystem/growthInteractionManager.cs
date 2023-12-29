@@ -60,7 +60,7 @@ private void CheckInteraction()
            // Check if pointing to a land 
             _pointingAtLand = hit.transform.GetComponent<FarmingLand>();
             
-            if(heldItem!=null && heldItem is ItemConsumable )
+            if(heldItem!=null && heldItem is Seed )
             {
                 seed=(Seed) heldItem;
                // Debug.Log(seed.debug);
@@ -77,10 +77,12 @@ private void CheckInteraction()
                     Destroy(_hotbar.activeItemObj.gameObject);
             }
                 //  _pointingAtLand.Interact(seed);
+                if(heldItem!=null && heldItem is ItemTool)
+                {        
                     tool=(Item) heldItem;
-                    
+                }
 
-             if (_pointingAtLand && Input.GetMouseButtonDown(0) && tool!=null) // se l'oggetto interactable è diverso da null  
+             if (_pointingAtLand && Input.GetMouseButtonDown(0) && tool!=null && _pointingAtLand.crop!=null) // se l'oggetto interactable è diverso da null  
             { 
                    
                if(tool.itemName==Item.ItemName.WateringCan)

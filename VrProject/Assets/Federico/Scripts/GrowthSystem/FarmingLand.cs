@@ -6,9 +6,9 @@ public class FarmingLand : MonoBehaviour
 {
     float yOffset=1.03f;
     
-    Seed seedPlanted=null;
+   
     GameObject tmp;
-    CropBehaviour  crop=null;
+    public CropBehaviour  crop=null;
    public  void Interact(Seed seed)
     {
         Debug.Log(" finalmente hai puntato alla terra");
@@ -16,9 +16,11 @@ public class FarmingLand : MonoBehaviour
         if(crop==null)
         {
             // istanzio l'oggetto crop che avrà uno script CropbBehaviour e tengo una reference 
-            this.seedPlanted=seed;
+            
             tmp=Instantiate(seed.seed,gameObject.transform);
             tmp.transform.localPosition=Vector3.zero;
+            tmp.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);  
+
             crop=tmp.GetComponent<CropBehaviour>();
             crop.transform.localPosition=Vector3.zero;
             crop.Plant();
