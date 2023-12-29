@@ -6,17 +6,20 @@ public class FarmingLand : MonoBehaviour
 {
     float yOffset=1.03f;
     
-   
+    public bool tree=false; 
     GameObject tmp;
     public CropBehaviour  crop=null;
    public  void Interact(Seed seed)
     {
         Debug.Log(" finalmente hai puntato alla terra");
         
-        if(crop==null)
+        if(crop==null && !tree)
         {
             // istanzio l'oggetto crop che avrà uno script CropbBehaviour e tengo una reference 
-            
+              if(seed.itemName==Item.ItemName.AppleSeed)
+                   {
+                    this.tree=true;
+                   }
             tmp=Instantiate(seed.seed,gameObject.transform);
             tmp.transform.localPosition=Vector3.zero;
             tmp.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);  
@@ -30,7 +33,9 @@ public class FarmingLand : MonoBehaviour
         }
         else
         {
+           if(crop!=null) {
            crop.Growth();
+           }
         }
     }
 }

@@ -68,9 +68,9 @@ private void CheckInteraction()
             //uso la classe interactable perchè associo a questi oggetti un metodo interact che definisceun comportamento associato all'interazione 
             //interactable è infatti una classe astratta che associa un metodo interact che verrà implementato da tutti gli oggetti che ereditano interactable
             //
-            if (_pointingAtLand && Input.GetMouseButtonDown(0) && seed!=null) // se l'oggetto interactable è diverso da null  
+            if (_pointingAtLand && Input.GetMouseButtonDown(0) && seed!=null && _pointingAtLand.crop==null && _pointingAtLand.tree==false) // se l'oggetto interactable è diverso da null  
             { 
-                   
+                
                     _pointingAtLand.Interact(seed);
                     _hotbar.Remove(_hotbar.activeItemWrapper);
                     _hotbar.Deselect();
@@ -82,14 +82,15 @@ private void CheckInteraction()
                     tool=(Item) heldItem;
                 }
 
-             if (_pointingAtLand && Input.GetMouseButtonDown(0) && tool!=null && _pointingAtLand.crop!=null) // se l'oggetto interactable è diverso da null  
+             if (_pointingAtLand && Input.GetMouseButtonDown(0) ) // se l'oggetto interactable è diverso da null  
             { 
-                   
-               if(tool.itemName==Item.ItemName.WateringCan)
-                    { 
-                     _pointingAtLand.Interact(seed);
-                    }
-                   
+               if(tool!=null && _pointingAtLand.crop!=null)    
+               {
+                if(tool.itemName==Item.ItemName.WateringCan)
+                        { 
+                        _pointingAtLand.Interact(seed);
+                        }
+               }
             }
         }
         //If NOTHING is detected set all to null
