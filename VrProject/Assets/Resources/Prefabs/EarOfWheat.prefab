@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5516150846475197697}
   - component: {fileID: 4330561971371879991}
   - component: {fileID: -5239165851856300160}
+  - component: {fileID: -7788345470737534661}
   m_Layer: 0
   m_Name: EarOfWheat
   m_TagString: Untagged
@@ -161,7 +162,26 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-7788345470737534661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411852179963892880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 663b431eb805b4d7aaaf5a4df0ee68be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: 12
+  itemCategory: 1
+  depositPosition: {x: 0, y: 0, z: 0}
+  icon: {fileID: 21300000, guid: a608be938f12b4ecab6ac8b926da6e31, type: 3}
+  isFading: 0
+  isDeposited: 0
+  isCollected: 0
