@@ -22,17 +22,12 @@ public class TargetMinigame : MonoBehaviour
     [SerializeField] private int numTotalTargets = 10;
     [SerializeField] private int numSpawnedTargets = 0;
     [SerializeField] private Animal animal;
-    private List<Vector3> targetRelativePositions = new List<Vector3>();
+    [SerializeField] private List<GameObject> relativePositions = new List<GameObject>();
     private GameObject localTarget;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < numTotalTargets; i++)
-        {
-            targetRelativePositions.Add(new Vector3(0,0,0));
-        }
-
         switch (animal)
         {
             case Animal.Cow:
@@ -63,9 +58,8 @@ public class TargetMinigame : MonoBehaviour
 
     private void SpawnTarget(Vector3 pos)
     {
-        localTarget = GameObject.Instantiate(targetObj, new Vector3(), new Quaternion(), transform);
+        localTarget = Instantiate(targetObj, new Vector3(), new Quaternion(), transform);
         localTarget.transform.localPosition = pos;
-        //localTarget.transform.localRotation = transform.localRotation;
         numSpawnedTargets++;
     }
 
@@ -73,7 +67,7 @@ public class TargetMinigame : MonoBehaviour
     {
         if (numSpawnedTargets < numTotalTargets)
         {
-            SpawnTarget(targetRelativePositions[numSpawnedTargets]);
+            SpawnTarget(relativePositions[numSpawnedTargets].transform.position);
         }
         else
         {
