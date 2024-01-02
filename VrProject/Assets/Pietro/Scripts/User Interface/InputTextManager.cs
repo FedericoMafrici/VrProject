@@ -27,7 +27,7 @@ public class InputTextManager : MonoBehaviour {
         }
 
         //needed to initialize TextMeshPro and avoid lagging during gameplay
-        AddText("Init", InputTextType.INIT);
+        AddText("Init 123", InputTextType.INIT);
         RemoveText(InputTextType.INIT);
 
         Petter.InPetRange += WhenInPetRange;

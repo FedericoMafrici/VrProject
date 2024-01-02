@@ -11,6 +11,8 @@ public class Pettable : MonoBehaviour {
     [SerializeField] private float _friendshipGrowthRate;
     [SerializeField] private Bar _progressBar;
 
+    public event EventHandler Befriended;
+
     private void Start() {
         if (_progressBar == null)
             Debug.LogError("No progress bar assigned to " + transform.name);
@@ -32,6 +34,9 @@ public class Pettable : MonoBehaviour {
                 
                 if (!_progressBar.IsHidden())
                     _progressBar.Hide();
+                if (Befriended != null) {
+                    Befriended(this, EventArgs.Empty);
+                }
                 
             }
             _progressBar.SetValue(_friendship);
