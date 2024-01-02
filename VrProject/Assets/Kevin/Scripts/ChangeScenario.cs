@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class ChangeScenario : MonoBehaviour
         Savannah
     }
     
-    [SerializeField] private List<AudioClip> soundtracks = new List<AudioClip>();
+    [SerializeField] private List<AudioClip> soundtracks = new List<AudioClip>(); // to be added through unity script in player
 
     private Scenario scenario;
     private Dictionary<Scenario, int> scenarioToSoundtrack = new Dictionary<Scenario, int>();
