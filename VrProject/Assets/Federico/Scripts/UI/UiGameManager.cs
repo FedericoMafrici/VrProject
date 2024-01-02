@@ -50,6 +50,20 @@ public TMP_Text additionalRules;
  public GameObject ControlSettings;
  public GameObject Menu;
  public PlayerUIController player;
+
+ // COMPONENT FOR THE UI MENU 
+
+ public Button soundOn;
+ 
+ public Button soundOf;
+
+ public Sprite soundButtonGreenON;
+
+ public Sprite soundButtonPurpleON;
+
+ public Sprite soundButtonGreenOFF;
+
+ public Sprite soundButtonPurpleOFF;
 void Start()
     {
       AnimalData[] animals= {leone, mucca };
@@ -179,7 +193,18 @@ public void EnableSounds()
             listener.enabled = true;
         }
     }
+public void soundON()
+{
+soundOn.image.sprite= soundButtonGreenON;
+soundOf.image.sprite=soundButtonPurpleOFF;
 
+}
+public void soundOFF()
+{
+soundOn.image.sprite= soundButtonPurpleON;
+soundOf.image.sprite=soundButtonGreenOFF;
+
+}
 
 
 
