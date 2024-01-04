@@ -40,14 +40,8 @@ public class RemovablesCounter : MonoBehaviour {
     }
 
     protected virtual void AllPartsRemoved() {
-        if (_toSpawn != null) {
-            GameObject spawned = Instantiate(_toSpawn, _spawnPoint.position, Quaternion.identity);
-            Rigidbody spawnedRigidbody = spawned.transform.GetComponent<Rigidbody>();
-            if (spawnedRigidbody != null) {
-                Vector3 directionToPlayer = (_player.position - spawned.transform.position).normalized;
-                spawnedRigidbody.AddForce(new Vector3(directionToPlayer.x * 5f, Vector3.up.y * 2f, directionToPlayer.z * 5f), ForceMode.Impulse);
-            }
-        }
+        Vector3 forceDirection = (_player.position - _spawnPoint.position).normalized;
+        ObjectSpawner.Spawn(_toSpawn, _spawnPoint.position, forceDirection);
     }
 
 }
