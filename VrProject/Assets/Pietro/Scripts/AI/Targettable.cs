@@ -7,13 +7,14 @@ public enum TargetType {
     TARGET_1,
     TARGET_2,
     TARGET_3,
-    TARGET_4
+    TARGET_4,
+    APPLE_FOOD
 }
 
 public class Targettable : MonoBehaviour {
     [SerializeField] private TargetType _type;
     [SerializeField] private int _maxFollowers = 3;
-    [SerializeField] private int _currentFollowers;
+    private int _currentFollowers = 0;
     HashSet<NPCMover> _followers = new HashSet<NPCMover>();
 
     private void Start() {

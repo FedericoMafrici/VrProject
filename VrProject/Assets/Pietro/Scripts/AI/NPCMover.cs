@@ -139,6 +139,10 @@ public class NPCMover : MonoBehaviour {
             Debug.LogWarning(transform.name + ": too many RangeVolumes associated, using only first 3 RangeVolumes to define interest radius");
         }
 
+        foreach (RangeVolume rangeVolume in rangeVolumes) {
+            rangeVolume.Init();
+        }
+
         //get RangeVolumes, sort them and use their radius to define interest radius
         float[] radiuses = { rangeVolumes[0].GetRadius(), rangeVolumes[1].GetRadius(), rangeVolumes[2].GetRadius() };
         System.Array.Sort(radiuses);
@@ -146,6 +150,10 @@ public class NPCMover : MonoBehaviour {
         _veryCloseRadius = radiuses[0];
         _closeRadius = radiuses[1];
         _inRangeRadius= radiuses[2];
+
+        Debug.Log("Very Close Radius: " + _veryCloseRadius);
+        Debug.Log("Close Radius: " + _closeRadius);
+        Debug.Log("In Range Radius: " + _inRangeRadius);
 
         /*
         Debug.Log(transform.name + "Very Close Radius: " + _veryCloseRadius);

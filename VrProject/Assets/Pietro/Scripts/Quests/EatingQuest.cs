@@ -27,7 +27,7 @@ public class EatingQuest : Quest {
     }
 
     private void OnFoodEaten(object sender, EatEventArgs args) {
-        if (_hasStarted) {
+        if (_hasStarted && FoodIsOk(args.eaten)) {
             Debug.Log("Animal ate: " + args.eaten.name);
             _nEaten++;
             if (_nEaten >= _nToEat) {
@@ -51,7 +51,11 @@ public class EatingQuest : Quest {
 
     public override string GetQuestDescription() {
         string result = base.GetQuestDescription();
-        result += " " + _nToEat + "/" + _nEaten;
+        result += " " + _nEaten + "/" + _nToEat;
         return result;
+    }
+
+    private bool FoodIsOk(ItemConsumable eaten) {
+        return eaten != null && eaten.itemName == _targetFood;
     }
 }

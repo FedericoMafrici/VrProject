@@ -41,6 +41,8 @@ public abstract class MovementBehaviour {
         MovingState nextState = MovingState.PATROL;
         Targettable target = null;
 
+        //Debug.Log(_npcMover.name + ": position = " + _toMoveTransform.position);
+
         if (TargetInRange(_npcMover.GetVeryCloseRadius(), ref target)) {
             nextState = MovingState.VERY_CLOSE_TO_TARGET;
         } else if (TargetInRange(_npcMover.GetCloseRadius(), ref target)) {
@@ -55,7 +57,7 @@ public abstract class MovementBehaviour {
 
     protected bool TargetInRange(float range, ref Targettable target) {
         bool targetFound = false;
-        Collider[] intersectedTargets = Physics.OverlapSphere(_toMoveTransform.position, range, 1 << 6);
+        Collider[] intersectedTargets = Physics.OverlapSphere(_toMoveTransform.position, range, LayerMask.GetMask("AnimalTargets"));
 
         if (intersectedTargets.Length > 0) {
             int i = 0;
@@ -66,7 +68,7 @@ public abstract class MovementBehaviour {
                 tmpTarget = intersectedTargets[i];
                 Targettable tmpTargettable = tmpTarget.transform.GetComponent<Targettable>();
 
-               
+
                 if (WantsToFollowTarget(tmpTargettable)) { //TODO: visibility check through raycast
                     targetFound = true;
                     target = tmpTargettable;
@@ -76,6 +78,7 @@ public abstract class MovementBehaviour {
                 i++;
             }
         }
+
         return targetFound;
     }
 

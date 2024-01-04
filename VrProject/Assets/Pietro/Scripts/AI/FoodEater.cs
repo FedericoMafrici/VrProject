@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodEater : MonoBehaviour {
-    [SerializeField] private List<Item.ItemName> _targetFoodsList= new List<Item.ItemName>();
+    [SerializeField] private List<Item.ItemName> _targetFoodsList;
     private HashSet<Item.ItemName> _targetFoods = new HashSet<Item.ItemName>();
 
     public event EventHandler<EatEventArgs> EatEvent;
 
     private void Start() {
-        foreach(Item.ItemName name in _targetFoodsList) {
-            _targetFoods.Add(name);
+        if (_targetFoodsList != null) {
+            foreach (Item.ItemName name in _targetFoodsList) {
+                _targetFoods.Add(name);
+            }
         }
     }
 

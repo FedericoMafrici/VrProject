@@ -32,8 +32,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5482730258720931913}
   - {fileID: 4114636582866275089}
+  - {fileID: 5482730258720931913}
   - {fileID: 3029898614263978968}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -118,8 +118,8 @@ Transform:
   m_GameObject: {fileID: 6253250959242510692}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000040300187, y: -0.7072415, z: -0.7069721, w: -0.00004007667}
-  m_LocalPosition: {x: 0.04399991, y: 0.783507, z: 1.13}
-  m_LocalScale: {x: 0.6718466, y: 0.5600849, z: 0.6718466}
+  m_LocalPosition: {x: 0.044000626, y: 0.783507, z: 1.1300001}
+  m_LocalScale: {x: 0.6718467, y: 0.5600849, z: 0.6718467}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5280463151732544732}
@@ -404,6 +404,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxValue: 100
   _barRectTransform: {fileID: 0}
+  _barBackgroundTransform: {fileID: 0}
+  _barManager: {fileID: 0}
   _animationSpeed: 10
   _barCanvasGroup: {fileID: 3227321018892792235}
   _startHidden: 1

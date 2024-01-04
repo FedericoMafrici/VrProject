@@ -126,7 +126,7 @@ public class TargetBehaviour : MovementBehaviour {
     }
 
     private void DeleteTarget() {
-        Debug.Log("Destroying " + _npcMover.name +  " TargetBehaviour");
+        //Debug.Log("Destroying " + _npcMover.name +  " target");
         if (_targettable != null) {
             _targettable.Unsubscribe(_npcMover);
             _targettable = null;

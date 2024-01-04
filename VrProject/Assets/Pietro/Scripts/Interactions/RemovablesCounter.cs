@@ -44,7 +44,7 @@ public class RemovablesCounter : MonoBehaviour {
         forceDirection.x *= 4f;
         forceDirection.y = Vector3.up.y * 2f; 
         forceDirection.z *= 4f;
-        ObjectSpawner.Spawn(_toSpawn, _spawnPoint.position, forceDirection);
+        Spawner.Spawn(_toSpawn, _spawnPoint.position, forceDirection);
     }
 
 }

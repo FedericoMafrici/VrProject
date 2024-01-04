@@ -9,7 +9,7 @@ public class RangeVolume : MonoBehaviour {
     private float _radius;
     private SphereCollider _collider;
     // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         SphereCollider col = GetComponent<SphereCollider>();
         if (col != null) {
