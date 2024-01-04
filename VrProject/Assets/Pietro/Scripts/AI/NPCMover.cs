@@ -27,6 +27,7 @@ public class NPCMover : MonoBehaviour {
     private float _veryCloseRadius = .5f;
     private float _toWaitBeforeMoving = 0.0f;
     private Coroutine _waitingCoroutine = null;
+    private FoodEater _foodEater;
 
     [Header("Patrol Behaviour parameters")]
     [SerializeField] private BoxCollider _patrolArea;
@@ -44,6 +45,8 @@ public class NPCMover : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        _foodEater = GetComponent<FoodEater>();
+
         foreach (TargetType type in _interestsList) {
             InterestsSet.Add(type);
         }
@@ -191,6 +194,10 @@ public class NPCMover : MonoBehaviour {
 
     public Vector2 GetDelayBounds() {
         return new Vector2(_minPatrolDelay, _maxPatrolDelay);
+    }
+
+    public FoodEater GetFoodEaterReference() {
+        return _foodEater;
     }
 
     public void SetBehaviour(MovementBehaviour movementBehaviour) {

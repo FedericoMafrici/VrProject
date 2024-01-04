@@ -8,15 +8,17 @@ using UnityEngine;
 public class TargetBehaviour : MovementBehaviour {
     //TODO: manage destruction of the target
 
+    private FoodEater _foodEater;
     private Transform _target;
     private Targettable _targettable;
     private const float _rotationAngleThreshold = 15f; //if angle between agent forward vector and target direction wrt to agent is lower than this value
                                                       //then the agent stops rotating towards target
                                                       //expressed in degs
 
-    public TargetBehaviour(Transform toMoveTransform, Transform target) : base(toMoveTransform) {
+    public TargetBehaviour(Transform toMoveTransform, Transform target, FoodEater fe) : base(toMoveTransform) {
         _target = target;
         _targettable = target.GetComponent<Targettable>();
+        _foodEater = fe;
         ValidateParameters();
         if(HasValidParameters) {
 
@@ -71,8 +73,16 @@ public class TargetBehaviour : MovementBehaviour {
                     _toMoveTransform.rotation = Quaternion.LookRotation(newDirection);
 
                 } else {
-                    //if agent is looking at target destroy it
-                    _npcMover.DestroyTarget(_target);
+                    //if agent is looking at food then eat it
+                    //_npcMover.DestroyTarget(_target);
+                    if (_foodEater != null) {
+                        if (_targettable != null) {
+                            ItemConsumable consumable = _targettable.GetComponent<ItemConsumable>();
+                            if (consumable != null) {
+                                _foodEater.EatFood(consumable);
+                            }
+                        }
+                    }
                 }
 
             } else {
