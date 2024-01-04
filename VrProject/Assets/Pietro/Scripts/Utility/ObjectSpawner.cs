@@ -26,11 +26,9 @@ public class ObjectSpawner {
         GameObject spawned = null;
         if (toSpawn != null) {
             spawned = Object.Instantiate(toSpawn, position, Quaternion.identity);
-            if (force != Vector3.zero) {
                 Rigidbody spawnedRigidbody = spawned.transform.GetComponent<Rigidbody>();
-                if (spawnedRigidbody != null) {
-                    spawnedRigidbody.AddForce(force, ForceMode.Impulse);
-                }
+            if (spawnedRigidbody != null) {
+                spawnedRigidbody.AddForce(force, ForceMode.Impulse);
             }
         }
 

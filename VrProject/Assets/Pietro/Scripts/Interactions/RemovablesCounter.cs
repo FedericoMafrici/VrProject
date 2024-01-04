@@ -41,6 +41,9 @@ public class RemovablesCounter : MonoBehaviour {
 
     protected virtual void AllPartsRemoved() {
         Vector3 forceDirection = (_player.position - _spawnPoint.position).normalized;
+        forceDirection.x *= 4f;
+        forceDirection.y = Vector3.up.y * 2f; 
+        forceDirection.z *= 4f;
         ObjectSpawner.Spawn(_toSpawn, _spawnPoint.position, forceDirection);
     }
 
