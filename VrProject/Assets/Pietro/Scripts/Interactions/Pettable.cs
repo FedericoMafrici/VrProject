@@ -77,4 +77,8 @@ public class Pettable : MonoBehaviour {
             _npcMover.StartMoving();
         }
     }
+
+    public bool IsAtMaxFriendship() {
+        return _isAtMaxFriendship;
+    }
 }
