@@ -224,19 +224,26 @@ public class NPCMover : MonoBehaviour {
             _movementBehaviour.Start();
     }
 
+    public void StartMovingDelayed(float seconds) {
+
+        //Start moving after given delay
+        if (_toWaitBeforeMoving < seconds) {
+            _toWaitBeforeMoving = seconds;
+        }
+
+        if (_waitingCoroutine == null) {
+            _waitingCoroutine = StartCoroutine(WaitBeforeMoving());
+        }
+
+    }
+
     public void StopMoving(float seconds = 0f) {
         if (_movementBehaviour != null)
             _movementBehaviour.Stop();
 
         if (seconds > 0f) {
             //Only stop for the given amount of time, then start moving again
-            if (_toWaitBeforeMoving < seconds) {
-                _toWaitBeforeMoving = seconds;
-            }
-
-            if (_waitingCoroutine == null) {
-                _waitingCoroutine = StartCoroutine(WaitBeforeMoving());
-            }
+            StartMovingDelayed(seconds);
 
         } else {
             //ensure that the NPC stops indefinetely

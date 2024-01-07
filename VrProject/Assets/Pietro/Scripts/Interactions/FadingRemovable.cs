@@ -57,6 +57,6 @@ public class FadingRemovable : RemovablePart {
     }
 
     public override void RemovalStopped() {
-        MakeNPCStartMoving();
+        MakeNPCStartMoving(true, 2f);
     }
 }

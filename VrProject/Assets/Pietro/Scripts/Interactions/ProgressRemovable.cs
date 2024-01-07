@@ -39,7 +39,7 @@ public class ProgressRemovable : RemovablePart {
 
     public override void RemovalStopped() {
         _progressBar.Hide();
-        MakeNPCStartMoving();
+        MakeNPCStartMoving(true, 2f);
     }
 
 }

@@ -14,7 +14,8 @@ public class RubRemover : AnimalPartRemover {
 
     // Update is called once per frame
     void Update() {
-        InteractionResult<RemovablePart> interactResult = _raycastManager.CheckRaycast(_interactKey);
+        bool inputPressed = Input.GetKey(_interactKey);
+        InteractionResult<RemovablePart> interactResult = _raycastManager.CheckRaycast(_interactKey, inputPressed);
 
         RemovablePart toRemove = interactResult.currentInteracted;
         RemovablePart previousRemovable = interactResult.previousInteracted; 
