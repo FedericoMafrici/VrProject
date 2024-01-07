@@ -38,7 +38,15 @@ public class RaycastManager<T> where T : class {
         useRubs = ur;
     }
 
-    public InteractionResult<T> CheckRaycast(KeyCode inputKey, int maxParentDepth = 5) {
+    public void Reset() {
+        _accumulatedDistance= 0f;
+        _previousHitPosition = Vector3.zero;
+        _isInteracting= false;
+        _previousRayDidHit= false;
+        _previousInteracted= null;
+    }
+
+    public InteractionResult<T> CheckRaycast(KeyCode inputKey, bool inputPressed, int layerMask = ~0, int maxParentDepth = 5) {
         bool didInteract = false;
         T currentInteracted= null;
         RaycastHit hit;
@@ -54,7 +62,7 @@ public class RaycastManager<T> where T : class {
         result.abandonedPreviousTarget = false;
 
         if (_canInteract) {
-            if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _range)) {
+            if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _range, layerMask)) {
                 Transform hitTransform = hit.transform;
                 currentInteracted = hitTransform.GetComponent<T>();
 
@@ -71,7 +79,7 @@ public class RaycastManager<T> where T : class {
 
                 if (currentInteracted != null) {
 
-                    if (Input.GetKey(inputKey)) {
+                    if (inputPressed) {
                         if (useRubs) {
                             CheckRubs(ref currentInteracted, hit, ref result);
                         } else {

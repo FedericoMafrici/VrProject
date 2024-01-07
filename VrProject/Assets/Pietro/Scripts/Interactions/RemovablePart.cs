@@ -68,15 +68,23 @@ public abstract class RemovablePart : MonoBehaviour {
     public virtual void RemovalStarted() {}
     public virtual void RemovalStopped() {}
 
-    protected void MakeNPCStartMoving() {
+    protected virtual void MakeNPCStartMoving(bool delayedStart = false, float delaySeconds = 0f) {
         if (_npcMover != null) {
-            _npcMover.StartMoving();
+            if (!delayedStart) {
+                _npcMover.StartMoving();
+            } else {
+                if (delaySeconds == 0f) {
+                    Debug.LogWarning(transform.name + ": MakeNPCStartMoving() was called with \"delayedStart = true\" but no delay was specified");
+                }
+                _npcMover.StartMovingDelayed(delaySeconds);
+            }
+
         } else {
             Debug.LogWarning(transform.name + " is a removable that has no reference to an NPCMover");
         }
     }
 
-    protected void MakeNPCStopMoving(float seconds = 0f) {
+    protected virtual void MakeNPCStopMoving(float seconds = 0f) {
         if (_npcMover != null) {
             _npcMover.StopMoving(seconds);
         } else {

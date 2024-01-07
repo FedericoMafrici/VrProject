@@ -14,7 +14,8 @@ public class ClickRemover : AnimalPartRemover {
     void Update() {
         //bool didRemove = false;
 
-        InteractionResult<RemovablePart> result = _raycastManager.CheckRaycast(_interactKey);
+        bool inputPressed = Input.GetKey(_interactKey);
+        InteractionResult<RemovablePart> result = _raycastManager.CheckRaycast(_interactKey, inputPressed);
 
         /*
         if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _interactRange)) {
