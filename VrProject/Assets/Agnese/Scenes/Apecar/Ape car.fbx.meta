@@ -3,7 +3,47 @@ guid: 202e56c994630da4481a52f809ce9ea4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_DarkParts
+    second: {fileID: 2100000, guid: 4b3dc780d42471245acc17c8174e4b2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Headlights
+    second: {fileID: 2100000, guid: 7b590211af44f8243984ad6120e94d61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_MainColour
+    second: {fileID: 2100000, guid: 5f44586ea1a113140a6ce3924224f408, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Taillights
+    second: {fileID: 2100000, guid: 7b590211af44f8243984ad6120e94d61, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Tire
+    second: {fileID: 2100000, guid: 3e432a301f05cea4183db7f148dbbe89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Windows
+    second: {fileID: 2100000, guid: 18285853722716a4f9201139be7e16dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_2
+    second: {fileID: 2100000, guid: 18285853722716a4f9201139be7e16dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_2_2
+    second: {fileID: 2100000, guid: 5f44586ea1a113140a6ce3924224f408, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

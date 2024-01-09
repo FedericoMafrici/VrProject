@@ -3,7 +3,22 @@ guid: 5e2ea63c81ed7ef4cb94da64545be76b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Pesu\xF1as"
+    second: {fileID: 2100000, guid: fd671e5a67c22824f9129d4eb3bbdb46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Piel Cerdito
+    second: {fileID: 2100000, guid: fd671e5a67c22824f9129d4eb3bbdb46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rosita Clarito
+    second: {fileID: 2100000, guid: fd671e5a67c22824f9129d4eb3bbdb46, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
