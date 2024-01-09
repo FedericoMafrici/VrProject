@@ -724,6 +724,25 @@ MonoBehaviour:
   hotbar: {fileID: 1137210520}
   deposit: {fileID: 1540641882}
   objectGrabPointTransform: {fileID: 525292098}
+--- !u!114 &597312561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597312553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41684ee9710ab43ee9c80bfa20fea6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCameraTransform: {fileID: 1323609067}
+  pickupLayerMask:
+    serializedVersion: 2
+    m_Bits: 123
+  clue: {fileID: 1566996456}
+  hotbar: {fileID: 1137210520}
+  deposit: {fileID: 1540641882}
 --- !u!1001 &650156102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -806,6 +825,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       insertIndex: -1
       addedObject: {fileID: 597312560}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 597312561}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
 --- !u!1 &955586130
 GameObject:
