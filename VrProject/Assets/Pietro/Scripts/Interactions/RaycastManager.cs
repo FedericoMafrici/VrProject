@@ -20,7 +20,7 @@ public struct InteractionResult<T> {
 }
 
 public class RaycastManager<T> where T : class {
-    private Camera _playerCamera;
+    //private Camera _playerCamera;
     private float _range;
     private bool useRubs;
     private float _distanceEpsilon = 0.01f;
@@ -32,8 +32,8 @@ public class RaycastManager<T> where T : class {
     private bool _canInteract = true;
     T _previousInteracted = null;
 
-    public RaycastManager(Camera cam, float r, bool ur) {
-        _playerCamera = cam;
+    public RaycastManager(float r, bool ur) {
+        //_playerCamera = cam;
         _range = r;
         useRubs = ur;
     }
@@ -46,7 +46,7 @@ public class RaycastManager<T> where T : class {
         _previousInteracted= null;
     }
 
-    public InteractionResult<T> CheckRaycast(KeyCode inputKey, bool inputPressed, int layerMask = ~0, int maxParentDepth = 5) {
+    public InteractionResult<T> CheckRaycast(Camera playerCamera, KeyCode inputKey, bool inputPressed, int layerMask = ~0, int maxParentDepth = 5) {
         bool didInteract = false;
         T currentInteracted= null;
         RaycastHit hit;
@@ -62,7 +62,7 @@ public class RaycastManager<T> where T : class {
         result.abandonedPreviousTarget = false;
 
         if (_canInteract) {
-            if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _range, layerMask)) {
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, _range, layerMask)) {
                 Transform hitTransform = hit.transform;
                 currentInteracted = hitTransform.GetComponent<T>();
 

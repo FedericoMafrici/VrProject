@@ -25,7 +25,10 @@ public class Deposit : MonoBehaviour
                 || itemName == Item.ItemName.WheatSeed
                 || itemName == Item.ItemName.WateringCan
                 || itemName == Item.ItemName.EarOfWheat
-                || itemName == Item.ItemName.AppleSeed)
+                || itemName == Item.ItemName.AppleSeed
+                || itemName == Item.ItemName.Shaver
+                || itemName == Item.ItemName.Sponge
+                || itemName == Item.ItemName.EatableApple)
             {
                 itemAssets.Add(itemName, (GameObject) Resources.Load("Prefabs/"+itemName, typeof(GameObject)));
                 itemCounters.Add(itemName, (GameObject) Resources.Load("Prefabs/ItemDepositCounter", typeof(GameObject)));
@@ -43,6 +46,9 @@ public class Deposit : MonoBehaviour
         itemCounters[Item.ItemName.Apple].GetComponent<ItemDepositCounter>().counter = 1;
         itemCounters[Item.ItemName.Bucket].GetComponent<ItemDepositCounter>().counter = 1;
         itemCounters[Item.ItemName.Egg].GetComponent<ItemDepositCounter>().counter = 1;
+        itemCounters[Item.ItemName.Shaver].GetComponent<ItemDepositCounter>().counter = 1;
+        itemCounters[Item.ItemName.Sponge].GetComponent<ItemDepositCounter>().counter = 1;
+        itemCounters[Item.ItemName.EatableApple].GetComponent<ItemDepositCounter>().counter = 1;
     }
 
 }

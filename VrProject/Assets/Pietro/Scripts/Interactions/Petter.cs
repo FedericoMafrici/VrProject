@@ -24,13 +24,13 @@ public class Petter : MonoBehaviour {
         if (_playerCamera == null)
             Debug.LogError("No camera associated to " + transform.name);
 
-        _raycastManager = new RaycastManager<Pettable>(_playerCamera, _petDistance, true);
+        _raycastManager = new RaycastManager<Pettable>(_petDistance, true);
     }
 
     // Update is called once per frame
     void Update() {
         bool inputPressed = Input.GetKey(_interactKey);
-        InteractionResult<Pettable> interactResult = _raycastManager.CheckRaycast(_interactKey, inputPressed);
+        InteractionResult<Pettable> interactResult = _raycastManager.CheckRaycast(_playerCamera, _interactKey, inputPressed);
 
         bool didPet = interactResult.didInteract;
         Pettable previousPetted = interactResult.previousInteracted;

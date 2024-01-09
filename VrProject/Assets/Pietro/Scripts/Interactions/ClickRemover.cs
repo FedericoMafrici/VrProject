@@ -5,17 +5,18 @@ using UnityEngine;
 public class ClickRemover : AnimalPartRemover {
     private RaycastManager<RemovablePart> _raycastManager;
     private const KeyCode _interactKey = KeyCode.Mouse0;
-    protected override void Start() {
+
+    public ClickRemover(Item.ItemName itemName) : base(itemName) { }
+
+    //protected override
+    public void Start() {
         base.Start();
-        _raycastManager = new RaycastManager<RemovablePart>(_playerCamera, _interactRange, false);
+        _raycastManager = new RaycastManager<RemovablePart>(_interactRange, false);
     }
 
-    // Update is called once per frame
-    void Update() {
-        //bool didRemove = false;
-
+    public override void CheckInteraction(Camera playerCamera) {
         bool inputPressed = Input.GetKey(_interactKey);
-        InteractionResult<RemovablePart> result = _raycastManager.CheckRaycast(_interactKey, inputPressed);
+        InteractionResult<RemovablePart> result = _raycastManager.CheckRaycast(playerCamera, _interactKey, inputPressed);
 
         /*
         if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _interactRange)) {
@@ -33,6 +34,7 @@ public class ClickRemover : AnimalPartRemover {
             }
         }
         */
+
         RemovablePart toRemove = result.currentInteracted;
 
         if (result.canCallBehaviour && toRemove != null && CanBeRemoved(toRemove)) {

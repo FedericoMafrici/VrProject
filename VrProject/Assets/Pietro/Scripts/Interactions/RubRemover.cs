@@ -7,18 +7,30 @@ public class RubRemover : AnimalPartRemover {
 
     private RaycastManager<RemovablePart> _raycastManager;
     private const KeyCode _interactKey = KeyCode.Mouse0;
-    protected override void Start() {
+
+    public RubRemover(Item.ItemName itemName) : base(itemName) { }
+
+    //protected override
+
+    public void Start() {
         base.Start();
-        _raycastManager = new RaycastManager<RemovablePart>(_playerCamera, _interactRange, true);
+        _raycastManager = new RaycastManager<RemovablePart>(_interactRange, true);
     }
 
     // Update is called once per frame
     void Update() {
+        base.Update();
+
+        
+
+    }
+
+    public override void CheckInteraction(Camera playerCamera) {
         bool inputPressed = Input.GetKey(_interactKey);
-        InteractionResult<RemovablePart> interactResult = _raycastManager.CheckRaycast(_interactKey, inputPressed);
+        InteractionResult<RemovablePart> interactResult = _raycastManager.CheckRaycast(playerCamera, _interactKey, inputPressed);
 
         RemovablePart toRemove = interactResult.currentInteracted;
-        RemovablePart previousRemovable = interactResult.previousInteracted; 
+        RemovablePart previousRemovable = interactResult.previousInteracted;
         if (interactResult.canCallBehaviour && toRemove != null && CanBeRemoved(toRemove)) {
             RemovePart(toRemove);
         }
@@ -55,9 +67,7 @@ public class RubRemover : AnimalPartRemover {
         } else if (previousRemovable != null) {
             previousRemovable.RemovalStopped();
         }*/
-
     }
-
     public override string GetActionText() {
         string text = "Premi " + _interactKey.ToString() + " e muovi la visuale per ";
 

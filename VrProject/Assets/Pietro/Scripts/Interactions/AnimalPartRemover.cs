@@ -3,20 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AnimalPartRemover : MonoBehaviour
-{
-    [SerializeField] protected Camera _playerCamera;
+public abstract class AnimalPartRemover : ItemTool {
+    //[SerializeField] protected Camera _playerCamera;
     [SerializeField] protected RemovableType _targetType;
     [SerializeField] protected float _interactRange = 1.5f;
 
     public static event EventHandler InRange;
     public static event EventHandler OutOfRange;
 
-    protected virtual void Start() {
-        if (_playerCamera == null) { 
-            Debug.LogError("no player camera set for " + transform.name);
-        }
-    }
+    public AnimalPartRemover(Item.ItemName itemName) : base(itemName) { }
 
     protected virtual void RemovePart(RemovablePart toRemove) {
        toRemove.Remove();
@@ -35,6 +30,8 @@ public abstract class AnimalPartRemover : MonoBehaviour
             InRange(this, EventArgs.Empty);
         }
     }
+
+    public abstract void CheckInteraction(Camera playerCamera);
 
     protected void ThrowOutOfRangeEvent() {
         if (OutOfRange != null) {

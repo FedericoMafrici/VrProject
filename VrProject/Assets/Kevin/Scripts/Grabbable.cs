@@ -8,6 +8,7 @@ public class Grabbable : MonoBehaviour
     private bool isGrabbedFromGround = true;
     private Rigidbody objectRigidBody;
     private Transform objectGrabPointTransform;
+    [HideInInspector] public bool isInPlayerHand = false;
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class Grabbable : MonoBehaviour
     }
     public void Grab(Transform objectGrabPointTransform, bool isGrabbedFromGround)
     {
+        isInPlayerHand = true;
         objectRigidBody.useGravity = false;
         objectRigidBody.isKinematic = true;
         this.isGrabbedFromGround = isGrabbedFromGround;
@@ -23,6 +25,7 @@ public class Grabbable : MonoBehaviour
 
     public void Drop()
     {
+        isInPlayerHand = false;
         this.objectGrabPointTransform = null;
         objectRigidBody.useGravity = true;
         objectRigidBody.isKinematic = false;

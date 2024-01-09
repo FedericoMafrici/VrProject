@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,15 +18,29 @@ public class FoodEater : MonoBehaviour {
         }
     }
 
-    public void EatFood(ItemConsumable eaten) {
-        if (eaten != null && !eaten.isCollected && !eaten.isDeposited && !eaten.isFading) {
-            if (EatEvent != null) {
-                EatEvent(this, new EatEventArgs(eaten, transform));
-            }
-
-            eaten.Consume();
-            eaten.StartFading();
+    public void AutoEatFood(ItemConsumable eaten) {
+        if (eaten != null && !eaten.isInPlayerHand && !eaten.isCollected && !eaten.isDeposited && !eaten.isFading && FoodInterestsAnimal(eaten)) {
+            EatFood(eaten);
         }
+    }
+
+    public void ForceEatFood(ItemConsumable food) {
+        if (food != null && !food.isFading) {
+            EatFood(food);
+        }
+    }
+
+    private void EatFood(ItemConsumable food) {
+        if (EatEvent != null) {
+            EatEvent(this, new EatEventArgs(food, transform));
+        }
+
+        food.Consume();
+        food.StartFading();
+    }
+
+    public bool FoodInterestsAnimal(ItemConsumable food) {
+        return _targetFoods.Contains(food.itemName);
     }
 }
 

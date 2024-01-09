@@ -26,6 +26,7 @@ public /*abstract*/ class Item : Grabbable
         Wool,
         Sponge,
         Apple,
+        EatableApple,
         Carrot,
         EarOfWheat,
         Bucket,

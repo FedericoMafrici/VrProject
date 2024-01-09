@@ -79,7 +79,7 @@ public class TargetBehaviour : MovementBehaviour {
                         if (_targettable != null) {
                             ItemConsumable consumable = _targettable.GetComponent<ItemConsumable>();
                             if (consumable != null) {
-                                _foodEater.EatFood(consumable);
+                                _foodEater.AutoEatFood(consumable);
                             }
                         }
                     }
