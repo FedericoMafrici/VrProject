@@ -119,6 +119,10 @@ public abstract class Quest : MonoBehaviour {
 
     public QuestState GetState() { return _state; }
 
+    public QuestID GetID() { return _id; }
+
+    public bool IsStep() { return _isStep; }
+
     public virtual BoxCollider GetQuestArea() {
         return GetComponent<BoxCollider>();
     }
