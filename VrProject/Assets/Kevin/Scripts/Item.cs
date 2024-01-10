@@ -54,12 +54,6 @@ public /*abstract*/ class Item : Grabbable
     public bool isCollected = false;
     
     public Item() {}
-    
-    /*public Item(ItemName itemName, ItemCategory itemCategory)
-    {
-        this.itemName = itemName;
-        this.itemCategory = itemCategory;
-    }*/
 
     public void Start()
     {
@@ -89,5 +83,15 @@ public /*abstract*/ class Item : Grabbable
         Destroy(gameObject);
     }
     
-    // public abstract void Use();
+    public virtual UseResult Use(PlayerItemManager itemManager) {
+        UseResult result = new UseResult();
+        result.itemUsed = false;
+        result.itemConsumed = false;
+        return result;
+    }
+}
+
+public struct UseResult {
+    public bool itemUsed;
+    public bool itemConsumed;
 }

@@ -31,7 +31,7 @@ public abstract class AnimalPartRemover : ItemTool {
         }
     }
 
-    public abstract void CheckInteraction(Camera playerCamera);
+    //public abstract void CheckInteraction(Camera playerCamera);
 
     protected void ThrowOutOfRangeEvent() {
         if (OutOfRange != null) {

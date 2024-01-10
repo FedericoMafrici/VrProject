@@ -49,8 +49,8 @@ public class Deposit : MonoBehaviour
         itemCounters[Item.ItemName.Egg].GetComponent<ItemDepositCounter>().counter = 1;
         itemCounters[Item.ItemName.Shaver].GetComponent<ItemDepositCounter>().counter = 1;
         itemCounters[Item.ItemName.Sponge].GetComponent<ItemDepositCounter>().counter = 1;
-        itemCounters[Item.ItemName.EatableApple].GetComponent<ItemDepositCounter>().counter = 1;
-        itemCounters[Item.ItemName.ChickenFood].GetComponent<ItemDepositCounter>().counter = 1;
+        itemCounters[Item.ItemName.EatableApple].GetComponent<ItemDepositCounter>().counter = 0;
+        itemCounters[Item.ItemName.ChickenFood].GetComponent<ItemDepositCounter>().counter = 0;
     }
 
 }

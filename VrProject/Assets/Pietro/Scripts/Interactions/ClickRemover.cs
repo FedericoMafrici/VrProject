@@ -14,35 +14,29 @@ public class ClickRemover : AnimalPartRemover {
         _raycastManager = new RaycastManager<RemovablePart>(_interactRange, false);
     }
 
-    public override void CheckInteraction(Camera playerCamera) {
+    public override UseResult Use(PlayerItemManager itemManager) {
+        // get reference to camera in order to determine raycast origin
+        Camera playerCamera = itemManager.GetCamera();
+
+        // generate default return value
+        UseResult useResult = new UseResult();
+        useResult.itemUsed = false;
+        useResult.itemConsumed = false;
+
+        //do raycast through RaycastManager
         bool inputPressed = Input.GetKey(_interactKey);
         InteractionResult<RemovablePart> result = _raycastManager.CheckRaycast(playerCamera, _interactKey, inputPressed);
 
-        /*
-        if (Physics.Raycast(_playerCamera.transform.position, _playerCamera.transform.forward, out hit, _interactRange)) {
-            Transform hitTransform = hit.transform;
-            if (hitTransform != null) {
-                toRemove = hitTransform.GetComponent<RemovablePart>();
-                if (toRemove != null && CanBeRemoved(toRemove)) {
-                    if (Input.GetMouseButton(0)) {
-                        //didRemove= true;
-                        RemovePart(toRemove);
-                    } else {
-                        toRemove = null;
-                    }
-                }
-            }
-        }
-        */
-
         RemovablePart toRemove = result.currentInteracted;
 
+        //check result of raycast and determine if some removable that can be removed was found
+        //update return value accordingly
         if (result.canCallBehaviour && toRemove != null && CanBeRemoved(toRemove)) {
             RemovePart(result.currentInteracted);
-        }
-
-        if (result.interactedWithNewTarget) {
-            toRemove.RemovalStarted();
+            if (result.interactedWithNewTarget) {
+                toRemove.RemovalStarted();
+            }
+            useResult.itemUsed = true;
         }
 
         if (result.abandonedPreviousTarget) {
@@ -55,18 +49,7 @@ public class ClickRemover : AnimalPartRemover {
             ThrowOutOfRangeEvent();
         }
 
-        /*
-        if (toRemove != _previousRemoved) {
-            if (_previousRemoved != null) {
-                _previousRemoved.RemovalStopped();
-            }
-
-            if (toRemove != null) {
-                toRemove.RemovalStarted();
-            }
-
-        }
-        */
+        return useResult;
     }
 
     public override string GetActionText() {

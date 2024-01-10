@@ -12,26 +12,37 @@ public class AnimalFood : ItemConsumable {
         _raycastManager = new RaycastManager<FoodEater>(_interactRange, false);
     }
 
-    public bool CheckInteraction(Camera playerCamera) {
-        bool foodConsumed = false;
-        bool inputPressed = Input.GetKey(_interactKey);
-        InteractionResult<FoodEater> result = _raycastManager.CheckRaycast(playerCamera, _interactKey, inputPressed);
+    public override UseResult Use(PlayerItemManager itemManager) { 
+        // get reference to camera in order to determine raycast origin
+        Camera playerCamera = itemManager.GetCamera();
 
-        FoodEater eater = result.currentInteracted;
+        // generate default return value
+        UseResult useResult = new UseResult();
+        useResult.itemUsed = false;
+        useResult.itemConsumed = false;
 
-        if (result.canCallBehaviour && eater.FoodInterestsAnimal(this)) {
+        //do raycast through RaycastManager
+        bool inputPressed = Input.GetKeyDown(_interactKey);
+        InteractionResult<FoodEater> interactionResult = _raycastManager.CheckRaycast(playerCamera, _interactKey, inputPressed);
+
+        FoodEater eater = interactionResult.currentInteracted;
+
+        //check result of raycast and determine if food can be given to animal
+        //update return value accordingly
+        if (interactionResult.canCallBehaviour && eater.FoodInterestsAnimal(this)) {
             eater.ForceEatFood(this);
-            foodConsumed = true;
+            useResult.itemUsed = true;
+            useResult.itemConsumed = true;
             //RemovePart(result.currentInteracted);
         }
 
-        if (result.enteredRange && eater.FoodInterestsAnimal(this)) {
+        if (interactionResult.enteredRange && eater.FoodInterestsAnimal(this)) {
             //ThrowInRangeEvent();
-        } else if (result.exitedRange /*&& result.previousInteracted!= null && CanBeRemoved(result.previousInteracted)*/) {
+        } else if (interactionResult.exitedRange /*&& result.previousInteracted!= null && CanBeRemoved(result.previousInteracted)*/) {
             //ThrowOutOfRangeEvent();
         }
 
-        return foodConsumed;
+        return useResult;
     }
 
 

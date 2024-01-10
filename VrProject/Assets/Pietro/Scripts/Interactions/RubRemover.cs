@@ -17,37 +17,39 @@ public class RubRemover : AnimalPartRemover {
         _raycastManager = new RaycastManager<RemovablePart>(_interactRange, true);
     }
 
-    // Update is called once per frame
-    void Update() {
-        base.Update();
+    public override UseResult Use(PlayerItemManager itemManager) {
+        // get reference to camera in order to determine raycast origin
+        Camera playerCamera = itemManager.GetCamera();
 
-        
+        // generate default return value
+        UseResult useResult = new UseResult();
+        useResult.itemUsed = false;
+        useResult.itemConsumed = false;
 
-    }
-
-    public override void CheckInteraction(Camera playerCamera) {
+        //do raycast through RaycastManager
         bool inputPressed = Input.GetKey(_interactKey);
         InteractionResult<RemovablePart> interactResult = _raycastManager.CheckRaycast(playerCamera, _interactKey, inputPressed);
 
+        //check result of raycast and determine if some removable that can be removed was found
+        //update return value accordingly
         RemovablePart toRemove = interactResult.currentInteracted;
         RemovablePart previousRemovable = interactResult.previousInteracted;
         if (interactResult.canCallBehaviour && toRemove != null && CanBeRemoved(toRemove)) {
             RemovePart(toRemove);
+            if (interactResult.interactedWithNewTarget) {
+                toRemove.RemovalStarted();
+            }
         }
 
+
+        if (interactResult.abandonedPreviousTarget) {
+            previousRemovable.RemovalStopped();
+        }
 
         if (interactResult.enteredRange) {
             //went in range
         } else if (interactResult.exitedRange) {
             //went out of range
-        }
-
-        if (interactResult.interactedWithNewTarget) {
-            toRemove.RemovalStarted();
-        }
-
-        if (interactResult.abandonedPreviousTarget) {
-            previousRemovable.RemovalStopped();
         }
 
         if (interactResult.enteredRange && toRemove != null && CanBeRemoved(toRemove)) {
@@ -56,17 +58,7 @@ public class RubRemover : AnimalPartRemover {
             ThrowOutOfRangeEvent();
         }
 
-
-        /*if (rubResult.didRub) {
-            if (previousRemovable != toRemove) {
-                if (previousRemovable != null) {
-                    previousRemovable.RemovalStopped();
-                }
-                toRemove.RemovalStarted();
-            }
-        } else if (previousRemovable != null) {
-            previousRemovable.RemovalStopped();
-        }*/
+        return useResult;
     }
     public override string GetActionText() {
         string text = "Premi " + _interactKey.ToString() + " e muovi la visuale per ";

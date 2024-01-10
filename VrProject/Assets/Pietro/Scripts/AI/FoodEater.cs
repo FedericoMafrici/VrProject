@@ -36,7 +36,7 @@ public class FoodEater : MonoBehaviour {
         }
 
         food.Consume();
-        food.StartFading();
+        //food.StartFading();
     }
 
     public bool FoodInterestsAnimal(ItemConsumable food) {
