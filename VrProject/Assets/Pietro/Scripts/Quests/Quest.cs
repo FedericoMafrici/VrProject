@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public enum QuestID {
-    TEST_QUEST
+    TEST_QUEST,
+    TUTORIAL
 }
 
 public enum QuestState {
