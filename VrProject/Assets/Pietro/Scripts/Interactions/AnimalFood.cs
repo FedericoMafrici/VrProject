@@ -23,26 +23,30 @@ public class AnimalFood : ItemConsumable {
 
         //do raycast through RaycastManager
         bool inputPressed = Input.GetKeyDown(_interactKey);
-        InteractionResult<FoodEater> interactionResult = _raycastManager.CheckRaycast(playerCamera, _interactKey, inputPressed);
+        InteractionResult<FoodEater> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, FoodInterestsEater);
 
         FoodEater eater = interactionResult.currentInteracted;
 
         //check result of raycast and determine if food can be given to animal
         //update return value accordingly
-        if (interactionResult.canCallBehaviour && eater.FoodInterestsAnimal(this)) {
+        if (interactionResult.canCallBehaviour) {
             eater.ForceEatFood(this);
             useResult.itemUsed = true;
             useResult.itemConsumed = true;
             //RemovePart(result.currentInteracted);
         }
 
-        if (interactionResult.enteredRange && eater.FoodInterestsAnimal(this)) {
+        if (interactionResult.enteredRange) {
             //ThrowInRangeEvent();
-        } else if (interactionResult.exitedRange /*&& result.previousInteracted!= null && CanBeRemoved(result.previousInteracted)*/) {
+        } else if (interactionResult.exitedRange) {
             //ThrowOutOfRangeEvent();
         }
 
         return useResult;
+    }
+
+    private bool FoodInterestsEater(FoodEater eater) {
+        return eater.FoodInterestsAnimal(this);
     }
 
 

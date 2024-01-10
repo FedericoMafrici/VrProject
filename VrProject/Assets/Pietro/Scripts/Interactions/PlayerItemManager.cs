@@ -46,11 +46,13 @@ public class PlayerItemManager : MonoBehaviour {
                 _hotbar.activeItemWrapper.amount--;
                 if (_hotbar.activeItemWrapper.amount == 0) {
                     _hotbar.Remove(_hotbar.activeItemWrapper);
-                    _hotbar.activeItemObj.StartFading();
+                    _hotbar.Deselect();
+                    Destroy(heldItem.gameObject);
+
                     if (_hotbar.activeItemObj)
                         _hotbar.activeItemObj = null;
 
-                    _hotbar.Deselect();
+                    
                 }
             }
         }

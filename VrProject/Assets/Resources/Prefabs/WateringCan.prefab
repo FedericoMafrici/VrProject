@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2614050527643220108}
   - component: {fileID: 4147136443391478387}
   - component: {fileID: 9002872321547742055}
-  - component: {fileID: 1556701350976176061}
+  - component: {fileID: 1096925987729193424}
   - component: {fileID: 6936097432734475394}
   m_Layer: 0
   m_Name: WateringCan
@@ -109,7 +109,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &1556701350976176061
+--- !u!114 &1096925987729193424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,9 +118,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4728735587711449796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754fc17baa1d64df1af38b3b3de0810c, type: 3}
+  m_Script: {fileID: 11500000, guid: 199cee6a93acd984ab2450762831e201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInPlayerHand: 0
   itemName: 0
   itemCategory: 0
   depositPosition: {x: 0, y: 0, z: 0}
@@ -128,6 +129,7 @@ MonoBehaviour:
   isFading: 0
   isDeposited: 0
   isCollected: 0
+  _interactDistance: 2
 --- !u!54 &6936097432734475394
 Rigidbody:
   m_ObjectHideFlags: 0

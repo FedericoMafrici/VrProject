@@ -146,12 +146,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a03ec70153cc4fa995ef3c21c9e762e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInPlayerHand: 0
   itemName: 4
   itemCategory: 2
   depositPosition: {x: 0, y: 0, z: 0}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: cf36dfe8f1a0e82469863e44b6425d50, type: 3}
   isFading: 0
   isDeposited: 0
   isCollected: 0
+  _interactDistance: 2
   seed: {fileID: 8204481556939299655, guid: d1e8dbf054d564140a2fb4f398dbf383, type: 3}
   debug: 1

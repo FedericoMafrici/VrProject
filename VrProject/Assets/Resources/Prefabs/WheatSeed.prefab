@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a03ec70153cc4fa995ef3c21c9e762e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInPlayerHand: 0
   itemName: 5
   itemCategory: 2
   depositPosition: {x: -3.51, y: 0.87, z: -11.11}
@@ -126,6 +127,7 @@ MonoBehaviour:
   isFading: 0
   isDeposited: 0
   isCollected: 0
+  _interactDistance: 2
   seed: {fileID: 631713865696746564, guid: e08aa75121b0a4f47b168b684905c609, type: 3}
   debug: 1
 --- !u!54 &7781287738289277588

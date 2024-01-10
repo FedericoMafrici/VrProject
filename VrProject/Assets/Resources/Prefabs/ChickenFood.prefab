@@ -123,7 +123,7 @@ MonoBehaviour:
   isInPlayerHand: 0
   itemName: 12
   itemCategory: 2
-  depositPosition: {x: 0, y: 0, z: 0}
+  depositPosition: {x: -2.83, y: -1.21, z: -10}
   icon: {fileID: 21300000, guid: 2873afd8412734500a4afdee29aa9ac3, type: 3}
   isFading: 0
   isDeposited: 0

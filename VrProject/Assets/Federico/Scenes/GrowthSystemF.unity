@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -743,6 +743,19 @@ MonoBehaviour:
   heldItem: {fileID: 0}
   _hotbar: {fileID: 0}
   _playerPickUp: {fileID: 0}
+--- !u!114 &597312572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597312553}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d22f72dc37048294f92c16f34c18abe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCamera: {fileID: 1323609066}
 --- !u!1001 &650156102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -828,6 +841,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       insertIndex: -1
       addedObject: {fileID: 597312566}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 597312572}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
 --- !u!1 &955586130
 GameObject:
@@ -1454,6 +1470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fd8acc4235a442badea161665969bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tree: 0
   crop: {fileID: 0}
 --- !u!1001 &1497109861
 PrefabInstance:
@@ -2078,6 +2095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fd8acc4235a442badea161665969bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tree: 0
   crop: {fileID: 0}
 --- !u!65 &2017580952
 BoxCollider:
@@ -2254,18 +2272,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8121531363772648089, guid: 1ddad934efe3e42d6bd33de75b60007b, type: 3}
-      propertyPath: icon
-      value: 
-      objectReference: {fileID: 21300000, guid: cf36dfe8f1a0e82469863e44b6425d50, type: 3}
-    - target: {fileID: 8121531363772648089, guid: 1ddad934efe3e42d6bd33de75b60007b, type: 3}
-      propertyPath: seed
-      value: 
-      objectReference: {fileID: 8204481556939299655, guid: d1e8dbf054d564140a2fb4f398dbf383, type: 3}
-    - target: {fileID: 8121531363772648089, guid: 1ddad934efe3e42d6bd33de75b60007b, type: 3}
-      propertyPath: isDeposited
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2324,17 +2330,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7564783154356092486, guid: aab9e0e355432475598b3ed83143439d, type: 3}
-      propertyPath: itemName
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7564783154356092486, guid: aab9e0e355432475598b3ed83143439d, type: 3}
       propertyPath: seedToPlant
       value: 
       objectReference: {fileID: 11400000, guid: 344ecbcbe7a184fe39fd4cb60efa5260, type: 2}
-    - target: {fileID: 7564783154356092486, guid: aab9e0e355432475598b3ed83143439d, type: 3}
-      propertyPath: itemCategory
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2400,7 +2398,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4728735587711449796, guid: fcabd09a11f8c40c38b7e4055a885ddf, type: 3}
-      insertIndex: -1
+      insertIndex: 4
       addedObject: {fileID: 1795961292}
   m_SourcePrefab: {fileID: 100100000, guid: fcabd09a11f8c40c38b7e4055a885ddf, type: 3}
 --- !u!1001 &4846545578219971823

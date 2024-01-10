@@ -2,26 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seed : ItemConsumable
-{
-    [SerializeField] private float _interactDistance; //aggiunto da Pietro
-    private RaycastManager<FarmingLand> _raycastManager; //aggiunto da Pietro
-    private KeyCode _interactKey = KeyCode.Mouse0; //aggiunto da Pietro
-   //GameObject to be shown in the scene
-    //The crop the seed will yield
-    public GameObject seed;
-    //Debugging purpose
-    public int debug=1;
+public class WateringCan : ItemTool {
+    private RaycastManager<FarmingLand> _raycastManager;
+    [SerializeField] private float _interactDistance;
+    private KeyCode _interactKey = KeyCode.Mouse0;
 
-    void Start() {
-        //corpo del metodo aggiunto da Pietro
-
-        base.Start();
+    WateringCan() : base(ItemName.WateringCan) {
         _raycastManager = new RaycastManager<FarmingLand>(_interactDistance, false);
-
     }
 
-    //aggiunto da Pietro:
+    // Start is called before the first frame update
+    void Start() {
+        if (itemName != ItemName.WateringCan) {
+            Debug.LogWarning(transform.name + ": itemName should be " + ItemName.WateringCan + " but is not");
+        }
+        _raycastManager = new RaycastManager<FarmingLand>(_interactDistance, false);
+    }
+
     public override UseResult Use(PlayerItemManager itemManager) {
         // get reference to camera in order to determine raycast origin
         Camera playerCamera = itemManager.GetCamera();
@@ -33,14 +30,13 @@ public class Seed : ItemConsumable
 
         //do raycast through RaycastManager
         bool inputPressed = Input.GetKeyDown(_interactKey);
-        InteractionResult<FarmingLand> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBePlanted);
+        InteractionResult<FarmingLand> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, LandCanBeWatered);
 
         FarmingLand farmingLand = interactionResult.currentInteracted;
 
         if (interactionResult.canCallBehaviour) {
-            farmingLand.Interact(this);
+            farmingLand.Interact(null);
             useResult.itemUsed = true;
-            useResult.itemConsumed= true;
         }
 
         if (interactionResult.enteredRange) {
@@ -49,13 +45,10 @@ public class Seed : ItemConsumable
             //ThrowOutOfRangeEvent();
         }
 
-
         return useResult;
     }
 
-    private bool CanBePlanted(FarmingLand land) {
-        return (land.crop == null && land.tree == false);
+    private bool LandCanBeWatered(FarmingLand land) {
+        return (land.crop != null);
     }
-
-   
 }

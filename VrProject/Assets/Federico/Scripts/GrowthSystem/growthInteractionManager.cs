@@ -88,7 +88,7 @@ private void CheckInteraction()
                {
                 if(tool.itemName==Item.ItemName.WateringCan)
                         { 
-                        _pointingAtLand.Interact(seed);
+                        _pointingAtLand.Interact(null);
                         }
                }
             }

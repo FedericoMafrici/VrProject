@@ -30,7 +30,7 @@ public class Petter : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         bool inputPressed = Input.GetKey(_interactKey);
-        InteractionResult<Pettable> interactResult = _raycastManager.CheckRaycast(_playerCamera, _interactKey, inputPressed);
+        InteractionResult<Pettable> interactResult = _raycastManager.CheckRaycast(_playerCamera, inputPressed);
 
         bool didPet = interactResult.didInteract;
         Pettable previousPetted = interactResult.previousInteracted;

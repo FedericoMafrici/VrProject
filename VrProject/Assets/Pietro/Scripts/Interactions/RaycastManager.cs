@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -46,7 +47,11 @@ public class RaycastManager<T> where T : class {
         _previousInteracted= null;
     }
 
-    public InteractionResult<T> CheckRaycast(Camera playerCamera, KeyCode inputKey, bool inputPressed, int layerMask = ~0, int maxParentDepth = 5) {
+    public InteractionResult<T> CheckRaycast(Camera playerCamera, bool inputPressed, int layerMask = ~0, int maxParentDepth = 5) {
+        return CheckRaycast(playerCamera, inputPressed, DefaultCanInteract, layerMask, maxParentDepth);
+    }
+
+    public InteractionResult<T> CheckRaycast(Camera playerCamera, bool inputPressed, Func<T, bool> CanInteract, int layerMask = ~0, int maxParentDepth = 5) {
         bool didInteract = false;
         T currentInteracted= null;
         RaycastHit hit;
@@ -65,6 +70,7 @@ public class RaycastManager<T> where T : class {
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, _range, layerMask)) {
                 Transform hitTransform = hit.transform;
                 currentInteracted = hitTransform.GetComponent<T>();
+                ValidateInteractability(ref currentInteracted, CanInteract);
 
                 //check if intersected object is child of a "T" class
                 if (currentInteracted == null) {
@@ -73,12 +79,17 @@ public class RaycastManager<T> where T : class {
                     while (currentInteracted == null && tmpTransform.parent != null && curDepth < maxParentDepth) {
                         curDepth++;
                         currentInteracted = tmpTransform.parent.GetComponent<T>();
+                        ValidateInteractability(ref currentInteracted, CanInteract);
                         tmpTransform = tmpTransform.parent;
                     }
                 }
 
+
                 if (currentInteracted != null) {
 
+                    //check if the input was pressed and if interaction can be performed
+                    //inputPressed is a bool set by the caller
+                    //CanInteract is a function that return wether interaction can be performed or not
                     if (inputPressed) {
                         if (useRubs) {
                             CheckRubs(ref currentInteracted, hit, ref result);
@@ -90,7 +101,7 @@ public class RaycastManager<T> where T : class {
                         _isInteracting = true;
                         _previousHitPosition = hit.point;
                     }
-                }
+                } else 
 
                 if (!didInteract) { 
                     _isInteracting = false;
@@ -185,5 +196,18 @@ public class RaycastManager<T> where T : class {
 
     public void SetCanRub(bool value) {
         _canInteract = value;
+    }
+
+    private bool DefaultCanInteract(T t) {
+        return true;
+    }
+
+    private void ValidateInteractability(ref T currentInteracted, Func<T, bool> CanInteract) {
+        if (currentInteracted != null) {
+            bool canInteract = CanInteract(currentInteracted);
+            if (!canInteract) {
+                currentInteracted = null;
+            }
+        }
     }
 }

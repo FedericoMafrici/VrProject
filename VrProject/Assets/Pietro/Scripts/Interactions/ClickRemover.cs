@@ -25,13 +25,13 @@ public class ClickRemover : AnimalPartRemover {
 
         //do raycast through RaycastManager
         bool inputPressed = Input.GetKey(_interactKey);
-        InteractionResult<RemovablePart> result = _raycastManager.CheckRaycast(playerCamera, _interactKey, inputPressed);
+        InteractionResult<RemovablePart> result = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBeRemoved);
 
         RemovablePart toRemove = result.currentInteracted;
 
         //check result of raycast and determine if some removable that can be removed was found
         //update return value accordingly
-        if (result.canCallBehaviour && toRemove != null && CanBeRemoved(toRemove)) {
+        if (result.canCallBehaviour) {
             RemovePart(result.currentInteracted);
             if (result.interactedWithNewTarget) {
                 toRemove.RemovalStarted();
@@ -43,7 +43,7 @@ public class ClickRemover : AnimalPartRemover {
             result.previousInteracted.RemovalStopped();
         }
 
-        if (result.enteredRange && toRemove != null && CanBeRemoved(toRemove)) {
+        if (result.enteredRange) {
             ThrowInRangeEvent();
         } else if (result.exitedRange /*&& result.previousInteracted!= null && CanBeRemoved(result.previousInteracted)*/) {
             ThrowOutOfRangeEvent();
