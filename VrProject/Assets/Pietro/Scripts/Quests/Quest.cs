@@ -84,7 +84,7 @@ public abstract class Quest : MonoBehaviour {
     }
 
     public virtual void Complete() {
-        if (!_isStep) {
+        if (!_isStep && _alert != null) {
             _alert.GetComponent<Alert>().Show();
         }
         _state = QuestState.COMPLETED;
