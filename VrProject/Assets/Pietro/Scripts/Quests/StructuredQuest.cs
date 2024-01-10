@@ -10,6 +10,8 @@ public class StructuredQuest : AreaQuest {
     private int _curStepIdx = 0;
     private Quest _currentStep = null;
 
+    public event EventHandler<StepEventArgs> StepCompleted;
+
     protected override void Start() {
         base.Start();
 
@@ -80,6 +82,10 @@ public class StructuredQuest : AreaQuest {
     }
 
     private void OnStepCompleted(object sender, EventArgs args) {
+        if (StepCompleted != null) {
+            StepCompleted(this, new StepEventArgs(_currentStep, _curStepIdx));
+        }
+
         if (CurrentStepIsFinal()) {
             Complete();
         } else {
@@ -125,4 +131,17 @@ public class StructuredQuest : AreaQuest {
         _currentStep.ExitedArea += OnPlayerExitedArea;
     }
 
+    public int GetNSteps() {
+        return _steps.Count;
+    }
+
+}
+
+public class StepEventArgs : EventArgs {
+    public int stepIdx;
+    public Quest step;
+    public StepEventArgs(Quest s, int sIdx) {
+        step = s;
+        stepIdx = sIdx;
+    }
 }

@@ -8,7 +8,8 @@ public enum TargetType {
     TARGET_2,
     TARGET_3,
     TARGET_4,
-    APPLE_FOOD
+    APPLE_FOOD,
+    CHICKEN_FOOD
 }
 
 public class Targettable : MonoBehaviour {
