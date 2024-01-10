@@ -18,7 +18,8 @@ public enum QuestState {
 public abstract class Quest : MonoBehaviour {
     [SerializeField] private QuestID _id;
     [SerializeField] protected bool _isStep; //should be false if the true is a step in a StructuredQuest, false otherwise
-
+    [SerializeField] private GameObject _alert;
+    
     protected  QuestState _state = QuestState.NOT_STARTED;
 
     public event EventHandler EnteredArea;
@@ -82,6 +83,9 @@ public abstract class Quest : MonoBehaviour {
     }
 
     public virtual void Complete() {
+        if (!_isStep) {
+            _alert.GetComponent<Alert>().Show();
+        }
         _state = QuestState.COMPLETED;
         if (QuestCompleted != null) {
             QuestCompleted(this, EventArgs.Empty);
