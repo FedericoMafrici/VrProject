@@ -28,7 +28,8 @@ public class Deposit : MonoBehaviour
                 || itemName == Item.ItemName.AppleSeed
                 || itemName == Item.ItemName.Shaver
                 || itemName == Item.ItemName.Sponge
-                || itemName == Item.ItemName.EatableApple)
+                || itemName == Item.ItemName.EatableApple
+                || itemName == Item.ItemName.ChickenFood)
             {
                 itemAssets.Add(itemName, (GameObject) Resources.Load("Prefabs/"+itemName, typeof(GameObject)));
                 itemCounters.Add(itemName, (GameObject) Resources.Load("Prefabs/ItemDepositCounter", typeof(GameObject)));
@@ -49,6 +50,7 @@ public class Deposit : MonoBehaviour
         itemCounters[Item.ItemName.Shaver].GetComponent<ItemDepositCounter>().counter = 1;
         itemCounters[Item.ItemName.Sponge].GetComponent<ItemDepositCounter>().counter = 1;
         itemCounters[Item.ItemName.EatableApple].GetComponent<ItemDepositCounter>().counter = 1;
+        itemCounters[Item.ItemName.ChickenFood].GetComponent<ItemDepositCounter>().counter = 1;
     }
 
 }

@@ -27,6 +27,7 @@ public /*abstract*/ class Item : Grabbable
         Sponge,
         Apple,
         EatableApple,
+        ChickenFood,
         Carrot,
         EarOfWheat,
         Bucket,
