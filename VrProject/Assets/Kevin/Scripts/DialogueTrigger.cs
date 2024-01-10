@@ -17,4 +17,8 @@ public class DialogueTrigger : MonoBehaviour
             dialogueManager.DisplayNextSentence();
         }
     }
+
+    public void ForceEndCurrentDialogue() {
+        dialogueManager.EndDialogue();
+    }
 }
