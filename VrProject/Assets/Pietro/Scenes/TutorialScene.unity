@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 0
-  _isStep: 0
+  _isStep: 1
   _alert: {fileID: 0}
   _foodEaters:
   - {fileID: 882770830}
