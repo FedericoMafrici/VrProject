@@ -97,6 +97,7 @@ public abstract class Quest : MonoBehaviour {
             _alert.GetComponent<Alert>().Show();
         }
         _state = QuestState.COMPLETED;
+        HideIndicators();
         if (QuestCompleted != null) {
             QuestCompleted(this, EventArgs.Empty);
         }
@@ -139,6 +140,14 @@ public abstract class Quest : MonoBehaviour {
 
     public virtual BoxCollider GetQuestArea() {
         return GetComponent<BoxCollider>();
+    }
+
+    public virtual void ShowIndicators() {
+
+    }
+
+    public virtual void HideIndicators() {
+
     }
 
     public void EnableCollider() {

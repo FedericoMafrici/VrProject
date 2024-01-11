@@ -105,7 +105,7 @@ public abstract class AbstractStructuredQuest : Quest {
         StartCurrStep();
     }
 
-    private void StartCurrStep() {
+    protected virtual void StartCurrStep() {
         _currentStep.StartQuest();
     }
 

@@ -79,12 +79,18 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
 
     protected override void OnQuestStart() {
         base.OnQuestStart();
+       
 
         //when the tutorial starts trigger the tutorial's starting dialogue
         _checkDialogueBox = true;
         UpdateActiveDialogue(_startingDialogue);
-        
-        
+    }
+
+    protected override void StartCurrStep() {
+        base.StartCurrStep();
+        if (_currentStep.GetID() == QuestID.TUTORIAL_PICK_UP_STEP) {
+            _currentStep.ShowIndicators();
+        }
     }
 
     protected override void OnStepCompleted(object sender, EventArgs args) {
