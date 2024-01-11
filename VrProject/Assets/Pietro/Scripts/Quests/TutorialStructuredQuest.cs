@@ -17,7 +17,6 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
     [SerializeField] private List<TutorialStep> _tutorialSteps;
     [SerializeField] private DialogueTrigger _dialogueTrigger;
     private Dialogue _currentDialogue = null;
-    private bool _checkDialogueBox = false;
 
     protected override void Start() {
 
@@ -50,22 +49,18 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
     }
 
     void Update() {
-        //if (_checkDialogueBox) {
             if (_currentDialogue != null) {
                 //check if current dialogue is still active
                 if (_dialogueTrigger.dialogueManager.animator.GetBool("IsOpen") == false) {
 
                     //if current dialogue is not active anymore set its reference to null
-                    //_currentDialogue = null;
-                    if (_state == QuestState.COMPLETED) {
-                        _checkDialogueBox = false;
-                    }
+                    _currentDialogue = null;
+
                 } else if (Input.GetKeyDown(KeyCode.P)) {
                     //if current dialogue is still active and player presses input then advance the dialogue 
                     _dialogueTrigger.TriggerDialogueManager(_currentDialogue);
                 }
             }
-        //}
     }
 
     private void UpdateActiveDialogue(Dialogue newDialogue) {
@@ -83,7 +78,6 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
        
 
         //when the tutorial starts trigger the tutorial's starting dialogue
-        _checkDialogueBox = true;
         UpdateActiveDialogue(_startingDialogue);
     }
 

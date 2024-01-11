@@ -87,27 +87,23 @@ public class EatingQuest : Quest {
 
     public override void ShowMarkers() {
 
-        if (!_markersActive) {
-            foreach (FoodEater fe in _foodEaters) {
-                QuestMarkerManager indicator = fe.GetComponent<QuestMarkerManager>();
-                if (indicator != null) {
-                    indicator.AddShowRequest();
-                }
+        foreach (FoodEater fe in _foodEaters) {
+            QuestMarkerManager indicator = fe.GetComponent<QuestMarkerManager>();
+            if (indicator != null) {
+                indicator.AddShowRequest(GetID());
             }
-            _markersActive = true;
         }
+
     }
 
     public override void HideMarkers() {
-        if (_markersActive) {
-            foreach (FoodEater fe in _foodEaters) {
-                QuestMarkerManager indicator = fe.GetComponent<QuestMarkerManager>();
-                if (indicator != null) {
-                    indicator.RemoveShowRequest();
-                }
+        foreach (FoodEater fe in _foodEaters) {
+            QuestMarkerManager indicator = fe.GetComponent<QuestMarkerManager>();
+            if (indicator != null) {
+                indicator.RemoveShowRequest(GetID());
             }
-            _markersActive = false;
         }
+
     }
 
     private bool FoodIsOk(ItemConsumable eaten) {

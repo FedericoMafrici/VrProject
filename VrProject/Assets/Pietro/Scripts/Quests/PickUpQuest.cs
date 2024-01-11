@@ -54,17 +54,11 @@ public class PickUpQuest : Quest
     }
 
     public override void ShowMarkers() {
-        if (!_markersActive) {
-            QuestMarkerDatabase.RequestShowIndicators(GetID());
-            _markersActive = true;
-        }
+        QuestMarkerDatabase.RequestShowIndicators(GetID());
     }
 
     public override void HideMarkers() {
-        if (_markersActive) {
-            QuestMarkerDatabase.RequestHideIndicators(GetID());
-            _markersActive = false;
-        }
+        QuestMarkerDatabase.RequestHideIndicators(GetID());
     }
 
     public override string GetQuestDescription() {

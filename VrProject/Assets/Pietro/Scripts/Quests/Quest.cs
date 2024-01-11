@@ -22,7 +22,6 @@ public abstract class Quest : MonoBehaviour {
     [SerializeField] private QuestID _id;
     [SerializeField] protected bool _isStep; //should be false if the true is a step in a StructuredQuest, false otherwise
     [SerializeField] private GameObject _alert;
-    protected bool _markersActive = false;
     protected  QuestState _state = QuestState.NOT_STARTED;
 
     public event EventHandler EnteredArea;

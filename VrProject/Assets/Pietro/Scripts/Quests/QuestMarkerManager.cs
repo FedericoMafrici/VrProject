@@ -7,10 +7,11 @@ public class QuestMarkerManager : MonoBehaviour
     [SerializeField] private Transform _markerPositionTransform; //transform that will be set as parent of the SpriteRenderer instance
     [SerializeField] private Canvas _spriteCanvasPrefab;
     [SerializeField] private List<QuestID> _associatedQuests;
+    private HashSet<QuestID> _requestsIDs = new HashSet<QuestID>(); //Set of QuestsIDs of quests that have requested to show the marker
     private Vector3 _markerRelativePosition; //position of indicator relative to this GameObject
     private bool _canBeShown = true;
     private Item _itemComponentReference; //needed in order to make indicators disappear when an item is held
-    private int _nShowRequests = 0;
+    //private int _nShowRequests = 0;
     private Canvas _spriteCanvasInstance; 
 
     // Start is called before the first frame update
@@ -32,9 +33,9 @@ public class QuestMarkerManager : MonoBehaviour
         QuestMarkerDatabase.MarkerHideEvent += OnDatabaseHideRequest;
 
         foreach (QuestID questId in _associatedQuests) {
-            //first check if the QuestID is in the indicator database
+            //check if the QuestID is in the marker database
             if(QuestMarkerDatabase.markerDatabase.Contains(questId)) {
-                _nShowRequests++;
+                _requestsIDs.Add(questId);
             }
         }
 
@@ -48,36 +49,36 @@ public class QuestMarkerManager : MonoBehaviour
         }
         
 
-        _spriteCanvasInstance.gameObject.SetActive(_nShowRequests > 0 && _canBeShown); //enable component if there's at least one show request
+        _spriteCanvasInstance.gameObject.SetActive(_requestsIDs.Count > 0 && _canBeShown); //enable component if there's at least one show request
     }
 
-    public void AddShowRequest() {
-        _nShowRequests++;
+    public void AddShowRequest(QuestID questId) {
+        _requestsIDs.Add(questId);
 
-        if (_nShowRequests == 1 && _canBeShown) {
+        if (_requestsIDs.Count == 1 && _canBeShown) {
             _spriteCanvasInstance.gameObject.SetActive(true);
         }
     }
 
-    public void RemoveShowRequest() {
-        _nShowRequests--;
+    public void RemoveShowRequest(QuestID questId) {
+        _requestsIDs.Remove(questId);
 
-        if (_nShowRequests <= 0) {
-            _nShowRequests = 0;
+        if (_requestsIDs.Count == 0) {
+            //no request to show marker, hide marker
             _spriteCanvasInstance.gameObject.SetActive(false);
         }
     }
 
     public void OnDatabaseShowRequest(QuestID questId) {
         if (_associatedQuests.Contains(questId)) {
-            AddShowRequest();
+            AddShowRequest(questId);
         }
 
     }
 
     public void OnDatabaseHideRequest(QuestID questId) {
         if (_associatedQuests.Contains(questId)) {
-            RemoveShowRequest();
+            RemoveShowRequest(questId);
         }
     }
 
@@ -88,7 +89,7 @@ public class QuestMarkerManager : MonoBehaviour
 
     public void OnItemReleased() {
         _canBeShown = true;
-        if (_nShowRequests > 0) {
+        if (_requestsIDs.Count > 0) {
             _spriteCanvasInstance.gameObject.SetActive(true);
         }
     }
