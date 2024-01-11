@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -19,6 +20,9 @@ public class PlayerPickUpDrop : MonoBehaviour
     public Deposit deposit;
     
     public Transform objectGrabPointTransform;
+
+    public event EventHandler<ItemEventArgs> PickUpEvent;
+    public event EventHandler<ItemEventArgs> DropEvent;
 
     // Update is called once per frame
     void Update()
@@ -48,6 +52,8 @@ public class PlayerPickUpDrop : MonoBehaviour
                             }
                         }
                     }
+
+                    ThrowPickUpEvent(item);
                 } else if (hotbar.activeItemObj.itemCategory != Item.ItemCategory.Tool) {
                     Drop();
                 }
@@ -64,6 +70,7 @@ public class PlayerPickUpDrop : MonoBehaviour
 
                     hotbar.Add(item, false);
                     Debug.Log(item + " added to the hotbar");
+                    ThrowPickUpEvent(item);
 
                     if (item.isDeposited) {
                         item.isDeposited = false;
@@ -116,6 +123,7 @@ public class PlayerPickUpDrop : MonoBehaviour
             hotbar.activeItemObj = null;
 
         hotbar.Deselect();
+        ThrowDropEvent(item);
     }
 
     public GameObject SpawnItem(Item.ItemName itemName)
@@ -140,5 +148,21 @@ public class PlayerPickUpDrop : MonoBehaviour
         spawnedItem.GetComponent<Item>().isDeposited = true;
     }
     
+    void ThrowPickUpEvent(Item item) {
+        if (PickUpEvent != null)
+            PickUpEvent(this, new ItemEventArgs(item));
+    }
 
+    void ThrowDropEvent(Item item) {
+        if (DropEvent != null)
+            DropEvent(this, new ItemEventArgs(item));
+    }
+
+}
+
+public class ItemEventArgs : EventArgs {
+    public Item item;
+    public ItemEventArgs(Item i) {
+        item = i;
+    }
 }
