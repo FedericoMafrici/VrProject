@@ -52,26 +52,22 @@ public class FriendshipQuest : Quest {
         }
     }
 
-    public override bool StartQuest() {
-        bool didStart = base.StartQuest();
+    protected override void OnQuestStart() {
 
-        if (didStart) {
-            foreach (Pettable pettable in _pettables) {
-                if (_state != QuestState.COMPLETED) { //quest might complete while iterating, check that this is not the case before executing code
-                    if (pettable != null) {
+        //subscribe to pettables
+        foreach (Pettable pettable in _pettables) {
+            if (_state != QuestState.COMPLETED) { //quest might complete while iterating, check that this is not the case before executing code
+                if (pettable != null) {
 
-                        pettable.Befriended += OnAnimalBefriended;
+                    pettable.Befriended += OnAnimalBefriended;
 
-                        if (pettable.IsAtMaxFriendship()) {
-                            OnAnimalBefriended(pettable, EventArgs.Empty);
-                        }
+                    //check if pettable was already befriended
+                    if (pettable.IsAtMaxFriendship()) {
+                        OnAnimalBefriended(pettable, EventArgs.Empty);
                     }
                 }
             }
         }
-
-        return didStart;
-
     }
 
     protected override void PlayerEnteredQuestArea() {

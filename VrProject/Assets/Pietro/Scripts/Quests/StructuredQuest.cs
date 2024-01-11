@@ -67,14 +67,8 @@ public class StructuredQuest : Quest {
         Debug.Log("Structured quest completed");
     }
 
-    public override bool StartQuest() {
-        bool didStart = base.StartQuest();
-
-        if (didStart) {
+    protected override void OnQuestStart() {
             _currentStep.StartQuest();
-        }
-
-        return didStart;
     }
 
     public override void Deactivate() {

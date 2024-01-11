@@ -54,17 +54,15 @@ public class EatingQuest : Quest {
         }
     }
 
-    public override bool StartQuest() {
-        bool didStart = base.StartQuest();
-        if (didStart) {
-            foreach (FoodEater fe in _foodEaters) {
-                if (fe != null) {
-                    fe.EatEvent += OnFoodEaten;
-                }
+    protected override void OnQuestStart() {
+
+        foreach (FoodEater fe in _foodEaters) {
+            if (fe != null) {
+                fe.EatEvent += OnFoodEaten;
             }
         }
 
-        return didStart;
+
     }
 
     public override void Complete() {

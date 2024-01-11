@@ -521,7 +521,7 @@ MonoBehaviour:
   _alert: {fileID: 0}
   _foodEaters:
   - {fileID: 1022033171}
-  _targetFood: 10
+  _targetFood: 11
   _nToEat: 3
   _description: Dai da mangiare ad animali
 --- !u!114 &575859966

@@ -111,10 +111,15 @@ public abstract class Quest : MonoBehaviour {
             if (QuestStarted != null) {
                 QuestStarted(this, EventArgs.Empty);
             }
-            didStart= true;
+            didStart = true;
+            OnQuestStart();
         }
 
         return didStart;
+    }
+
+    protected virtual void OnQuestStart() {
+       
     }
 
     public virtual void Deactivate() {
