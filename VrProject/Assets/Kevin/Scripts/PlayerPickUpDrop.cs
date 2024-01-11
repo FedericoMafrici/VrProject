@@ -21,8 +21,8 @@ public class PlayerPickUpDrop : MonoBehaviour
     
     public Transform objectGrabPointTransform;
 
-    public event EventHandler<ItemEventArgs> PickUpEvent;
-    public event EventHandler<ItemEventArgs> DropEvent;
+    public event Action<Item.ItemName> PickUpEvent;
+    public event Action<Item.ItemName> DropEvent;
 
     // Update is called once per frame
     void Update()
@@ -56,6 +56,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                     ThrowPickUpEvent(item);
                 } else if (hotbar.activeItemObj.itemCategory != Item.ItemCategory.Tool) {
                     Drop();
+                    item = null;
                 }
             }
 
@@ -112,6 +113,7 @@ public class PlayerPickUpDrop : MonoBehaviour
             Debug.Log(item+" dropped");
         }
 
+        ThrowDropEvent(hotbar.activeItemObj);
         hotbar.activeItemWrapper.amount--;
         if (hotbar.activeItemWrapper.amount == 0)
         {
@@ -123,7 +125,7 @@ public class PlayerPickUpDrop : MonoBehaviour
             hotbar.activeItemObj = null;
 
         hotbar.Deselect();
-        ThrowDropEvent(item);
+        
     }
 
     public GameObject SpawnItem(Item.ItemName itemName)
@@ -150,12 +152,12 @@ public class PlayerPickUpDrop : MonoBehaviour
     
     void ThrowPickUpEvent(Item item) {
         if (item != null && PickUpEvent != null)
-            PickUpEvent(this, new ItemEventArgs(item));
+            PickUpEvent(item.itemName);
     }
 
     void ThrowDropEvent(Item item) {
         if (item != null && DropEvent != null)
-            DropEvent(this, new ItemEventArgs(item));
+            DropEvent(item.itemName);
     }
 
 }
