@@ -149,12 +149,12 @@ public class PlayerPickUpDrop : MonoBehaviour
     }
     
     void ThrowPickUpEvent(Item item) {
-        if (PickUpEvent != null)
+        if (item != null && PickUpEvent != null)
             PickUpEvent(this, new ItemEventArgs(item));
     }
 
     void ThrowDropEvent(Item item) {
-        if (DropEvent != null)
+        if (item != null && DropEvent != null)
             DropEvent(this, new ItemEventArgs(item));
     }
 
