@@ -36,6 +36,7 @@ public class DialogueManager : MonoBehaviour
     
     public void StartDialogue(Dialogue dialogue)
     {
+        InputManager.DisableInputs();
         knob.SetActive(false);
         hotbar.SetActive(false);
         animator.SetBool("IsOpen", true);
@@ -76,6 +77,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        InputManager.EnableInputs();
         animator.SetBool("IsOpen", false);
         knob.SetActive(true);
         hotbar.SetActive(true);

@@ -13,6 +13,7 @@ public class ZioTobia : MonoBehaviour
         
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.P)
             && Vector3.Distance(player.transform.position, gameObject.transform.position) < 5)
         {
