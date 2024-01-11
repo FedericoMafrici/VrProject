@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1701144563845493644}
   m_Layer: 0
-  m_Name: IndicatorPosition
+  m_Name: MarkerPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,10 +41,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4021223379424542226}
   - component: {fileID: 8598247259633594335}
+  - component: {fileID: 1949680573505829351}
   - component: {fileID: 319450117397605441}
   - component: {fileID: 2102855332731785957}
   - component: {fileID: 5967220643088351091}
-  - component: {fileID: 7061938905640416864}
   - component: {fileID: 5499947214203132684}
   - component: {fileID: 6703041896697332451}
   m_Layer: 6
@@ -78,6 +78,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7936896838730559425}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1949680573505829351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7936896838730559425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5895899c0c058419b698e1c6c92ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _markerPositionTransform: {fileID: 1701144563845493644}
+  _spriteCanvasPrefab: {fileID: 7554326089233334486, guid: 4deb470da103f614ca3f501c4edcde6f, type: 3}
+  _associatedQuests: 02000000
 --- !u!23 &319450117397605441
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -162,21 +177,6 @@ MonoBehaviour:
   isDeposited: 0
   isCollected: 0
   _interactRange: 2
---- !u!114 &7061938905640416864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7936896838730559425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d870b03396fb8440a86b64d4ddfb9be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _indicatorParentTransform: {fileID: 1701144563845493644}
-  _spriteCanvasPrefab: {fileID: 7554326089233334486, guid: 4deb470da103f614ca3f501c4edcde6f, type: 3}
-  _associatedQuests: 02000000
 --- !u!114 &5499947214203132684
 MonoBehaviour:
   m_ObjectHideFlags: 0

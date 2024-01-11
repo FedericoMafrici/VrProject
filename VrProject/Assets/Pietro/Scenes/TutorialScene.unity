@@ -1350,6 +1350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleChicken (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1406729527545396546, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+      propertyPath: _patrolArea
+      value: 
+      objectReference: {fileID: 245098874}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.73
@@ -1519,6 +1523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleChicken (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1406729527545396546, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+      propertyPath: _patrolArea
+      value: 
+      objectReference: {fileID: 245098874}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.3

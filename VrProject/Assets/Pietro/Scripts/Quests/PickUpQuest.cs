@@ -32,7 +32,6 @@ public class PickUpQuest : Quest
     private void OnPickUp(Item.ItemName itemName) {
         if (_state == QuestState.ACTIVE) {
             if (itemName == _targetItemName) {
-                Debug.LogWarning("quest item collected");
                 _nPickedUp++;
                 Progress();
                 if (_nPickedUp >= _nToPickUp) {
@@ -46,12 +45,25 @@ public class PickUpQuest : Quest
     private void OnDrop(Item.ItemName itemName) {
         if (_state == QuestState.ACTIVE) {
             if (itemName == _targetItemName) {
-                Debug.LogWarning("quest item lost");
                 if (_nPickedUp > 0) {
                     _nPickedUp--;
                     Progress();
                 }
             }
+        }
+    }
+
+    public override void ShowMarkers() {
+        if (!_markersActive) {
+            QuestMarkerDatabase.RequestShowIndicators(GetID());
+            _markersActive = true;
+        }
+    }
+
+    public override void HideMarkers() {
+        if (_markersActive) {
+            QuestMarkerDatabase.RequestHideIndicators(GetID());
+            _markersActive = false;
         }
     }
 

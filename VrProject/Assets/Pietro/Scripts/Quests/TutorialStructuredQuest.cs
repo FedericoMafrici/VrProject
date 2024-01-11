@@ -90,7 +90,7 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
     protected override void StartCurrStep() {
         base.StartCurrStep();
         if (_tutorialSteps[_curStepIdx].ShowIndicatorsOnStart) {
-            _currentStep.ShowIndicators();
+            _currentStep.ShowMarkers();
         }
     }
 
