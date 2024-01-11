@@ -22,6 +22,7 @@ public class FoodEater : MonoBehaviour {
         if (eaten != null && !eaten.isInPlayerHand && !eaten.isCollected && !eaten.isDeposited && !eaten.isFading && FoodInterestsAnimal(eaten)) {
             Debug.Log("eating food");
             EatFood(eaten);
+            eaten.Consume();
             Destroy(eaten.gameObject);
         }
     }
