@@ -36,6 +36,8 @@ public class FriendshipQuest : Quest {
         if (_state == QuestState.ACTIVE) {
             Debug.Log("Animal befriended: " + (sender as Pettable).transform.name);
             _nBefriended++;
+            Progress();
+
             if (_nBefriended >= _nToBefriend) {
 
                 // complete quest

@@ -38,6 +38,8 @@ public class EatingQuest : Quest {
         if (_state == QuestState.ACTIVE && FoodIsOk(args.eaten)) {
             Debug.Log("Animal ate: " + args.eaten.name);
             _nEaten++;
+            Progress();
+
             if (_nEaten >= _nToEat) {
 
                 // complete quest

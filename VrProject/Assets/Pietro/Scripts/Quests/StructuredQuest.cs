@@ -5,8 +5,9 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
 
-public class StructuredQuest : AreaQuest {
+public class StructuredQuest : Quest {
     [SerializeField] private List<Quest> _steps;
+    [SerializeField] private string _questCompletedDescription;
     private int _curStepIdx = 0;
     private Quest _currentStep = null;
 
@@ -81,6 +82,10 @@ public class StructuredQuest : AreaQuest {
         _currentStep.Deactivate();
     }
 
+    private void OnStepProgressed(object sender, EventArgs args) {
+        Progress();
+    }
+
     private void OnStepCompleted(object sender, EventArgs args) {
         if (StepCompleted != null) {
             StepCompleted(this, new StepEventArgs(_currentStep, _curStepIdx));
@@ -89,7 +94,7 @@ public class StructuredQuest : AreaQuest {
         if (CurrentStepIsFinal()) {
             Complete();
         } else {
-            ProgressStep();
+            AdvanceStep();
         }
     }
 
@@ -97,7 +102,7 @@ public class StructuredQuest : AreaQuest {
         return (_curStepIdx+1) == _steps.Count;
     }
 
-    private void ProgressStep() {
+    private void AdvanceStep() {
         UnsubscribeFromCurrStep();
         _curStepIdx++;
         _currentStep = _steps[_curStepIdx];
@@ -110,7 +115,10 @@ public class StructuredQuest : AreaQuest {
     }
 
     public override string GetQuestDescription() {
-        return _currentStep.GetQuestDescription();
+        //if quest is not completed return intermediate step description
+        //otherwise return the given quest completed description
+        string result = (_state != QuestState.COMPLETED) ? _currentStep.GetQuestDescription() : _questCompletedDescription;
+        return result;
     }
 
     public override BoxCollider GetQuestArea() {
@@ -118,6 +126,7 @@ public class StructuredQuest : AreaQuest {
     }
 
     private void UnsubscribeFromCurrStep() {
+        _currentStep.QuestProgressed -= OnStepProgressed;
         _currentStep.QuestCompleted -= OnStepCompleted;
         _currentStep.EnteredArea -= OnPlayerEnteredArea;
         _currentStep.ExitedArea -= OnPlayerExitedArea;
@@ -126,6 +135,7 @@ public class StructuredQuest : AreaQuest {
 
     private void SubscribeToCurrStep() {
         _currentStep.EnableCollider();
+        _currentStep.QuestProgressed += OnStepProgressed;
         _currentStep.QuestCompleted += OnStepCompleted;
         _currentStep.EnteredArea += OnPlayerEnteredArea;
         _currentStep.ExitedArea += OnPlayerExitedArea;
@@ -133,6 +143,10 @@ public class StructuredQuest : AreaQuest {
 
     public int GetNSteps() {
         return _steps.Count;
+    }
+
+    public Quest GetCurrentStep() {
+        return _currentStep;
     }
 
 }

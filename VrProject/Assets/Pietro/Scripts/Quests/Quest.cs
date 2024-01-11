@@ -26,6 +26,7 @@ public abstract class Quest : MonoBehaviour {
     public event EventHandler EnteredArea;
     public event EventHandler ExitedArea;
     public event EventHandler QuestStarted;
+    public event EventHandler QuestProgressed;
     public event EventHandler QuestCompleted;
 
     protected virtual void Start() {
@@ -62,6 +63,12 @@ public abstract class Quest : MonoBehaviour {
     protected virtual void PlayerExitedQuestArea() {
         if (ExitedArea != null) {
             ExitedArea(this, EventArgs.Empty);
+        }
+    }
+
+    protected virtual void Progress() {
+        if (QuestProgressed != null) {
+            QuestProgressed(this, EventArgs.Empty);
         }
     }
 

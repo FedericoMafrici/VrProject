@@ -1140,6 +1140,8 @@ MonoBehaviour:
   _alert: {fileID: 0}
   _foodEaters:
   - {fileID: 882770830}
+  - {fileID: 1302680747}
+  - {fileID: 883083970}
   _targetFood: 12
   _nToEat: 3
   _description: Dai da mangiare ai polli
@@ -1857,7 +1859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &883083969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2451,7 +2453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1302680746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3776,6 +3778,7 @@ MonoBehaviour:
   _alert: {fileID: 0}
   _steps:
   - {fileID: 564165103}
+  _questCompletedDescription: 
 --- !u!4 &1889633422
 Transform:
   m_ObjectHideFlags: 0

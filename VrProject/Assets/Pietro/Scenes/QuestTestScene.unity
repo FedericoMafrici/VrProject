@@ -374,6 +374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _isStep: 1
+  _alert: {fileID: 0}
   _pettables:
   - {fileID: 1608859212}
   - {fileID: 908309301}
@@ -464,9 +465,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _isStep: 0
+  _alert: {fileID: 0}
   _steps:
   - {fileID: 575859965}
   - {fileID: 359804047}
+  _questCompletedDescription: 
 --- !u!4 &440336684
 Transform:
   m_ObjectHideFlags: 0
@@ -515,6 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _isStep: 1
+  _alert: {fileID: 0}
   _foodEaters:
   - {fileID: 1022033171}
   _targetFood: 10
@@ -1228,7 +1232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetFoodsList: 
+  _targetFoodsList: 0b000000
 --- !u!1001 &1034267028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2419,6 +2423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _isStep: 1
+  _alert: {fileID: 0}
   _pettables:
   - {fileID: 1608859212}
   - {fileID: 908309301}
@@ -2517,6 +2522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _isStep: 1
+  _alert: {fileID: 0}
   _foodEaters:
   - {fileID: 1022033171}
   _targetFood: 10
