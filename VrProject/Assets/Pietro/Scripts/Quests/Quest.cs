@@ -6,7 +6,9 @@ using UnityEngine.UIElements;
 
 public enum QuestID {
     TEST_QUEST,
-    TUTORIAL
+    TUTORIAL,
+    TUTORIAL_PICK_UP_STEP,
+    TUTORIAL_EATING_STEP
 }
 
 public enum QuestState {

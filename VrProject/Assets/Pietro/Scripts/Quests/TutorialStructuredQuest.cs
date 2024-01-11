@@ -88,14 +88,10 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
     }
 
     protected override void OnStepCompleted(object sender, EventArgs args) {
-        base.OnStepCompleted(sender, args);
 
         //whenever a step is completed trigger its corresponding end step dialogue
-
-        //then check if the dialogue reference is not null
-        Debug.Log(" Step completed, updating dialogue");
-        //if everything's ok trigger the dialogue
         UpdateActiveDialogue(_tutorialSteps[_curStepIdx].endStepDialogue);
+        base.OnStepCompleted(sender, args);
 
     }
 }

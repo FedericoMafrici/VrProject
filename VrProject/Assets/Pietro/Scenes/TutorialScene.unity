@@ -312,6 +312,97 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 998
   m_TargetDisplay: 0
+--- !u!1 &128068126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 128068127}
+  - component: {fileID: 128068130}
+  - component: {fileID: 128068129}
+  - component: {fileID: 128068128}
+  m_Layer: 0
+  m_Name: TutorialPickUpStep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &128068127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128068126}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 18.077, y: 12.104178, z: 18.077}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1559044071}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &128068128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128068126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db6909231a96ce149a1bc6a8ec62d3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 2
+  _isStep: 1
+  _alert: {fileID: 0}
+  _description: Raccogli il cibo per i polli
+  _nToPickUp: 1
+  _targetItemName: 12
+  _playerPickUp: {fileID: 1260936900}
+--- !u!114 &128068129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128068126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 0
+  priority: 0
+  blendDistance: 1
+  weight: 1
+  sharedProfile: {fileID: 0}
+--- !u!65 &128068130
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128068126}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &191620032
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,7 +602,7 @@ GameObject:
   - component: {fileID: 281137904}
   - component: {fileID: 281137903}
   m_Layer: 0
-  m_Name: TutorialDialogueTrigger
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -539,10 +630,23 @@ MonoBehaviour:
     sentences:
     - "Ciao io sono Zio Tobia, ti guider\xF2 nella tua esperienza qui alla fattoria!"
     - 'Potresti dare da mangiare alle mie galline? '
-    - Come prima cosa raccogli i semi guardandoli e premendo E
-    - Poi vai da ogni gallina e, guardandola, premi il click sinistro del mouse per
-      darle da mangiare
+    - Come prima cosa raccogli il cibo per le galline guardandolo e premendo E oppure
+      Q.
+    - Se premi E prenderai il cibo in mano.
+    - Se premi Q lo inserirai nel tuo inventario, potrai prenderlo in mano premendo
+      il tasto numerico corrispondente!
   _tutorialSteps:
+  - quest: {fileID: 128068128}
+    endStepDialogue:
+      sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
+      name: Zio Tobia
+      sentences:
+      - Perfetto! Adesso prova a dare da mangiare ad una gallina!
+      - Per farlo avvicinati ad una gallina, guardala ed utilizza il click sinistro
+        del mouse per darle da mangiare.
+      - Ricorda di tenere in mano il cibo per le galline!
+      - Se non hai il cibo in mano puoi selezionarlo dall'inventario utilizzando
+        i tasti numerici!
   - quest: {fileID: 564165103}
     endStepDialogue:
       sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
@@ -1122,7 +1226,7 @@ GameObject:
   - component: {fileID: 564165104}
   - component: {fileID: 564165103}
   m_Layer: 0
-  m_Name: TutorialStep1Area
+  m_Name: TutorialEatingStep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1140,7 +1244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c441076fd20134d4ca8897a22c475ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 0
+  _id: 3
   _isStep: 1
   _alert: {fileID: 0}
   _foodEaters:
@@ -1184,7 +1288,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1196,12 +1300,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564165102}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.73, y: 0.61, z: -10.41}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.19, y: 1.9825555, z: -0.57}
   m_LocalScale: {x: 24.654936, y: 7.3599186, z: 28.421507}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1559044071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &564275678
 PrefabInstance:
@@ -3000,6 +3104,39 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2221704177262545154, guid: daf2808f1847d4a7aae1cf900c33bf8f, type: 3}
   m_PrefabInstance: {fileID: 1595855425}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1559044070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1559044071}
+  m_Layer: 0
+  m_Name: TutorialSteps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1559044071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559044070}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -9.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 564165106}
+  - {fileID: 128068127}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1595855425
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4344,7 +4481,6 @@ SceneRoots:
   - {fileID: 655900140}
   - {fileID: 442412855}
   - {fileID: 395882431}
-  - {fileID: 564165106}
   - {fileID: 882770835}
   - {fileID: 1302680752}
   - {fileID: 883083975}
@@ -4354,3 +4490,4 @@ SceneRoots:
   - {fileID: 542346624}
   - {fileID: 281137905}
   - {fileID: 1381903664}
+  - {fileID: 1559044071}

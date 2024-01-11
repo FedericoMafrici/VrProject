@@ -6,7 +6,7 @@ public static class InputManager {
     private static bool _inputsEnabled = true;
 
     public static void EnableInputs() {
-        Debug.Log("Inputs enbaled");
+        Debug.Log("Inputs enabled");
         _inputsEnabled = true;
     }
 
