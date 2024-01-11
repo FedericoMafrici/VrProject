@@ -529,7 +529,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2366f5a473f818d4190e497e91c8a366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tutorial: {fileID: 1889633421}
+  _id: 1
+  _isStep: 0
+  _alert: {fileID: 0}
+  _questCompletedDescription: Hai completato il tutorial
   _startingDialogue:
     sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
     name: Zio Tobia
@@ -539,11 +542,13 @@ MonoBehaviour:
     - Come prima cosa raccogli i semi guardandoli e premendo E
     - Poi vai da ogni gallina e, guardandola, premi il click sinistro del mouse per
       darle da mangiare
-  _endStepDialogues:
-  - sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
-    name: Zio Tobia
-    sentences:
-    - Complimenti! Hai completato il tutorial
+  _tutorialSteps:
+  - quest: {fileID: 564165103}
+    endStepDialogue:
+      sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
+      name: Zio Tobia
+      sentences:
+      - Hai completato il tutorial!
   _dialogueTrigger: {fileID: 281137904}
 --- !u!114 &281137904
 MonoBehaviour:
@@ -3744,56 +3749,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1573913409836871803, guid: e41d9b7e6660449fd8db9e3e8b235068, type: 3}
   m_PrefabInstance: {fileID: 1867835818}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1889633419
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1889633422}
-  - component: {fileID: 1889633421}
-  m_Layer: 0
-  m_Name: TutorialQuest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1889633421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889633419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1c52e26f1f6bf84395f2cf0a881b491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 0
-  _isStep: 0
-  _alert: {fileID: 0}
-  _steps:
-  - {fileID: 564165103}
-  _questCompletedDescription: 
---- !u!4 &1889633422
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889633419}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.13, y: 0, z: -10.9}
-  m_LocalScale: {x: 26.909943, y: 5.6144805, z: 31.78977}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1902371654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4389,7 +4344,6 @@ SceneRoots:
   - {fileID: 655900140}
   - {fileID: 442412855}
   - {fileID: 395882431}
-  - {fileID: 1889633422}
   - {fileID: 564165106}
   - {fileID: 882770835}
   - {fileID: 1302680752}

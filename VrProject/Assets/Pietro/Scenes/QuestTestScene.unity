@@ -443,7 +443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 440336684}
-  - component: {fileID: 440336683}
+  - component: {fileID: 440336685}
   m_Layer: 0
   m_Name: StructuredQuest
   m_TagString: Untagged
@@ -451,25 +451,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &440336683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440336682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1c52e26f1f6bf84395f2cf0a881b491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _id: 0
-  _isStep: 0
-  _alert: {fileID: 0}
-  _steps:
-  - {fileID: 575859965}
-  - {fileID: 359804047}
-  _questCompletedDescription: 
 --- !u!4 &440336684
 Transform:
   m_ObjectHideFlags: 0
@@ -485,6 +466,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &440336685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440336682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6d7668e0b36934ca44e1768b67b99c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
+  _isStep: 0
+  _alert: {fileID: 0}
+  _questCompletedDescription: Hai completato la quest
+  _stepList:
+  - {fileID: 575859965}
+  - {fileID: 359804047}
 --- !u!1 &575859964
 GameObject:
   m_ObjectHideFlags: 0

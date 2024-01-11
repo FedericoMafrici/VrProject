@@ -18,7 +18,7 @@ public class Dialogue
 
 public class DialogueManager : MonoBehaviour
 {
-    private Queue<string> sentences;
+    private Queue<string> sentences = new Queue<string>();
     
     public Animator animator;
     public TMP_Text nameText;
@@ -29,9 +29,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject hotbar;
     
 
-    void Start()
+    void Awake()
     {
-        sentences = new Queue<string>();
+       
     }
     
     public void StartDialogue(Dialogue dialogue)
@@ -44,7 +44,9 @@ public class DialogueManager : MonoBehaviour
         nameText.text = dialogue.name;
         characterImage.sprite = dialogue.sprite;
         
+        
         sentences.Clear();
+
         foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);

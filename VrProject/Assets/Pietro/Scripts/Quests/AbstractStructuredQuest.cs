@@ -5,11 +5,12 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using static Unity.VisualScripting.Member;
 
-public class StructuredQuest : Quest {
-    [SerializeField] private List<Quest> _steps;
-    [SerializeField] private string _questCompletedDescription;
-    private int _curStepIdx = 0;
-    private Quest _currentStep = null;
+public abstract class AbstractStructuredQuest : Quest {
+    [SerializeField] protected string _questCompletedDescription;
+
+    protected List<Quest> _steps = new List<Quest>();
+    protected int _curStepIdx = 0;
+    protected Quest _currentStep = null;
 
     public event EventHandler<StepEventArgs> StepCompleted;
 
@@ -68,7 +69,7 @@ public class StructuredQuest : Quest {
     }
 
     protected override void OnQuestStart() {
-            _currentStep.StartQuest();
+        StartCurrStep();
     }
 
     public override void Deactivate() {
@@ -76,11 +77,11 @@ public class StructuredQuest : Quest {
         _currentStep.Deactivate();
     }
 
-    private void OnStepProgressed(object sender, EventArgs args) {
+    protected virtual void OnStepProgressed(object sender, EventArgs args) {
         Progress();
     }
 
-    private void OnStepCompleted(object sender, EventArgs args) {
+    protected virtual void OnStepCompleted(object sender, EventArgs args) {
         if (StepCompleted != null) {
             StepCompleted(this, new StepEventArgs(_currentStep, _curStepIdx));
         }
