@@ -21,31 +21,32 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
-		{
+		public void OnMove(InputValue value) {
 			if (InputManager.InputsAreEnabled())
 				MoveInput(value.Get<Vector2>());
-		}
+			else
+                MoveInput(Vector2.zero);
+			
+        }
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
-			{
-                if (InputManager.InputsAreEnabled())
-                    LookInput(value.Get<Vector2>());
+			if (cursorInputForLook) {
+				if (InputManager.InputsAreEnabled())
+					LookInput(value.Get<Vector2>());
+				else
+					LookInput(Vector2.zero);
+				
 			}
 		}
 
-		public void OnJump(InputValue value)
-		{
-            if (InputManager.InputsAreEnabled())
-                JumpInput(value.isPressed);
+		public void OnJump(InputValue value) {
+			if (InputManager.InputsAreEnabled())
+				JumpInput(value.isPressed);
 		}
 
-		public void OnSprint(InputValue value)
-		{
-            if (InputManager.InputsAreEnabled())
-                SprintInput(value.isPressed);
+		public void OnSprint(InputValue value) {
+			SprintInput(value.isPressed);
 		}
 #endif
 

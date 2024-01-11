@@ -114,9 +114,8 @@ namespace StarterAssets
 		{
 			JumpAndGravity();
 			GroundedCheck();
-			if (InputManager.InputsAreEnabled()) {
-				Move();
-			}
+			Move();
+			
 		}
 
 		private void LateUpdate()
