@@ -39,11 +39,14 @@ public class IndicatorManager : MonoBehaviour
         }
 
         _itemComponentReference = GetComponent<Item>();
-        _itemComponentReference.GrabEvent += OnItemGrabbed;
-        _itemComponentReference.ReleaseEvent += OnItemReleased;
-        if (_itemComponentReference != null && _itemComponentReference.isInPlayerHand) {
-            _canBeShown = false;
+        if (_itemComponentReference != null) {
+            _itemComponentReference.GrabEvent += OnItemGrabbed;
+            _itemComponentReference.ReleaseEvent += OnItemReleased;
+            if (_itemComponentReference.isInPlayerHand) {
+                _canBeShown = false;
+            }
         }
+        
 
         _spriteCanvasInstance.gameObject.SetActive(_nShowRequests > 0 && _canBeShown); //enable component if there's at least one show request
     }
@@ -89,7 +92,10 @@ public class IndicatorManager : MonoBehaviour
 
         QuestIndicatorDatabase.IndicatorShowEvent -= OnShowRequest;
         QuestIndicatorDatabase.IndicatorHideEvent -= OnHideRequest;
-        Destroy(_spriteCanvasInstance.gameObject);
+
+        if (_spriteCanvasInstance != null) {
+            Destroy(_spriteCanvasInstance.gameObject);
+        }
     }
 
     // Update is called once per frame

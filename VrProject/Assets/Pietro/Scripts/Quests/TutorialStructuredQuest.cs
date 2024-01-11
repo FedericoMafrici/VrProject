@@ -7,6 +7,7 @@ using UnityEngine;
 
 [Serializable]
 struct TutorialStep {
+    public bool ShowIndicatorsOnStart;
     public Quest quest;
     public Dialogue endStepDialogue;
 }
@@ -88,7 +89,7 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
 
     protected override void StartCurrStep() {
         base.StartCurrStep();
-        if (_currentStep.GetID() == QuestID.TUTORIAL_PICK_UP_STEP) {
+        if (_tutorialSteps[_curStepIdx].ShowIndicatorsOnStart) {
             _currentStep.ShowIndicators();
         }
     }

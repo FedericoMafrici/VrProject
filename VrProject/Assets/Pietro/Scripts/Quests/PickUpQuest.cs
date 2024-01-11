@@ -59,12 +59,4 @@ public class PickUpQuest : Quest
         return _description + " " + _nPickedUp + "/" + _nToPickUp;
     }
 
-    public override void ShowIndicators() {
-        QuestIndicatorDatabase.RequestShowIndicators(GetID());
-    }
-
-    public override void HideIndicators() {
-        QuestIndicatorDatabase.RequestHideIndicators(GetID());
-    }
-
 }

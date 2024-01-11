@@ -143,11 +143,11 @@ public abstract class Quest : MonoBehaviour {
     }
 
     public virtual void ShowIndicators() {
-
+        QuestIndicatorDatabase.RequestShowIndicators(_id);
     }
 
     public virtual void HideIndicators() {
-
+        QuestIndicatorDatabase.RequestHideIndicators(_id);
     }
 
     public void EnableCollider() {
