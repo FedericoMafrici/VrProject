@@ -216,5 +216,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _markerPositionTransform: {fileID: 1701144563845493644}
-  _spriteCanvasPrefab: {fileID: 7554326089233334486, guid: 4deb470da103f614ca3f501c4edcde6f, type: 3}
+  _markerPrefab: {fileID: 7535351951851594427, guid: 4deb470da103f614ca3f501c4edcde6f, type: 3}
   _associatedQuests: 02000000

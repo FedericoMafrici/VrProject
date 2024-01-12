@@ -28,27 +28,7 @@ public class QuestObjectSpawner : QuestEventReceiver
         }
     }
 
-    protected override void OnQuestStarted(Quest quest) {
-        SpawnEventReceived(quest, base.OnQuestStarted);
-    }
-
-    protected override void OnQuestProgressed(Quest quest) {
-        SpawnEventReceived(quest, base.OnQuestProgressed);
-    }
-
-    protected override void OnQuestCompleted(Quest quest) {
-        SpawnEventReceived(quest, base.OnQuestCompleted);
-    }
-
-    protected override void OnEnteredQuestArea(Quest quest) {
-        SpawnEventReceived(quest, base.OnEnteredQuestArea);
-    }
-
-    protected override void OnExitedQuestArea(Quest quest) {
-        SpawnEventReceived(quest, base.OnExitedQuestArea);
-    }
-
-    private void SpawnEventReceived(Quest quest, Action<Quest> Unsubscribe) {
+    protected override void OnEventReceived(Quest quest, EventType eventType) {
 
         //only spawn object if quest has already started or is not inactive, also check if objects should be spawned through CanSpawnMoreObjects() method
         if (CanSpawnMoreObjects() && quest.GetState() != QuestState.INACTIVE && quest.GetState() != QuestState.NOT_STARTED) {
@@ -66,7 +46,7 @@ public class QuestObjectSpawner : QuestEventReceiver
 
         //if objects do not need to spawn anymore or quest is completed unsubscribe from event
         if (!CanSpawnMoreObjects() || quest.GetState() == QuestState.COMPLETED) {
-            Unsubscribe(quest);
+            SetEventSubscription(false, quest, eventType);
         }
     }
 

@@ -8,7 +8,8 @@ public enum QuestID {
     TEST_QUEST,
     TUTORIAL,
     TUTORIAL_PICK_UP_STEP,
-    TUTORIAL_EATING_STEP
+    TUTORIAL_EATING_STEP,
+    TUTORIAL_COLLECTING_QUEST
 }
 
 public enum QuestState {
@@ -36,6 +37,10 @@ public abstract class Quest : MonoBehaviour {
             Debug.LogWarning(transform.name + " no BoxCollider component found");
         } else if (!coll.isTrigger) {
             Debug.LogWarning(transform.name + " BoxCollider component is not set as \"is trigger\"");
+        }
+
+        if (!_isStep) {
+            InitQuest();
         }
     }
 

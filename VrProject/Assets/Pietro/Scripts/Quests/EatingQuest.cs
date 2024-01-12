@@ -11,7 +11,6 @@ public class EatingQuest : Quest {
     private int _nEaten = 0;
 
     protected override void Start() {
-        base.Start();
 
         if (_foodEaters == null) {
             Debug.LogWarning(transform.name + " food eaters list is null");
@@ -28,15 +27,11 @@ public class EatingQuest : Quest {
             Debug.LogWarning(transform.name + ": no description");
         }
 
-        if (!_isStep) {
-            InitQuest();
-        }
-
+        base.Start();
     }
 
     private void OnFoodEaten(object sender, EatEventArgs args) {
         if (_state == QuestState.ACTIVE && FoodIsOk(args.eaten)) {
-            Debug.Log("Animal ate: " + args.eaten.name);
             _nEaten++;
             Progress();
 
@@ -61,8 +56,6 @@ public class EatingQuest : Quest {
                 fe.EatEvent += OnFoodEaten;
             }
         }
-
-
     }
 
     public override void Complete() {

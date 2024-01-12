@@ -9,8 +9,7 @@ public class FriendshipQuest : Quest {
     [SerializeField] private string _description;
     private float _nBefriended = 0;
 
-    protected override void Start() {
-        base.Start();
+    protected override void Start() { 
 
         if (_pettables == null) {
             Debug.LogError(transform.name + ": pettable list is null");
@@ -27,9 +26,7 @@ public class FriendshipQuest : Quest {
             Debug.LogWarning(transform.name + ": no description");
         }
 
-        if (!_isStep) {
-            InitQuest();
-        }
+        base.Start();
     }
 
     private void OnAnimalBefriended(object sender, EventArgs args) {

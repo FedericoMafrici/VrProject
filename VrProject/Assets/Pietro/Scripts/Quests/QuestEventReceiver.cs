@@ -14,27 +14,41 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         AREA_EXIT
     }
 
-    [SerializeField] protected List<Quest> _targetQuestList;
+    [SerializeField] private Transform _questSetParent; //a reference to a transform whose children are the quest that need to be subscripted to
+    [SerializeField] private List<Quest> _targetQuestList; //used if _questSetParent is null to determine set of quest to subscribe to
     [SerializeField] private List<EventType> _eventList;
     private HashSet<Quest> _targetQuestSet = new HashSet<Quest>();
     private HashSet<EventType> _eventSet;
     // Start is called before the first frame update
     protected virtual void Start() {
-        if (_targetQuestList == null) {
-            Debug.LogError(transform.name + ": QuestGameObjectSpawner has no list of quests to keep track of");
-        } else if (_targetQuestList == null) {
-            Debug.LogError(transform.name + ": QuestGameObjectSpawner: list of quests is empty");
+
+        if (_questSetParent == null) {
+            if (_targetQuestList == null) {
+                Debug.LogError(transform.name + ": QuestEventReceiver has no list of quests to keep track of");
+            } else if (_targetQuestList == null) {
+                Debug.LogError(transform.name + ": QuestEventReceiver: list of quests is empty");
+            }
+
+            _targetQuestSet = _targetQuestSet.ToHashSet();
+
+        } else {
+            if (_targetQuestList != null && _targetQuestList.Count > 0) {
+                Debug.LogWarning(transform.name + ": QuestEventReceiver: Quest Set was specified through a transform, but target quest list is not empty, target quest list will be ignored");
+            }
+
+            _targetQuestSet = GetQuestsFromParentTransform();
         }
 
         if (_eventList == null) {
-            Debug.LogError(transform.name + ": QuestGameObjectSpawner has no event list to subscribe to");
+            Debug.LogError(transform.name + ": QuestEventReceiver has no event list to subscribe to");
         } else if (_eventList.Count == 0) {
-            Debug.LogWarning(transform.name + "; QuestGameObjectSpawner: event list is empty");
+            Debug.LogWarning(transform.name + ": QuestEventReceiver: event list is empty");
         }
 
-        _targetQuestSet = _targetQuestSet.ToHashSet();
+        
         _eventSet = _eventList.ToHashSet();
 
+        //subscribe to events for every quest
         foreach(Quest quest in _targetQuestSet) {
             foreach(EventType ev in _eventSet) {
                 SetEventSubscription(true, quest, ev);
@@ -42,44 +56,28 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         }
     }
 
-    protected virtual void OnQuestStarted(Quest quest) {
-        //default behaviour unsubscribes from event
-        //this is done for two reasons:
-        // 1) Since this method has not been overriden by a subclass we assume that the event registration was a mistake in the first place, and thus we need to unsubscribe
-        // 2) It provides an easy way for the subclass to unsubscribe from an event without knowing which EventType the event is associated to
-        SetEventSubscription(false, quest, EventType.START);
+    protected virtual void OnEventReceived(Quest quest, EventType eventType) {
+
+    }
+
+    private void OnQuestStarted(Quest quest) {
+        OnEventReceived(quest, EventType.START);
     }
 
     protected virtual void OnQuestProgressed(Quest quest) {
-        //default behaviour unsubscribes from event
-        //this is done for two reasons:
-        // 1) Since this method has not been overriden by a subclass we assume that the event registration was a mistake in the first place, and thus we need to unsubscribe
-        // 2) It provides an easy way for the subclass to unsubscribe from an event without knowing which EventType the event is associated to
-        SetEventSubscription(false, quest, EventType.PROGRESS);
+        OnEventReceived(quest, EventType.PROGRESS);
     }
 
     protected virtual void OnQuestCompleted(Quest quest) {
-        //default behaviour unsubscribes from event
-        //this is done for two reasons:
-        // 1) Since this method has not been overriden by a subclass we assume that the event registration was a mistake in the first place, and thus we need to unsubscribe
-        // 2) It provides an easy way for the subclass to unsubscribe from an event without knowing which EventType the event is associated to
-        SetEventSubscription(false, quest, EventType.COMPLETE);
+        OnEventReceived(quest, EventType.COMPLETE);
     }
 
     protected virtual void OnEnteredQuestArea(Quest quest) {
-        //default behaviour unsubscribes from event
-        //this is done for two reasons:
-        // 1) Since this method has not been overriden by a subclass we assume that the event registration was a mistake in the first place, and thus we need to unsubscribe
-        // 2) It provides an easy way for the subclass to unsubscribe from an event without knowing which EventType the event is associated to
-        SetEventSubscription(false, quest, EventType.AREA_ENTER);
+        OnEventReceived(quest, EventType.AREA_ENTER);
     }
 
     protected virtual void OnExitedQuestArea(Quest quest) {
-        //default behaviour unsubscribes from event
-        //this is done for two reasons:
-        // 1) Since this method has not been overriden by a subclass we assume that the event registration was a mistake in the first place, and thus we need to unsubscribe
-        // 2) It provides an easy way for the subclass to unsubscribe from an event without knowing which EventType the event is associated to
-        SetEventSubscription(false, quest, EventType.AREA_EXIT);
+        OnEventReceived(quest, EventType.AREA_EXIT);
     }
 
     protected void SetEventSubscription(bool subscribe, Quest quest, EventType eventType) {
@@ -131,5 +129,20 @@ public abstract class QuestEventReceiver : MonoBehaviour {
                 SetEventSubscription(false, quest, ev);
             }
         }
+    }
+
+    private HashSet<Quest> GetQuestsFromParentTransform() {
+        HashSet<Quest> quests = new HashSet<Quest>();
+        int nChildren = _questSetParent.childCount;
+
+        for (int i = 0; i < nChildren; i++) {
+            Transform child = _questSetParent.GetChild(i);
+            Quest toAdd = child.GetComponent<Quest>();
+            if (toAdd != null) {
+                quests.Add(toAdd);
+            }
+        }
+
+        return quests;
     }
 }

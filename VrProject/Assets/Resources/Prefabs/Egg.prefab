@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7214146011715175557}
   - component: {fileID: 7250086211697251941}
   - component: {fileID: 6954296779612124807}
+  - component: {fileID: 4702948493496765524}
   m_Layer: 3
   m_Name: Egg
   m_TagString: Untagged
@@ -31,10 +32,11 @@ Transform:
   m_GameObject: {fileID: 662338683500413239}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: -1.6346807, z: -11.75}
-  m_LocalScale: {x: 0.21334, y: 0.21334, z: 0.21334}
+  m_LocalPosition: {x: 13.38, y: 0, z: 0}
+  m_LocalScale: {x: 0.26638, y: 0.26638, z: 0.26638}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4625830173909198505}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7053855188512023961
@@ -170,9 +172,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cd6529417944935b37b96a07438350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInPlayerHand: 0
   itemName: 7
   itemCategory: 1
   depositPosition: {x: -0.2, y: -1.6346807, z: -11.75}
   icon: {fileID: 21300000, guid: 2873afd8412734500a4afdee29aa9ac3, type: 3}
   isFading: 0
+  isDeposited: 0
   isCollected: 0
+--- !u!114 &4702948493496765524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662338683500413239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5895899c0c058419b698e1c6c92ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _markerPositionTransform: {fileID: 4625830173909198505}
+  _markerPrefab: {fileID: 7535351951851594427, guid: 4deb470da103f614ca3f501c4edcde6f, type: 3}
+  _associatedQuests: 04000000
+--- !u!1 &8370146443025697474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4625830173909198505}
+  m_Layer: 0
+  m_Name: MarkerPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4625830173909198505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8370146443025697474}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7757197061922521932}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

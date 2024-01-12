@@ -1,0 +1,96 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CollectingQuest : Quest {
+    [SerializeField] private string _description;
+    [SerializeField] private CollectingPoint _collectingPoint;
+    [SerializeField] private Item.ItemName _targetItem;
+    [SerializeField] private int _nToCollect;
+    private int _nCollected = 0;
+
+    protected override void Start() {
+        if (_collectingPoint == null) {
+            Debug.LogError(transform.name + ": no Collecting Point set for Collecting Quest");
+        }
+        if (_nToCollect <= 0 ) {
+            Debug.LogWarning(transform.name + ": count of items to deposit was lower than 1, setting it to 1");
+            _nToCollect = 1;
+        }
+
+        base.Start();
+    }
+
+    protected override void OnQuestStart() {
+        //subscribe to events
+        _collectingPoint.ItemInCollectingPoint += OnItemCollected;
+        _collectingPoint.ItemOutOfCollectingPoint += OnItemRemoved;
+
+        //check if collecting point already contains some items of the requested type
+        if (_collectingPoint.collectedItems.ContainsKey(_targetItem)) {
+            int alreadyCollectedCount = _collectingPoint.collectedItems[_targetItem];
+            AddItem(alreadyCollectedCount);
+        }
+    }
+
+    private void AddItem(int count) {
+        if (_state == QuestState.ACTIVE) {
+            Debug.Log(transform.name + ": collected " + count + " " + _targetItem);
+            _nCollected += count;
+            Progress();
+
+            if (_nCollected >= _nToCollect) {
+
+                //total amount reached
+                _nCollected = _nToCollect;
+                Complete();
+
+                _collectingPoint.ItemInCollectingPoint -= OnItemCollected;
+                _collectingPoint.ItemOutOfCollectingPoint -= OnItemRemoved;
+            }
+        }
+    }
+
+    private void OnItemCollected(Item item) {
+        if (item.itemName == _targetItem) {
+            AddItem(1);
+        }
+    }
+
+    private void OnItemRemoved(Item item) {
+        if (item.itemName == _targetItem) {
+            Debug.Log(transform.name + ": removed 1 " + _targetItem);
+            _nCollected--;
+            Progress();
+            if (_nCollected < 0) {
+                _nCollected = 0;
+            }
+        }
+    }
+
+    public override string GetQuestDescription() {
+        string result = "";
+        if (_description != null) {
+            result += _description;
+        }
+
+        result += " " + _nCollected + "/" + _nToCollect;
+        return result;
+    }
+
+    public override void ShowMarkers() {
+        QuestMarkerDatabase.RequestShowMarkers(GetID());
+        QuestMarkerManager markerManager = _collectingPoint.GetComponent<QuestMarkerManager>();
+        if (markerManager != null) {
+            markerManager.AddShowRequest(GetID());
+        }
+    }
+
+    public override void HideMarkers() {
+        QuestMarkerDatabase.RequestHideMarkers(GetID());
+        QuestMarkerManager markerManager = _collectingPoint.GetComponent<QuestMarkerManager>();
+        if (markerManager != null) {
+            markerManager.RemoveShowRequest(GetID());
+        }
+    }
+}

@@ -15,7 +15,6 @@ public abstract class AbstractStructuredQuest : Quest {
     public event EventHandler<StepEventArgs> StepCompleted;
 
     protected override void Start() {
-        base.Start();
 
         DisableCollider();
 
@@ -33,11 +32,9 @@ public abstract class AbstractStructuredQuest : Quest {
             }
             _currentStep = _steps[_curStepIdx];
             SubscribeToCurrStep();
-
-            if (!_isStep) {
-                InitQuest();
-            }
         }
+
+        base.Start();
 
     }
 

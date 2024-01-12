@@ -40,6 +40,12 @@ public class CollectingPoint : MonoBehaviour
                     if (ItemInCollectingPoint != null) {
                         ItemInCollectingPoint(item);
                     }
+
+                    //hide marker in case it was shown
+                    QuestMarkerManager questMarkerManager = item.GetComponent<QuestMarkerManager>();
+                    if (questMarkerManager != null) {
+                        questMarkerManager.SetIsDeposited(true);
+                    }
                 }
                 // oggetto nell'area del punto di raccolta ma tenuto in mano
                 else if(other.GetComponent<Rigidbody>().useGravity == false 
@@ -58,6 +64,12 @@ public class CollectingPoint : MonoBehaviour
                     //throw event, needed for collect quest
                     if (ItemOutOfCollectingPoint != null) {
                         ItemOutOfCollectingPoint(item);
+                    }
+
+                    //tell marker that it can be shown
+                    QuestMarkerManager questMarkerManager = item.GetComponent<QuestMarkerManager>();
+                    if (questMarkerManager != null) {
+                        questMarkerManager.SetIsDeposited(false);
                     }
                 }
             }

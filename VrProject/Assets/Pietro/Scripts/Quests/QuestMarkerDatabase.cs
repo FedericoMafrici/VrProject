@@ -11,14 +11,14 @@ public static class QuestMarkerDatabase {
     public static event Action<QuestID> MarkerShowEvent;
     public static event Action<QuestID> MarkerHideEvent;
 
-    public static void RequestShowIndicators(QuestID questId) {
+    public static void RequestShowMarkers(QuestID questId) {
         markerDatabase.Add(questId);
         if (MarkerShowEvent!= null) {
             MarkerShowEvent(questId);
         }
     }
 
-    public static void RequestHideIndicators(QuestID questId) {
+    public static void RequestHideMarkers(QuestID questId) {
         markerDatabase.Remove(questId);
         if (MarkerHideEvent!= null) {
             MarkerHideEvent(questId);
