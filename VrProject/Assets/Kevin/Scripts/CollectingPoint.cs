@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,9 @@ public class CollectingPoint : MonoBehaviour
 {
     public Collider itemCollectionCollider;
     public Dictionary<Item.ItemName, int> collectedItems = new Dictionary<Item.ItemName, int>();
+
+    public event Action<Item> ItemInCollectingPoint;
+    public event Action<Item> ItemOutOfCollectingPoint;
     
     void OnTriggerStay(Collider other)
     {
@@ -31,6 +35,11 @@ public class CollectingPoint : MonoBehaviour
                         collectedItems.Add(item.itemName, 1);
                         Debug.Log("Item added");
                     }
+
+                    //throw event, needed for collect quest
+                    if (ItemInCollectingPoint != null) {
+                        ItemInCollectingPoint(item);
+                    }
                 }
                 // oggetto nell'area del punto di raccolta ma tenuto in mano
                 else if(other.GetComponent<Rigidbody>().useGravity == false 
@@ -44,6 +53,11 @@ public class CollectingPoint : MonoBehaviour
                     {
                         collectedItems.Remove(item.itemName);
                         Debug.Log("Item removed");
+                    }
+
+                    //throw event, needed for collect quest
+                    if (ItemOutOfCollectingPoint != null) {
+                        ItemOutOfCollectingPoint(item);
                     }
                 }
             }
