@@ -88,11 +88,11 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
         }
     }
 
-    protected override void OnStepCompleted(object sender, EventArgs args) {
+    protected override void OnStepCompleted(Quest step) {
 
         //whenever a step is completed trigger its corresponding end step dialogue
         UpdateActiveDialogue(_tutorialSteps[_curStepIdx].endStepDialogue);
-        base.OnStepCompleted(sender, args);
+        base.OnStepCompleted(step);
 
     }
 }

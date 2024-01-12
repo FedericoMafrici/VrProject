@@ -49,12 +49,12 @@ public abstract class AbstractStructuredQuest : Quest {
         //disable method
     }
 
-    private void OnPlayerEnteredArea(object sender, EventArgs args) {
+    private void OnPlayerEnteredArea(Quest step) {
         //equivalent code of OnTriggerEnter
         PlayerEnteredQuestArea();
     }
 
-    private void OnPlayerExitedArea(object sender, EventArgs args) {
+    private void OnPlayerExitedArea(Quest step) {
         //equivalent code of OnTriggerExit
         PlayerExitedQuestArea();
     }
@@ -77,11 +77,11 @@ public abstract class AbstractStructuredQuest : Quest {
         _currentStep.Deactivate();
     }
 
-    protected virtual void OnStepProgressed(object sender, EventArgs args) {
+    protected virtual void OnStepProgressed(Quest step) {
         Progress();
     }
 
-    protected virtual void OnStepCompleted(object sender, EventArgs args) {
+    protected virtual void OnStepCompleted(Quest step) {
         if (StepCompleted != null) {
             StepCompleted(this, new StepEventArgs(_currentStep, _curStepIdx));
         }

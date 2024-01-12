@@ -24,11 +24,11 @@ public abstract class Quest : MonoBehaviour {
     [SerializeField] private GameObject _alert;
     protected  QuestState _state = QuestState.NOT_STARTED;
 
-    public event EventHandler EnteredArea;
-    public event EventHandler ExitedArea;
-    public event EventHandler QuestStarted;
-    public event EventHandler QuestProgressed;
-    public event EventHandler QuestCompleted;
+    public event Action<Quest> EnteredArea;
+    public event Action<Quest> ExitedArea;
+    public event Action<Quest> QuestStarted;
+    public event Action<Quest> QuestProgressed;
+    public event Action<Quest> QuestCompleted;
 
     protected virtual void Start() {
         BoxCollider coll = GetComponent<BoxCollider>();
@@ -57,19 +57,19 @@ public abstract class Quest : MonoBehaviour {
         }
 
         if (EnteredArea != null) {
-            EnteredArea(this, EventArgs.Empty);
+            EnteredArea(this);
         }
     }
 
     protected virtual void PlayerExitedQuestArea() {
         if (ExitedArea != null) {
-            ExitedArea(this, EventArgs.Empty);
+            ExitedArea(this);
         }
     }
 
     protected virtual void Progress() {
         if (QuestProgressed != null) {
-            QuestProgressed(this, EventArgs.Empty);
+            QuestProgressed(this);
         }
     }
 
@@ -98,7 +98,7 @@ public abstract class Quest : MonoBehaviour {
         _state = QuestState.COMPLETED;
         HideMarkers();
         if (QuestCompleted != null) {
-            QuestCompleted(this, EventArgs.Empty);
+            QuestCompleted(this);
         }
     }
 
@@ -111,7 +111,7 @@ public abstract class Quest : MonoBehaviour {
             Debug.Log(transform.name + ": started, description: " + GetQuestDescription());
             _state = QuestState.ACTIVE;
             if (QuestStarted != null) {
-                QuestStarted(this, EventArgs.Empty);
+                QuestStarted(this);
             }
             didStart = true;
             OnQuestStart();
@@ -161,6 +161,11 @@ public abstract class Quest : MonoBehaviour {
         if (coll != null) {
             coll.enabled = false;
         }
+    }
+
+    //allows to derived classes to accept objects to register in its "objectives"
+    public void RegisterObject(GameObject obj) {
+
     }
 
     public abstract string GetQuestDescription();
