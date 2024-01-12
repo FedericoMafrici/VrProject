@@ -14,7 +14,7 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         AREA_EXIT
     }
 
-    [SerializeField] private Transform _questSetParent; //a reference to a transform whose children are the quest that need to be subscripted to
+    [SerializeField] private Transform _questCollection; //a reference to a transform whose children are the quest that need to be subscripted to
     [SerializeField] private List<Quest> _targetQuestList; //used if _questSetParent is null to determine set of quest to subscribe to
     [SerializeField] private List<EventType> _eventList;
     private HashSet<Quest> _targetQuestSet = new HashSet<Quest>();
@@ -22,14 +22,14 @@ public abstract class QuestEventReceiver : MonoBehaviour {
     // Start is called before the first frame update
     protected virtual void Start() {
 
-        if (_questSetParent == null) {
+        if (_questCollection == null) {
             if (_targetQuestList == null) {
                 Debug.LogError(transform.name + ": QuestEventReceiver has no list of quests to keep track of");
             } else if (_targetQuestList == null) {
                 Debug.LogError(transform.name + ": QuestEventReceiver: list of quests is empty");
             }
 
-            _targetQuestSet = _targetQuestSet.ToHashSet();
+            _targetQuestSet = _targetQuestList.ToHashSet();
 
         } else {
             if (_targetQuestList != null && _targetQuestList.Count > 0) {
@@ -39,26 +39,20 @@ public abstract class QuestEventReceiver : MonoBehaviour {
             _targetQuestSet = GetQuestsFromParentTransform();
         }
 
-        if (_eventList == null) {
-            Debug.LogError(transform.name + ": QuestEventReceiver has no event list to subscribe to");
-        } else if (_eventList.Count == 0) {
-            Debug.LogWarning(transform.name + ": QuestEventReceiver: event list is empty");
-        }
-
-        
         _eventSet = _eventList.ToHashSet();
 
+        Debug.LogWarning("iterating over quests");
         //subscribe to events for every quest
         foreach(Quest quest in _targetQuestSet) {
+            Debug.LogWarning("quest: " + quest.name);
             foreach(EventType ev in _eventSet) {
+                Debug.LogWarning("calling subcription method, event: " + ev);
                 SetEventSubscription(true, quest, ev);
             }
         }
     }
 
-    protected virtual void OnEventReceived(Quest quest, EventType eventType) {
-
-    }
+    protected abstract void OnEventReceived(Quest quest, EventType eventType);
 
     private void OnQuestStarted(Quest quest) {
         OnEventReceived(quest, EventType.START);
@@ -84,6 +78,7 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         switch (eventType) {
             case EventType.START:
                 if (subscribe) {
+                    Debug.Log("subscribed to start event");
                     quest.QuestStarted += OnQuestStarted;
                 } else {
                     quest.QuestStarted -= OnQuestStarted;
@@ -133,10 +128,10 @@ public abstract class QuestEventReceiver : MonoBehaviour {
 
     private HashSet<Quest> GetQuestsFromParentTransform() {
         HashSet<Quest> quests = new HashSet<Quest>();
-        int nChildren = _questSetParent.childCount;
+        int nChildren = _questCollection.childCount;
 
         for (int i = 0; i < nChildren; i++) {
-            Transform child = _questSetParent.GetChild(i);
+            Transform child = _questCollection.GetChild(i);
             Quest toAdd = child.GetComponent<Quest>();
             if (toAdd != null) {
                 quests.Add(toAdd);

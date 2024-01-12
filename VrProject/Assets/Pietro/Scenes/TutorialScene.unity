@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44038476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7936896838730559425, guid: a56cb9f10a36eec459bf8f74d7a9221b, type: 3}
+  m_PrefabInstance: {fileID: 1902371654}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &124452557
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +245,7 @@ GameObject:
   - component: {fileID: 128068129}
   - component: {fileID: 128068128}
   m_Layer: 0
-  m_Name: TutorialPickUpStep
+  m_Name: TutorialPickUpStepFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,7 +282,7 @@ MonoBehaviour:
   _isStep: 1
   _alert: {fileID: 0}
   _description: Raccogli il cibo per i polli
-  _nToPickUp: 3
+  _nToPickUp: 1
   _targetItemName: 12
   _playerPickUp: {fileID: 1260936900}
 --- !u!114 &128068129
@@ -304,6 +309,98 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128068126}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &171680199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171680200}
+  - component: {fileID: 171680203}
+  - component: {fileID: 171680202}
+  - component: {fileID: 171680201}
+  m_Layer: 0
+  m_Name: TutorialPickUpStepEggs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &171680200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171680199}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 18.077, y: 12.104178, z: 18.077}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1933315476}
+  m_Father: {fileID: 1559044071}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &171680201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171680199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db6909231a96ce149a1bc6a8ec62d3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 3
+  _isStep: 1
+  _alert: {fileID: 0}
+  _description: Raccogli un uovo
+  _nToPickUp: 1
+  _targetItemName: 7
+  _playerPickUp: {fileID: 1260936900}
+--- !u!114 &171680202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171680199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 0
+  priority: 0
+  blendDistance: 1
+  weight: 1
+  sharedProfile: {fileID: 0}
+--- !u!65 &171680203
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171680199}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -484,14 +581,35 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
       name: Zio Tobia
       sentences:
-      - Aiutami con le uova
+      - Dai da mangiare alle galline
+  - ShowIndicatorsOnStart: 1
+    quest: {fileID: 1558159665}
+    endStepDialogue:
+      sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
+      name: Zio Tobia
+      sentences:
+      - Prendi un uovo
+  - ShowIndicatorsOnStart: 1
+    quest: {fileID: 171680201}
+    endStepDialogue:
+      sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
+      name: Zio Tobia
+      sentences:
+      - Metti l'uovo nell'Apecar
   - ShowIndicatorsOnStart: 1
     quest: {fileID: 1241927438}
     endStepDialogue:
       sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
       name: Zio Tobia
       sentences:
-      - Hai completato il tutorial!
+      - Metti le altre uova nell'apecar
+  - ShowIndicatorsOnStart: 1
+    quest: {fileID: 1240624023}
+    endStepDialogue:
+      sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
+      name: Zio Tobia
+      sentences:
+      - Tutorial finito
   _dialogueTrigger: {fileID: 281137904}
 --- !u!114 &281137904
 MonoBehaviour:
@@ -651,6 +769,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Egg (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+      propertyPath: _associatedQuests.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7757197061922521932, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.489144
@@ -696,6 +818,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+--- !u!1 &386504807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386504808}
+  - component: {fileID: 386504809}
+  m_Layer: 0
+  m_Name: ChickenActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &386504808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386504807}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.44778055, y: -0.35621077, z: 0.22307052}
+  m_LocalScale: {x: 0.04055983, y: 0.13587107, z: 0.035184626}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 564165106}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &386504809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386504807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e4178ee5e55884aae12d72e204d5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questCollection: {fileID: 0}
+  _targetQuestList:
+  - {fileID: 564165103}
+  _eventList: 01000000
+  _gameObjects:
+  - {fileID: 1188192801}
+  - {fileID: 830304451}
+  - {fileID: 588897775}
+  _startInactive: 1
 --- !u!1001 &395882431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1034,10 +1209,9 @@ GameObject:
   m_Component:
   - component: {fileID: 564165106}
   - component: {fileID: 564165105}
-  - component: {fileID: 564165104}
   - component: {fileID: 564165103}
   m_Layer: 0
-  m_Name: TutorialEatingStep
+  m_Name: TutorialEatingStep1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1055,7 +1229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c441076fd20134d4ca8897a22c475ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 3
+  _id: 4
   _isStep: 1
   _alert: {fileID: 0}
   _foodEaters:
@@ -1063,25 +1237,8 @@ MonoBehaviour:
   - {fileID: 1942528264}
   - {fileID: 620580832}
   _targetFood: 12
-  _nToEat: 3
+  _nToEat: 1
   _description: Dai da mangiare ai polli
---- !u!114 &564165104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564165102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 0
-  priority: 0
-  blendDistance: 1
-  weight: 1
-  sharedProfile: {fileID: 0}
 --- !u!65 &564165105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1115,7 +1272,8 @@ Transform:
   m_LocalPosition: {x: 0.19, y: 1.9825555, z: -0.57}
   m_LocalScale: {x: 24.654936, y: 7.3599186, z: 28.421507}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 386504808}
   m_Father: {fileID: 1559044071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &564275678
@@ -1402,6 +1560,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &588897775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 70959993419708917, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+  m_PrefabInstance: {fileID: 598434112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &595518606 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 662338683500413239, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+  m_PrefabInstance: {fileID: 6093876837523912895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &598434112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1458,6 +1626,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+      propertyPath: _associatedQuests.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1468,7 +1640,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4377950132862529433, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
   m_PrefabInstance: {fileID: 598434112}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 588897775}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
@@ -1666,12 +1838,74 @@ MonoBehaviour:
   _markerPositionTransform: {fileID: 1661736285}
   _markerPrefab: {fileID: 7535351951851594427, guid: 4deb470da103f614ca3f501c4edcde6f, type: 3}
   _associatedQuests: 04000000
+--- !u!1 &819541247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 819541248}
+  - component: {fileID: 819541249}
+  m_Layer: 0
+  m_Name: EggActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &819541248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819541247}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.51057833, y: 0.10305013, z: -1.6346507}
+  m_LocalScale: {x: 0.08833532, y: 0.44634917, z: 0.099129856}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1240624022}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &819541249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819541247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e4178ee5e55884aae12d72e204d5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questCollection: {fileID: 0}
+  _targetQuestList:
+  - {fileID: 1240624023}
+  _eventList: 01000000
+  _gameObjects:
+  - {fileID: 851790381}
+  - {fileID: 1055780787}
+  _startInactive: 1
+--- !u!1 &830304451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 70959993419708917, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+  m_PrefabInstance: {fileID: 1027337197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &851790381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 662338683500413239, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+  m_PrefabInstance: {fileID: 376767747}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &882770830 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4377950132862529433, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
   m_PrefabInstance: {fileID: 1300357786520476122}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1188192801}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
@@ -1733,11 +1967,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+      propertyPath: _associatedQuests.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+--- !u!1 &1055780787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 662338683500413239, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+  m_PrefabInstance: {fileID: 1410222179}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1057198812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1856,6 +2099,141 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1573913409836871803, guid: e41d9b7e6660449fd8db9e3e8b235068, type: 3}
   m_PrefabInstance: {fileID: 1057198812}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1089385915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7936896838730559425, guid: a56cb9f10a36eec459bf8f74d7a9221b, type: 3}
+  m_PrefabInstance: {fileID: 542346624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1188192801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 70959993419708917, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+  m_PrefabInstance: {fileID: 1300357786520476122}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1229499034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229499035}
+  - component: {fileID: 1229499036}
+  m_Layer: 0
+  m_Name: CollectPointActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1229499035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229499034}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.51057833, y: 0.10305013, z: -1.6346507}
+  m_LocalScale: {x: 0.08833532, y: 0.44634917, z: 0.099129856}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1241927437}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1229499036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229499034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e4178ee5e55884aae12d72e204d5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questCollection: {fileID: 0}
+  _targetQuestList:
+  - {fileID: 1241927438}
+  _eventList: 01000000
+  _gameObjects:
+  - {fileID: 1753318028}
+  _startInactive: 1
+--- !u!1 &1240624021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1240624022}
+  - component: {fileID: 1240624024}
+  - component: {fileID: 1240624023}
+  m_Layer: 0
+  m_Name: TutorialCollectingStep2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1240624022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240624021}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.45, y: -0.87, z: 22.259998}
+  m_LocalScale: {x: 11.320498, y: 2.2403984, z: 10.087781}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 819541248}
+  m_Father: {fileID: 1559044071}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1240624023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240624021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd8447e8f2720048b398929563447d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 7
+  _isStep: 1
+  _alert: {fileID: 0}
+  _description: Metti le uova nell'apecar
+  _collectingPoint: {fileID: 724263144}
+  _targetItem: 7
+  _nToCollect: 3
+--- !u!65 &1240624024
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240624021}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1241927436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,7 +2246,7 @@ GameObject:
   - component: {fileID: 1241927439}
   - component: {fileID: 1241927438}
   m_Layer: 0
-  m_Name: TutorialCollectingStep
+  m_Name: TutorialCollectingStep1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1886,7 +2264,8 @@ Transform:
   m_LocalPosition: {x: 5.45, y: -0.87, z: 22.259998}
   m_LocalScale: {x: 11.320498, y: 2.2403984, z: 10.087781}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1229499035}
   m_Father: {fileID: 1559044071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1241927438
@@ -1901,13 +2280,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd8447e8f2720048b398929563447d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: 4
+  _id: 6
   _isStep: 1
   _alert: {fileID: 0}
-  _description: Metti le uova nell'Apecar
+  _description: Metti l'uovo nell'apecar
   _collectingPoint: {fileID: 724263144}
   _targetItem: 7
-  _nToCollect: 3
+  _nToCollect: 1
 --- !u!65 &1241927439
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2075,6 +2454,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 2116202581}
+--- !u!1 &1355800022
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1355800023}
+  - component: {fileID: 1355800024}
+  m_Layer: 0
+  m_Name: FoodActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1355800023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355800022}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.44778055, y: -0.35621077, z: 0.2230705}
+  m_LocalScale: {x: 0.040559825, y: 0.13587107, z: 0.035184626}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1558159664}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1355800024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355800022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e4178ee5e55884aae12d72e204d5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questCollection: {fileID: 0}
+  _targetQuestList:
+  - {fileID: 1558159665}
+  _eventList: 01000000
+  _gameObjects:
+  - {fileID: 44038476}
+  - {fileID: 1089385915}
+  _startInactive: 1
 --- !u!1 &1379775153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2256,6 +2687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Egg (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+      propertyPath: _associatedQuests.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 7757197061922521932, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.06
@@ -2424,6 +2859,83 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2221704177262545154, guid: daf2808f1847d4a7aae1cf900c33bf8f, type: 3}
   m_PrefabInstance: {fileID: 1595855425}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1558159663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1558159664}
+  - component: {fileID: 1558159667}
+  - component: {fileID: 1558159665}
+  m_Layer: 0
+  m_Name: TutorialEatingStep2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1558159664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558159663}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.19, y: 1.9825555, z: -0.57}
+  m_LocalScale: {x: 24.654936, y: 7.3599186, z: 28.421507}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1355800023}
+  m_Father: {fileID: 1559044071}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1558159665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558159663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c441076fd20134d4ca8897a22c475ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 5
+  _isStep: 1
+  _alert: {fileID: 0}
+  _foodEaters:
+  - {fileID: 882770830}
+  - {fileID: 1942528264}
+  - {fileID: 620580832}
+  _targetFood: 12
+  _nToEat: 2
+  _description: Dai da mangiare ai polli
+--- !u!65 &1558159667
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558159663}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1559044070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2454,8 +2966,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 564165106}
+  - {fileID: 1558159664}
   - {fileID: 128068127}
+  - {fileID: 171680200}
   - {fileID: 1241927437}
+  - {fileID: 1240624022}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1595855425
@@ -3026,9 +3541,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753318028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.23, y: -1.4, z: -4.13}
-  m_LocalScale: {x: 3.3382263, y: 0.20564142, z: 3.3382263}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.230001, y: -1.4000001, z: -4.129999}
+  m_LocalScale: {x: 3.3382263, y: 0.2056414, z: 3.3382266}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 724263143}
@@ -3209,12 +3724,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a56cb9f10a36eec459bf8f74d7a9221b, type: 3}
+--- !u!1 &1933315475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1933315476}
+  - component: {fileID: 1933315477}
+  m_Layer: 0
+  m_Name: EggActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1933315476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933315475}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.6212315, y: -0.05280215, z: 0.31919014}
+  m_LocalScale: {x: 0.05531891, y: 0.0826161, z: 0.055318926}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 171680200}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1933315477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933315475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e4178ee5e55884aae12d72e204d5ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questCollection: {fileID: 0}
+  _targetQuestList:
+  - {fileID: 171680201}
+  _eventList: 01000000
+  _gameObjects:
+  - {fileID: 595518606}
+  _startInactive: 1
 --- !u!114 &1942528264 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4377950132862529433, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
   m_PrefabInstance: {fileID: 1027337197}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 830304451}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
@@ -3554,6 +4120,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+      propertyPath: _associatedQuests.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+      propertyPath: _associatedQuests.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
+      propertyPath: _associatedQuests.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3570,6 +4148,18 @@ PrefabInstance:
     - target: {fileID: 662338683500413239, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_Name
       value: Egg
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+      propertyPath: _associatedQuests.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+      propertyPath: _associatedQuests.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
+      propertyPath: _associatedQuests.Array.data[1]
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7757197061922521932, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_LocalPosition.x

@@ -79,10 +79,12 @@ public class CollectingQuest : Quest {
     }
 
     public override void ShowMarkers() {
-        QuestMarkerDatabase.RequestShowMarkers(GetID());
+        AdditionalQuestInfo info;
+        info.isCollectingQuest = true;
+        QuestMarkerDatabase.RequestShowMarkers(GetID(), info);
         QuestMarkerManager markerManager = _collectingPoint.GetComponent<QuestMarkerManager>();
         if (markerManager != null) {
-            markerManager.AddShowRequest(GetID());
+            markerManager.AddShowRequest(GetID(), info);
         }
     }
 
