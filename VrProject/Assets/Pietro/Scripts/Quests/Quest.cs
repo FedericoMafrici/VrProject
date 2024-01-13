@@ -116,7 +116,7 @@ public abstract class Quest : MonoBehaviour {
 
         bool didStart = false;
         if (_state == QuestState.NOT_STARTED) {
-            Debug.Log(transform.name + ": started, description: " + GetQuestDescription());
+            //Debug.Log(transform.name + ": started, description: " + GetQuestDescription());
             _state = QuestState.ACTIVE;
             if (QuestStarted != null) {
                 QuestStarted(this);
@@ -134,7 +134,7 @@ public abstract class Quest : MonoBehaviour {
 
     public virtual void Deactivate() {
         if (_state == QuestState.ACTIVE) {
-            Debug.Log(transform.name + ": deactivated");
+            //Debug.Log(transform.name + ": deactivated");
             _state = QuestState.INACTIVE;
         }
     }

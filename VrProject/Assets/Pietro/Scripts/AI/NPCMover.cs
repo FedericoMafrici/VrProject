@@ -151,9 +151,9 @@ public class NPCMover : MonoBehaviour {
         _closeRadius = radiuses[1];
         _inRangeRadius= radiuses[2];
 
-        Debug.Log("Very Close Radius: " + _veryCloseRadius);
-        Debug.Log("Close Radius: " + _closeRadius);
-        Debug.Log("In Range Radius: " + _inRangeRadius);
+        //Debug.Log("Very Close Radius: " + _veryCloseRadius);
+        //Debug.Log("Close Radius: " + _closeRadius);
+        //Debug.Log("In Range Radius: " + _inRangeRadius);
 
         /*
         Debug.Log(transform.name + "Very Close Radius: " + _veryCloseRadius);
@@ -165,7 +165,7 @@ public class NPCMover : MonoBehaviour {
 
     private void GenerateStartingBehaviour() {
         if (_specialBehaviourGenerator != null) {
-            Debug.Log("Generating starting behaviour");
+            //Debug.Log("Generating starting behaviour");
             _movementBehaviour = _specialBehaviourGenerator.GenerateBehaviour(_startingSpecialBehaviour, this);
         }
     }

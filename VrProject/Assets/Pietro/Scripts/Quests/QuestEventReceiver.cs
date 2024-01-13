@@ -41,12 +41,9 @@ public abstract class QuestEventReceiver : MonoBehaviour {
 
         _eventSet = _eventList.ToHashSet();
 
-        Debug.LogWarning("iterating over quests");
         //subscribe to events for every quest
         foreach(Quest quest in _targetQuestSet) {
-            Debug.LogWarning("quest: " + quest.name);
             foreach(EventType ev in _eventSet) {
-                Debug.LogWarning("calling subcription method, event: " + ev);
                 SetEventSubscription(true, quest, ev);
             }
         }
@@ -78,7 +75,6 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         switch (eventType) {
             case EventType.START:
                 if (subscribe) {
-                    Debug.Log("subscribed to start event");
                     quest.QuestStarted += OnQuestStarted;
                 } else {
                     quest.QuestStarted -= OnQuestStarted;
