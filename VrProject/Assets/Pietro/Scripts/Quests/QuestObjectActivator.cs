@@ -33,7 +33,7 @@ public class QuestObjectActivator : QuestEventReceiver {
     }
 
     protected override void OnEventReceived(Quest quest, EventType eventType) {
-        Debug.Log("event received");
+        //Debug.Log("event received");
         if (!_objectsActivated) {
             foreach (GameObject gameObject in _gameObjectsSet) {
                 ActivateGameObj(gameObject);

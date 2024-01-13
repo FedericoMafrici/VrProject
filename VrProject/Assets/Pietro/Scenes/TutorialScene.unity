@@ -574,6 +574,8 @@ MonoBehaviour:
       - Perfetto! Adesso prova a dare da mangiare ad una gallina!
       - Per farlo avvicinati ad una gallina, guardala ed utilizza il click sinistro
         del mouse per darle da mangiare.
+      - Oppure puoi semplicemente lasciar cadere il mangime (con E) vicino ad una
+        gallina.
       - Ricorda di tenere in mano il cibo per le galline!
       - Se non hai il cibo in mano puoi selezionarlo dall'inventario utilizzando
         i tasti numerici!
@@ -591,6 +593,10 @@ MonoBehaviour:
       - Puoi divertirti ad utilizzare il mangime rimanente per farti seguire dalle
         galline, prima di darglielo da mangiare.
       - Ogni animale qui ha i propri interessi! Divertiti a scoprirli tutti!
+      - Ricorda che puoi lasciare il mangime che hai in mano in qualsiasi momento
+        premendo E.
+      - Se dovesse succedere puoi prendere altro mangime dall'inventario semplicemente
+        premere il tasto numerico corrispondente, ammesso che tu ne abbia ancora.
   - ShowIndicatorsOnStart: 1
     quest: {fileID: 1558159665}
     endStepDialogue:
@@ -2415,6 +2421,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1260936900}
+    - targetCorrespondingSourceObject: {fileID: 8616685848737228372, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1260936902}
   m_SourcePrefab: {fileID: 100100000, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
 --- !u!4 &1260936897 stripped
 Transform:
@@ -2464,6 +2473,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 2116202581}
+--- !u!114 &1260936902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260936899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41684ee9710ab43ee9c80bfa20fea6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCameraTransform: {fileID: 2116202580}
+  pickupLayerMask:
+    serializedVersion: 2
+    m_Bits: 123
+  clue: {fileID: 1646902656}
+  hotbar: {fileID: 1595855428}
+  deposit: {fileID: 655900142}
 --- !u!1 &1355800022
 GameObject:
   m_ObjectHideFlags: 0
