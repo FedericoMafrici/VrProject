@@ -43,13 +43,27 @@ public abstract class MovementBehaviour {
 
         //Debug.Log(_npcMover.name + ": position = " + _toMoveTransform.position);
 
+
+        //nested calls
+        //this way if there's no Targettable inside the larger radius TargetInRange() will not be called more than once
+        if (TargetInRange(_npcMover.GetInRangeRadius(), ref target)) {
+            nextState = _npcMover.GetState();
+            if (TargetInRange(_npcMover.GetCloseRadius(), ref target)) {
+                nextState = MovingState.CLOSE_TO_TARGET;
+                if (TargetInRange(_npcMover.GetVeryCloseRadius(), ref target)) {
+                    nextState = MovingState.VERY_CLOSE_TO_TARGET;
+                }
+            }
+        }
+
+        /*
         if (TargetInRange(_npcMover.GetVeryCloseRadius(), ref target)) {
             nextState = MovingState.VERY_CLOSE_TO_TARGET;
         } else if (TargetInRange(_npcMover.GetCloseRadius(), ref target)) {
             nextState = MovingState.CLOSE_TO_TARGET;
         } else if (TargetInRange(_npcMover.GetInRangeRadius(), ref target)) {
             nextState = _npcMover.GetState();
-        }
+        }*/
 
         ManageStateUpdate(nextState, target);
         _npcMover.SetState(nextState);
@@ -86,12 +100,27 @@ public abstract class MovementBehaviour {
         bool result = false;
 
         //check if intersected object is a Targettable,
-        //if it is check if NPCMover is interested in its type and if target's follower count has not reached its max
-        if (targettable != null && _npcMover.InterestsSet.Contains(targettable.GetTargetType()) && targettable.CanSubscribe(_npcMover)) { //TODO: visibility check through raycast
+        //if it is check if it can be followed
+        if (targettable != null && CanBeFollowed(targettable)) { //TODO: visibility check through raycast
             result = true;
         }
 
         return result;
+    }
+
+    private bool CanBeFollowed(Targettable targettable) {
+        bool result = false;
+
+        //if Targettable is also an item ensure it is reachable
+        bool inaccessibleItem = false;
+        Item item = targettable.GetComponent<Item>();
+        inaccessibleItem = (item != null && (item.isDeposited || item.isCollected));
+
+        //return true if:
+        //NPCMover is interested in Targettable type
+        //Targettable still allows for subscribers
+        //If targettable item it is accessible
+        return _npcMover.InterestsSet.Contains(targettable.GetTargetType()) && targettable.CanSubscribe(_npcMover) && !inaccessibleItem;
     }
 
     protected virtual void ManageStateUpdate(MovingState nextState, Targettable newTarget) {

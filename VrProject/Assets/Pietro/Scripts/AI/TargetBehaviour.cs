@@ -108,7 +108,6 @@ public class TargetBehaviour : MovementBehaviour {
 
         if (newTarget != null) {
             if (newTarget.transform != _target) {
-                Debug.Log(_toMoveTransform.name + " found new target");
                 base.ManageStateUpdate(nextState, newTarget);
             }
         } else {
