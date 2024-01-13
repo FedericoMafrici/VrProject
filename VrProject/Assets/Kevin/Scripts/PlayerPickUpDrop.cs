@@ -150,12 +150,12 @@ public class PlayerPickUpDrop : MonoBehaviour
         spawnedItem.GetComponent<Item>().isDeposited = true;
     }
     
-    void ThrowPickUpEvent(Item item) {
+    public void ThrowPickUpEvent(Item item) {
         if (item != null && PickUpEvent != null)
             PickUpEvent(item.itemName);
     }
 
-    void ThrowDropEvent(Item item) {
+    public void ThrowDropEvent(Item item) {
         if (item != null && DropEvent != null)
             DropEvent(item.itemName);
     }
