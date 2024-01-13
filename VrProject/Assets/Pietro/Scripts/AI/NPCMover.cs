@@ -46,6 +46,10 @@ public class NPCMover : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         _foodEater = GetComponent<FoodEater>();
+        NavMeshAgent _agent = GetComponent<NavMeshAgent>();
+        if (_agent != null ) {
+            _agent.avoidancePriority = UnityEngine.Random.Range(0, 32);
+        }
 
         foreach (TargetType type in _interestsList) {
             InterestsSet.Add(type);

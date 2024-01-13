@@ -10,7 +10,6 @@ public class PatrolBehaviour : MovementBehaviour {
     private Vector2 _delayBounds;
     private bool _targetReached;
     private bool _targetOnNavMesh;
-    private bool _onlyMoveInSurroundings = false;
     private float _range = 5.0f;
     private float _toWaitForNextTarget;
 
@@ -38,9 +37,12 @@ public class PatrolBehaviour : MovementBehaviour {
             if (_targetReached) {
                 _toWaitForNextTarget -= Time.deltaTime;
                 if (_toWaitForNextTarget <= 0) {
-                    GenerateRandomTarget();
-                    _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay befor generating new target
-                                                                                         //Debug.Log(_toMoveTransform.name + ": target reached, waiting " + _toWaitForNextTarget + " seconds before generating new one");
+
+                    //sample patrol area to find a new target, if no target is found re-sample during next update
+                    if (GenerateRandomTarget())
+                        _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay befor generating new target
+                                                                                             //Debug.Log(_toMoveTransform.name + ": target reached, waiting " + _toWaitForNextTarget + " seconds before generating new one");
+
                 }
             }
 
@@ -69,28 +71,44 @@ public class PatrolBehaviour : MovementBehaviour {
 
     }
 
-    private void GenerateRandomTarget() {
+    private bool GenerateRandomTarget() {
         NavMeshHit hit;
         Vector3 tmpTarget;
+        bool targetAssigned = false;
 
-        if (!_onlyMoveInSurroundings) {
-            tmpTarget = new Vector3(Random.Range(_patrolArea.bounds.min.x, _patrolArea.bounds.max.x), _toMoveTransform.position.y, Random.Range(_patrolArea.bounds.min.z, _patrolArea.bounds.max.z));
-        } else {
-            tmpTarget = _toMoveTransform.position + Random.insideUnitSphere * _range; //random point in a sphere surrounding the agent
-            BringInsidePatrolArea(ref tmpTarget);
-        }
+        tmpTarget = SamplePatrolArea();
+        
 
-        //find closest point on NavMesh within 1 unit
+        //try to find closest point on NavMesh within 1 unit
         if (NavMesh.SamplePosition(tmpTarget, out hit, 1.0f, -1)) {
             _target = hit.position;
             _targetOnNavMesh = true;
-        } else {
+            _agent.destination = _target;
+            _targetReached = false;
+            targetAssigned= true;
+        } /*else {
             _target = tmpTarget;
             _targetOnNavMesh = false;
-        }
-
+        }*/
+        /*
         _agent.destination = _target;
         _targetReached = false;
+        */
+
+
+        return targetAssigned;
+    }
+
+    private Vector3 SamplePatrolArea() {
+        float x = Random.Range(_patrolArea.bounds.min.x, _patrolArea.bounds.max.x);
+        float z = Random.Range(_patrolArea.bounds.min.z, _patrolArea.bounds.max.z);
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(x, _patrolArea.transform.position.y, z), Vector3.down, out hit, _patrolArea.bounds.max.y - _patrolArea.bounds.min.y, NavMesh.AllAreas)) {
+            // Set the agent's destination to the hit point with the correct Y coordinate
+            return new Vector3(x, hit.point.y, z);
+        } else {
+            return new Vector3(x, _toMoveTransform.position.y, z);
+        }
     }
 
     private void BringInsidePatrolArea(ref Vector3 point) {
