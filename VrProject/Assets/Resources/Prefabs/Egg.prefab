@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _markerPositionTransform: {fileID: 4625830173909198505}
   _markerPrefab: {fileID: 7535351951851594427, guid: 4deb470da103f614ca3f501c4edcde6f, type: 3}
-  _associatedQuests: 04000000
+  _associatedQuests: 030000000600000007000000
 --- !u!1 &8370146443025697474
 GameObject:
   m_ObjectHideFlags: 0

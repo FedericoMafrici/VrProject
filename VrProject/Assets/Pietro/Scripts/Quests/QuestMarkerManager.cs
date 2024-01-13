@@ -1,5 +1,6 @@
-using System.Collections;
+using DG.Tweening;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestMarkerManager : MonoBehaviour
@@ -9,12 +10,18 @@ public class QuestMarkerManager : MonoBehaviour
     [SerializeField] private List<QuestID> _associatedQuests;
     private Dictionary<QuestID, AdditionalQuestInfo> _requestsIDs = new Dictionary<QuestID, AdditionalQuestInfo>(); //Set of QuestsIDs of quests that have requested to show the marker
     private Vector3 _markerRelativePosition; //position of indicator relative to this GameObject
-    private bool _canBeShown = true;
+    private bool _itemGrabbed = true;
     private Item _itemComponentReference; //needed in order to make indicators disappear when an item is held
     //private int _nShowRequests = 0;
     private GameObject _markerInstance;
     private bool _isCollected = false; //needed to manage items in collecting point, find a better way
     private int _nCollectingQuests = 0; //needed to manage deposited items, find a better way
+    private Tween _rotationTween;
+
+    //needed for up and down motion
+    private float _upDownAnchorY;
+    private float _upDownAmplitude = .1f;
+    private float _upDownFrequency = 2f;
 
     // Start is called before the first frame update
     void Start() {
@@ -30,8 +37,22 @@ public class QuestMarkerManager : MonoBehaviour
         _markerRelativePosition = _markerInstance.transform.position - transform.position;
         _markerInstance.layer = LayerMask.GetMask("Ignore Raycast");
         _markerInstance.SetActive(false);
-        //_spriteCanvasInstance.transform.parent = _indicatorParentTransform;
-        
+        _upDownAnchorY = _markerInstance.transform.position.y;
+
+        //rotation motion through DOTween
+        float rotationDuration = 2;
+        _rotationTween = _markerInstance.transform.DORotate(new Vector3(0f, 360f, 0f), rotationDuration, RotateMode.FastBeyond360)
+            .SetLoops(-1)
+            .SetEase(Ease.Linear);
+
+
+        /*
+        //up and down motion through DOTween
+        float floatingHeight = 1f;
+        float floatingSpeed = 2f;
+        _upDownTween = _markerInstance.transform.DOMoveY(_markerInstance.transform.position.y + floatingHeight, floatingSpeed).SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutSine);
+        */
 
         QuestMarkerDatabase.MarkerShowEvent += OnDatabaseShowRequest;
         QuestMarkerDatabase.MarkerHideEvent += OnDatabaseHideRequest;
@@ -43,7 +64,7 @@ public class QuestMarkerManager : MonoBehaviour
             _itemComponentReference.GrabEvent += OnItemGrabbed;
             _itemComponentReference.ReleaseEvent += OnItemReleased;
             if (_itemComponentReference.isInPlayerHand) {
-                _canBeShown = false;
+                _itemGrabbed = false;
             }
         }
 
@@ -59,7 +80,7 @@ public class QuestMarkerManager : MonoBehaviour
     }
 
     private void CheckIfShow() {
-        if ((_nCollectingQuests <= 0 || !_isCollected) && _canBeShown && _requestsIDs.Count > 0) {
+        if (CanBeShown()) {
             Show();
         } else {
             Hide();
@@ -67,13 +88,19 @@ public class QuestMarkerManager : MonoBehaviour
     }
 
     private void Show() {
-        if (_markerInstance != null)
+        if (_markerInstance != null) {
+            if (!_rotationTween.IsPlaying())
+                _rotationTween.Play();
             _markerInstance.gameObject.SetActive(true);
+        }
     }
 
     private void Hide() {
-        if (_markerInstance != null)
+        if (_markerInstance != null) {
+            if (_rotationTween.IsPlaying())
+                _rotationTween.Pause();
             _markerInstance.gameObject.SetActive(false);
+        }
     }
 
     public void SetIsCollected(bool isDeposited) {
@@ -125,16 +152,18 @@ public class QuestMarkerManager : MonoBehaviour
     }
 
     public void OnItemGrabbed() {
-        _canBeShown = false;
+        _itemGrabbed = false;
         CheckIfShow();
     }
 
     public void OnItemReleased() {
-        _canBeShown = true;
+        _itemGrabbed = true;
         CheckIfShow();
     }
 
     private void OnDestroy() {
+
+        _rotationTween.Kill();
 
         if (_itemComponentReference != null) {
             _itemComponentReference.GrabEvent -= OnItemGrabbed;
@@ -149,10 +178,29 @@ public class QuestMarkerManager : MonoBehaviour
         }
     }
 
+    private void OnDisable() {
+        CheckIfShow();
+    }
+
+    private void OnEnable() {
+        CheckIfShow();
+    }
+
     // Update is called once per frame
     void Update() {
         if (_markerInstance != null) {
-            _markerInstance.transform.position = transform.position + _markerRelativePosition;
+
+            //animate in an up and down motion mantaining _upDownAnchorY as the lowest point in the animation
+            _upDownAnchorY = transform.position.y + _markerRelativePosition.y;
+            float newY = _upDownAnchorY + _upDownAmplitude * Mathf.Sin(_upDownFrequency * Time.time) + _upDownAmplitude;
+
+            //follow this transform's location but not its scale or rotation (thus simple parenting cannot be used)
+            _markerInstance.transform.position = new Vector3(transform.position.x + _markerRelativePosition.x, newY, transform.position.z + _markerRelativePosition.z);
+
         }
+    }
+
+    private bool CanBeShown() {
+        return ((_nCollectingQuests <= 0 || !_isCollected) && _itemGrabbed && _requestsIDs.Count > 0 && gameObject.activeSelf);
     }
 }
