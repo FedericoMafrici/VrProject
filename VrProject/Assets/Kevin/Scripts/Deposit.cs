@@ -12,7 +12,7 @@ public class Deposit : MonoBehaviour
     public Dictionary<Item.ItemName, GameObject> itemAssets = new Dictionary<Item.ItemName, GameObject>();
     public Dictionary<Item.ItemName, GameObject> itemCounters = new Dictionary<Item.ItemName, GameObject>();
 
-    public void Start()
+    public void Awake()
     {
         Vector3 itemCounterPosition;
         Array itemNames = Enum.GetValues(typeof(Item.ItemName));
@@ -51,6 +51,20 @@ public class Deposit : MonoBehaviour
         itemCounters[Item.ItemName.Sponge].GetComponent<ItemDepositCounter>().counter = 1;
         itemCounters[Item.ItemName.EatableApple].GetComponent<ItemDepositCounter>().counter = 0;
         itemCounters[Item.ItemName.ChickenFood].GetComponent<ItemDepositCounter>().counter = 0;
+    }
+
+    public void AddItem(Item.ItemName itemName, int amount = 1) {
+        if (itemCounters[itemName].GetComponent<ItemDepositCounter>().counter == 0) {
+            GameObject spawnedItem = SpawnItem(itemName);
+            spawnedItem.GetComponent<Item>().isDeposited = true;
+        }
+        itemCounters[itemName].GetComponent<ItemDepositCounter>().counter += amount;
+    }
+
+    private GameObject SpawnItem(Item.ItemName itemName) {
+        return Instantiate(itemAssets[itemName],
+            itemAssets[itemName].GetComponent<Item>().depositPosition,
+            Quaternion.Euler(0, 0, 0));
     }
 
 }
