@@ -511,7 +511,7 @@ Transform:
   m_GameObject: {fileID: 245098872}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.6367188, y: -1.6167209, z: 1.4944773}
+  m_LocalPosition: {x: 0.2, y: -1.6167209, z: 4.8}
   m_LocalScale: {x: 13.001151, y: 3.5410686, z: 13.001151}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -555,13 +555,15 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
     name: Zio Tobia
     sentences:
-    - "Ciao io sono Zio Tobia, ti guider\xF2 nella tua esperienza qui alla fattoria!"
+    - "Ciao io sono Zio Tobia, ti guider\xF2 nella tua esperienza qui alla fattoria!
+      Puoi avanzare nei dialoghi premendo P!"
     - 'Potresti dare da mangiare alle mie galline? '
-    - Come prima cosa raccogli il cibo per le galline guardandolo e premendo E oppure
-      Q.
-    - Se premi E prenderai il cibo in mano.
+    - Ho lasciato del mangime proprio dietro di te, puoi raccoglierlo premendo E
+      oppure Q.
+    - Se premi E prenderai il mangime in mano.
     - Se premi Q lo inserirai nel tuo inventario, potrai prenderlo in mano premendo
       il tasto numerico corrispondente!
+    - Ricorda che puoi muoverti con W, A, S, D e guardarti intorno muovendo il mouse!
   _tutorialSteps:
   - ShowIndicatorsOnStart: 1
     quest: {fileID: 128068128}
@@ -581,35 +583,55 @@ MonoBehaviour:
       sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
       name: Zio Tobia
       sentences:
-      - Dai da mangiare alle galline
+      - Bravissimo! Impari in fretta!
+      - Ho lasciato altro mangime dietro di te, potresti continuare a dare da mangiare
+        alle galline? Sono molto affamate oggi...
+      - 'A proposito! Hai notato che le galline tendono a seguire il mangime quando
+        ne sentono l''odore? '
+      - Puoi divertirti ad utilizzare il mangime rimanente per farti seguire dalle
+        galline, prima di darglielo da mangiare.
+      - Ogni animale qui ha i propri interessi! Divertiti a scoprirli tutti!
   - ShowIndicatorsOnStart: 1
     quest: {fileID: 1558159665}
     endStepDialogue:
       sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
       name: Zio Tobia
       sentences:
-      - Prendi un uovo
+      - Grazie mille! Ma avrei ancora bisogno del tuo aiuto...
+      - "Vedi, tra un po' andr\xF2 in citt\xE0 per vendere i miei prodotti, ma non
+        ho ancora caricato niente sulla mia Ape Car!"
+      - Potresti aiutarmi? Dovrei aver lasciato delle uova vicino al pollaio, potresti
+        prenderle? Cerca sulla destra del pollaio!
   - ShowIndicatorsOnStart: 1
     quest: {fileID: 171680201}
     endStepDialogue:
       sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
       name: Zio Tobia
       sentences:
-      - Metti l'uovo nell'Apecar
+      - Perfetto! Addesso portalo all'Ape Car e depositalo per favore.
+      - Puoi caricare l'oggetto semplicemente lasciandolo con E mentre lo hai in
+        mano e facendolo cadere sul retro della mia Ape Car!
   - ShowIndicatorsOnStart: 1
     quest: {fileID: 1241927438}
     endStepDialogue:
       sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
       name: Zio Tobia
       sentences:
-      - Metti le altre uova nell'apecar
+      - Ehi! Impari in fretta! Puoi fare lo stesso anche con le altre uova? dovrebbero
+        essercene ancora nel pollaio.
   - ShowIndicatorsOnStart: 1
     quest: {fileID: 1240624023}
     endStepDialogue:
       sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
       name: Zio Tobia
       sentences:
-      - Tutorial finito
+      - Perfetto! Sei stato bravissimo! La tua avventura alla fattoria inizia qui!
+      - "Ci sono molti animali e piante da scoprire, ed attivit\xE0 da completare!"
+      - "Al termine di ogni attivit\xE0 potresti scoprire nuove informazioni sugli
+        animali ed i prodotti della fattoria!"
+      - "Premi ESC? per aprire il diario e controllare le informazioni che hai scoperto
+        finora, oltre che le attivit\xE0 che ti restano da fare."
+      - Buon divertimento!
   _dialogueTrigger: {fileID: 281137904}
 --- !u!114 &281137904
 MonoBehaviour:
@@ -768,10 +790,6 @@ PrefabInstance:
     - target: {fileID: 662338683500413239, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_Name
       value: Egg (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
-      propertyPath: _associatedQuests.Array.data[0]
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7757197061922521932, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1626,10 +1644,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
-      propertyPath: _associatedQuests.Array.data[0]
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1929,7 +1943,7 @@ PrefabInstance:
       objectReference: {fileID: 245098874}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.3
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1937,7 +1951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.9944773
+      value: 6.8
       objectReference: {fileID: 0}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1966,10 +1980,6 @@ PrefabInstance:
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
-      propertyPath: _associatedQuests.Array.data[0]
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2686,10 +2696,6 @@ PrefabInstance:
     - target: {fileID: 662338683500413239, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_Name
       value: Egg (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
-      propertyPath: _associatedQuests.Array.data[0]
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7757197061922521932, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4082,7 +4088,7 @@ PrefabInstance:
       objectReference: {fileID: 245098874}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.2546616
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4090,7 +4096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.9944773
+      value: 7.7
       objectReference: {fileID: 0}
     - target: {fileID: 4406812627087459146, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4120,18 +4126,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
-      propertyPath: _associatedQuests.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
-      propertyPath: _associatedQuests.Array.data[0]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8211271472649531335, guid: 32b41ae2a943e5e41a9d568520c6f341, type: 3}
-      propertyPath: _associatedQuests.Array.data[1]
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4148,18 +4142,6 @@ PrefabInstance:
     - target: {fileID: 662338683500413239, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_Name
       value: Egg
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
-      propertyPath: _associatedQuests.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
-      propertyPath: _associatedQuests.Array.data[0]
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4702948493496765524, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
-      propertyPath: _associatedQuests.Array.data[1]
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7757197061922521932, guid: ef0ea88867c214ef3af5b41d838785c2, type: 3}
       propertyPath: m_LocalPosition.x
