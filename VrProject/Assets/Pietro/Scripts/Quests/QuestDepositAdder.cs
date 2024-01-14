@@ -17,7 +17,7 @@ public class QuestDepositAdder : QuestEventReceiver {
     [SerializeField] private bool _addOnce = true;
     private HashSet<ItemEntry> _itemsToAddSet;
     private bool _alreadyAdded = false;
-    protected override void Start() {
+    protected override void Awake() {
         if (_deposit == null) {
             Debug.LogError(transform.name + ": QuestDepositAdder has no Deposit reference");
         }
@@ -30,18 +30,20 @@ public class QuestDepositAdder : QuestEventReceiver {
 
         _itemsToAddSet = _itemsToAdd.ToHashSet();
 
-        base.Start();
+        base.Awake();
     }
 
     protected override void OnEventReceived(Quest quest, EventType eventType) {
+        Debug.Log("event received");
         if (!_addOnce || !_alreadyAdded) {
+
             foreach (ItemEntry entry in _itemsToAddSet) {
                 _deposit.AddItem(entry.itemName, entry.amount);
             }
             _alreadyAdded= true;
         }
 
-        if (_addOnce) {
+        if (_addOnce && _alreadyAdded) {
             SetEventSubscription(false, quest, eventType);
         }
     }

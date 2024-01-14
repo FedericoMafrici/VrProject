@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimalFood : ItemConsumable {
-    [SerializeField] private float _interactRange;
+    [SerializeField] private float _interactRange = .5f;
     private RaycastManager<FoodEater> _raycastManager;
     private KeyCode _interactKey = KeyCode.Mouse0;
+
     // Start is called before the first frame update
     public void Start() {
         base.Start();
@@ -23,7 +24,7 @@ public class AnimalFood : ItemConsumable {
 
         //do raycast through RaycastManager
         bool inputPressed = Input.GetKeyDown(_interactKey);
-        InteractionResult<FoodEater> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, FoodInterestsEater);
+        InteractionResult<FoodEater> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, FoodInterestsEater, LayerMask.GetMask("Animals"));
 
         FoodEater eater = interactionResult.currentInteracted;
 

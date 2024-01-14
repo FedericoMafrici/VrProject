@@ -45,13 +45,14 @@ public class PlayerItemManager : MonoBehaviour {
                 //remove from hotbar if needed
                 _hotbar.activeItemWrapper.amount--;
                 _playerPickUp.ThrowDropEvent(_hotbar.activeItemObj);
+                _hotbar.Deselect();
+                Destroy(heldItem.gameObject);
+                if (_hotbar.activeItemObj)
+                    _hotbar.activeItemObj = null;
                 if (_hotbar.activeItemWrapper.amount == 0) {
                     _hotbar.Remove(_hotbar.activeItemWrapper);
-                    _hotbar.Deselect();
-                    Destroy(heldItem.gameObject);
 
-                    if (_hotbar.activeItemObj)
-                        _hotbar.activeItemObj = null;
+                    
 
                     
                 }

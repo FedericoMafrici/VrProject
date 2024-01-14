@@ -11,11 +11,9 @@ public abstract class AbstractStructuredQuest : Quest {
     protected List<Quest> _steps = new List<Quest>();
     protected int _curStepIdx = 0;
     protected Quest _currentStep = null;
-
     public event EventHandler<StepEventArgs> StepCompleted;
 
-    protected override void Start() {
-
+    protected override void Init() {
         DisableCollider();
 
         if (_steps == null) {
@@ -23,19 +21,17 @@ public abstract class AbstractStructuredQuest : Quest {
         } else if (_steps.Count == 0) {
             Debug.LogError(transform.name + " step list in StructuredQuest component is empty");
         } else {
-            foreach(Quest step in _steps) {
+            foreach (Quest step in _steps) {
                 if (step == null) {
                     Debug.LogError(transform.name + " found a \"null\" step in the step list");
                 } else {
-                   step.DisableCollider();
+                    step.DisableCollider();
                 }
             }
             _currentStep = _steps[_curStepIdx];
             SubscribeToCurrStep();
         }
-
-        base.Start();
-
+        base.Init();
     }
 
     protected override void OnTriggerEnter(Collider other) {
@@ -56,8 +52,8 @@ public abstract class AbstractStructuredQuest : Quest {
         PlayerExitedQuestArea();
     }
 
-    public override void InitQuest() {
-        _currentStep.InitQuest();
+    public override void AreaCheck() {
+        _currentStep.AreaCheck();
     }
 
     public override void Complete() {

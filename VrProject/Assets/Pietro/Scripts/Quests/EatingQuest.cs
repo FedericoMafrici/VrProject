@@ -10,8 +10,7 @@ public class EatingQuest : Quest {
     [SerializeField] private string _description;
     private int _nEaten = 0;
 
-    protected override void Start() {
-
+    protected override void Init() {
         if (_foodEaters == null) {
             Debug.LogWarning(transform.name + " food eaters list is null");
         } else if (_foodEaters.Count == 0) {
@@ -27,7 +26,7 @@ public class EatingQuest : Quest {
             Debug.LogWarning(transform.name + ": no description");
         }
 
-        base.Start();
+        base.Init();
     }
 
     private void OnFoodEaten(object sender, EatEventArgs args) {
@@ -81,9 +80,9 @@ public class EatingQuest : Quest {
     public override void ShowMarkers() {
 
         foreach (FoodEater fe in _foodEaters) {
-            QuestMarkerManager indicator = fe.GetComponent<QuestMarkerManager>();
-            if (indicator != null) {
-                indicator.AddShowRequest(GetID());
+            QuestMarkerManager marker = fe.GetComponent<QuestMarkerManager>();
+            if (marker != null) {
+                marker.AddShowRequest(GetID());
             }
         }
 
@@ -91,9 +90,9 @@ public class EatingQuest : Quest {
 
     public override void HideMarkers() {
         foreach (FoodEater fe in _foodEaters) {
-            QuestMarkerManager indicator = fe.GetComponent<QuestMarkerManager>();
-            if (indicator != null) {
-                indicator.RemoveShowRequest(GetID());
+            QuestMarkerManager marker = fe.GetComponent<QuestMarkerManager>();
+            if (marker != null) {
+                marker.RemoveShowRequest(GetID());
             }
         }
 

@@ -9,11 +9,10 @@ public class FriendshipQuest : Quest {
     [SerializeField] private string _description;
     private float _nBefriended = 0;
 
-    protected override void Start() { 
-
+    protected override void Init() {
         if (_pettables == null) {
             Debug.LogError(transform.name + ": pettable list is null");
-        } else if (_pettables.Count == 0 ) {
+        } else if (_pettables.Count == 0) {
             Debug.LogWarning(transform.name + ": pettable list is null");
         }
 
@@ -26,7 +25,7 @@ public class FriendshipQuest : Quest {
             Debug.LogWarning(transform.name + ": no description");
         }
 
-        base.Start();
+        base.Init();
     }
 
     private void OnAnimalBefriended(object sender, EventArgs args) {
@@ -85,5 +84,27 @@ public class FriendshipQuest : Quest {
         result += " " + _nBefriended + "/" + _nToBefriend;
         return result;
     }
+
+    public override void ShowMarkers() {
+
+        foreach (Pettable p in _pettables) {
+            QuestMarkerManager marker = p.GetComponent<QuestMarkerManager>();
+            if (marker != null) {
+                marker.AddShowRequest(GetID());
+            }
+        }
+
+    }
+
+    public override void HideMarkers() { 
+        foreach (Pettable p in _pettables) {
+            QuestMarkerManager marker = p.GetComponent<QuestMarkerManager>();
+            if (marker != null) {
+                marker.RemoveShowRequest(GetID());
+            }
+        }
+
+    }
+
 
 }

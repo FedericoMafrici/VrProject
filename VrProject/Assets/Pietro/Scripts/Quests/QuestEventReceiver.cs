@@ -14,19 +14,21 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         AREA_EXIT
     }
 
+    [Header("Quests to listen settings")]
     [SerializeField] private Transform _questCollection; //a reference to a transform whose children are the quest that need to be subscripted to
     [SerializeField] private List<Quest> _targetQuestList; //used if _questSetParent is null to determine set of quest to subscribe to
+    [Header("Events to subscribe to")]
     [SerializeField] private List<EventType> _eventList;
     private HashSet<Quest> _targetQuestSet = new HashSet<Quest>();
     private HashSet<EventType> _eventSet;
     // Start is called before the first frame update
-    protected virtual void Start() {
+    protected virtual void Awake() {
 
         if (_questCollection == null) {
             if (_targetQuestList == null) {
                 Debug.LogError(transform.name + ": QuestEventReceiver has no list of quests to keep track of");
             } else if (_targetQuestList == null) {
-                Debug.LogError(transform.name + ": QuestEventReceiver: list of quests is empty");
+                Debug.LogWarning(transform.name + ": QuestEventReceiver: list of quests is empty");
             }
 
             _targetQuestSet = _targetQuestList.ToHashSet();
@@ -36,7 +38,7 @@ public abstract class QuestEventReceiver : MonoBehaviour {
                 Debug.LogWarning(transform.name + ": QuestEventReceiver: Quest Set was specified through a transform, but target quest list is not empty, target quest list will be ignored");
             }
 
-            _targetQuestSet = GetQuestsFromParentTransform();
+            _targetQuestSet = GetQuestsFromParentTransform(_questCollection);
         }
 
         _eventSet = _eventList.ToHashSet();
@@ -122,12 +124,12 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         }
     }
 
-    private HashSet<Quest> GetQuestsFromParentTransform() {
+    protected HashSet<Quest> GetQuestsFromParentTransform(Transform collection) {
         HashSet<Quest> quests = new HashSet<Quest>();
-        int nChildren = _questCollection.childCount;
+        int nChildren = collection.childCount;
 
         for (int i = 0; i < nChildren; i++) {
-            Transform child = _questCollection.GetChild(i);
+            Transform child = collection.GetChild(i);
             Quest toAdd = child.GetComponent<Quest>();
             if (toAdd != null) {
                 quests.Add(toAdd);

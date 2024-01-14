@@ -9,16 +9,16 @@ public class CollectingQuest : Quest {
     [SerializeField] private int _nToCollect;
     private int _nCollected = 0;
 
-    protected override void Start() {
+    protected override void Init() {
         if (_collectingPoint == null) {
             Debug.LogError(transform.name + ": no Collecting Point set for Collecting Quest");
         }
-        if (_nToCollect <= 0 ) {
+        if (_nToCollect <= 0) {
             Debug.LogWarning(transform.name + ": count of items to deposit was lower than 1, setting it to 1");
             _nToCollect = 1;
         }
 
-        base.Start();
+        base.Init();
     }
 
     protected override void OnQuestStart() {
@@ -35,7 +35,6 @@ public class CollectingQuest : Quest {
 
     private void AddItem(int count) {
         if (_state == QuestState.ACTIVE) {
-            Debug.Log(transform.name + ": collected " + count + " " + _targetItem);
             _nCollected += count;
             Progress();
 

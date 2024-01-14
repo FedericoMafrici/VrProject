@@ -9,22 +9,23 @@ public class PickUpQuest : Quest
     private int _nPickedUp = 0;
     [SerializeField] private Item.ItemName _targetItemName;
     [SerializeField] private PlayerPickUpDrop _playerPickUp;
-    // Start is called before the first frame update
-    protected override void Start() {
+
+    protected override void Init() {
         if (_playerPickUp == null) {
             Debug.LogError(transform.name + ": no PlayerPickUpDrop reference set");
         }
 
         if (_nToPickUp <= 0) {
             Debug.LogWarning(transform.name + ": number of items to pick up was lower than 1, setting it to 1");
-            _nToPickUp= 1;
+            _nToPickUp = 1;
         }
 
-        base.Start();
+        base.Init();
     }
 
     protected override void OnQuestStart() {
         base.OnQuestStart();
+
         _playerPickUp.PickUpEvent += OnPickUp;
         _playerPickUp.DropEvent += OnDrop;
     }

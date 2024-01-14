@@ -12,7 +12,9 @@ public enum QuestID {
     TUTORIAL_FIRST_EATING_STEP,
     TUTORIAL_SECOND_EATING_STEP,
     TUTORIAL_FIRST_COLLECTING_STEP,
-    TUTORIAL_SECOND_COLLECTING_STEP
+    TUTORIAL_SECOND_COLLECTING_STEP,
+    PETTABLE_TUTORIAL,
+    PETTABLE_TUTORIAL_LOOKAT_STEP
 }
 
 public enum QuestState {
@@ -24,9 +26,12 @@ public enum QuestState {
 
 public abstract class Quest : MonoBehaviour {
     [SerializeField] private QuestID _id;
-    [SerializeField] protected bool _isStep; //should be false if the true is a step in a StructuredQuest, false otherwise
+    [SerializeField] protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
+    [SerializeField] private bool _startOnEnter = false;
+    [SerializeField] private bool _showMarkersOnEnter = false;
     [SerializeField] private GameObject _alert;
     protected  QuestState _state = QuestState.NOT_STARTED;
+    private bool _inited = false;
 
     public event Action<Quest> EnteredArea;
     public event Action<Quest> ExitedArea;
@@ -34,7 +39,20 @@ public abstract class Quest : MonoBehaviour {
     public event Action<Quest> QuestProgressed;
     public event Action<Quest> QuestCompleted;
 
-    protected virtual void Start() {
+    private void Start() {
+        CheckInit();
+        if (!_isStep) {
+            AreaCheck();
+        }
+    }
+
+    protected void CheckInit() {
+        if (!_inited) {
+            Init();
+        }
+    }
+
+    protected virtual void Init() {
         BoxCollider coll = GetComponent<BoxCollider>();
         if (coll == null) {
             Debug.LogWarning(transform.name + " no BoxCollider component found");
@@ -42,9 +60,7 @@ public abstract class Quest : MonoBehaviour {
             Debug.LogWarning(transform.name + " BoxCollider component is not set as \"is trigger\"");
         }
 
-        if (!_isStep) {
-            InitQuest();
-        }
+        _inited= true;
     }
 
     protected virtual void OnTriggerEnter(Collider other) {
@@ -60,8 +76,12 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void PlayerEnteredQuestArea() {
-        if (!_isStep) {
+        if (!_isStep && _startOnEnter) {
             StartQuest();
+        }
+
+        if (_state == QuestState.ACTIVE && _showMarkersOnEnter) {
+            ShowMarkers();
         }
 
         if (EnteredArea != null) {
@@ -73,6 +93,10 @@ public abstract class Quest : MonoBehaviour {
         if (ExitedArea != null) {
             ExitedArea(this);
         }
+
+        if (_state == QuestState.ACTIVE && _showMarkersOnEnter) {
+            HideMarkers();
+        }
     }
 
     protected virtual void Progress() {
@@ -81,7 +105,7 @@ public abstract class Quest : MonoBehaviour {
         }
     }
 
-    public virtual void InitQuest() {
+    public virtual void AreaCheck() {
         if (PlayerIsInQuestArea()) {
             PlayerEnteredQuestArea();
         }
@@ -113,12 +137,14 @@ public abstract class Quest : MonoBehaviour {
     public virtual bool StartQuest() { 
         //starts quest if it has not started yet
         //returns true if quest gets started
+        CheckInit();
 
         bool didStart = false;
         if (_state == QuestState.NOT_STARTED) {
             //Debug.Log(transform.name + ": started, description: " + GetQuestDescription());
             _state = QuestState.ACTIVE;
             if (QuestStarted != null) {
+                Debug.Log(transform.name + "started event");
                 QuestStarted(this);
             }
             didStart = true;
@@ -129,7 +155,9 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void OnQuestStart() {
-       
+        if (!_startOnEnter) {
+            AreaCheck();
+        }
     }
 
     public virtual void Deactivate() {

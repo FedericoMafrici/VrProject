@@ -10,8 +10,8 @@ public class QuestObjectActivator : QuestEventReceiver {
     private HashSet<GameObject> _gameObjectsSet = new HashSet<GameObject>();
     private bool _objectsActivated = false; //failsafe in case GameObjects get activated twice
 
-    protected override void Start() {
-        base.Start();
+    protected override void Awake() {
+        base.Awake();
 
         if (_gameObjects == null) {
             Debug.LogError(transform.name + " QuestObjectActivator: no list of GameObjects");

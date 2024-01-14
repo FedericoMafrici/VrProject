@@ -18,8 +18,7 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
     [SerializeField] private DialogueTrigger _dialogueTrigger;
     private Dialogue _currentDialogue = null;
 
-    protected override void Start() {
-
+    protected override void Init() {
         if (_startingDialogue == null) {
             Debug.LogWarning(transform.name + ": no starting dialogue");
         }
@@ -45,7 +44,7 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
             //_tutorial.StepCompleted += OnStepCompleted;
         }
 
-        base.Start();
+        base.Init();
     }
 
     void Update() {
@@ -64,7 +63,7 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
     }
 
     private void UpdateActiveDialogue(Dialogue newDialogue) {
-        if ((newDialogue != null) && (newDialogue != _currentDialogue)) {
+        if ((newDialogue != null) && (newDialogue != _currentDialogue) && newDialogue.sentences.Count() > 0) {
             if (_currentDialogue != null) {
                 _dialogueTrigger.ForceEndCurrentDialogue();
             }

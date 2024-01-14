@@ -74,14 +74,12 @@ public class TargetBehaviour : MovementBehaviour {
 
                 } else {
                     //if agent is looking at food then eat it
-                    //_npcMover.DestroyTarget(_target);
-                    if (_foodEater != null) {
-                        if (_targettable != null) {
-                            ItemConsumable consumable = _targettable.GetComponent<ItemConsumable>();
-                            if (consumable != null) {
-                                _foodEater.AutoEatFood(consumable);
-                            }
+                    if (_targettable != null && _foodEater != null) {
+                        AnimalFood food = _targettable.GetComponent<AnimalFood>();
+                        if (food != null) {
+                            _foodEater.AutoEatFood(food);
                         }
+
                     }
                 }
 

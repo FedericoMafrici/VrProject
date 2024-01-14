@@ -7,7 +7,7 @@ using UnityEngine;
 public class Petter : MonoBehaviour {
 
     [SerializeField] Camera _playerCamera;
-    [SerializeField] private const float _petDistance = 1.5f;
+    [SerializeField] private float _petDistance = 1.0f;
     private RaycastManager<Pettable> _raycastManager;
     private KeyCode _interactKey = KeyCode.Mouse1;
 
@@ -16,8 +16,7 @@ public class Petter : MonoBehaviour {
     public static event EventHandler InPetRange;
     public static event EventHandler OutOfPetRange;
 
-
-
+    public static event Action LookedAtPettable;
 
     // Start is called before the first frame update
     void Start() {
@@ -30,7 +29,7 @@ public class Petter : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         bool inputPressed = InputManager.InputsAreEnabled() ? Input.GetKey(_interactKey) : false;
-        InteractionResult<Pettable> interactResult = _raycastManager.CheckRaycast(_playerCamera, inputPressed);
+        InteractionResult<Pettable> interactResult = _raycastManager.CheckRaycast(_playerCamera, inputPressed, LayerMask.GetMask("Animals"));
 
         bool didPet = interactResult.didInteract;
         Pettable previousPetted = interactResult.previousInteracted;
@@ -53,6 +52,10 @@ public class Petter : MonoBehaviour {
         if (interactResult.enteredRange) {
             if (InPetRange != null)
                 InPetRange(this, EventArgs.Empty);
+
+            if (LookedAtPettable != null)
+                LookedAtPettable();
+
         } else if (interactResult.exitedRange) {
             if (OutOfPetRange != null)
                 OutOfPetRange(this, EventArgs.Empty);

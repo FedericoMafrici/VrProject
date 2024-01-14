@@ -18,26 +18,24 @@ public class FoodEater : MonoBehaviour {
         }
     }
 
-    public void AutoEatFood(ItemConsumable eaten) {
-        if (eaten != null && !eaten.isInPlayerHand && !eaten.isCollected && !eaten.isDeposited && !eaten.isFading && FoodInterestsAnimal(eaten)) {
+    public void AutoEatFood(AnimalFood eaten) {
+        if (eaten != null && !eaten.isInPlayerHand && !eaten.isCollected && !eaten.isDeposited && !eaten.isFading && !eaten.IsConsumed() && FoodInterestsAnimal(eaten)) {
             Debug.Log("eating food");
             EatFood(eaten);
-            eaten.Consume();
-            Destroy(eaten.gameObject);
+            
         }
     }
 
-    public void ForceEatFood(ItemConsumable food) {
+    public void ForceEatFood(AnimalFood food) {
         if (food != null && !food.isFading) {
             EatFood(food);
         }
     }
 
-    private void EatFood(ItemConsumable food) {
+    private void EatFood(AnimalFood food) {
         if (EatEvent != null) {
             EatEvent(this, new EatEventArgs(food, transform));
         }
-
         food.Consume();
         //food.StartFading();
     }

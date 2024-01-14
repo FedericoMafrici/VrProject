@@ -5,11 +5,10 @@ using UnityEngine;
 public class SimpleStructuredQuest : AbstractStructuredQuest
 {
     [SerializeField] List<Quest> _stepList;
-    // Start is called before the first frame update
-    protected override void Start()
-    {
+
+    protected override void Init() {
         _steps = _stepList;
-        base.Start();
+        base.Init();
     }
 
     // Update is called once per frame

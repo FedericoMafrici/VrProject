@@ -16,8 +16,8 @@ public class QuestObjectSpawner : QuestEventReceiver
                                                               //will spawn an object for each transform in the list
     private bool _alreadySpawned = false;
     
-    protected override void Start() {
-        base.Start();
+    protected override void Awake() {
+        base.Awake();
 
         if (_toSpawn == null) {
             Debug.LogError(transform.name + " QuestGameObjectSpawner has no object to spawn reference");

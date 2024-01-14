@@ -5,6 +5,7 @@ using UnityEngine;
 public /*abstract*/ class ItemConsumable : Item
 {
     private List<Item> productItems;
+    private bool consumed = false;
     
     public ItemConsumable(ItemName itemName=ItemName.WheatSeed)
     {
@@ -14,6 +15,10 @@ public /*abstract*/ class ItemConsumable : Item
     
     public void Consume()
     {
-        
+        consumed = true;
+    }
+
+    public bool IsConsumed() {
+        return consumed;
     }
 }
