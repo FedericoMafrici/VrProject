@@ -32,7 +32,8 @@ public /*abstract*/ class Item : Grabbable
         EarOfWheat,
         Bucket,
         Milk,
-        Pomade
+        Pomade,
+        TreeBranch
     }
 
     public enum ItemCategory

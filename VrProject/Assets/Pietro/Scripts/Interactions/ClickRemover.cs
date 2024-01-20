@@ -25,7 +25,7 @@ public class ClickRemover : AnimalPartRemover {
 
         //do raycast through RaycastManager
         bool inputPressed = InputManager.InputsAreEnabled() ? Input.GetKey(_interactKey) : false;
-        InteractionResult<RemovablePart> result = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBeRemoved);
+        InteractionResult<RemovablePart> result = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBeRemoved, LayerMask.GetMask("Animals"));
 
         RemovablePart toRemove = result.currentInteracted;
 

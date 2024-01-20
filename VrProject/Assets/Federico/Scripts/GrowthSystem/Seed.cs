@@ -17,14 +17,23 @@ public class Seed : ItemConsumable
         //corpo del metodo aggiunto da Pietro
 
         base.Start();
-        _raycastManager = new RaycastManager<FarmingLand>(_interactDistance, false);
+        if (_raycastManager == null) { 
+            InitRaycastManager();
+        }
 
+    }
+
+    void InitRaycastManager() {
+        _raycastManager = new RaycastManager<FarmingLand>(_interactDistance, false);
     }
 
     //aggiunto da Pietro:
     public override UseResult Use(PlayerItemManager itemManager) {
         // get reference to camera in order to determine raycast origin
         Camera playerCamera = itemManager.GetCamera();
+        if (_raycastManager == null) {
+            InitRaycastManager();
+        }
 
         // generate default return value
         UseResult useResult = new UseResult();

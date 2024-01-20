@@ -8,7 +8,7 @@ public class Pettable : MonoBehaviour {
     private const float _maxFriendship = 100.0f;
     private float _friendship;
     private bool _isAtMaxFriendship;
-    [SerializeField] private float _friendshipGrowthRate;
+    [SerializeField] private float _friendshipGrowthRate = 20f;
     [SerializeField] private Bar _progressBar;
 
     public event EventHandler Befriended;
@@ -74,7 +74,7 @@ public class Pettable : MonoBehaviour {
 
     private void StartMoving() {
         if (_npcMover != null) {
-            _npcMover.StartMoving();
+            _npcMover.StartMovingDelayed(2f);
         }
     }
 

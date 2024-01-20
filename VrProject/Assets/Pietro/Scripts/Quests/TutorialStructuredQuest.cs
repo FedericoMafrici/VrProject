@@ -74,7 +74,7 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
 
     protected override void OnQuestStart() {
         base.OnQuestStart();
-       
+        Debug.Log(transform.name + ": quest started");
         //when the tutorial starts trigger the tutorial's starting dialogue
         UpdateActiveDialogue(_startingDialogue);
     }

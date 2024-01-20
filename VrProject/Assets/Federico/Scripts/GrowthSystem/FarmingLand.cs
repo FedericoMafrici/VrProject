@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class FarmingLand : MonoBehaviour
     public bool tree=false; 
     GameObject tmp;
     public CropBehaviour  crop=null;
+
+    public event Action<CropBehaviour, bool> CropPlanted;
+
    public  void Interact(Seed seed)
     {
         Debug.Log(" finalmente hai puntato alla terra");
@@ -28,7 +32,9 @@ public class FarmingLand : MonoBehaviour
             crop.transform.localPosition=Vector3.zero;
             crop.Plant();
 
-
+            if (CropPlanted != null) {
+                CropPlanted(crop, tree);
+            }
 
         }
         else

@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CropBehaviour : MonoBehaviour
-{
+public class CropBehaviour : MonoBehaviour {
 
     public SeedData seedToGrow;
     
@@ -12,14 +12,15 @@ public class CropBehaviour : MonoBehaviour
     private GameObject seedling;
     private GameObject harvestable;
    
-   
     public CropState cropState;
-    // Start is called before the first frame update
     public int growth=0;
     public enum CropState
     {
         Seed,SeedLing,Harvestable
     }
+
+    public event Action<CropState> GrowthEvent; //aggiunto da Pietro
+    public event Action CropDestroyed; //aggiunto da Pietro - not used yet, needed to manage possible case in which the crop gets destroyed
 
     // PLANTING SYSTEM //it should receive the seedData from outside 
     public void Plant( )
@@ -45,6 +46,10 @@ public class CropBehaviour : MonoBehaviour
             break;
             case 2: switchState(CropState.Harvestable);
             break;
+        }
+
+        if (GrowthEvent != null) {
+            GrowthEvent(cropState);
         }
     }
 public void switchState(CropState stateToSwitch)

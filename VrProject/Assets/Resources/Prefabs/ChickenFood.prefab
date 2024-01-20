@@ -161,7 +161,7 @@ MonoBehaviour:
   isFading: 0
   isDeposited: 0
   isCollected: 0
-  _interactRange: 1
+  _interactRange: 3
 --- !u!114 &5499947214203132684
 MonoBehaviour:
   m_ObjectHideFlags: 0

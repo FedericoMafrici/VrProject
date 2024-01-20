@@ -28,12 +28,13 @@ public class RubRemover : AnimalPartRemover {
 
         //do raycast through RaycastManager
         bool inputPressed = InputManager.InputsAreEnabled() ? Input.GetKey(_interactKey) : false;
-        InteractionResult<RemovablePart> interactResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBeRemoved);
+        InteractionResult<RemovablePart> interactResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBeRemoved, LayerMask.GetMask("Animals"));
 
         //check result of raycast and determine if some removable that can be removed was found
         //update return value accordingly
         RemovablePart toRemove = interactResult.currentInteracted;
         RemovablePart previousRemovable = interactResult.previousInteracted;
+
         if (interactResult.canCallBehaviour) {
             RemovePart(toRemove);
             if (interactResult.interactedWithNewTarget) {

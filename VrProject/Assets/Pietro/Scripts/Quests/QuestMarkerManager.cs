@@ -10,7 +10,7 @@ public class QuestMarkerManager : MonoBehaviour
     [SerializeField] private List<QuestID> _associatedQuests;
     private Dictionary<QuestID, AdditionalQuestInfo> _requestsIDs = new Dictionary<QuestID, AdditionalQuestInfo>(); //Set of QuestsIDs of quests that have requested to show the marker
     private Vector3 _markerRelativePosition; //position of indicator relative to this GameObject
-    private bool _itemGrabbed = true;
+    private bool _itemGrabbed = false;
     private Item _itemComponentReference; //needed in order to make indicators disappear when an item is held
     //private int _nShowRequests = 0;
     private GameObject _markerInstance;
@@ -34,7 +34,7 @@ public class QuestMarkerManager : MonoBehaviour
         }
 
         _markerInstance = Instantiate(_markerPrefab, _markerPositionTransform.position, Quaternion.identity);
-        _markerRelativePosition = _markerInstance.transform.position - transform.position;
+        _markerRelativePosition = _markerInstance.transform.position - _markerPositionTransform.position;
         _markerInstance.layer = LayerMask.GetMask("Ignore Raycast");
         _markerInstance.SetActive(false);
         _upDownAnchorY = _markerInstance.transform.position.y;
@@ -64,7 +64,7 @@ public class QuestMarkerManager : MonoBehaviour
             _itemComponentReference.GrabEvent += OnItemGrabbed;
             _itemComponentReference.ReleaseEvent += OnItemReleased;
             if (_itemComponentReference.isInPlayerHand) {
-                _itemGrabbed = false;
+                _itemGrabbed = true;
             }
         }
 
@@ -113,7 +113,7 @@ public class QuestMarkerManager : MonoBehaviour
     }
 
     public void AddShowRequest(QuestID questId, AdditionalQuestInfo questInfo) {
-        if (!_requestsIDs.ContainsKey(questId)) {
+        if (_associatedQuests.Contains(questId) && !_requestsIDs.ContainsKey(questId)) {
             _requestsIDs.Add(questId, questInfo);
             if (questInfo.isCollectingQuest) {
                 _nCollectingQuests++;
@@ -152,12 +152,12 @@ public class QuestMarkerManager : MonoBehaviour
     }
 
     public void OnItemGrabbed() {
-        _itemGrabbed = false;
+        _itemGrabbed = true;
         CheckIfShow();
     }
 
     public void OnItemReleased() {
-        _itemGrabbed = true;
+        _itemGrabbed = false;
         CheckIfShow();
     }
 
@@ -191,16 +191,22 @@ public class QuestMarkerManager : MonoBehaviour
         if (_markerInstance != null) {
 
             //animate in an up and down motion mantaining _upDownAnchorY as the lowest point in the animation
-            _upDownAnchorY = transform.position.y + _markerRelativePosition.y;
+            _upDownAnchorY = _markerPositionTransform.position.y + _markerRelativePosition.y;
             float newY = _upDownAnchorY + _upDownAmplitude * Mathf.Sin(_upDownFrequency * Time.time) + _upDownAmplitude;
 
             //follow this transform's location but not its scale or rotation (thus simple parenting cannot be used)
-            _markerInstance.transform.position = new Vector3(transform.position.x + _markerRelativePosition.x, newY, transform.position.z + _markerRelativePosition.z);
+            _markerInstance.transform.position = new Vector3(_markerPositionTransform.position.x + _markerRelativePosition.x, newY, _markerPositionTransform.position.z + _markerRelativePosition.z);
 
         }
     }
 
     private bool CanBeShown() {
-        return ((_nCollectingQuests <= 0 || !_isCollected) && _itemGrabbed && _requestsIDs.Count > 0 && gameObject.activeSelf);
+        return ((_nCollectingQuests <= 0 || !_isCollected) && !_itemGrabbed && _requestsIDs.Count > 0 && gameObject.activeSelf);
+    }
+
+    public void RemoveAssociatedQuest(QuestID id) {
+        //used if, no matter what, the marker won't need to be shown again for a given quest
+        RemoveShowRequest(id);
+        _associatedQuests.Remove(id);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro.Examples;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,17 +15,22 @@ public enum MovingState {
     VERY_CLOSE_TO_TARGET
 }
 
-public enum SpecialBehaviourID {
-    BASIC_FOLLOW_PATH
+public enum BehaviourID {
+    NONE,
+    BASIC_FOLLOW_PATH,
+    FOLLOW_TARGET,
+    REACH_TARGET,
+    PATROL,
+    INTEREST
 }
 
 public class NPCMover : MonoBehaviour {
 
     private MovingState _state = MovingState.PATROL;
 
-    private float _inRangeRadius = 5.0f;
-    private float _closeRadius = 2.0f;
-    private float _veryCloseRadius = .5f;
+    [SerializeField] private float _inRangeRadius = 10.0f;
+    [SerializeField] private float _closeRadius = 5.0f;
+    [SerializeField] private float _veryCloseRadius = 2f;
     private float _toWaitBeforeMoving = 0.0f;
     private Coroutine _waitingCoroutine = null;
     private FoodEater _foodEater;
@@ -37,11 +43,13 @@ public class NPCMover : MonoBehaviour {
     [Header("Interests")]
     [SerializeField] private List<TargetType> _interestsList;
     public HashSet<TargetType> InterestsSet = new HashSet<TargetType>();
-    private MovementBehaviour _movementBehaviour;
+    private MovementBehaviour _currentBeahviour;
 
     [Header("Behaviour generator parameters")]
-    [SerializeField] SpecialBehaviourID _startingSpecialBehaviour;
-    SpecialBehaviourGenerator _specialBehaviourGenerator;
+    [SerializeField] BehaviourID _startingSpecialBehaviour;
+    BehaviourGenerator _behaviourGenerator;
+
+    public event Action NPCDestinationReachedEvent;
 
     // Start is called before the first frame update
     void Start() {
@@ -55,24 +63,24 @@ public class NPCMover : MonoBehaviour {
             InterestsSet.Add(type);
         }
 
-        SetInterestRadius();
+        //SetInterestRadius();
         //adjustInterestRadius();
 
-        _specialBehaviourGenerator = GetComponentInChildren<SpecialBehaviourGenerator>();
+        _behaviourGenerator = GetComponent<BehaviourGenerator>();
         GenerateStartingBehaviour();
 
-        if (_movementBehaviour == null) {
+        if (_currentBeahviour == null) {
             //create default behaviour
             PatrolBehaviour tmpPatrolBehaviour = new PatrolBehaviour(transform, _patrolArea, new Vector2(_minPatrolDelay, _maxPatrolDelay));
 
             if (tmpPatrolBehaviour.HasValidParameters) {
-                _movementBehaviour = tmpPatrolBehaviour;
+                _currentBeahviour = tmpPatrolBehaviour;
                 _state = MovingState.PATROL;
             }
 
-        } else if (!_movementBehaviour.HasValidParameters) {
+        } else if (!_currentBeahviour.HasValidParameters) {
             Debug.LogWarning("MovementBehaviour for " + transform.name + " has invalid parameters, disabling behaviour");
-            _movementBehaviour = null;
+            _currentBeahviour = null;
         }
      
 
@@ -81,7 +89,7 @@ public class NPCMover : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         
-        if (_movementBehaviour != null) {
+        if (_currentBeahviour != null) {
             /*
             if (_nextBehaviour != null) {
                 _movementBehaviour.Delete();
@@ -91,7 +99,7 @@ public class NPCMover : MonoBehaviour {
             }
             */
 
-            _movementBehaviour.Move();
+            _currentBeahviour.Move();
         }
     }
 
@@ -168,9 +176,9 @@ public class NPCMover : MonoBehaviour {
     }
 
     private void GenerateStartingBehaviour() {
-        if (_specialBehaviourGenerator != null) {
+        if (_behaviourGenerator != null) {
             //Debug.Log("Generating starting behaviour");
-            _movementBehaviour = _specialBehaviourGenerator.GenerateBehaviour(_startingSpecialBehaviour, this);
+            SetBehaviour(_startingSpecialBehaviour);
         }
     }
 
@@ -212,20 +220,55 @@ public class NPCMover : MonoBehaviour {
         return _foodEater;
     }
 
+    public MovementBehaviour GetMovementBehaviour() {
+        return _currentBeahviour;
+    }
+
+    public void SetBehaviour(BehaviourID id) {
+        MovementBehaviour newBehaviour;
+
+        switch (id) {
+            case BehaviourID.PATROL:
+                newBehaviour = new PatrolBehaviour(transform, _patrolArea, new Vector2(_minPatrolDelay, _maxPatrolDelay));
+                break;
+
+            case BehaviourID.INTEREST:
+                newBehaviour = null;
+                break;
+
+            default:
+                if (_behaviourGenerator != null) {
+                    newBehaviour = _behaviourGenerator.GenerateBehaviour(id, this);
+                } else {
+                    newBehaviour = null;
+                    Debug.LogWarning(transform.name + " tried to set a MovementBehaviour through Behaviour Generator but Bhevaiour Generator is null");
+                }
+                break;
+        }
+
+        SetBehaviour(newBehaviour);
+    }
+
     public void SetBehaviour(MovementBehaviour movementBehaviour) {
-        if (movementBehaviour.HasValidParameters) {
-            if (_movementBehaviour != null) {
-                _movementBehaviour.Delete();
-            }
-            _movementBehaviour = movementBehaviour;
+        if (_currentBeahviour != null) {
+            _currentBeahviour.Delete();
+        }
+
+        if (movementBehaviour != null && movementBehaviour.HasValidParameters) {
+
+            _currentBeahviour = movementBehaviour;
         } else {
-            Debug.LogWarning(transform.name + " tried to set behaviour to an invalid one, behaviour was not set");
+            if (movementBehaviour != null) {
+                movementBehaviour.Delete();
+            }
+
+            _currentBeahviour = null;
         }
     }
 
     public void StartMoving() {
-        if (_movementBehaviour != null)
-            _movementBehaviour.Start();
+        if (_currentBeahviour != null)
+            _currentBeahviour.Start();
     }
 
     public void StartMovingDelayed(float seconds) {
@@ -242,8 +285,8 @@ public class NPCMover : MonoBehaviour {
     }
 
     public void StopMoving(float seconds = 0f) {
-        if (_movementBehaviour != null)
-            _movementBehaviour.Stop();
+        if (_currentBeahviour != null)
+            _currentBeahviour.Stop();
 
         if (seconds > 0f) {
             //Only stop for the given amount of time, then start moving again
@@ -269,6 +312,34 @@ public class NPCMover : MonoBehaviour {
 
         _waitingCoroutine = null;
         StartMoving();
+    }
+
+    public void SetPatrolArea(BoxCollider newArea, bool destroyOld = false, bool changeBehaviour = true) {
+        if (newArea != null) { 
+            if (destroyOld) {
+                Destroy(_patrolArea.gameObject);
+            }
+            _patrolArea = newArea;
+            if (changeBehaviour) {
+                SetBehaviour(BehaviourID.PATROL);
+            }
+        }
+    }
+
+    //needed for some escort quests
+    public void OnDestinationReached(object sender, EventArgs args) {
+        (sender as TargetBehaviour).TargetReachedEvent -= OnDestinationReached;
+        if (NPCDestinationReachedEvent != null) {
+            NPCDestinationReachedEvent();
+        }
+    }
+
+    public bool IsTargetReached() {
+        if (_currentBeahviour is TargetBehaviour) {
+            return (_currentBeahviour as TargetBehaviour).IsTargetReached();
+        }
+
+        return false;
     }
 
 }

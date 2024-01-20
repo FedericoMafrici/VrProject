@@ -144,7 +144,7 @@ public abstract class MovementBehaviour {
     }
 
     protected void SetNewTargetBehaviour(Transform target) {
-        _npcMover.SetBehaviour(new TargetBehaviour(_toMoveTransform, target, _npcMover.GetFoodEaterReference()));
+        _npcMover.SetBehaviour(new InterestBehaviour(_toMoveTransform, target, _npcMover.GetFoodEaterReference()));
     }
 
     virtual public void Stop() {
