@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bridge
+* source:	https://sketchfab.com/3d-models/bridge-a48c59ebc5004703b6292b06043712ea
+* author:	demidrew (https://sketchfab.com/demidrew)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bridge" (https://sketchfab.com/3d-models/bridge-a48c59ebc5004703b6292b06043712ea) by demidrew (https://sketchfab.com/demidrew) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
