@@ -1,11 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AnimalFood : ItemConsumable {
+    [SerializeField] private string _clueText = "Premi [CLICK SINISTRO] per dare da mangiare";
     [SerializeField] private float _interactRange = .5f;
     private RaycastManager<FoodEater> _raycastManager;
     private KeyCode _interactKey = KeyCode.Mouse0;
+
+    public static event EventHandler<ClueEventArgs> InFeedRange;
+    public static event EventHandler<ClueEventArgs> OutOfFeedRange;
 
     // Start is called before the first frame update
     public void Start() {
@@ -38,9 +44,13 @@ public class AnimalFood : ItemConsumable {
         }
 
         if (interactionResult.enteredRange) {
-            //ThrowInRangeEvent();
+            if (InFeedRange != null) {
+                InFeedRange(this, new ClueEventArgs(ClueID.FEED, _clueText));
+            }
         } else if (interactionResult.exitedRange) {
-            //ThrowOutOfRangeEvent();
+            if (OutOfFeedRange != null) {
+                OutOfFeedRange(this, new ClueEventArgs(ClueID.FEED, _clueText));
+            }
         }
 
         return useResult;
@@ -50,5 +60,10 @@ public class AnimalFood : ItemConsumable {
         return eater.FoodInterestsAnimal(this);
     }
 
+    void OnDestroy() {
+        if (OutOfFeedRange != null) {
+            OutOfFeedRange(this, new ClueEventArgs(ClueID.FEED, _clueText));
+        }
+    }
 
 }

@@ -41,7 +41,8 @@ public class PatrolBehaviour : MovementBehaviour {
                     //sample patrol area to find a new target, if no target is found re-sample during next update
                     if (GenerateRandomTarget())
                         _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay befor generating new target
-                                                                                             //Debug.Log(_toMoveTransform.name + ": target reached, waiting " + _toWaitForNextTarget + " seconds before generating new one");
+                    else
+                        Debug.LogWarning(_npcMover.transform + " target generation failed, resampling at next update");
 
                 }
             }
@@ -102,10 +103,11 @@ public class PatrolBehaviour : MovementBehaviour {
     private Vector3 SamplePatrolArea() {
         float x = Random.Range(_patrolArea.bounds.min.x, _patrolArea.bounds.max.x);
         float z = Random.Range(_patrolArea.bounds.min.z, _patrolArea.bounds.max.z);
+        float y = _patrolArea.transform.position.y;
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(x, _patrolArea.transform.position.y, z), Vector3.down, out hit, _patrolArea.bounds.max.y - _patrolArea.bounds.min.y, NavMesh.AllAreas)) {
+        if (Physics.Raycast(new Vector3(x, y, z), Vector3.down, out hit, _patrolArea.bounds.max.y - _patrolArea.bounds.min.y, NavMesh.AllAreas)) {
             // Set the agent's destination to the hit point with the correct Y coordinate
-            return new Vector3(x, hit.point.y, z);
+            return hit.point;
         } else {
             return new Vector3(x, _toMoveTransform.position.y, z);
         }

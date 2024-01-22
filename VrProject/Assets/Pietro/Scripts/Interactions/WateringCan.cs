@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,11 @@ using UnityEngine;
 public class WateringCan : ItemTool {
     private RaycastManager<FarmingLand> _raycastManager;
     [SerializeField] private float _interactDistance;
+    [SerializeField] private string _clueText = "Premi [CLICK SINISTRO] per annaffiare";
     private KeyCode _interactKey = KeyCode.Mouse0;
+
+    public static event EventHandler<ClueEventArgs> InWateringRange;
+    public static event EventHandler<ClueEventArgs> OutOfWateringRange;
 
     WateringCan() : base(ItemName.WateringCan) {
         _raycastManager = new RaycastManager<FarmingLand>(_interactDistance, false);
@@ -40,15 +45,25 @@ public class WateringCan : ItemTool {
         }
 
         if (interactionResult.enteredRange) {
-            //ThrowInRangeEvent();
+            if (InWateringRange != null) {
+                InWateringRange(this, new ClueEventArgs(ClueID.WATER, _clueText));
+            }
         } else if (interactionResult.exitedRange) {
-            //ThrowOutOfRangeEvent();
+            if (OutOfWateringRange != null) {
+                OutOfWateringRange(this, new ClueEventArgs(ClueID.WATER, _clueText));
+            }
         }
 
         return useResult;
     }
 
     private bool LandCanBeWatered(FarmingLand land) {
-        return (land.crop != null);
+        return (land.crop != null && land.crop.cropState != CropBehaviour.CropState.Harvestable);
+    }
+
+    private void OnDestroy() {
+        if (OutOfWateringRange != null) {
+            OutOfWateringRange(this, new ClueEventArgs(ClueID.WATER, _clueText));
+        }
     }
 }

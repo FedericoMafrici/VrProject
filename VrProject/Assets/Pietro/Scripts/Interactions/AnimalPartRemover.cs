@@ -7,9 +7,13 @@ public abstract class AnimalPartRemover : ItemTool {
     //[SerializeField] protected Camera _playerCamera;
     [SerializeField] protected RemovableType _targetType;
     [SerializeField] protected float _interactRange = 1.5f;
+    [SerializeField] private string _clueText;
+    [SerializeField] private ClueID _clueID;
 
-    public static event EventHandler InRange;
-    public static event EventHandler OutOfRange;
+    public static event EventHandler<ClueEventArgs> InRemovalRange;
+    public static event EventHandler<ClueEventArgs> OutOfRemovalRange;
+    public static event EventHandler<ClueEventArgs> RemovalStartedEvent;
+    public static event EventHandler<ClueEventArgs> RemovalStoppedEvent;
 
     public AnimalPartRemover(Item.ItemName itemName) : base(itemName) { }
 
@@ -26,16 +30,31 @@ public abstract class AnimalPartRemover : ItemTool {
     }
 
     protected void ThrowInRangeEvent() {
-        if (InRange != null) {
-            InRange(this, EventArgs.Empty);
+        if (InRemovalRange != null) {
+            InRemovalRange(this, new ClueEventArgs(_clueID, _clueText));
         }
     }
 
-    //public abstract void CheckInteraction(Camera playerCamera);
-
     protected void ThrowOutOfRangeEvent() {
-        if (OutOfRange != null) {
-            OutOfRange(this, EventArgs.Empty);
+        if (OutOfRemovalRange != null) {
+            OutOfRemovalRange(this, new ClueEventArgs(_clueID, _clueText));
         }
+    }
+
+    protected void ThrowRemStartedEvent() {
+        if (RemovalStartedEvent != null) {
+            RemovalStartedEvent(this, new ClueEventArgs(_clueID, _clueText));
+        }
+    }
+
+    protected void ThrowRemStoppedEvent() {
+        if (RemovalStoppedEvent != null) {
+            RemovalStoppedEvent(this, new ClueEventArgs(_clueID, _clueText));
+        }
+    }
+
+    private void OnDestroy() {
+        ThrowRemStoppedEvent();
+        ThrowOutOfRangeEvent();
     }
 }

@@ -52,7 +52,7 @@ public class NPCMover : MonoBehaviour {
     public event Action NPCDestinationReachedEvent;
 
     // Start is called before the first frame update
-    void Start() {
+    void Awake() {
         _foodEater = GetComponent<FoodEater>();
         NavMeshAgent _agent = GetComponent<NavMeshAgent>();
         if (_agent != null ) {

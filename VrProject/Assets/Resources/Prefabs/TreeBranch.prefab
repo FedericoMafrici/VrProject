@@ -151,10 +151,11 @@ MonoBehaviour:
   itemName: 18
   itemCategory: 2
   depositPosition: {x: 0, y: 0, z: 0}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 2873afd8412734500a4afdee29aa9ac3, type: 3}
   isFading: 0
   isDeposited: 0
   isCollected: 0
+  _clueText: Premi [CLICK SINISTRO] per dare da mangiare
   _interactRange: 3
 --- !u!114 &-2689598371585725074
 MonoBehaviour:

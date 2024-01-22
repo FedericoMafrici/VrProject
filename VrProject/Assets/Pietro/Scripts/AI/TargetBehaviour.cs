@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TargetBehaviour : MovementBehaviour {
     private float _minDistance;
@@ -15,17 +16,26 @@ public class TargetBehaviour : MovementBehaviour {
     public event EventHandler TargetReachedEvent;
 
     public TargetBehaviour(float minDist, float maxDist, Transform trgt, Transform toMoveTransform, bool rt = false) : base(toMoveTransform) { 
-        _minDistance = minDist;
-        _maxDistance = maxDist;
         _target= trgt;
         _reachTarget= rt;
+        if (_reachTarget) {
+            _minDistance = 1;
+        } else {
+            _minDistance = minDist;
+        }
+        _maxDistance = maxDist;
         ValidateParameters();
     }
 
     public override void Move() {
 
+        NavMeshHit hit;
         bool justReachedTarget = false;
-        _agent.destination = _target.position;
+        if( NavMesh.SamplePosition(_target.position, out hit, 2, NavMesh.AllAreas)) {
+            _agent.destination = hit.position;
+        } else {
+            _agent.destination = _target.position;
+        }
 
         if (!_reachTarget) {
             //NPC will stop at a given distance from the target
@@ -55,6 +65,16 @@ public class TargetBehaviour : MovementBehaviour {
             }
         }
 
+    }
+
+    private Vector3 GetTargetPosOnNavMesh() {
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(_target.position.x, _target.position.y, _target.position.z), Vector3.down, out hit, NavMesh.AllAreas)) {
+            // Set the agent's destination to the hit point with the correct Y coordinate
+            return hit.point;
+        } else {
+            return _target.position;
+        }
     }
 
     private void ValidateParameters() {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -6,6 +7,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+
+//aggiunto da Pietro
+public enum ClueID {
+    PET,
+    FEED,
+    CLEAN,
+    SHEAR,
+    HEAL,
+    PLANT,
+    WATER
+}
 
 public class PlayerRaycast : MonoBehaviour
 {
@@ -18,6 +30,34 @@ public class PlayerRaycast : MonoBehaviour
     private const float pickupDistance = 5f;
     private Item item;
     public Deposit deposit;
+
+    public Dictionary<ClueID, string> _addedClues = new Dictionary<ClueID, string>(); //aggiunto da Pietro
+
+    private void Start() {
+        //petter events
+        Petter.InPetRange += OnAddClueEvent;
+        Petter.StoppedPetting += OnAddClueEvent;
+        Petter.OutOfPetRange += OnRemoveClueEvent;
+        Petter.StartedPetting += OnRemoveClueEvent;
+
+        //food events
+        AnimalFood.InFeedRange += OnAddClueEvent;
+        AnimalFood.OutOfFeedRange += OnRemoveClueEvent;
+
+        //animal remover events
+        AnimalPartRemover.InRemovalRange += OnAddClueEvent;
+        AnimalPartRemover.RemovalStoppedEvent += OnAddClueEvent;
+        AnimalPartRemover.OutOfRemovalRange += OnRemoveClueEvent;
+        AnimalPartRemover.RemovalStartedEvent -= OnRemoveClueEvent;
+
+        //planting events
+        Seed.InLandRange += OnAddClueEvent;
+        Seed.OutOfLandRange += OnRemoveClueEvent;
+
+        //watering events
+        WateringCan.InWateringRange += OnAddClueEvent;
+        WateringCan.OutOfWateringRange += OnRemoveClueEvent;
+    }
 
     void Update()
     {
@@ -57,5 +97,42 @@ public class PlayerRaycast : MonoBehaviour
         
         else
             clue.text = "";
+
+        foreach(string clueText in _addedClues.Values) {
+            clue.text += "\n" + clueText;
+        }
+    }
+
+    //aggiunto da Pietro
+    public void OnAddClueEvent(object sender, ClueEventArgs args) {
+        AddClue(args.clueID, args.clueText);
+    }
+
+    //aggiunto da Pietro
+    public void OnRemoveClueEvent(object sender, ClueEventArgs args) {
+        RemoveClue(args.clueID);
+    }
+
+    //aggiunto da Pietro
+    public void AddClue(ClueID id, string clueText) {
+        if (!_addedClues.ContainsKey(id)) { 
+            _addedClues.Add(id, clueText);
+        }
+    }
+
+    //aggiunto da Pietro
+    public void RemoveClue(ClueID id) {
+        _addedClues.Remove(id);
+    }
+}
+
+//aggiunto da Pietro
+public class ClueEventArgs : EventArgs {
+    public ClueID clueID;
+    public string clueText;
+
+    public ClueEventArgs(ClueID id, string cT) {
+        clueID = id;
+        clueText = cT;
     }
 }

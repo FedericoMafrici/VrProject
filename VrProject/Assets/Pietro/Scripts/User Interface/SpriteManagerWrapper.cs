@@ -18,8 +18,8 @@ public class PetSpriteManagerWrapper : MonoBehaviour {
         Petter.StoppedPetting+= OnPettingStopped;
         Petter.InPetRange += WhenInPetRange;
         Petter.OutOfPetRange+= WhenOutOfPetRange;
-        AnimalPartRemover.InRange += WhenInRemovalRange;
-        AnimalPartRemover.OutOfRange += WhenOutOfRemovalRange;
+        AnimalPartRemover.InRemovalRange += WhenInRemovalRange;
+        AnimalPartRemover.OutOfRemovalRange += WhenOutOfRemovalRange;
     }
 
     public void OnPettingStarted(object sender, EventArgs args) {

@@ -7,26 +7,23 @@ using UnityEngine;
 public class LionQuestBehaviour : MonoBehaviour {
     [SerializeField] private FarmingLand _farmingLand;
     [SerializeField] private CropBehaviour _crop;
-    [SerializeField] private BoxCollider _finalPatrolArea;
     [SerializeField] private NPCMover _npcMover;
     private bool _isDistracted = false;
 
     public event Action LionDistractedEvent;
 
-    private void Start() {
+    private void Awake() {
         if (_farmingLand == null) {
             Debug.LogError(transform.name + ": no Farming Land set");
-        }
-
-        if (_finalPatrolArea == null) {
-            Debug.LogError(transform.name + ": no Final Patrol Area set");
         }
 
         if (_npcMover == null) {
             Debug.LogError(transform.name + ": no NPC Mover set");
         }
 
-        _farmingLand.CropPlanted += OnCropPlanted;
+        if (_farmingLand.crop == null && !_isDistracted) {
+            _farmingLand.CropPlanted += OnCropPlanted;
+        }
     }
 
     void OnCropPlanted(CropBehaviour plantedCrop, bool isTree) {
@@ -38,15 +35,18 @@ public class LionQuestBehaviour : MonoBehaviour {
         }
     }
 
+    void DistractLion() {
+        _crop.GrowthEvent -= OnCropGrowth;
+        _crop.CropDestroyed -= OnCropDestroyed;
+        _isDistracted = true;
+        if (LionDistractedEvent != null) {
+            LionDistractedEvent();
+        }
+    }
+
     void OnCropGrowth(CropBehaviour.CropState newState) {
         if (newState == CropBehaviour.CropState.Harvestable) {
-            _npcMover.SetPatrolArea(_finalPatrolArea);
-            _crop.GrowthEvent -= OnCropGrowth;
-            _crop.CropDestroyed -= OnCropDestroyed;
-            _isDistracted = true;
-            if (LionDistractedEvent != null) {
-                LionDistractedEvent();
-            }
+            DistractLion();
         }
     }
 
@@ -60,5 +60,18 @@ public class LionQuestBehaviour : MonoBehaviour {
 
     public bool IsDistracted() {
         return _isDistracted;
+    }
+
+    private void CheckCrop() {
+        if (_farmingLand.crop != null) {
+            OnCropPlanted(_farmingLand.crop, _farmingLand.tree);
+            if (_farmingLand.tree) {
+                OnCropGrowth(_crop.cropState);
+            }
+        }
+    }
+
+    private void OnEnable() {
+        CheckCrop();
     }
 }

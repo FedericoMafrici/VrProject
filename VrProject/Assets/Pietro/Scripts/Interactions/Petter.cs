@@ -8,13 +8,14 @@ public class Petter : MonoBehaviour {
 
     [SerializeField] Camera _playerCamera;
     [SerializeField] private float _petDistance = 1.0f;
+    [SerializeField] private string _clueText = "Premi [CLICK DESTRO] e muovi [MOUSE] per accarezzare";
     private RaycastManager<Pettable> _raycastManager;
     private KeyCode _interactKey = KeyCode.Mouse1;
 
-    public static event EventHandler StartedPetting;
-    public static event EventHandler StoppedPetting;
-    public static event EventHandler InPetRange;
-    public static event EventHandler OutOfPetRange;
+    public static event EventHandler<ClueEventArgs> StartedPetting;
+    public static event EventHandler<ClueEventArgs> StoppedPetting;
+    public static event EventHandler<ClueEventArgs> InPetRange;
+    public static event EventHandler<ClueEventArgs> OutOfPetRange;
 
     public static event Action LookedAtPettable;
 
@@ -40,25 +41,25 @@ public class Petter : MonoBehaviour {
         if (interactResult.interactedWithNewTarget) {
             petted.PettingStarted();
             if (StartedPetting != null)
-                StartedPetting(this, EventArgs.Empty);
+                StartedPetting(this, new ClueEventArgs(ClueID.PET, _clueText));
         }
 
         if (interactResult.abandonedPreviousTarget) {
             previousPetted.PettingStopped();
             if (StoppedPetting != null)
-                StoppedPetting(this, EventArgs.Empty);
+                StoppedPetting(this, new ClueEventArgs(ClueID.PET, _clueText));
         }
 
         if (interactResult.enteredRange) {
             if (InPetRange != null)
-                InPetRange(this, EventArgs.Empty);
+                InPetRange(this, new ClueEventArgs(ClueID.PET, _clueText));
 
             if (LookedAtPettable != null)
                 LookedAtPettable();
 
         } else if (interactResult.exitedRange) {
             if (OutOfPetRange != null)
-                OutOfPetRange(this, EventArgs.Empty);
+                OutOfPetRange(this, new ClueEventArgs(ClueID.PET, _clueText));
         }
 
         if (interactResult.canCallBehaviour) {
@@ -69,6 +70,14 @@ public class Petter : MonoBehaviour {
 
     public string GetPetText() {
         return "Premi " + _interactKey.ToString() + " per accarezzare";
+    }
+
+    void OnDestroy() {
+        if (StoppedPetting != null)
+            StoppedPetting(this, new ClueEventArgs(ClueID.PET, _clueText));
+
+        if (OutOfPetRange != null)
+            OutOfPetRange(this, new ClueEventArgs(ClueID.PET, _clueText));
     }
 
 }

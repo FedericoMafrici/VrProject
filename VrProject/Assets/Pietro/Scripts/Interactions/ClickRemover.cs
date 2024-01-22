@@ -35,12 +35,14 @@ public class ClickRemover : AnimalPartRemover {
             RemovePart(result.currentInteracted);
             if (result.interactedWithNewTarget) {
                 toRemove.RemovalStarted();
+                ThrowRemStoppedEvent();
             }
             useResult.itemUsed = true;
         }
 
         if (result.abandonedPreviousTarget) {
             result.previousInteracted.RemovalStopped();
+            ThrowRemStoppedEvent();
         }
 
         if (result.enteredRange) {

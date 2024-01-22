@@ -32,8 +32,8 @@ public class InputTextManager : MonoBehaviour {
 
         Petter.InPetRange += WhenInPetRange;
         Petter.OutOfPetRange += WhenOutOfPetRange;
-        AnimalPartRemover.InRange += WhenInRemovalRange;
-        AnimalPartRemover.OutOfRange += WhenOutOfRemovalRange;
+        AnimalPartRemover.InRemovalRange += WhenInRemovalRange;
+        AnimalPartRemover.OutOfRemovalRange += WhenOutOfRemovalRange;
     }
 
     private void WhenInPetRange(object sender, EventArgs args) {

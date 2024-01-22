@@ -186,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 60218393}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.33, y: 4.72, z: 8.74}
+  m_LocalPosition: {x: 30.59, y: 4.94, z: 8.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -718,6 +718,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1209406398861021124, guid: 17cb5f17cbe33f2419e321a44f419e6f, type: 3}
   m_PrefabInstance: {fileID: 1243585479}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &471456024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 471456025}
+  - component: {fileID: 471456026}
+  m_Layer: 0
+  m_Name: LionBehaviourModifier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &471456025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471456024}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.668866, y: 0.92356014, z: 0.506973}
+  m_LocalScale: {x: 0.080573685, y: 0.20793745, z: 0.080573685}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1359080724}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &471456026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471456024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f742cd9b44fba544b8e820bdb56ff49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questCollection: {fileID: 0}
+  _targetQuestList:
+  - {fileID: 857015294}
+  _eventList: 02000000
+  _npcMover: {fileID: 543233331}
+  _behaviourID: 4
+  _patrolArea: {fileID: 1227651630}
 --- !u!114 &501872952 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6597778241351936382, guid: 976e2e425fc364a9bbd8546817b1e202, type: 3}
@@ -921,7 +972,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _farmingLand: {fileID: 2038465491}
   _crop: {fileID: 0}
-  _finalPatrolArea: {fileID: 1227651630}
   _npcMover: {fileID: 543233331}
 --- !u!114 &543233331 stripped
 MonoBehaviour:
@@ -2201,8 +2251,8 @@ Transform:
   m_GameObject: {fileID: 1227651629}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.1, y: 5.08, z: 16}
-  m_LocalScale: {x: 9.451303, y: 1.7603387, z: 5.186601}
+  m_LocalPosition: {x: 38.1, y: 5.74, z: 16}
+  m_LocalScale: {x: 9.451303, y: 3.985935, z: 5.186601}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2325,7 +2375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _path: {fileID: 0}
   _targetToFollow: {fileID: 526021879}
-  _minDistance: 2
+  _minDistance: 3
   _maxDistance: 5
 --- !u!114 &1243585482 stripped
 MonoBehaviour:
@@ -2829,6 +2879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 972685627}
   _petDistance: 3
+  _clueText: 
 --- !u!114 &1336490916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3069,6 +3120,7 @@ Transform:
   - {fileID: 259921858}
   - {fileID: 1104143209}
   - {fileID: 1301251703}
+  - {fileID: 471456025}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1385991137
@@ -4537,7 +4589,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3120327184426187650, guid: cd6b2fbb22241634a8d6a90fdd9bbd23, type: 3}
-      insertIndex: 5
+      insertIndex: 4
       addedObject: {fileID: 543233330}
   m_SourcePrefab: {fileID: 100100000, guid: cd6b2fbb22241634a8d6a90fdd9bbd23, type: 3}
 --- !u!1660057539 &9223372036854775807

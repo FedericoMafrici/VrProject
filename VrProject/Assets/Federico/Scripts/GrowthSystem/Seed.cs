@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Seed : ItemConsumable
 {
+    [SerializeField] private string _clueText = "Premi [CLICK SINISTRO] per piantare"; //aggiunto da Pietro
     [SerializeField] private float _interactDistance; //aggiunto da Pietro
     private RaycastManager<FarmingLand> _raycastManager; //aggiunto da Pietro
     private KeyCode _interactKey = KeyCode.Mouse0; //aggiunto da Pietro
@@ -12,6 +15,9 @@ public class Seed : ItemConsumable
     public GameObject seed;
     //Debugging purpose
     public int debug=1;
+
+    public static event EventHandler<ClueEventArgs> InLandRange; //aggiutno da Pietro
+    public static event EventHandler<ClueEventArgs> OutOfLandRange; //aggiunto da Pietro
 
     void Start() {
         //corpo del metodo aggiunto da Pietro
@@ -53,9 +59,13 @@ public class Seed : ItemConsumable
         }
 
         if (interactionResult.enteredRange) {
-            //ThrowInRangeEvent();
+            if (InLandRange != null) {
+                InLandRange(this, new ClueEventArgs(ClueID.PLANT, _clueText));
+            }
         } else if (interactionResult.exitedRange) {
-            //ThrowOutOfRangeEvent();
+            if (OutOfLandRange != null) {
+                OutOfLandRange(this, new ClueEventArgs(ClueID.PLANT, _clueText));
+            }
         }
 
 
@@ -66,5 +76,9 @@ public class Seed : ItemConsumable
         return (land.crop == null && land.tree == false);
     }
 
-   
+    private void OnDestroy() {
+        if (OutOfLandRange != null) {
+            OutOfLandRange(this, new ClueEventArgs(ClueID.PLANT, _clueText));
+        }
+    }
 }

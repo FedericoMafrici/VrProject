@@ -39,18 +39,14 @@ public class RubRemover : AnimalPartRemover {
             RemovePart(toRemove);
             if (interactResult.interactedWithNewTarget) {
                 toRemove.RemovalStarted();
+                ThrowRemStartedEvent();
             }
+            useResult.itemUsed = true;
         }
-
 
         if (interactResult.abandonedPreviousTarget) {
             previousRemovable.RemovalStopped();
-        }
-
-        if (interactResult.enteredRange) {
-            //went in range
-        } else if (interactResult.exitedRange) {
-            //went out of range
+            ThrowRemStoppedEvent();
         }
 
         if (interactResult.enteredRange) {

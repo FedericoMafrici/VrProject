@@ -27,8 +27,10 @@ public class DistractLionQuest : Quest
     protected override void OnQuestStart() {
         base.OnQuestStart();
 
+        Debug.LogWarning("distract quest started");
         _lion.LionDistractedEvent += OnLionDistracted;
         if (_lion.IsDistracted()) {
+            Debug.LogWarning("Lion is already distracted");
             OnLionDistracted();
         } 
         
