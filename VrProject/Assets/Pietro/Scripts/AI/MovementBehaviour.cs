@@ -155,4 +155,8 @@ public abstract class MovementBehaviour {
         _agent.isStopped = false;
     }
 
+    public float GetCurSpeed() {
+        return _agent.velocity.magnitude;
+    }
+
     }

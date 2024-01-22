@@ -32,6 +32,7 @@ public class NPCMover : MonoBehaviour {
     [SerializeField] private float _closeRadius = 5.0f;
     [SerializeField] private float _veryCloseRadius = 2f;
     private float _toWaitBeforeMoving = 0.0f;
+    private Animator _animator;
     private Coroutine _waitingCoroutine = null;
     private FoodEater _foodEater;
 
@@ -53,6 +54,7 @@ public class NPCMover : MonoBehaviour {
 
     // Start is called before the first frame update
     void Awake() {
+        _animator = GetComponent<Animator>();
         _foodEater = GetComponent<FoodEater>();
         NavMeshAgent _agent = GetComponent<NavMeshAgent>();
         if (_agent != null ) {
@@ -98,8 +100,8 @@ public class NPCMover : MonoBehaviour {
                
             }
             */
-
             _currentBeahviour.Move();
+            UpdateAnimations();
         }
     }
 
@@ -340,6 +342,12 @@ public class NPCMover : MonoBehaviour {
         }
 
         return false;
+    }
+
+    private void UpdateAnimations() {
+        if (_animator != null) {
+            _animator.SetFloat("speed", _currentBeahviour.GetCurSpeed());
+        }
     }
 
 }
