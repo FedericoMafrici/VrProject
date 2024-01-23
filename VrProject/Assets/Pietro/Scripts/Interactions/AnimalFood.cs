@@ -16,12 +16,21 @@ public class AnimalFood : ItemConsumable {
     // Start is called before the first frame update
     public void Start() {
         base.Start();
+        InitRaycastManager();
+    }
+
+
+    void InitRaycastManager() {
         _raycastManager = new RaycastManager<FoodEater>(_interactRange, false);
     }
 
     public override UseResult Use(PlayerItemManager itemManager) { 
         // get reference to camera in order to determine raycast origin
         Camera playerCamera = itemManager.GetCamera();
+
+        if (_raycastManager == null) {
+            InitRaycastManager();
+        }
 
         // generate default return value
         UseResult useResult = new UseResult();

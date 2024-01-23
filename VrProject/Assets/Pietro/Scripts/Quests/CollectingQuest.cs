@@ -22,6 +22,8 @@ public class CollectingQuest : Quest {
     }
 
     protected override void OnQuestStart() {
+        base.OnQuestStart();
+
         //subscribe to events
         _collectingPoint.ItemInCollectingPoint += OnItemCollected;
         _collectingPoint.ItemOutOfCollectingPoint += OnItemRemoved;

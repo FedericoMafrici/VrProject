@@ -49,6 +49,7 @@ public class EatingQuest : Quest {
     }
 
     protected override void OnQuestStart() {
+        base.OnQuestStart();
 
         foreach (FoodEater fe in _foodEaters) {
             if (fe != null) {

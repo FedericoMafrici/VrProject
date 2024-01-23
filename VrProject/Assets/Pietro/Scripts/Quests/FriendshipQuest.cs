@@ -49,6 +49,7 @@ public class FriendshipQuest : Quest {
     }
 
     protected override void OnQuestStart() {
+        base.OnQuestStart();
 
         //subscribe to pettables
         foreach (Pettable pettable in _pettables) {

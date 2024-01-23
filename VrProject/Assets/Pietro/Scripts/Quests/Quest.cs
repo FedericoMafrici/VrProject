@@ -149,7 +149,6 @@ public abstract class Quest : MonoBehaviour {
             //Debug.Log(transform.name + ": started, description: " + GetQuestDescription());
             _state = QuestState.ACTIVE;
             if (QuestStarted != null) {
-                Debug.Log(transform.name + "started event");
                 QuestStarted(this);
             }
             didStart = true;
@@ -160,6 +159,7 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void OnQuestStart() {
+        Debug.Log(transform.name + " quest started");
         if (!_startOnEnter) {
             AreaCheck();
         }
