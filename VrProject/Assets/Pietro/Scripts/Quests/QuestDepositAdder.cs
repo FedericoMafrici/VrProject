@@ -34,7 +34,6 @@ public class QuestDepositAdder : QuestEventReceiver {
     }
 
     protected override void OnEventReceived(Quest quest, EventType eventType) {
-        Debug.Log("event received");
         if (!_addOnce || !_alreadyAdded) {
 
             foreach (ItemEntry entry in _itemsToAddSet) {
