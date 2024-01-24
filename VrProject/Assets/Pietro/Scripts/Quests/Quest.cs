@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Quaternion = UnityEngine.Quaternion;
 
 public enum QuestID {
     TEST_QUEST,
@@ -29,12 +31,20 @@ public enum QuestState {
     INACTIVE //not necesserily used, may be useful, signals a quest that has started, not completed but cannot be considered "active"
 }
 
+public struct JournalInformation
+{
+    public Animal.AnimalName animalName;
+    public string newInformation;
+    public int orderNumber;
+}
+
 public abstract class Quest : MonoBehaviour {
     [SerializeField] private QuestID _id;
     [SerializeField] protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     [SerializeField] private bool _startOnEnter = false;
     [SerializeField] private bool _showMarkersOnEnter = false;
     [SerializeField] private GameObject _alert;
+    [SerializeField] public List<JournalInformation> _infos;
     protected  QuestState _state = QuestState.NOT_STARTED;
     private bool _inited = false;
 

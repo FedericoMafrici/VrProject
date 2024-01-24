@@ -4,10 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Alert : MonoBehaviour
+public class Alert : QuestEventReceiver
 {
     private const float alphaValue = 0.82f;
-    private const float waitingTime = 8f;
+    private const float waitingTime = 7f;
     
     private Image background;
     private TMP_Text alertText;
@@ -23,7 +23,15 @@ public class Alert : MonoBehaviour
         background.color = c;
         alertText.alpha = 0;
     }
-    
+
+    protected override void OnEventReceived(Quest quest, EventType eventType)
+    {
+        if (eventType == EventType.COMPLETE && quest._infos.Count > 0)
+        {
+            Show();
+        }
+    }
+
     IEnumerator FadingOut()
     {
         for (int i = 0; i < 20; i++)
