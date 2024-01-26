@@ -21,8 +21,10 @@ public class Deposit : MonoBehaviour
             // TODO: if da rimuovere quando gli oggetti saranno pronti
             if (itemName == Item.ItemName.Apple
                 || itemName == Item.ItemName.Bucket
+                || itemName == Item.ItemName.CarrotsSprout
                 || itemName == Item.ItemName.Egg
                 || itemName == Item.ItemName.WheatSeed
+                || itemName == Item.ItemName.HorseShoe
                 || itemName == Item.ItemName.WateringCan
                 || itemName == Item.ItemName.EarOfWheat
                 || itemName == Item.ItemName.AppleSeed
@@ -45,10 +47,13 @@ public class Deposit : MonoBehaviour
         }
         
         // TODO: per ogni oggetto, con degli if va settato il valore predefinito di counter nel deposito
-        itemCounters[Item.ItemName.Apple].GetComponent<ItemDepositCounter>().counter = 1;
-        itemCounters[Item.ItemName.Bucket].GetComponent<ItemDepositCounter>().counter = 1;
-        itemCounters[Item.ItemName.Egg].GetComponent<ItemDepositCounter>().counter = 1;
-        itemCounters[Item.ItemName.Shaver].GetComponent<ItemDepositCounter>().counter = 1;
+        itemCounters[Item.ItemName.Apple].GetComponent<ItemDepositCounter>().counter = 0;
+        itemCounters[Item.ItemName.AppleSeed].GetComponent<ItemDepositCounter>().counter = 0;
+        itemCounters[Item.ItemName.HorseShoe].GetComponent<ItemDepositCounter>().counter = 0;
+        itemCounters[Item.ItemName.CarrotsSprout].GetComponent<ItemDepositCounter>().counter = 0;
+        itemCounters[Item.ItemName.Bucket].GetComponent<ItemDepositCounter>().counter = 0;
+        itemCounters[Item.ItemName.Egg].GetComponent<ItemDepositCounter>().counter = 0;
+        itemCounters[Item.ItemName.Shaver].GetComponent<ItemDepositCounter>().counter = 0;
         itemCounters[Item.ItemName.Sponge].GetComponent<ItemDepositCounter>().counter = 0;
         itemCounters[Item.ItemName.EatableApple].GetComponent<ItemDepositCounter>().counter = 0;
         itemCounters[Item.ItemName.ChickenFood].GetComponent<ItemDepositCounter>().counter = 0;

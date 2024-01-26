@@ -46,6 +46,8 @@ public /*abstract*/ class Item : Grabbable
     public ItemName itemName;
     public ItemCategory itemCategory;
     public Vector3 depositPosition;
+    public Vector3 depositRotation;
+    public Vector3 grabRotation;
     
     public Sprite icon;
     Renderer renderer;
