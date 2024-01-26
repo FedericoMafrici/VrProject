@@ -185,5 +185,5 @@ MonoBehaviour:
   depositPosition: {x: -22.337, y: 3.9088197, z: 20.776}
   depositRotation: {x: 270, y: 36.539997, z: 0}
   grabRotation: {x: 0, y: 0, z: 0}
-  icon: {fileID: 21300000, guid: a608be938f12b4ecab6ac8b926da6e31, type: 3}
+  icon: {fileID: 21300000, guid: 28eb29bbffe0b4c0193e2ecef3a769df, type: 3}
   isDeposited: 0

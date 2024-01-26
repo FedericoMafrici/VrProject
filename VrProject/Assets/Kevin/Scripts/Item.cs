@@ -31,7 +31,7 @@ public /*abstract*/ class Item : Grabbable
         Carrot,
         EarOfWheat,
         Bucket,
-        Milk,
+        BucketMilk,
         Pomade,
         TreeBranch
     }
