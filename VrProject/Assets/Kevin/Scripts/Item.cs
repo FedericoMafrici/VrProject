@@ -32,7 +32,8 @@ public /*abstract*/ class Item : Grabbable
         EarOfWheat,
         Bucket,
         BucketMilk,
-        Pomade,
+        OpenPomade,
+        ClosedPomade,
         TreeBranch
     }
 

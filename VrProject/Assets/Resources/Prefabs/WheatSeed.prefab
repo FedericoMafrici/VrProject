@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2563100763402894007}
   - component: {fileID: 5874367094877816863}
   - component: {fileID: 1754084054029576829}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WheatSeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,8 +204,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0011757688, y: 0.0007985424, z: 0.0005752347}
-  m_Center: {x: -0.000008601069, y: 0.00001612112, z: 0.00031967246}
+  m_Size: {x: 0.001321133, y: 0.0007985424, z: 0.0015673086}
+  m_Center: {x: 0.000002798742, y: 0.000016121116, z: 0.00081571046}
 --- !u!54 &5874367094877816863
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4566745616723347477}
   - component: {fileID: 7582299688084567343}
   - component: {fileID: -7863693965428866276}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HorseShoe
   m_TagString: Untagged
   m_Icon: {fileID: 0}

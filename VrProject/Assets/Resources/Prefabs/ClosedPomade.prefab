@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6816742075102356325
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2000003
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1999999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2000004
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.069149
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.4563
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.350105
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7069509
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70726264
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000052154057
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_Name
+      value: ClosedPomade
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2810892017029175816}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3096030643782529679}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8715435304101179746}
+  m_SourcePrefab: {fileID: 100100000, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+--- !u!1 &5933641068018032180 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+  m_PrefabInstance: {fileID: 6816742075102356325}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2810892017029175816
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933641068018032180}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.08843478, y: 0.20995459, z: 0.06440722}
+  m_Center: {x: 0.00000088475633, y: 0.102011316, z: 0.000014090907}
+--- !u!54 &3096030643782529679
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933641068018032180}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-8715435304101179746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5933641068018032180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754fc17baa1d64df1af38b3b3de0810c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInPlayerHand: 0
+  itemName: 18
+  itemCategory: 0
+  depositPosition: {x: -23.069149, y: 4.4563, z: 21.350105}
+  depositRotation: {x: 0, y: 90.02526, z: 0}
+  grabRotation: {x: 0, y: 0, z: 0}
+  icon: {fileID: 21300000, guid: cebbf4d77b3a04416b0302adfc81aff8, type: 3}
+  isDeposited: 0

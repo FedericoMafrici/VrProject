@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarrotsSprout
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: de3e0132196ed8246a4f51413f9b1f1c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4678535683903188455, guid: de3e0132196ed8246a4f51413f9b1f1c, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.02
@@ -138,8 +142,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0011757688, y: 0.0007985424, z: 0.0005752347}
-  m_Center: {x: -0.000008608519, y: 0.00001612112, z: 0.0003196706}
+  m_Size: {x: 0.0013249366, y: 0.0007985424, z: 0.0015637865}
+  m_Center: {x: -0.000008569559, y: 0.000016121116, z: 0.00081394817}
 --- !u!54 &5767648735842974106
 Rigidbody:
   m_ObjectHideFlags: 0

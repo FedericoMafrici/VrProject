@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AppleSeed
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79a2ce8a4f65d1a4594ce27524f76ecc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4678535683903188455, guid: 79a2ce8a4f65d1a4594ce27524f76ecc, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.02
@@ -138,8 +142,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0011757688, y: 0.0007985424, z: 0.0005752347}
-  m_Center: {x: -0.000008601069, y: 0.00001612112, z: 0.00031967246}
+  m_Size: {x: 0.0013872783, y: 0.0007985424, z: 0.0015412467}
+  m_Center: {x: 0.000011549617, y: 0.00001612114, z: 0.00080267637}
 --- !u!54 &6395628181208561448
 Rigidbody:
   m_ObjectHideFlags: 0
