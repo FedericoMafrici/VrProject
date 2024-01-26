@@ -50,9 +50,9 @@ public /*abstract*/ class Item : Grabbable
     public Sprite icon;
     Renderer renderer;
     
-    public bool isFading = false;
     public bool isDeposited = false;
-    public bool isCollected = false;
+    [NonSerialized] public bool isFading = false;
+    [NonSerialized] public bool isCollected = false;
     
     public Item() {}
 
