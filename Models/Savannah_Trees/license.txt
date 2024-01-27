@@ -1,0 +1,11 @@
+Model Information:
+* title:	Autumn Bush
+* source:	https://sketchfab.com/3d-models/autumn-bush-d852147a2b3e4e10a9b7b4b0bc8e3403
+* author:	Inuciian (https://sketchfab.com/Inuciian)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Autumn Bush" (https://sketchfab.com/3d-models/autumn-bush-d852147a2b3e4e10a9b7b4b0bc8e3403) by Inuciian (https://sketchfab.com/Inuciian) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
