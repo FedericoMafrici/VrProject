@@ -33,7 +33,7 @@ public class Animal : MonoBehaviour
 
     public void Update()
     {
-        if (isNoiseGenerated == true)
+        if (isNoiseGenerated)
         {
             isNoiseGenerated = false;
             float randomTime = Random.Range(10f, 30f);

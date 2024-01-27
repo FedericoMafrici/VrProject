@@ -31,7 +31,10 @@ public class PlayerItemManager : MonoBehaviour {
 
         if ( heldItem != null ) {
             UseResult useResult = heldItem.Use(this);
-            if (useResult.itemUsed) {
+            if (useResult.itemUsed)
+            {
+                heldItem.gameObject.GetComponent<AudioSource>().clip = heldItem.usageSound;
+                heldItem.gameObject.GetComponent<AudioSource>().Play();
                 //throw used event
                 if (ItemUsed != null) {
                     ItemUsed(this, new UsedItemEventArgs(heldItem));

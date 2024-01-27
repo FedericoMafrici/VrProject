@@ -51,42 +51,64 @@ public /*abstract*/ class Item : Grabbable
     public Vector3 grabRotation;
     
     public Sprite icon;
-    Renderer renderer;
+    MeshRenderer renderer;
     
     public bool isDeposited = false;
     [NonSerialized] public bool isFading = false;
     [NonSerialized] public bool isCollected = false;
     
+    private AudioSource emitter;
+    public AudioClip grabSound;
+    public AudioClip usageSound;
+
     public Item() {}
 
     public void Start()
     {
-        renderer = GetComponent<Renderer>();
-    }
-
-    IEnumerator FadingOut()
-    {
-        for (float f = 1f; f >= -0.05; f -= 0.05f)
-        {
-            Color c = renderer.material.color;
-            c.a = f;
-            renderer.material.color = c;
-            yield return new WaitForSeconds(0.05f);
-        }
+        renderer = GetComponent<MeshRenderer>();
+        emitter = GetComponent<AudioSource>();
+        emitter.volume = 1f;
+        if (grabSound == null)
+            grabSound = (AudioClip) Resources.Load("Sounds/GeneralSound");
+        if (usageSound == null)
+            usageSound = (AudioClip) Resources.Load("Sounds/GeneralSound");
     }
 
     public void StartFading()
     {
-        isFading = true;
-        StartCoroutine(StartFadingOut());
+        // isFading = true;
+        // StartCoroutine(StartFadingOut());
+        Destroy(gameObject);
     }
 
     IEnumerator StartFadingOut()
     {
+        foreach (Material material in renderer.materials)
+        {
+            material.SetFloat("_Mode", 3);
+            material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            material.SetInt("_ZWrite", 0);
+        }
+        
         yield return StartCoroutine(FadingOut());
         Destroy(gameObject);
     }
     
+    IEnumerator FadingOut()
+    {
+        for (float f = 1f; f >= -0.05; f -= 0.05f)
+        {
+            foreach (Material material in renderer.materials)
+            {
+                Color c = material.color;
+                c.a = f;
+                material.color = c;
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
     public virtual UseResult Use(PlayerItemManager itemManager) {
         UseResult result = new UseResult();
         result.itemUsed = false;

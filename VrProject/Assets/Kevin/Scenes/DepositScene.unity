@@ -1125,6 +1125,14 @@ PrefabInstance:
       propertyPath: depositPosition.z
       value: -10.272
       objectReference: {fileID: 0}
+    - target: {fileID: 6409822938136078567, guid: 101c8753c92a1495f960f59ef53a25c7, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409822938136078567, guid: 101c8753c92a1495f960f59ef53a25c7, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 6077368535163517156, guid: 38585fee3258d1d48a72d05f7396f33c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

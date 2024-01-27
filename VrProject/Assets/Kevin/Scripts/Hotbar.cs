@@ -81,7 +81,7 @@ public class Hotbar : MonoBehaviour
 
                 int lastAddedItemPos = firstEmpty;
                 firstEmpty++;
-                while (itemWrappers[firstEmpty] != null && firstEmpty != Constants.Capacity)
+                while (firstEmpty != Constants.Capacity && itemWrappers[firstEmpty] != null)
                 {
                     firstEmpty++;
                 }

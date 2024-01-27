@@ -43,6 +43,10 @@ public class PlayerPickUpDrop : MonoBehaviour
                         hotbar.Select(lastItemIndex);
                         hotbar.activeItemObj = item;
                         item.Grab(objectGrabPointTransform, true);
+                        
+                        item.GetComponent<AudioSource>().clip = item.grabSound;
+                        item.GetComponent<AudioSource>().Play();
+                        
                         Debug.Log(item + " grabbed");
 
                         if (item.isDeposited) {
@@ -70,8 +74,11 @@ public class PlayerPickUpDrop : MonoBehaviour
                     // item.Grab(objectGrabPointTransform, true); // TODO: lascio? Serve a vedere l'effetto di spostamento dell'oggetto mentre lo raccolgo
 
                     hotbar.Add(item, false);
+                    
+                    item.GetComponent<AudioSource>().clip = item.grabSound;
+                    item.GetComponent<AudioSource>().Play();
+                    
                     Debug.Log(item + " added to the hotbar");
-                    ThrowPickUpEvent(item);
 
                     if (item.isDeposited) {
                         item.isDeposited = false;
@@ -82,6 +89,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                     }
 
                     item.StartFading();
+                    ThrowPickUpEvent(item);
                 } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
                            && hotbar.activeItemObj != null) {
                     hotbar.activeItemObj.StartFading();
