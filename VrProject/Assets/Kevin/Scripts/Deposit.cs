@@ -32,7 +32,6 @@ public class Deposit : MonoBehaviour
                 || itemName == Item.ItemName.AppleSeed
                 || itemName == Item.ItemName.Shaver
                 || itemName == Item.ItemName.Sponge
-                || itemName == Item.ItemName.EatableApple
                 || itemName == Item.ItemName.ChickenFood
                 || itemName == Item.ItemName.TreeBranch
                 || itemName == Item.ItemName.Wool)
@@ -61,7 +60,6 @@ public class Deposit : MonoBehaviour
         itemCounters[Item.ItemName.Egg].GetComponent<ItemDepositCounter>().counter = 0;
         itemCounters[Item.ItemName.Shaver].GetComponent<ItemDepositCounter>().counter = 0;
         itemCounters[Item.ItemName.Sponge].GetComponent<ItemDepositCounter>().counter = 0;
-        itemCounters[Item.ItemName.EatableApple].GetComponent<ItemDepositCounter>().counter = 0;
         itemCounters[Item.ItemName.ChickenFood].GetComponent<ItemDepositCounter>().counter = 0;
         itemCounters[Item.ItemName.TreeBranch].GetComponent<ItemDepositCounter>().counter = 0;
         itemCounters[Item.ItemName.Wool].GetComponent<ItemDepositCounter>().counter = 0;

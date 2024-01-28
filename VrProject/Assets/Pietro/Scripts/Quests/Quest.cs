@@ -21,7 +21,19 @@ public enum QuestID {
     ELEPHANT_LION_STRUCTURED,
     ELEPHANT_LION_ESCORT,
     ELEPHANT_LION_REACH_TARGET,
-    ELEPHANT_LION_DISTRACT
+    ELEPHANT_LION_DISTRACT,
+    HORSE_FRIENDSHIP,
+    HORSE_EATING,
+    COW_FRIENDSHIP,
+    COW_EATING,
+    CHICKEN_FRIENDSHIP,
+    CHICKEN_EATING,
+    PIG_FRIENDSHIP,
+    PIG_EATING,
+    PIG_CLEANING,
+    SHEEP_FRIENDSHIP,
+    SHEEP_EATING,
+    SHEEP_SHAVING
 }
 
 public enum QuestState {
@@ -78,13 +90,13 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void OnTriggerEnter(Collider other) {
-        if ((LayerMask.GetMask("Player") & (1 << other.transform.gameObject.layer)) > 0) {
+        if ((_state != QuestState.COMPLETED) && (LayerMask.GetMask("Player") & (1 << other.transform.gameObject.layer)) > 0) {
             PlayerEnteredQuestArea();
         }
     }
 
     protected virtual void OnTriggerExit(Collider other) {
-        if  ((LayerMask.GetMask("Player") & (1 << other.transform.gameObject.layer)) > 0) {
+        if  ((_state != QuestState.COMPLETED) && (LayerMask.GetMask("Player") & (1 << other.transform.gameObject.layer)) > 0) {
             PlayerExitedQuestArea();
         }
     }
@@ -194,20 +206,6 @@ public abstract class Quest : MonoBehaviour {
 
     public virtual void HideMarkers() {
         
-    }
-
-    public void EnableCollider() {
-        BoxCollider coll = GetComponent<BoxCollider>();
-        if (coll != null) {
-            coll.enabled = true;
-        }
-    }
-
-    public void DisableCollider() {
-        BoxCollider coll = GetComponent<BoxCollider>();
-        if (coll != null) {
-            coll.enabled = false;
-        }
     }
 
     //allows to derived classes to accept objects to register in its "objectives"

@@ -5148,6 +5148,7 @@ GameObject:
   - component: {fileID: 3343017890336519611}
   - component: {fileID: 7093321950336494660}
   - component: {fileID: 6777194401234753019}
+  - component: {fileID: 8935378925158184706}
   m_Layer: 9
   m_Name: Pecora
   m_TagString: Untagged
@@ -5290,6 +5291,19 @@ MonoBehaviour:
   _toSpawn: {fileID: 0}
   _spawnPoint: {fileID: 0}
   _removablesParent: {fileID: 3235075172292412289}
+--- !u!114 &8935378925158184706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5172205576001883916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetFoodsList: 0a0000000c0000000d000000
 --- !u!1 &5190976323887124178
 GameObject:
   m_ObjectHideFlags: 0

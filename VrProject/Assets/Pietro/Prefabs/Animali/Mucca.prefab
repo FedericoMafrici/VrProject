@@ -5140,6 +5140,7 @@ GameObject:
   - component: {fileID: 3759593525693226470}
   - component: {fileID: 1848319221207718572}
   - component: {fileID: 1226483380845139132}
+  - component: {fileID: 832336982898733612}
   m_Layer: 9
   m_Name: Mucca
   m_TagString: Untagged
@@ -5265,6 +5266,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _friendshipGrowthRate: 20
   _progressBar: {fileID: 7121562628633492915}
+--- !u!114 &832336982898733612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5172038072026859605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetFoodsList: 0a0000000c0000000d000000
 --- !u!1 &5191407779408464267
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public abstract class AbstractStructuredQuest : Quest {
     public event EventHandler<StepEventArgs> StepCompleted;
 
     protected override void Init() {
-        DisableCollider();
+        //DisableCollider();
 
         if (_steps == null) {
             Debug.LogError(transform.name + " no step list set for StructuredQuest component");
@@ -25,7 +25,7 @@ public abstract class AbstractStructuredQuest : Quest {
                 if (step == null) {
                     Debug.LogError(transform.name + " found a \"null\" step in the step list");
                 } else {
-                    step.DisableCollider();
+                    //step.DisableCollider();
                 }
             }
             _currentStep = _steps[_curStepIdx];
@@ -118,11 +118,11 @@ public abstract class AbstractStructuredQuest : Quest {
         _currentStep.QuestCompleted -= OnStepCompleted;
         _currentStep.EnteredArea -= OnPlayerEnteredArea;
         _currentStep.ExitedArea -= OnPlayerExitedArea;
-        _currentStep.DisableCollider();
+        //_currentStep.DisableCollider();
     }
 
     private void SubscribeToCurrStep() {
-        _currentStep.EnableCollider();
+        //_currentStep.EnableCollider();
         _currentStep.QuestProgressed += OnStepProgressed;
         _currentStep.QuestCompleted += OnStepCompleted;
         _currentStep.EnteredArea += OnPlayerEnteredArea;
