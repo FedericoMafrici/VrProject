@@ -43,7 +43,7 @@ public abstract class Quest : MonoBehaviour {
     [SerializeField] protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     [SerializeField] private bool _startOnEnter = false;
     [SerializeField] private bool _showMarkersOnEnter = false;
-    [SerializeField] private List<JournalInformation> _infos;
+    [SerializeField] private JournalInformation _info;
     protected  QuestState _state = QuestState.NOT_STARTED;
     private bool _inited = false;
 
@@ -217,8 +217,8 @@ public abstract class Quest : MonoBehaviour {
 
     public abstract string GetQuestDescription();
 
-    public List<JournalInformation> GetInfos()
+    public JournalInformation GetInfo()
     {
-        return _infos;
+        return _info;
     }
 }
