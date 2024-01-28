@@ -27,12 +27,15 @@ public abstract class RemovablePart : MonoBehaviour {
         _isRemoved= false;
     }
     public virtual void Remove() {
-        if (PartRemoved != null) {
-            PartRemoved(this, new PartEventArgs(this));
-        }
+        if (!_isRemoved) {
+            if (PartRemoved != null) {
+                PartRemoved(this, new PartEventArgs(this));
+            }
 
-        RemovalStopped();
-        _isRemoved = true;
+            RemovalStopped();
+            _isRemoved = true;
+            transform.parent = null; //disable parenting
+        }
     }
 
     protected IEnumerator FadeOut() {

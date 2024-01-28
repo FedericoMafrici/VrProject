@@ -14,12 +14,19 @@ public class RubRemover : AnimalPartRemover {
 
     public void Start() {
         base.Start();
+        InitRaycastManager();
+    }
+
+    private void InitRaycastManager() {
         _raycastManager = new RaycastManager<RemovablePart>(_interactRange, true);
     }
 
     public override UseResult Use(PlayerItemManager itemManager) {
         // get reference to camera in order to determine raycast origin
         Camera playerCamera = itemManager.GetCamera();
+        if (_raycastManager == null) {
+            InitRaycastManager();
+        }
 
         // generate default return value
         UseResult useResult = new UseResult();
@@ -28,7 +35,7 @@ public class RubRemover : AnimalPartRemover {
 
         //do raycast through RaycastManager
         bool inputPressed = InputManager.InputsAreEnabled() ? Input.GetKey(_interactKey) : false;
-        InteractionResult<RemovablePart> interactResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBeRemoved, LayerMask.GetMask("Animals"));
+        InteractionResult<RemovablePart> interactResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBeRemoved, LayerMask.GetMask("RemovablePart"));
 
         //check result of raycast and determine if some removable that can be removed was found
         //update return value accordingly

@@ -11,13 +11,12 @@ GameObject:
   - component: {fileID: 6710903917814502418}
   - component: {fileID: 7678127311145884599}
   - component: {fileID: 5578490243503599485}
-  - component: {fileID: 9087689516929011544}
   - component: {fileID: 8086428834902937963}
   - component: {fileID: 1934784406395586417}
   - component: {fileID: 6073777362331892131}
   - component: {fileID: 1719237934950260655}
   m_Layer: 0
-  m_Name: Cotone
+  m_Name: Wool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7044965, w: 0.70970744}
   m_LocalPosition: {x: 1.1975, y: -1.7468405, z: -1.5625}
-  m_LocalScale: {x: 0.5225647, y: 0.5225647, z: 0.52256465}
+  m_LocalScale: {x: 0.83662605, y: 0.83662605, z: 0.836626}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -88,21 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &9087689516929011544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6226854452908527272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 511675f1578cad04eafefacf85c5adee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _type: 0
-  _npcMover: {fileID: 0}
-  _startRemoved: 0
 --- !u!136 &8086428834902937963
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -15,21 +15,25 @@ public class FadingRemovable : RemovablePart {
     }
 
     public override void Remove() {
-        _targetAlpha -= _alphaStep;
-        if (_targetAlpha <= _maxAlphaBeforeDestroying) {
-            _targetAlpha = _maxAlphaBeforeDestroying;
+        if (!_isRemoved) {
+            _targetAlpha -= _alphaStep;
+            if (_targetAlpha <= _maxAlphaBeforeDestroying) {
+                _targetAlpha = _maxAlphaBeforeDestroying;
 
-            if (_partialFadeRunning && _fadingCoroutine != null) {
-                StopCoroutine( _fadingCoroutine);
-                _partialFadeRunning= false;
+                if (_partialFadeRunning && _fadingCoroutine != null) {
+                    StopCoroutine(_fadingCoroutine);
+                    _partialFadeRunning = false;
+                }
+
+                base.Remove();
+                StartCoroutine(FadeOut());
             }
 
-            base.Remove();
-            StartCoroutine(FadeOut());
-        }
+            if (!_partialFadeRunning || _fadingCoroutine == null) {
+                _fadingCoroutine = StartCoroutine(PartialFadeOut());
+            }
 
-        if (!_partialFadeRunning || _fadingCoroutine == null) {
-            _fadingCoroutine = StartCoroutine(PartialFadeOut());
+            
         }
     }
 
