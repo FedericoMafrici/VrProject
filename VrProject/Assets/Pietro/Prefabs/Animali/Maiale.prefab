@@ -4350,7 +4350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _friendshipGrowthRate: 20
-  _progressBar: {fileID: 0}
+  _progressBar: {fileID: 9026729702566404656}
 --- !u!136 &4506111107050888897
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9545,3 +9545,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
   m_PrefabInstance: {fileID: 4920359148875669049}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9026729702566404656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4111155636885257225, guid: ddac45297f8e371418fb933c1db33083, type: 3}
+  m_PrefabInstance: {fileID: 4920359148875669049}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08fdcb509a54604bb21bae65db1feb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

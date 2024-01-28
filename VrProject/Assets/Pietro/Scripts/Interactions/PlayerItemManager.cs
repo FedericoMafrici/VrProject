@@ -32,6 +32,7 @@ public class PlayerItemManager : MonoBehaviour {
         if ( heldItem != null ) {
             UseResult useResult = heldItem.Use(this);
             if (useResult.itemUsed) {
+
                 //throw used event
                 if (ItemUsed != null) {
                     ItemUsed(this, new UsedItemEventArgs(heldItem));
