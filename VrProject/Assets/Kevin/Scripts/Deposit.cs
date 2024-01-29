@@ -39,8 +39,9 @@ public class Deposit : MonoBehaviour
                 itemAssets.Add(itemName, (GameObject) Resources.Load("Prefabs/"+itemName, typeof(GameObject)));
                 itemCounters.Add(itemName, (GameObject) Resources.Load("Prefabs/ItemDepositCounter", typeof(GameObject)));
                 itemCounterPosition = itemAssets[itemName].GetComponent<Item>().depositPosition;
-                itemCounterPosition.x += (float) 0.3;
-                itemCounterPosition.y -= (float) 0.6;
+                itemCounterPosition.x += (float) 0.1;
+                itemCounterPosition.y += (float) 0.0;
+                itemCounterPosition.z += (float) 0.3;
                 GameObject itemCounterObject = Instantiate(itemCounters[itemName], itemCounterPosition, new Quaternion(0,0,0,0));
                 itemCounterObject.GetComponent<ItemDepositCounter>().player = player;
                 itemCounters[itemName] = itemCounterObject;

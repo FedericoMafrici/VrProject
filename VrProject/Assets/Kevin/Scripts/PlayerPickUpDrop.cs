@@ -140,7 +140,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     {
         return Instantiate(deposit.itemAssets[itemName], 
             deposit.itemAssets[itemName].GetComponent<Item>().depositPosition, 
-            Quaternion.Euler(0,0,0));
+            Quaternion.Euler(deposit.itemAssets[itemName].GetComponent<Item>().depositRotation));
     }
 
     /// <summary>

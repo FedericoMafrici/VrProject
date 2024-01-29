@@ -113,14 +113,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4754371511918238141}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22167729, y: 0.6714605, z: 0.67146057, w: -0.22167724}
-  m_LocalPosition: {x: -22.674042, y: 3.9038, z: 20.99906}
+  m_LocalRotation: {x: -0.6548292, y: 0.266831, z: 0.266831, w: 0.6548292}
+  m_LocalPosition: {x: -22.676, y: 3.9038, z: 21.014}
   m_LocalScale: {x: 198.80162, y: 152.58237, z: 180.00008}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 997262578480269579}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 44.34}
 --- !u!33 &9015890389879540898
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: a804db02e0f1344939483d2ac270cf8a, type: 3}
   isDeposited: 0
+  grabSound: {fileID: 0}
   usageSound: {fileID: 0}
 --- !u!82 &-5757751828629311520
 AudioSource:
