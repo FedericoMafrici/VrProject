@@ -28,11 +28,25 @@ public class PlayerItemManager : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Item heldItem = _hotbar.activeItemObj;
+        bool itemUsed = false;
+        bool itemConsumed = false;
 
         if ( heldItem != null ) {
-            UseResult useResult = heldItem.Use(this);
-            if (useResult.itemUsed)
-            {
+            //get all the "Item" components on the object and call their "Use" method one by one
+            foreach (Item itemComponents in heldItem.transform.GetComponents<Item>()) {
+                UseResult useResult = heldItem.Use(this);
+
+                if (!itemUsed && useResult.itemUsed) {
+                    itemUsed = true;
+                }
+
+                if (!itemConsumed && useResult.itemConsumed) {
+                    itemConsumed = true;
+                }
+            }
+
+            //this is out of the for loop in orderd to execute the behaviour following use/consume exactly once
+            if (itemUsed) {
                 heldItem.gameObject.GetComponent<AudioSource>().clip = heldItem.usageSound;
                 heldItem.gameObject.GetComponent<AudioSource>().Play();
                 //throw used event
@@ -41,8 +55,7 @@ public class PlayerItemManager : MonoBehaviour {
                 }
             }
 
-
-            if (useResult.itemConsumed) {
+            if (itemConsumed) {
 
                 //consume item
                 //remove from hotbar if needed
@@ -54,10 +67,6 @@ public class PlayerItemManager : MonoBehaviour {
                     _hotbar.activeItemObj = null;
                 if (_hotbar.activeItemWrapper.amount == 0) {
                     _hotbar.Remove(_hotbar.activeItemWrapper);
-
-                    
-
-                    
                 }
             }
         }

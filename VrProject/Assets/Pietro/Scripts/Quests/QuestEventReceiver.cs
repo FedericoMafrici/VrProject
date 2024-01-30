@@ -24,21 +24,29 @@ public abstract class QuestEventReceiver : MonoBehaviour {
     // Start is called before the first frame update
     protected virtual void Awake() {
 
-        if (_questCollection == null) {
-            if (_targetQuestList == null) {
-                Debug.LogError(transform.name + ": QuestEventReceiver has no list of quests to keep track of");
-            } else if (_targetQuestList == null) {
-                Debug.LogWarning(transform.name + ": QuestEventReceiver: list of quests is empty");
-            }
-
-            _targetQuestSet = _targetQuestList.ToHashSet();
-
-        } else {
-            if (_targetQuestList != null && _targetQuestList.Count > 0) {
-                Debug.LogWarning(transform.name + ": QuestEventReceiver: Quest Set was specified through a transform, but target quest list is not empty, target quest list will be ignored");
-            }
-
+        if (_questCollection != null) {
             _targetQuestSet = GetQuestsFromParentTransform(_questCollection);
+        }
+
+        if (_targetQuestList != null) {
+            foreach (Quest quest in _targetQuestList) {
+                _targetQuestSet.Add(quest);
+            }
+            //Debug.LogWarning(transform.name + ": QuestEventReceiver: Quest Set was specified through a transform, but target quest list is not empty, target quest list will be ignored");
+        }
+
+        /*
+        if (_targetQuestList == null) {
+            Debug.LogError(transform.name + ": QuestEventReceiver has no list of quests to keep track of");
+        } else if (_targetQuestList == null) {
+            Debug.LogWarning(transform.name + ": QuestEventReceiver: list of quests is empty");
+        }
+        */
+
+        //_targetQuestSet = _targetQuestList.ToHashSet();
+
+        if (_targetQuestSet.Count == 0) {
+            Debug.LogWarning(transform.name + ": QuestEventReceiver has no reference to any quest");
         }
 
         _eventSet = _eventList.ToHashSet();

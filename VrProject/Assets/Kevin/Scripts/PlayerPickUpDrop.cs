@@ -28,7 +28,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     void Update()
     {
 
-        if (InputManager.InputsAreEnabled()) {
+        if (InputManager.InteractionsAreEnabled()) {
 
             // ------------- PRESSIONE TASTO E -------------
 

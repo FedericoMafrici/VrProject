@@ -5,17 +5,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class Dialogue
-{
-    public Sprite sprite;
-    public string name;
-    
-    [TextArea(2,3)]
-    public string[] sentences;
-
-}
-
 public class DialogueManager : MonoBehaviour
 {
     private Queue<string> sentences = new Queue<string>();
@@ -36,7 +25,7 @@ public class DialogueManager : MonoBehaviour
     
     public void StartDialogue(Dialogue dialogue)
     {
-        InputManager.DisableInputs();
+        InputManager.DisableInteractions();
         knob.SetActive(false);
         hotbar.SetActive(false);
         animator.SetBool("IsOpen", true);
@@ -89,4 +78,14 @@ public class DialogueManager : MonoBehaviour
     public void Update()
     {
     }
+}
+
+[System.Serializable]
+public class Dialogue {
+    public Sprite sprite;
+    public string name;
+
+    [TextArea(2, 3)]
+    public string[] sentences;
+
 }

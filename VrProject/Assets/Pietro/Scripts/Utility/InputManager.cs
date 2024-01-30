@@ -10,12 +10,12 @@ public static class InputManager {
         _inputsEnabled = true;
     }
 
-    public static void DisableInputs() {
+    public static void DisableInteractions() {
         Debug.Log("Inputs disabled");
         _inputsEnabled = false; 
     }
 
-    public static bool InputsAreEnabled() {
+    public static bool InteractionsAreEnabled() {
         return _inputsEnabled;
     }
 

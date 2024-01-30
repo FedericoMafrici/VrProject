@@ -150,10 +150,13 @@ MonoBehaviour:
   itemName: 4
   itemCategory: 2
   depositPosition: {x: 0, y: 0, z: 0}
+  depositRotation: {x: 0, y: 0, z: 0}
+  grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: cf36dfe8f1a0e82469863e44b6425d50, type: 3}
-  isFading: 0
   isDeposited: 0
-  isCollected: 0
+  grabSound: {fileID: 0}
+  usageSound: {fileID: 0}
+  _clueText: Premi [CLICK SINISTRO] per piantare
   _interactDistance: 2
   seed: {fileID: 8204481556939299655, guid: d1e8dbf054d564140a2fb4f398dbf383, type: 3}
   debug: 1
