@@ -22,17 +22,17 @@ public /*abstract*/ class Item : Grabbable
         AppleSeed,
         WheatSeed,
         CarrotsSprout,
-        Egg,
-        Wool,
         Sponge,
-        Apple,
         ChickenFood,
-        Carrot,
-        EarOfWheat,
         Bucket,
+        ClosedPomade,
         BucketMilk,
         OpenPomade,
-        ClosedPomade,
+        Egg,
+        Wool,
+        Apple,
+        Carrot,
+        EarOfWheat,
         TreeBranch
     }
 

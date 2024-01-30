@@ -91,7 +91,9 @@ public class PlayerPickUpDrop : MonoBehaviour
                     item.StartFading();
                     ThrowPickUpEvent(item);
                 } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
-                           && hotbar.activeItemObj != null) {
+                           && hotbar.activeItemObj != null 
+                           && hotbar.activeItemObj.itemName != Item.ItemName.BucketMilk
+                           && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
                     hotbar.activeItemObj.StartFading();
                     if (deposit.itemCounters[hotbar.activeItemObj.itemName].GetComponent<ItemDepositCounter>().counter == 0) {
                         GameObject spawnedItem = SpawnItem(hotbar.activeItemObj.itemName);

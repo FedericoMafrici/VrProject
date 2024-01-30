@@ -13,7 +13,7 @@ public class ItemDepositCounter : MonoBehaviour
     {
         transform.LookAt(player.transform);
         transform.Rotate(0, 180, 0);
-        if (counter > 0)
+        if (counter > 1)
         {
             GetComponent<TMP_Text>().text = counter.ToString();
         }
