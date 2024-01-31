@@ -38,7 +38,7 @@ public class AnimalFood : ItemConsumable {
         useResult.itemConsumed = false;
 
         //do raycast through RaycastManager
-        bool inputPressed = Input.GetKeyDown(_interactKey);
+        bool inputPressed = InputManager.InteractionsAreEnabled() ? Input.GetMouseButtonDown(0) : false;
         InteractionResult<FoodEater> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, FoodInterestsEater, LayerMask.GetMask("Animals"));
 
         FoodEater eater = interactionResult.currentInteracted;

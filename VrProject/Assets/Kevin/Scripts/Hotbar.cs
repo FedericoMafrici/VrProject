@@ -163,64 +163,58 @@ public class Hotbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int i = 0;
-        if (Input.GetKey(KeyCode.Alpha1)
-            && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-        {
-            InstantiateItem(i);
-        }
-
-        i++;
-        if (Input.GetKey(KeyCode.Alpha2)
-            && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-        {
-            InstantiateItem(i);
-        }
-
-        i++;
-        if (Input.GetKey(KeyCode.Alpha3)
-            && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-        {
-            InstantiateItem(i);
-        }
-        
-        i++;
-        if (Input.GetKey(KeyCode.Alpha4)
-            && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-        {
-            InstantiateItem(i);
-        }
-        
-        i++;
-        if (Input.GetKey(KeyCode.Alpha5)
-            && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-        {
-            InstantiateItem(i);
-        }
-        
-        i++;
-        if (Input.GetKey(KeyCode.Alpha6)
-            && numSelectedButton != i
-            && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite)
-        {
-            InstantiateItem(i);
-        }
-        
-        if (Input.GetKey(KeyCode.Alpha0))
-        {
-            if (activeItemObj && activeItemWrapper != null)
-            {
-                activeItemWrapper = null;
-                Item item = activeItemObj;
-                activeItemObj = null;
-                Destroy(item.gameObject);
+        if (InputManager.InteractionsAreEnabled()) {
+            int i = 0;
+            if (Input.GetKey(KeyCode.Alpha1)
+                && numSelectedButton != i
+                && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite) {
+                InstantiateItem(i);
             }
-            Deselect();
+
+            i++;
+            if (Input.GetKey(KeyCode.Alpha2)
+                && numSelectedButton != i
+                && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite) {
+                InstantiateItem(i);
+            }
+
+            i++;
+            if (Input.GetKey(KeyCode.Alpha3)
+                && numSelectedButton != i
+                && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite) {
+                InstantiateItem(i);
+            }
+
+            i++;
+            if (Input.GetKey(KeyCode.Alpha4)
+                && numSelectedButton != i
+                && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite) {
+                InstantiateItem(i);
+            }
+
+            i++;
+            if (Input.GetKey(KeyCode.Alpha5)
+                && numSelectedButton != i
+                && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite) {
+                InstantiateItem(i);
+            }
+
+            i++;
+            if (Input.GetKey(KeyCode.Alpha6)
+                && numSelectedButton != i
+                && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite) {
+                InstantiateItem(i);
+            }
+
+            if (Input.GetKey(KeyCode.Alpha0)) {
+                if (activeItemObj && activeItemWrapper != null) {
+                    activeItemWrapper = null;
+                    Item item = activeItemObj;
+                    activeItemObj = null;
+                    Destroy(item.gameObject);
+                }
+                Deselect();
+            }
         }
         
     }
@@ -232,5 +226,27 @@ public class Hotbar : MonoBehaviour
         spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
         activeItemObj = spawnedGameObject.GetComponent<Item>();
         activeItemWrapper = itemWrappers[i];
+    }
+
+    public void RemoveHeldItem() {
+
+        Item heldItem = activeItemObj;
+        activeItemWrapper.amount--;
+        player.ThrowDropEvent(activeItemObj);
+        Deselect();
+        Destroy(heldItem.gameObject);
+        if (activeItemObj) {
+            activeItemObj = null;
+        }
+        if (activeItemWrapper.amount == 0) {
+            Remove(activeItemWrapper);
+        }
+    }
+
+    public void MakeHoldItem(int i) {
+        if (numSelectedButton != i
+                && itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<Image>().sprite) {
+            InstantiateItem(i);
+        }
     }
 }

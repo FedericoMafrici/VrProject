@@ -22,26 +22,26 @@ namespace StarterAssets
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value) {
-			//if (InputManager.InteractionsAreEnabled())
+			if (InputManager.MovementIsEnabled())
 				MoveInput(value.Get<Vector2>());
-			//else
-                //MoveInput(Vector2.zero);
+			else
+                MoveInput(Vector2.zero);
 			
         }
 
 		public void OnLook(InputValue value)
 		{
 			if (cursorInputForLook) {
-				//if (InputManager.InteractionsAreEnabled())
+				if (InputManager.MovementIsEnabled())
 					LookInput(value.Get<Vector2>());
-				//else
-					//LookInput(Vector2.zero);
+				else
+					LookInput(Vector2.zero);
 				
 			}
 		}
 
 		public void OnJump(InputValue value) {
-			//if (InputManager.InteractionsAreEnabled())
+			if (InputManager.MovementIsEnabled())
 				JumpInput(value.isPressed);
 		}
 

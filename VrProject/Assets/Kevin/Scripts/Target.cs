@@ -6,13 +6,19 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public Sprite greenTarget;
-    public static event Action OnTargetClicked;
+    public event Action OnTargetClicked; //modificato da Pietro (motivazione: se l'evento è statico minigiochi relativi ad animali diversi lo ricevono sempre e potrebbe creare problemi)
+    private bool alreadyClicked = false; //aggiunto da Pietro, evita che si possa clicclare ripetutamente su un target che sta scomparendo
 
     private void OnMouseDown()
     {
-        OnTargetClicked?.Invoke();
-        gameObject.GetComponent<SpriteRenderer>().sprite = greenTarget;
-        StartFading();
+        if (!alreadyClicked) {
+            if (OnTargetClicked != null)
+                OnTargetClicked();
+
+            gameObject.GetComponent<SpriteRenderer>().sprite = greenTarget;
+            StartFading();
+            alreadyClicked = true;
+        }
     }
 
     public void StartFading()
@@ -36,6 +42,10 @@ public class Target : MonoBehaviour
             GetComponent<Renderer>().material.color = c;
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    public bool IsAlreadyClicked() {
+        return alreadyClicked;
     }
     
 }

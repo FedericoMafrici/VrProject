@@ -83,7 +83,7 @@ PrefabInstance:
       addedObject: {fileID: 4430926778439897782}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d7294e4ef68a20744bb43bd3b0dbda62, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -8045830383372393334}
+      addedObject: {fileID: 8230660027375085451}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d7294e4ef68a20744bb43bd3b0dbda62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 816202085441958928}
@@ -163,7 +163,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8045830383372393334
+--- !u!114 &8230660027375085451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,19 +172,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 999446350338259606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754fc17baa1d64df1af38b3b3de0810c, type: 3}
+  m_Script: {fileID: 11500000, guid: 661438925b8ba38489827ac2b7fe73d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
-  itemName: 14
+  itemName: 9
   itemCategory: 0
-  depositPosition: {x: -23.684055, y: 3.89205, z: 21.838787}
-  depositRotation: {x: -0.0053982353, y: 35.65123, z: -0.0007439546}
+  depositPosition: {x: -23.68406, y: 3.89205, z: 21.83879}
+  depositRotation: {x: -0.005398235, y: 35.65123, z: -0.0007439546}
   grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: 48136887db9314f988d6558ed6031dd1, type: 3}
   isDeposited: 0
-  grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
+  grabSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}
+  usageSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}
+  _clueTextAppendix: mungere
+  _interactRange: 3
+  _animalType: 2
 --- !u!82 &816202085441958928
 AudioSource:
   m_ObjectHideFlags: 0

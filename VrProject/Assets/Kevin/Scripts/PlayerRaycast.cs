@@ -16,7 +16,8 @@ public enum ClueID {
     SHEAR,
     HEAL,
     PLANT,
-    WATER
+    WATER,
+    TARGET
 }
 
 public class PlayerRaycast : MonoBehaviour
@@ -58,6 +59,10 @@ public class PlayerRaycast : MonoBehaviour
         //watering events
         WateringCan.InWateringRange += OnAddClueEvent;
         WateringCan.OutOfWateringRange += OnRemoveClueEvent;
+
+        //target minigame events
+        TargetMinigameActivator.InMinigameRange+= OnAddClueEvent;
+        TargetMinigameActivator.OutOfMinigameRange+= OnRemoveClueEvent;
     }
 
     void Update()
@@ -66,47 +71,38 @@ public class PlayerRaycast : MonoBehaviour
         RaycastHit raycastHit;
         RaycastHit raycastHit2;
 
-        // ------------- AGGIORNAMENTO INFORMAZIONI TESTUALI SOTTO IL CURSORE -------------
+        if (InputManager.InteractionsAreEnabled()) {
+            // ------------- AGGIORNAMENTO INFORMAZIONI TESTUALI SOTTO IL CURSORE -------------
 
-        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit,
-                pickupDistance, pickupLayerMask)
-            && raycastHit.transform.TryGetComponent(out Item item)
-            && hotbar.activeItemObj == null)
-        {
-            clue.text = "Press E to grab\nPress Q to collect";
-            if (hotbar.firstEmpty == 6)
-            {
-                clue.text += "\n\n Release an item to grab or collect another object!";
-            }
-            toOutline = raycastHit.transform;
-        }
-        
-        else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit2,
-                     pickupDistance, pickupLayerMask)
-                 && raycastHit2.transform.TryGetComponent(out Item item2)
-                 && hotbar.activeItemObj != null
-                 && item2 != hotbar.activeItemObj)
-        {
-            clue.text = "Press Q to collect";
-            if (hotbar.firstEmpty == 6)
-            {
-                clue.text += "\n\n Release an item to collect another object!";
-            }
-            toOutline = raycastHit2.transform;
-        }
-        
-        else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
-                 && hotbar.activeItemObj != null)
-        {
-            clue.text = "Press Q to release the item";
-        }
-        
-        else
-            clue.text = "";
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit,
+                    pickupDistance, pickupLayerMask)
+                && raycastHit.transform.TryGetComponent(out Item item)
+                && hotbar.activeItemObj == null) {
+                clue.text = "Press E to grab\nPress Q to collect";
+                if (hotbar.firstEmpty == 6) {
+                    clue.text += "\n\n Release an item to grab or collect another object!";
+                }
+                toOutline = raycastHit.transform;
+            } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit2,
+                           pickupDistance, pickupLayerMask)
+                       && raycastHit2.transform.TryGetComponent(out Item item2)
+                       && hotbar.activeItemObj != null
+                       && item2 != hotbar.activeItemObj) {
+                clue.text = "Press Q to collect";
+                if (hotbar.firstEmpty == 6) {
+                    clue.text += "\n\n Release an item to collect another object!";
+                }
+                toOutline = raycastHit2.transform;
+            } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
+                       && hotbar.activeItemObj != null) {
+                clue.text = "Press Q to release the item";
+            } else
+                clue.text = "";
 
-        //aggiunto da Pietro
-        foreach(string clueText in _addedClues.Values) {
-            clue.text += "\n" + clueText;
+            //aggiunto da Pietro
+            foreach (string clueText in _addedClues.Values) {
+                clue.text += "\n" + clueText;
+            }
         }
 
         ManageOutline(toOutline);

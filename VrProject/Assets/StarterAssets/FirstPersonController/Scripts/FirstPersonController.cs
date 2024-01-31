@@ -161,7 +161,7 @@ namespace StarterAssets
 
 			// note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is no input, set the target speed to 0
-			if (_input.move == Vector2.zero /*|| !InputManager.InteractionsAreEnabled()*/) targetSpeed = 0.0f;
+			if (_input.move == Vector2.zero || !InputManager.MovementIsEnabled()) targetSpeed = 0.0f;
 
 			// a reference to the players current horizontal velocity
 			float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
@@ -189,7 +189,7 @@ namespace StarterAssets
 
 			// note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
 			// if there is a move input rotate player when the player is moving
-			if (_input.move != Vector2.zero /*&& InputManager.InteractionsAreEnabled()*/)
+			if (_input.move != Vector2.zero && InputManager.MovementIsEnabled())
 			{
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
@@ -213,7 +213,7 @@ namespace StarterAssets
 				}
 
 				// Jump
-				if (/*InputManager.InteractionsAreEnabled() &&*/ _input.jump && _jumpTimeoutDelta <= 0.0f)
+				if (InputManager.MovementIsEnabled() && _input.jump && _jumpTimeoutDelta <= 0.0f)
 				{
 					// the square root of H * -2 * G = how much velocity needed to reach desired height
 					_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);

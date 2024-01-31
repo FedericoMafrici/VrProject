@@ -3,20 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class InputManager {
-    private static bool _inputsEnabled = true;
+    private static int _disableInteractionsRequests = 0;
+    private static int _disableMovementRequests = 0;
 
-    public static void EnableInputs() {
-        Debug.Log("Inputs enabled");
-        _inputsEnabled = true;
+    public static void EnableInteractions() {
+        if (_disableInteractionsRequests > 0) {
+            _disableInteractionsRequests--;
+            Debug.Log("Interactions enabled");
+        }
     }
 
-    public static void DisableInteractions() {
-        Debug.Log("Inputs disabled");
-        _inputsEnabled = false; 
+    public static void DisableInteractions() {   
+        _disableInteractionsRequests++;
+        if (_disableInteractionsRequests == 1) {
+            Debug.Log("Interactions disabled");
+        }
     }
 
     public static bool InteractionsAreEnabled() {
-        return _inputsEnabled;
+        return (_disableInteractionsRequests == 0);
+    }
+
+    public static void EnableMovement() {
+        if (_disableMovementRequests > 0) {
+            _disableMovementRequests--;
+            Debug.Log("Movement enabled");
+        }
+    }
+
+    public static void DisableMovement() {
+        _disableMovementRequests++;
+        if (_disableMovementRequests == 1) {
+            Debug.Log("Movement disabled");
+        }
+    }
+
+    public static bool MovementIsEnabled() {
+        return _disableMovementRequests == 0;
     }
 
 }

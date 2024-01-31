@@ -68,7 +68,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        InputManager.EnableInputs();
+        InputManager.EnableInteractions();
         animator.SetBool("IsOpen", false);
         knob.SetActive(true);
         hotbar.SetActive(true);

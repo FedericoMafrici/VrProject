@@ -56,7 +56,7 @@ public class QuestTarget : Quest
             default:
                 break;
         }
-        Target.OnTargetClicked += CheckTargetList;
+        //Target.OnTargetClicked += CheckTargetList;
         
         base.Init();
     }

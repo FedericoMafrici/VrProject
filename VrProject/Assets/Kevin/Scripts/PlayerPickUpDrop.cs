@@ -170,6 +170,37 @@ public class PlayerPickUpDrop : MonoBehaviour
             DropEvent(item.itemName);
     }
 
+    public bool PickUpAndSelect(Item newItem) {
+        if (hotbar.firstEmpty < Constants.Capacity) {
+            // item.Grab(objectGrabPointTransform, true); // TODO: lascio? Serve a vedere l'effetto di spostamento dell'oggetto mentre lo raccolgo
+
+            int i = hotbar.Add(newItem, false);
+
+            newItem.GetComponent<AudioSource>().clip = newItem.grabSound;
+            newItem.GetComponent<AudioSource>().Play();
+
+            Debug.Log(newItem + " added to the hotbar");
+
+            if (newItem.isDeposited) {
+                newItem.isDeposited = false;
+                if (--deposit.itemCounters[newItem.itemName].GetComponent<ItemDepositCounter>().counter != 0) {
+                    GameObject spawnedItem = SpawnItem(newItem.itemName);
+                    spawnedItem.GetComponent<Item>().isDeposited = true;
+                }
+            }
+
+            Destroy(newItem.gameObject);
+            if (hotbar.itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<UnityEngine.UI.Image>().sprite) {
+                hotbar.InstantiateItem(i);
+            }
+            ThrowPickUpEvent(item);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 public class ItemEventArgs : EventArgs {

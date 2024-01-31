@@ -15,10 +15,16 @@ public class Grabbable : MonoBehaviour
 
     private void Awake()
     {
-        objectRigidBody = GetComponent<Rigidbody>();
+        if (objectRigidBody == null)
+            objectRigidBody = GetComponent<Rigidbody>();
     }
+
     public void Grab(Transform objectGrabPointTransform, bool isGrabbedFromGround)
     {
+        if (objectRigidBody == null) {
+            objectRigidBody = GetComponent<Rigidbody>();
+        }
+
         isInPlayerHand = true;
         objectRigidBody.useGravity = false;
         objectRigidBody.isKinematic = true;

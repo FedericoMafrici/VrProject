@@ -76,6 +76,10 @@ public class PlayerItemManager : MonoBehaviour {
     public Camera GetCamera() {
         return _playerCamera;
     }
+
+    public PlayerPickUpDrop GetPlayerPickUpDrop() {
+        return _playerPickUp;
+    }
 }
 
 public class UsedItemEventArgs : EventArgs {
