@@ -138,9 +138,9 @@ public abstract class QuestEventReceiver : MonoBehaviour {
 
         for (int i = 0; i < nChildren; i++) {
             Transform child = collection.GetChild(i);
-            Quest toAdd = child.GetComponent<Quest>();
-            if (toAdd != null) {
-                quests.Add(toAdd);
+            Quest[] toAddArray = child.GetComponents<Quest>();
+            foreach (Quest q in toAddArray) {
+                    quests.Add(q);
             }
         }
 
