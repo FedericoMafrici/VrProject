@@ -8,11 +8,11 @@ public class QuestEventReceiverF : QuestEventReceiver
     {
             if(eventType==EventType.PROGRESS)
             {
-               Debug.Log( quest.GetQuestDescription());
+               Debug.Log(quest.GetQuestDescription());
             }
             else if(eventType==EventType.COMPLETE)
             {
-              //new Information about the animal 
+                //new Information about the animal 
                 Debug.Log(quest.GetInfo().newInformation);
                 //disicrivi dagli eventi(?) se mi iscrivo o no, la quest
                 SetEventSubscription(false,quest,EventType.COMPLETE);

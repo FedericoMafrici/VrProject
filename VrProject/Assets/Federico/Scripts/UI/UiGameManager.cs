@@ -14,16 +14,17 @@ public class UiGameManager : MonoBehaviour
 
 
 
+
 public  AnimalData leone;
 
 public AnimalData mucca;
-
- 
+[Header("Animals Ui information ")]// add here the information about animal 
+[SerializeField] private List<AnimalDataUi> _animals; 
  private LinkedList<AnimalData> animalList = new LinkedList<AnimalData>();
-// Informazioni per il menu 
-// TO DO PERCHè NON SO COME REGOLARE LE IMPOSTAZIONI DEL SUONO ETC ETC 
-// load scene etc, da fare alla fine 
 
+ Dictionary<int, AnimalDataUi> animalMap = new Dictionary<int,AnimalDataUi>();
+ private int currkey=0;
+ private AnimalDataUi currAnimal=null;
 // Informazioni per i controllì
 public ControlSettingsData controlSettings;
 
@@ -64,45 +65,89 @@ public TMP_Text additionalRules;
  public Sprite soundButtonGreenOFF;
 
  public Sprite soundButtonPurpleOFF;
+
+  
+
 void Start()
     {
-      AnimalData[] animals= {leone, mucca };
-      LinkedList<AnimalData> al = new LinkedList<AnimalData>(animals);
-       animalList=al;
+            int i=0;
+                //adding all the quest inserted into the quests list 
+            if (_animals != null) {
+                foreach (AnimalDataUi animal in _animals) {
+                animalMap.Add(i++,animal);
+                }
+            
+            }
+         
 
-     
+       AnimalData[] animals= {leone, mucca };
+       LinkedList<AnimalData> al = new LinkedList<AnimalData>(animals);
+       animalList=al;
+        // initializing fields:
+        animalMissions.text="";
+        animalDescription.text="";
+        animalImage.sprite=null;
+        if (animalMap.TryGetValue(currkey, out AnimalDataUi value))
+        {
+            currAnimal=value;
+        }
+
 
       currNode = animalList.First;
-       // Debuggin Purpose 
+       // Debugging Purpose 
       AnimalsCanvas.SetActive(true);
-      Debug.Log(currNode.Value.animalDescription);
-      Debug.Log(currNode.Value.animalMissionsList);
-     
-      animalDescription.text=currNode.Value.animalDescription;
-      animalMissions.text=currNode.Value.animalMissionsList;
-      animalImage.sprite=currNode.Value.AnimalSprite;
+      Debug.Log(currAnimal.description[currAnimal.index]);
       
-      // 
+      animalDescription.text=currAnimal.description[currAnimal.index];
+      animalImage.sprite=currAnimal.AnimalSprite;
+      foreach(Quest quest in currAnimal._targetQuestSet)  
+      {
+       
+        animalMissions.text+="-"+quest.GetQuestDescription();
+        animalMissions.text+="\n";
+      }
       setttingsList.text=controlSettings.comandi;
       additionalRules.text=controlSettings.regoleAggiuntive;
       
     }
-
-
-void DisplayNextAnimalData( LinkedListNode<AnimalData> currAnimal)
+void DisplayAnimalData()
 {
-      animalDescription.text=currAnimal.Value.animalDescription;
-      animalMissions.text=currAnimal.Value.animalMissionsList; 
-      animalImage.sprite=currNode.Value.AnimalSprite;     
+     animalMissions.text="";
+   animalDescription.text="";
+   animalImage.sprite=null;
+
+     if (animalMap.TryGetValue(currkey, out AnimalDataUi value))
+        {
+            currAnimal=value;
+        }
+        else 
+        {
+            return;
+        }
+
+      animalDescription.text=currAnimal.description[currAnimal.index];
+    
+      animalImage.sprite=currAnimal.AnimalSprite;
+      foreach(Quest quest in currAnimal._targetQuestSet)  
+      {
+        animalMissions.text+="-"+quest.GetQuestDescription();
+        animalMissions.text+="\n";
+      }   
 }
+
 public void DisplayAnimal()
 {
-  
+   animalMissions.text="";
+   animalDescription.text="";
+   animalImage.sprite=null;
+   currkey=0;
+   DisplayAnimalData();
    AnimalsCanvas.SetActive(true);
    ControlSettings.SetActive(false); 
    Menu.SetActive(false);
    currNode=animalList.First;
-   DisplayNextAnimalData(currNode);
+   
+    
 }
 
 public void DisplayMenu()
@@ -115,20 +160,18 @@ public void DisplayMenu()
 
 public void NextAnimal()
 {
-      if(currNode.Next!=null)
-      {
-      currNode=currNode.Next;
-      DisplayNextAnimalData(currNode);   
-      } 
+        currkey+=1;
+        DisplayAnimalData();
 }
 
 public void PreviousAnimal()
 {
-      if(currNode.Previous!=null)
-      {
-      currNode=currNode.Previous;
-      DisplayNextAnimalData(currNode);  
-      } 
+        if(currkey!=0)
+        {
+            currkey-=1;
+            DisplayAnimalData();
+        }
+        
 }
 public void DisplayControlSettings()
 {
@@ -142,8 +185,36 @@ public void StartUI()
    ControlSettings.SetActive(false);
    AnimalsCanvas.SetActive(true);
    Menu.SetActive(false);
-   currNode=animalList.First;
    Cursor.lockState =  CursorLockMode.None;
+   currkey=0;
+        // initializing fields:
+        animalMissions.text="";
+        animalDescription.text="";
+        animalImage.sprite=null;
+        // searching for the key otherwise we return 
+        if (animalMap.TryGetValue(currkey, out AnimalDataUi value))
+        {
+            currAnimal=value;
+        }
+        else 
+        {
+            return;
+        }
+     
+      animalDescription.text=currAnimal.description[currAnimal.index];
+      animalImage.sprite=currAnimal.AnimalSprite;
+      foreach(Quest quest in currAnimal._targetQuestSet)  
+      {
+         animalMissions.text+="-"+quest.GetQuestDescription();
+        animalMissions.text+="\n";
+      }
+
+  
+
+
+
+
+
 }
 public void CloseUI()
 {
@@ -203,7 +274,6 @@ public void soundOFF()
 {
 soundOn.image.sprite= soundButtonPurpleON;
 soundOf.image.sprite=soundButtonGreenOFF;
-
 }
 
 

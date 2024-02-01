@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 873a0449de11244a382df71ab1cdb12b, type: 3}
-  m_Name: Leone
+  m_Name: prova
   m_EditorClassIdentifier: 
   _targetQuestList:
   - {fileID: 0}
-  animalDescription: "il leone \xE8 un possente animale che si nutre di carne di
-    Pietro"
-  animalMissionsList: '-COCCOLARE IL LEONE - DARGLI DA MANGIARE KEVIN bla bla bla '
-  AnimalSprite: {fileID: 21300000, guid: f798e4f27db6c4ca7a44fec70a633426, type: 3}
+  animalDescription: 
+  animalMissionsList: 
+  AnimalSprite: {fileID: 0}

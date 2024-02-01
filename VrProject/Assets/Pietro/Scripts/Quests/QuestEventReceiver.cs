@@ -19,7 +19,7 @@ public abstract class QuestEventReceiver : MonoBehaviour {
     [SerializeField] private List<Quest> _targetQuestList; //used if _questSetParent is null to determine set of quest to subscribe to
     [Header("Events to subscribe to")]
     [SerializeField] private List<EventType> _eventList;
-    private HashSet<Quest> _targetQuestSet = new HashSet<Quest>();
+    public HashSet<Quest> _targetQuestSet = new HashSet<Quest>();
     private HashSet<EventType> _eventSet;
     // Start is called before the first frame update
     protected virtual void Awake() {
