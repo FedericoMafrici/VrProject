@@ -248,11 +248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
+  grabRotation: {x: 270, y: 224.11198, z: 0}
   itemName: 5
   itemCategory: 1
   depositPosition: {x: -22.676, y: 3.9038, z: 21.014}
   depositRotation: {x: 270, y: 44, z: 0}
-  grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: a804db02e0f1344939483d2ac270cf8a, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}

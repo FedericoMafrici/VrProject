@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 5767648735842974106}
   - component: {fileID: 666959356842699812}
   - component: {fileID: -1866864612116095346}
+  - component: {fileID: 6799593522798497734}
   m_Layer: 3
   m_Name: CarrotsSprout
   m_TagString: Untagged
@@ -247,11 +248,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
+  grabRotation: {x: 270, y: 224.11198, z: 0}
   itemName: 6
   itemCategory: 1
   depositPosition: {x: -22.337, y: 3.9088197, z: 20.776}
   depositRotation: {x: 270, y: 36.539997, z: 0}
-  grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: 28eb29bbffe0b4c0193e2ecef3a769df, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
