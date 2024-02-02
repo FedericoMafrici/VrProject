@@ -13,7 +13,7 @@ public class FarmingLand : MonoBehaviour
 
     public event Action<CropBehaviour, bool> CropPlanted;
 
-   public  void Interact(Seed seed)
+    public  void Interact(Seed seed)
     {
         Debug.Log(" finalmente hai puntato alla terra");
         
@@ -25,14 +25,16 @@ public class FarmingLand : MonoBehaviour
                     this.tree=true;
                    }
             tmp=Instantiate(seed.seed,gameObject.transform);
-            tmp.transform.localPosition=Vector3.zero;
-            tmp.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);  
+            tmp.transform.position=new Vector3(0.0f, 0.0f, 0.0f);
+           
 
             crop=tmp.GetComponent<CropBehaviour>();
-            crop.transform.localPosition=Vector3.zero;
+            crop.transform.localPosition=new Vector3(0.0f, 0.20f, 0.0f);
+            //crop.transform.localScale=new Vector3(0.4f,0.4f,0.4f);
             crop.Plant();
 
-            if (CropPlanted != null) {
+            if (CropPlanted != null) 
+            {
                 CropPlanted(crop, tree);
             }
 

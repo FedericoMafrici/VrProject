@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 'seed logic for apple '
   thumbnail: {fileID: 0}
-  gameModel: {fileID: 8204481556939299655, guid: d1e8dbf054d564140a2fb4f398dbf383, type: 3}
+  gameModel: {fileID: 631713865696746564, guid: e08aa75121b0a4f47b168b684905c609, type: 3}
   daysToGrow: 0
   cropToYield: {fileID: 11400000, guid: c8337dc224ddc4ef2af19b01dfe127f9, type: 2}
-  seedling: {fileID: 8677808383177699552, guid: 8e788bcba1b7747cfa2001bdfa712618, type: 3}
+  seedling: {fileID: 7807240253720470035, guid: c6c1b30672d014edfa17db4551cebaad, type: 3}

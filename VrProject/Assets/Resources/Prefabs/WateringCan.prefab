@@ -158,8 +158,9 @@ MonoBehaviour:
   grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: c6b7de9771c214683856a3a1a7592310, type: 3}
   isDeposited: 0
+  grabSound: {fileID: 0}
   usageSound: {fileID: 0}
-  _interactDistance: 0
+  _interactDistance: 5
   _clueText: Premi [CLICK SINISTRO] per annaffiare
 --- !u!82 &4962843162960925968
 AudioSource:

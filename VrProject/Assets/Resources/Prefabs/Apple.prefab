@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8adbeaa4003f5a94aa7a1b6d6b47ed77, type: 3}
       propertyPath: m_Name
-      value: Mela
+      value: Apple
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -154,7 +154,7 @@ MonoBehaviour:
   depositPosition: {x: -22.783, y: 5.055, z: 21.252}
   depositRotation: {x: 0, y: 0, z: 0}
   grabRotation: {x: 0, y: 0, z: 0}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 567c1dba48fd591478dcf0bb74786ddf, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
   usageSound: {fileID: 0}

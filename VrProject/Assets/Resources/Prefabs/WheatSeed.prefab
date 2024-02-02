@@ -96,9 +96,9 @@ GameObject:
   - component: {fileID: 6555578335969163368}
   - component: {fileID: 2563100763402894007}
   - component: {fileID: 5874367094877816863}
-  - component: {fileID: 1754084054029576829}
   - component: {fileID: -5757751828629311520}
   - component: {fileID: 8510433107019890619}
+  - component: {fileID: -1438219495271110083}
   m_Layer: 3
   m_Name: WheatSeed
   m_TagString: Untagged
@@ -235,28 +235,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1754084054029576829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4754371511918238141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84cd6529417944935b37b96a07438350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInPlayerHand: 0
-  itemName: 5
-  itemCategory: 1
-  depositPosition: {x: -22.676, y: 3.9038, z: 21.014}
-  depositRotation: {x: 270, y: 44, z: 0}
-  grabRotation: {x: 0, y: 0, z: 0}
-  icon: {fileID: 21300000, guid: a804db02e0f1344939483d2ac270cf8a, type: 3}
-  isDeposited: 0
-  grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
 --- !u!82 &-5757751828629311520
 AudioSource:
   m_ObjectHideFlags: 0
@@ -888,3 +866,29 @@ MonoBehaviour:
     - {x: -0.6959634, y: 0.1768332, z: -0.6959634}
     - {x: -0.34139428, y: 0.6646524, z: -0.66459554}
     - {x: -0.17685792, y: 0.6958694, z: -0.6960511}
+--- !u!114 &-1438219495271110083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754371511918238141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a03ec70153cc4fa995ef3c21c9e762e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInPlayerHand: 0
+  itemName: 5
+  itemCategory: 2
+  depositPosition: {x: -22.676, y: 3.9038, z: 21.014}
+  depositRotation: {x: 270, y: 44, z: 0}
+  grabRotation: {x: 0, y: 0, z: 0}
+  icon: {fileID: 21300000, guid: a804db02e0f1344939483d2ac270cf8a, type: 3}
+  isDeposited: 0
+  grabSound: {fileID: 0}
+  usageSound: {fileID: 0}
+  _clueText: Premi [CLICK SINISTRO] per piantare
+  _interactDistance: 3
+  seed: {fileID: 631713865696746564, guid: 941371edb56534521b6a5794353f023b, type: 3}
+  debug: 1
