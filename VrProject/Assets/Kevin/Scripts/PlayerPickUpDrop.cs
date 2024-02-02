@@ -43,7 +43,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                         hotbar.Select(lastItemIndex);
                         hotbar.activeItemObj = item;
                         item.Grab(objectGrabPointTransform, true);
-                        
+
                         item.GetComponent<AudioSource>().clip = item.grabSound;
                         item.GetComponent<AudioSource>().Play();
                         
