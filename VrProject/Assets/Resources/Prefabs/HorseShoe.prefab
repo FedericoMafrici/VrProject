@@ -129,8 +129,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.119467966, y: 0.01214765, z: 0.1255884}
-  m_Center: {x: -0.00000095357416, y: -0.00000023831844, z: 0.0022400287}
+  m_Size: {x: 0.119467966, y: 0.019681765, z: 0.13503626}
+  m_Center: {x: -0.0000009553299, y: 0.00028693335, z: 0.0037848863}
 --- !u!54 &7582299688084567343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -171,13 +171,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
+  grabRotation: {x: 76.85222, y: 84.08259, z: 50.650734}
   itemName: 2
   itemCategory: 0
-  depositPosition: {x: -22.298733, y: 4.4821997, z: 20.813536}
+  depositPosition: {x: -23.047, y: 1.819, z: 22.202}
   depositRotation: {x: -0.000008457695, y: 216.30844, z: 359.135}
-  grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: 56d5f5e7492e44a49a460f66c5bab93e, type: 3}
   isDeposited: 0
+  grabSound: {fileID: 0}
   usageSound: {fileID: 0}
 --- !u!82 &6207420454838121361
 AudioSource:

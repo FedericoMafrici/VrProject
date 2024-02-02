@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6334209942678190298}
   - component: {fileID: 6095908473199676318}
   - component: {fileID: 1315643035560424100}
-  - component: {fileID: 8849139232511424838}
+  - component: {fileID: -3061699545837167523}
   m_Layer: 0
   m_Name: WheatCrop
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8849139232511424838
+--- !u!114 &-3061699545837167523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedToGrow: {fileID: 11400000, guid: 344ecbcbe7a184fe39fd4cb60efa5260, type: 2}
-  seed: {fileID: 0}
-  tmp: {fileID: 0}
   cropState: 0
   growth: 0

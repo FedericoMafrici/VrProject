@@ -222,7 +222,7 @@ public class Hotbar : MonoBehaviour
     public void InstantiateItem(int i)
     {
         Select(i);
-        GameObject spawnedGameObject = Instantiate(player.deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.Euler(player.deposit.itemAssets[itemWrappers[i].itemName].GetComponent<Item>().grabRotation));
+        GameObject spawnedGameObject = Instantiate(player.deposit.itemAssets[itemWrappers[i].itemName], player.objectGrabPointTransform.position, Quaternion.identity);
         spawnedGameObject.GetComponent<Item>().Grab(player.objectGrabPointTransform, false);
         activeItemObj = spawnedGameObject.GetComponent<Item>();
         activeItemWrapper = itemWrappers[i];

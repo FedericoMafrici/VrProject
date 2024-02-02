@@ -11,6 +11,7 @@ public class Grabbable : MonoBehaviour
     private Rigidbody objectRigidBody;
     private Transform objectGrabPointTransform;
     [HideInInspector] public bool isInPlayerHand = false;
+    [SerializeField] private Vector3 grabRotation;
 
     public event Action GrabEvent;
     public event Action ReleaseEvent;
@@ -41,10 +42,6 @@ public class Grabbable : MonoBehaviour
         }
         this.isGrabbedFromGround = isGrabbedFromGround;
         this.objectGrabPointTransform = objectGrabPointTransform;
-
-        if (!isGrabbedFromGround) {
-            transform.SetParent(objectGrabPointTransform);
-        }
 
         if (GrabEvent != null) {
             GrabEvent();
@@ -105,20 +102,20 @@ public class Grabbable : MonoBehaviour
                 }
             }
             */
-            /*
+            
             if (isGrabbedFromGround) {
                 float lerpSpeed = 10;
                 Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
                 objectRigidBody.MovePosition(newPosition);
-                if (Vector3.Distance(objectGrabPointTransform.position, transform.position) <= 0.0001f) {
-                    foreach (Item i in GetComponents<Item>()) {
-                        i.isGrabbedFromGround = false;
-                    }
-                }
-            } else {
-                objectRigidBody.MovePosition(objectGrabPointTransform.position);
+            
+                objectRigidBody.MoveRotation(objectGrabPointTransform.rotation * Quaternion.Euler(grabRotation));
             }
-            */
+            else
+            {
+                objectRigidBody.MovePosition(objectGrabPointTransform.position);
+                objectRigidBody.MoveRotation(objectGrabPointTransform.rotation * Quaternion.Euler(grabRotation));
+            }
+            
             
         }
     }
