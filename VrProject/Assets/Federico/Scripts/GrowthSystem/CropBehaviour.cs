@@ -27,11 +27,13 @@ public class CropBehaviour : MonoBehaviour {
     { 
         seedling = Instantiate(seedToGrow.seedling,transform);
         seedling.transform.localPosition=Vector3.zero;
-        seedling.transform.localScale = Vector3.one;  // Add this line
+        //seedling.transform.localScale =new Vector3(0.03f, 0.03f, 0.03f);  // Add this line
+       seedling.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         ItemData cropToYield=seedToGrow.cropToYield;
         harvestable = Instantiate(cropToYield.gameModel,transform);
         harvestable.transform.localPosition=Vector3.zero;
-        harvestable.transform.localScale = Vector3.one;  // Add this lin
+        //harvestable.transform.localScale =new Vector3(0.02f, 0.02f, 0.02f);  // Add this lin
+        harvestable.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         switchState(CropState.Seed);
     }
     //GROWTH SYSTEM
@@ -68,6 +70,8 @@ public void switchState(CropState stateToSwitch)
         break;
          case CropState.Harvestable:
          harvestable.SetActive(true);
+        Rigidbody rb=harvestable.GetComponent<Rigidbody>();
+         rb.AddForce(-Vector3.forward*2.5f,ForceMode.Impulse);
          harvestable.transform.parent=  null;
          Debug.Log("harvestabl ready ");
          Destroy(gameObject);
