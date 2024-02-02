@@ -25,8 +25,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     public event Action<Item.ItemName> DropEvent;
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
         if (InputManager.InteractionsAreEnabled()) {
 
@@ -46,11 +45,14 @@ public class PlayerPickUpDrop : MonoBehaviour
 
                         item.GetComponent<AudioSource>().clip = item.grabSound;
                         item.GetComponent<AudioSource>().Play();
-                        
+
                         Debug.Log(item + " grabbed");
 
                         if (item.isDeposited) {
-                            item.isDeposited = false;
+                            Item[] itemComponents = item.GetComponents<Item>();
+                            foreach (Item itemComponent in itemComponents) {
+                                itemComponent.isDeposited = false;
+                            }
                             if (--deposit.itemCounters[item.itemName].GetComponent<ItemDepositCounter>().counter != 0) {
                                 StartSpawning();
                             }
@@ -74,14 +76,18 @@ public class PlayerPickUpDrop : MonoBehaviour
                     // item.Grab(objectGrabPointTransform, true); // TODO: lascio? Serve a vedere l'effetto di spostamento dell'oggetto mentre lo raccolgo
 
                     hotbar.Add(item, false);
-                    
+
                     item.GetComponent<AudioSource>().clip = item.grabSound;
                     item.GetComponent<AudioSource>().Play();
-                    
+
                     Debug.Log(item + " added to the hotbar");
 
                     if (item.isDeposited) {
-                        item.isDeposited = false;
+
+                        Item[] itemComponents = item.GetComponents<Item>();
+                        foreach (Item itemComponent in itemComponents) {
+                            itemComponent.isDeposited = false;
+                        }
                         if (--deposit.itemCounters[item.itemName].GetComponent<ItemDepositCounter>().counter != 0) {
                             GameObject spawnedItem = SpawnItem(item.itemName);
                             spawnedItem.GetComponent<Item>().isDeposited = true;
@@ -91,7 +97,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                     item.StartFading();
                     ThrowPickUpEvent(item);
                 } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
-                           && hotbar.activeItemObj != null 
+                           && hotbar.activeItemObj != null
                            && hotbar.activeItemObj.itemName != Item.ItemName.BucketMilk
                            && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
                     hotbar.activeItemObj.StartFading();
@@ -124,6 +130,7 @@ public class PlayerPickUpDrop : MonoBehaviour
         }
 
         ThrowDropEvent(hotbar.activeItemObj);
+
         hotbar.activeItemWrapper.amount--;
         if (hotbar.activeItemWrapper.amount == 0)
         {
@@ -157,17 +164,28 @@ public class PlayerPickUpDrop : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1F);
         GameObject spawnedItem = SpawnItem(hotbar.activeItemObj.itemName);
-        spawnedItem.GetComponent<Item>().isDeposited = true;
+        Item[] itemComponents = spawnedItem.GetComponents<Item>();
+        foreach (Item itemComponent in itemComponents) {
+            itemComponent.GetComponent<Item>().isDeposited = true;
+        }
     }
     
     public void ThrowPickUpEvent(Item item) {
-        if (item != null && PickUpEvent != null)
-            PickUpEvent(item.itemName);
+        Item[] itemComponents = item.GetComponents<Item>();
+        if (item != null && PickUpEvent != null) {
+            foreach (Item i in itemComponents) {
+                PickUpEvent(item.itemName);
+            }
+        }
     }
 
     public void ThrowDropEvent(Item item) {
-        if (item != null && DropEvent != null)
-            DropEvent(item.itemName);
+        Item[] itemComponents = item.GetComponents<Item>();
+        if (item != null && DropEvent != null) {
+            foreach (Item i in itemComponents) {
+                DropEvent(item.itemName);
+            }
+        }
     }
 
     public bool PickUpAndSelect(Item newItem) {
@@ -182,10 +200,16 @@ public class PlayerPickUpDrop : MonoBehaviour
             Debug.Log(newItem + " added to the hotbar");
 
             if (newItem.isDeposited) {
-                newItem.isDeposited = false;
+                Item[] itemComponents = newItem.GetComponents<Item>();
+                foreach (Item itemComponent in itemComponents) {
+                    itemComponent.isDeposited = false;
+                }
+
                 if (--deposit.itemCounters[newItem.itemName].GetComponent<ItemDepositCounter>().counter != 0) {
                     GameObject spawnedItem = SpawnItem(newItem.itemName);
-                    spawnedItem.GetComponent<Item>().isDeposited = true;
+                    foreach (Item itemComponent in itemComponents) {
+                        itemComponent.GetComponent<Item>().isDeposited = true;
+                    }
                 }
             }
 

@@ -34,7 +34,10 @@ public class Deposit : MonoBehaviour
     public void AddItem(Item.ItemName itemName, int amount = 1) {
         if (itemCounters[itemName].GetComponent<ItemDepositCounter>().counter == 0) {
             GameObject spawnedItem = SpawnItem(itemName);
-            spawnedItem.GetComponent<Item>().isDeposited = true;
+            Item[] itemComponents = spawnedItem.GetComponents<Item>();
+            foreach (Item itemComponent in itemComponents) {
+                itemComponent.GetComponent<Item>().isDeposited = true;
+            }
         }
         itemCounters[itemName].GetComponent<ItemDepositCounter>().counter += amount;
     }
