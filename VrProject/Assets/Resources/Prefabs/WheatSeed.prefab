@@ -235,28 +235,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1754084054029576829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4754371511918238141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84cd6529417944935b37b96a07438350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInPlayerHand: 0
-  grabRotation: {x: 270, y: 224.11198, z: 0}
-  itemName: 5
-  itemCategory: 1
-  depositPosition: {x: -23.366001, y: 1.2338002, z: 22.394001}
-  depositRotation: {x: 270, y: 44, z: 0}
-  icon: {fileID: 21300000, guid: a804db02e0f1344939483d2ac270cf8a, type: 3}
-  isDeposited: 0
-  grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
 --- !u!82 &-5757751828629311520
 AudioSource:
   m_ObjectHideFlags: 0
@@ -901,11 +879,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
+  grabRotation: {x: 270, y: 224.11198, z: 0}
   itemName: 5
   itemCategory: 2
-  depositPosition: {x: -22.676, y: 3.9038, z: 21.014}
+  depositPosition: {x: -23.366001, y: 1.2338002, z: 22.394001}
   depositRotation: {x: 270, y: 44, z: 0}
-  grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: a804db02e0f1344939483d2ac270cf8a, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
