@@ -24,7 +24,7 @@ public class AnimalFood : ItemConsumable {
         _raycastManager = new RaycastManager<FoodEater>(_interactRange, false);
     }
 
-    public override UseResult Use(PlayerItemManager itemManager) { 
+    public override UseResult Use(PlayerItemManager itemManager) {
         // get reference to camera in order to determine raycast origin
         Camera playerCamera = itemManager.GetCamera();
 

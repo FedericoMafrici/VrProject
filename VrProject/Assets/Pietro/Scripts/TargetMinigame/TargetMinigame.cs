@@ -129,8 +129,11 @@ public class TargetMinigame : MonoBehaviour {
         if (currentTarget == null) {
             Debug.LogError(transform.name + ": " + targetPrefab.name + " has no \"Target\" component");
         }
+
         currentTarget.transform.localPosition = pos;
-        currentTarget.transform.LookAt(minigameCamera.transform.position);
+        //currentTarget.transform.LookAt(minigameCamera.transform.position);
+        currentTarget.transform.forward = - minigameCamera.transform.forward;
+        
 
         //subscribe to current target click event
         currentTarget.OnTargetClicked += CheckTargetList;

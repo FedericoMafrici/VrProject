@@ -71,7 +71,7 @@ public abstract class MovementBehaviour {
 
     protected bool TargetInRange(float range, ref Targettable target) {
         bool targetFound = false;
-        Collider[] intersectedTargets = Physics.OverlapSphere(_toMoveTransform.position, range, LayerMask.GetMask("AnimalTargets"));
+        Collider[] intersectedTargets = Physics.OverlapSphere(_toMoveTransform.position, range, LayerMask.GetMask("AnimalTargets", "Item"));
 
         if (intersectedTargets.Length > 0) {
             int i = 0;

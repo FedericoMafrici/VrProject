@@ -9,6 +9,7 @@ public enum TargetType {
     TARGET_3,
     TARGET_4,
     APPLE_FOOD,
+    APPLE_SEED,
     CHICKEN_FOOD,
     TREE_BRANCH
 }

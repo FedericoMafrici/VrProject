@@ -26,6 +26,7 @@ public class PatrolBehaviour : MovementBehaviour {
 
 
         //check if target has been reached or is not reachable (not on NavMesh)
+
         if (!_agent.isStopped) {
             if (!_targetReached) {
                 if (_agent.remainingDistance <= _agent.stoppingDistance || !_targetOnNavMesh) {
@@ -34,22 +35,26 @@ public class PatrolBehaviour : MovementBehaviour {
             }
 
 
+
             if (_targetReached) {
                 _toWaitForNextTarget -= Time.deltaTime;
                 if (_toWaitForNextTarget <= 0) {
 
                     //sample patrol area to find a new target, if no target is found re-sample during next update
                     if (GenerateRandomTarget())
-                        _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay befor generating new target
+                        _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay before generating new target
                     else
                         Debug.LogWarning(_npcMover.transform + " target generation failed, resampling at next update");
 
                 }
             }
 
+
             UpdateBehaviour();
         }
+
     }
+    
 
     private void ValidateParameters() {
         float _minPatrolSecondsDelayThreshold = 0.0f; //_delayBounds.x cannot be lower than this value

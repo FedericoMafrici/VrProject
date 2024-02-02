@@ -18,6 +18,7 @@ public class CollectingPoint : MonoBehaviour
         if (other)
         {
             Item item = other.GetComponent<Item>();
+            Item[] itemComponents = item.GetComponents<Item>();
             if (item != null)
             {
                 // oggetto lasciato cadere nel punto di raccolta
@@ -25,7 +26,9 @@ public class CollectingPoint : MonoBehaviour
                     && item.isCollected == false 
                     && item.itemCategory != Item.ItemCategory.Tool)
                 {
-                    item.isCollected = true;
+                    foreach (Item i in itemComponents) {
+                        i.isCollected = true;
+                    }
                     if (collectedItems.ContainsKey(item.itemName))
                     {
                         collectedItems[item.itemName]++;
@@ -37,8 +40,11 @@ public class CollectingPoint : MonoBehaviour
                     }
 
                     //throw event, needed for collect quest
+
                     if (ItemInCollectingPoint != null) {
-                        ItemInCollectingPoint(item);
+                        foreach (Item i in itemComponents) {
+                            ItemInCollectingPoint(i);
+                        }
                     }
 
                     //hide marker in case it was shown
@@ -53,7 +59,9 @@ public class CollectingPoint : MonoBehaviour
                         && item.isCollected 
                         && item.itemCategory != Item.ItemCategory.Tool)
                 {
-                    item.isCollected = false;
+                    foreach (Item i in itemComponents) {
+                        i.isCollected = false;
+                    }
                     collectedItems[item.itemName]--;
                     if (collectedItems[item.itemName] == 0)
                     {
@@ -62,8 +70,11 @@ public class CollectingPoint : MonoBehaviour
                     }
 
                     //throw event, needed for collect quest
+                    
                     if (ItemOutOfCollectingPoint != null) {
-                        ItemOutOfCollectingPoint(item);
+                        foreach (Item i in itemComponents) {
+                            ItemOutOfCollectingPoint(i);
+                        }
                     }
 
                     //tell marker that it can be shown
