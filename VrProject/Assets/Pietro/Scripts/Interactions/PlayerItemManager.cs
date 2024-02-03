@@ -32,9 +32,10 @@ public class PlayerItemManager : MonoBehaviour {
         bool itemConsumed = false;
 
         if ( heldItem != null ) {
+            Item[] itemComponents = heldItem.GetComponents<Item>();
             //get all the "Item" components on the object and call their "Use" method one by one
-            foreach (Item itemComponents in heldItem.transform.GetComponents<Item>()) {
-                UseResult useResult = heldItem.Use(this);
+            foreach (Item itemComponent in itemComponents) {
+                UseResult useResult = itemComponent.Use(this);
 
                 if (!itemUsed && useResult.itemUsed) {
                     itemUsed = true;

@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class FoodEater : MonoBehaviour {
@@ -20,9 +21,19 @@ public class FoodEater : MonoBehaviour {
 
     public void AutoEatFood(AnimalFood eaten) {
         if (eaten != null && !eaten.isInPlayerHand && !eaten.isCollected && !eaten.isDeposited && !eaten.isFading && !eaten.IsConsumed() && FoodInterestsAnimal(eaten)) {
-            Debug.Log("eating food");
+            UnityEngine.Debug.Log("eating food");
             EatFood(eaten);
             Destroy(eaten.gameObject);
+        } else {
+            /*
+            UnityEngine.Debug.LogWarning("Not eating");
+            UnityEngine.Debug.Log("In player hand: " + eaten.isInPlayerHand);
+            UnityEngine.Debug.Log("Is collected: " + eaten.isCollected);
+            UnityEngine.Debug.Log("Is fading: " + eaten.isFading);
+            UnityEngine.Debug.Log("Is deposited: " + eaten.isDeposited);
+            UnityEngine.Debug.Log("Is consumed: " + eaten.IsConsumed());
+            UnityEngine.Debug.Log("Interests animal: " + FoodInterestsAnimal(eaten));
+            */
         }
     }
 

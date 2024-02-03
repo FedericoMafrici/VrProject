@@ -70,7 +70,7 @@ public void switchState(CropState stateToSwitch)
         break;
          case CropState.Harvestable:
          harvestable.SetActive(true);
-        Rigidbody rb=harvestable.GetComponent<Rigidbody>();
+         Rigidbody rb=harvestable.GetComponent<Rigidbody>();
          rb.AddForce(-Vector3.forward*2.5f,ForceMode.Impulse);
          harvestable.transform.parent=  null;
          Debug.Log("harvestabl ready ");
