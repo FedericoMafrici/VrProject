@@ -38,6 +38,7 @@ public class Seed : ItemTool
 
     //aggiunto da Pietro:
     public override UseResult Use(PlayerItemManager itemManager) {
+        
         // get reference to camera in order to determine raycast origin
         Camera playerCamera = itemManager.GetCamera();
         if (_raycastManager == null) {
@@ -49,8 +50,9 @@ public class Seed : ItemTool
         useResult.itemUsed = false;
         useResult.itemConsumed = false;
 
+        
         //do raycast through RaycastManager
-        bool inputPressed = InputManager.InteractionsAreEnabled() ? Input.GetKeyDown(_interactKey) : false;
+        bool inputPressed = InputManager.InteractionsAreEnabled() ? Input.GetMouseButtonDown(0) : false;
         InteractionResult<FarmingLand> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBePlanted);
 
         FarmingLand farmingLand = interactionResult.currentInteracted;
@@ -73,6 +75,7 @@ public class Seed : ItemTool
 
 
         return useResult;
+        
     }
 
     private bool CanBePlanted(FarmingLand land) {
