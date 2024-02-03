@@ -47,11 +47,12 @@ public class RaycastManager<T> where T : class {
         _previousInteracted= null;
     }
 
-    public InteractionResult<T> CheckRaycast(Camera playerCamera, bool inputPressed, int layerMask = ~0, int maxParentDepth = 5) {
+    public InteractionResult<T> CheckRaycast(Camera playerCamera, bool inputPressed, int layerMask = ~0, int maxParentDepth = 0) {
         return CheckRaycast(playerCamera, inputPressed, DefaultCanInteract, layerMask, maxParentDepth);
     }
 
-    public InteractionResult<T> CheckRaycast(Camera playerCamera, bool inputPressed, Func<T, bool> CanInteract, int layerMask = ~0, int maxParentDepth = 5) {
+    public InteractionResult<T> CheckRaycast(Camera playerCamera, bool inputPressed, Func<T, bool> CanInteract, int layerMask = ~0, int maxParentDepth = 0) {
+        //Debug.LogWarning("Raycast called, can interact: " + _canInteract);
         bool didInteract = false;
         T currentInteracted= null;
         RaycastHit hit;
@@ -67,10 +68,12 @@ public class RaycastManager<T> where T : class {
         result.abandonedPreviousTarget = false;
 
         if (_canInteract) {
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, _range, layerMask)) {
+            bool hitSomething = Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, _range, layerMask);
+            if (hitSomething) {
                 Transform hitTransform = hit.transform;
                 currentInteracted = hitTransform.GetComponent<T>();
                 ValidateInteractability(ref currentInteracted, CanInteract);
+                //Debug.LogWarning("Interactability validated, result: " + currentInteracted == null ? "null" : currentInteracted);
 
                 //check if intersected object is child of a "T" class
                 if (currentInteracted == null) {
@@ -80,6 +83,7 @@ public class RaycastManager<T> where T : class {
                         curDepth++;
                         currentInteracted = tmpTransform.parent.GetComponent<T>();
                         ValidateInteractability(ref currentInteracted, CanInteract);
+                        //Debug.LogWarning("Interactability validated, result: " + currentInteracted == null ? "null" : currentInteracted);
                         tmpTransform = tmpTransform.parent;
                     }
                 }
@@ -203,6 +207,7 @@ public class RaycastManager<T> where T : class {
     }
 
     private void ValidateInteractability(ref T currentInteracted, Func<T, bool> CanInteract) {
+
         if (currentInteracted != null) {
             bool canInteract = CanInteract(currentInteracted);
             if (!canInteract) {

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class AnimalFood : ItemConsumable {
     [SerializeField] private string _clueText = "Premi [CLICK SINISTRO] per dare da mangiare";
-    [SerializeField] private float _interactRange = .5f;
+    [SerializeField] private float _interactRange = 3f;
     [SerializeField] private bool _consumeWhenEaten = true;
     private RaycastManager<FoodEater> _raycastManager;
     private KeyCode _interactKey = KeyCode.Mouse0;

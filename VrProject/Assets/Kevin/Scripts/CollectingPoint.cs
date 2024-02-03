@@ -18,9 +18,9 @@ public class CollectingPoint : MonoBehaviour
         if (other)
         {
             Item item = other.GetComponent<Item>();
-            Item[] itemComponents = item.GetComponents<Item>();
             if (item != null)
             {
+                Item[] itemComponents = item.GetComponents<Item>();
                 // oggetto lasciato cadere nel punto di raccolta
                 if (other.GetComponent<Rigidbody>().useGravity 
                     && item.isCollected == false 
