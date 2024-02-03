@@ -23,7 +23,7 @@ public class FarmingLand : MonoBehaviour
               if(seed.itemName==Item.ItemName.AppleSeed)
                    {
                     this.tree=true;
-                   }3
+                   }
             tmp=Instantiate(seed.seed,gameObject.transform);
             tmp.transform.position=new Vector3(0.0f, 0.0f, 0.0f);
            
