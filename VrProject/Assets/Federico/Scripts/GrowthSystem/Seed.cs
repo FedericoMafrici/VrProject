@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Seed : ItemConsumable
+public class Seed : ItemTool
 {
     [SerializeField] private string _clueText = "Premi [CLICK SINISTRO] per piantare"; //aggiunto da Pietro
     [SerializeField] private float _interactDistance; //aggiunto da Pietro
@@ -18,6 +18,9 @@ public class Seed : ItemConsumable
 
     public static event EventHandler<ClueEventArgs> InLandRange; //aggiutno da Pietro
     public static event EventHandler<ClueEventArgs> OutOfLandRange; //aggiunto da Pietro
+
+
+    Seed(Item.ItemName name) : base(name) { }
 
     void Start() {
         //corpo del metodo aggiunto da Pietro
@@ -55,7 +58,7 @@ public class Seed : ItemConsumable
         if (interactionResult.canCallBehaviour) {
             farmingLand.Interact(this);
             useResult.itemUsed = true;
-            useResult.itemConsumed= true;
+            useResult.itemConsumed= false;
         }
 
         if (interactionResult.enteredRange) {

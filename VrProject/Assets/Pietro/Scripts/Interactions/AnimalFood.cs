@@ -7,8 +7,10 @@ using UnityEngine.EventSystems;
 public class AnimalFood : ItemConsumable {
     [SerializeField] private string _clueText = "Premi [CLICK SINISTRO] per dare da mangiare";
     [SerializeField] private float _interactRange = .5f;
+    [SerializeField] private bool _consumeWhenEaten = true;
     private RaycastManager<FoodEater> _raycastManager;
     private KeyCode _interactKey = KeyCode.Mouse0;
+    
 
     public static event EventHandler<ClueEventArgs> InFeedRange;
     public static event EventHandler<ClueEventArgs> OutOfFeedRange;
@@ -48,7 +50,7 @@ public class AnimalFood : ItemConsumable {
         if (interactionResult.canCallBehaviour) {
             eater.ForceEatFood(this);
             useResult.itemUsed = true;
-            useResult.itemConsumed = true;
+            useResult.itemConsumed = _consumeWhenEaten;
             //RemovePart(result.currentInteracted);
         }
 
