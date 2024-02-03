@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1a0bca4f05c072746adc0aac6e4d4920
+guid: 61e0f8e84950a004cbeb32f825a36ffc
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Wheat
-    second: {fileID: 2100000, guid: 8f3b53af3be193c42b1688df631ed787, type: 2}
+      name: Material.011
+    second: {fileID: 2100000, guid: 12f8e1e7aee5b1342869039e1aeac1c7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -37,7 +37,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
