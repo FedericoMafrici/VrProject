@@ -16,6 +16,12 @@ public class Target : MonoBehaviour
                 OnTargetClicked();
 
             gameObject.GetComponent<SpriteRenderer>().sprite = greenTarget;
+
+            Collider coll = gameObject.GetComponent<Collider>();
+            if (coll != null) {
+                coll.enabled = false;
+            }
+
             StartFading();
             alreadyClicked = true;
         }
