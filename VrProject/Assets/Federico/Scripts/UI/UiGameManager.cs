@@ -66,7 +66,8 @@ public TMP_Text additionalRules;
 
  public Sprite soundButtonPurpleOFF;
 
-  
+  public Sprite leftArrow;
+  public Sprite rightArrow;
 
 void Start()
     {
@@ -108,7 +109,19 @@ void Start()
       }
       setttingsList.text=controlSettings.comandi;
       additionalRules.text=controlSettings.regoleAggiuntive;
-      
+        // bottoni automatici 
+      if(currkey==0)
+      {
+       // NextAnimalButton.Sprite=null;
+       Image tmp=PreviousAnimalButton.GetComponent<Image>();
+       tmp.sprite=null;
+      }
+      else
+      {
+        
+        Image tmp=PreviousAnimalButton.GetComponent<Image>();
+       tmp.sprite=leftArrow;
+      }
     }
 void DisplayAnimalData()
 {
@@ -133,6 +146,20 @@ void DisplayAnimalData()
         animalMissions.text+="-"+quest.GetQuestDescription();
         animalMissions.text+="\n";
       }   
+      
+            if(currkey==0)
+      {
+       // NextAnimalButton.Sprite=null;
+       Image tmp=PreviousAnimalButton.GetComponent<Image>();
+       tmp.sprite=null;
+      }
+      else
+      {
+        
+        Image tmp=PreviousAnimalButton.GetComponent<Image>();
+       tmp.sprite=leftArrow;
+      }
+
 }
 
 public void DisplayAnimal()
@@ -208,7 +235,19 @@ public void StartUI()
          animalMissions.text+="-"+quest.GetQuestDescription();
         animalMissions.text+="\n";
       }
-
+        // parte gestione dinamica dei bottoni
+         if(currkey==0)
+      {
+       // NextAnimalButton.Sprite=null;
+       Image tmp=PreviousAnimalButton.GetComponent<Image>();
+       tmp.sprite=null;
+      }
+      else
+      {
+        
+        Image tmp=PreviousAnimalButton.GetComponent<Image>();
+       tmp.sprite=leftArrow;
+      }
   
 
 
