@@ -14,35 +14,24 @@ using UnityEngine.UI;
     public bool isCompleted;
 }
 
-public class QuestsList : QuestEventReceiver
+public class UI_QuestsList : QuestEventReceiver
 {
-    static public int maxQuests = 5;
     private int numOfQuests = 0;
+    [SerializeField] private Animator animator;
+    private GameObject uiElement;
+    private List<QuestElement> elements;
+    private List<TMP_Text> descriptions;
+    private List<Image> checkboxes;
+    private List<Image> checks;
     
-    public Animator animator;
-    public List<QuestElement> elements;
-    
-    public List<TMP_Text> descriptions;
-    public List<Image> checkboxes;
-    public List<Image> checks;
+    public bool isOpen;
 
-    void Start()
+    public void Awake()
     {
-        for(int i = 0; i < maxQuests; i++){
-            GameObject description = gameObject.transform.Find("Description" + i).gameObject;
-            description.SetActive(false);
-            descriptions.Insert(i, description.GetComponent<TMP_Text>());
-            
-            GameObject checkbox = gameObject.transform.Find("CheckBox" + i).gameObject;
-            checkbox.SetActive(false);
-            checkboxes.Insert(i, checkbox.GetComponent<Image>());
-            
-            GameObject check = gameObject.transform.Find("Checks" + i).gameObject;
-            check.SetActive(false);
-            checks.Insert(i, check.GetComponent<Image>());
-        }
+        Hide();
+        uiElement = (GameObject)Resources.Load("Prefabs/Description");
     }
-    
+
     protected override void OnEventReceived(Quest quest, EventType eventType)
     {
         if (eventType == EventType.AREA_ENTER)
@@ -55,11 +44,18 @@ public class QuestsList : QuestEventReceiver
             elem.isCompleted = (quest.GetState() == QuestState.COMPLETED);
             elements.Insert(quest.GetInfo().orderNumber, elem);
 
+            GameObject uiElem = Instantiate<GameObject>(uiElement, this.transform);
+            descriptions.Insert(quest.GetInfo().orderNumber, transform.Find("Description").GetComponent<TMP_Text>());
+            checkboxes.Insert(quest.GetInfo().orderNumber, transform.Find("Checkbox").GetComponent<Image>());
+            checks.Insert(quest.GetInfo().orderNumber, transform.Find("Check").GetComponent<Image>());
+            
+            uiElem.GetComponent<TMP_Text>().text = elem.text;
+            if(!elem.isCompleted)
+                transform.Find("Check").gameObject.SetActive(false);
+
+            Show();
             if (elem.orderNumber == 0)
-            {
-                Thread.Sleep(1000);
-                Show();
-            }
+                Open(true);
         }
 
         else if (eventType == EventType.COMPLETE)
@@ -67,7 +63,6 @@ public class QuestsList : QuestEventReceiver
             QuestElement elem = elements[quest.GetInfo().orderNumber];
             elem.isCompleted = true;
             elements[quest.GetInfo().orderNumber] = elem;
-            
             checks[quest.GetInfo().orderNumber].gameObject.SetActive(true);
         }
         
@@ -75,14 +70,25 @@ public class QuestsList : QuestEventReceiver
         {
             if (quest.GetInfo().orderNumber == 0)
             {
-                Hide();
+                Close();
+                numOfQuests = 0;
                 elements.Clear();
+                descriptions.Clear();
+                checkboxes.Clear();
+                checks.Clear();
+                Hide();
             }
         }
     }
 
-    void Show()
+    public void Open(bool isWaitingNecessary)
     {
+        if(isWaitingNecessary)
+            Thread.Sleep(1000);
+        
+        animator.SetBool("IsOpen", true);
+        isOpen = true;
+        
         for (int i = 0; i < numOfQuests; i++)
         {
             descriptions[i].text = elements[i].text;
@@ -94,25 +100,28 @@ public class QuestsList : QuestEventReceiver
                 checks[i].gameObject.SetActive(true);
         }
 
-        animator.SetBool("IsOpen", true);
-
     }
     
-    void Hide()
+    public void Close()
     {
         for (int i = 0; i < numOfQuests; i++)
         {
-            descriptions[i].text = "";
             descriptions[i].gameObject.SetActive(false);
-            
             checkboxes[i].gameObject.SetActive(false);
-            
-            if(elements[i].isCompleted)
-                checks[i].gameObject.SetActive(false);
+            checks[i].gameObject.SetActive(false);
         }
-        numOfQuests = 0;
         
-        animator.SetBool("IsOpen", true);
+        animator.SetBool("IsOpen", false);
+        isOpen = false;
     }
-    
+
+    private void Show()
+    {
+        GameObject.Find("Quests_UI").gameObject.SetActive(true);
+    }
+
+    private void Hide()
+    {
+        GameObject.Find("Quests_UI").gameObject.SetActive(false);
+    }
 }

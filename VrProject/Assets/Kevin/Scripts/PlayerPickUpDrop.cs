@@ -111,6 +111,14 @@ public class PlayerPickUpDrop : MonoBehaviour
                 }
 
             }
+            else if (Input.GetKeyDown(KeyCode.H))
+            {
+                UI_QuestsList questsList = GameObject.Find("QuestsList").GetComponent<UI_QuestsList>();
+                if(questsList.isOpen)
+                    questsList.Close();
+                else
+                    questsList.Open(false);
+            }
         }
     }
 
