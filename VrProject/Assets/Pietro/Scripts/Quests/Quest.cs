@@ -56,11 +56,11 @@ public enum QuestState {
 
 public abstract class Quest : MonoBehaviour {
     [SerializeField] private QuestID _id;
-    [SerializeField] protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     [SerializeField] private bool _startOnEnter = false;
     [SerializeField] private bool _showMarkersOnEnter = false;
     [SerializeField] private JournalInformation _info;
     protected  QuestState _state = QuestState.NOT_STARTED;
+    protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     private bool _inited = false;
 
     public event Action<Quest> EnteredArea;
@@ -222,5 +222,9 @@ public abstract class Quest : MonoBehaviour {
     public JournalInformation GetInfo()
     {
         return _info;
+    }
+
+    public void SetIsStep(bool value) {
+        _isStep = value;
     }
 }

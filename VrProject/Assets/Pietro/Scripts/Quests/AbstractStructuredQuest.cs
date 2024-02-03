@@ -26,6 +26,7 @@ public abstract class AbstractStructuredQuest : Quest {
                     Debug.LogError(transform.name + " found a \"null\" step in the step list");
                 } else {
                     //step.DisableCollider();
+                    step.SetIsStep(true);
                 }
             }
             _currentStep = _steps[_curStepIdx];
