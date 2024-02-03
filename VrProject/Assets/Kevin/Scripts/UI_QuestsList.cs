@@ -26,8 +26,9 @@ public class UI_QuestsList : QuestEventReceiver
     
     public bool isOpen;
 
-    public void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Hide();
         uiElement = (GameObject)Resources.Load("Prefabs/Description");
     }

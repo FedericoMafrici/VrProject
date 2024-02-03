@@ -67,10 +67,6 @@ public class FriendshipQuest : Quest {
         }
     }
 
-    protected override void PlayerEnteredQuestArea() {
-        base.PlayerEnteredQuestArea();
-    }
-
     public override void Complete() {
         base.Complete();
         Debug.Log("Friendship quest completed");

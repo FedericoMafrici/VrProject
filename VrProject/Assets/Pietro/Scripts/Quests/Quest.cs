@@ -106,6 +106,7 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void PlayerEnteredQuestArea() {
+        Debug.LogWarning(transform.name + ": player entered area");
         if (!_isStep && _startOnEnter) {
             StartQuest();
         }
@@ -115,12 +116,15 @@ public abstract class Quest : MonoBehaviour {
         }
 
         if (EnteredArea != null) {
+            Debug.LogWarning(transform.name + ": area entered event sent");
             EnteredArea(this);
         }
     }
 
     protected virtual void PlayerExitedQuestArea() {
+        Debug.LogWarning(transform.name + ": player exited area");
         if (ExitedArea != null) {
+            Debug.LogWarning(transform.name + ": area exited event sent");
             ExitedArea(this);
         }
 

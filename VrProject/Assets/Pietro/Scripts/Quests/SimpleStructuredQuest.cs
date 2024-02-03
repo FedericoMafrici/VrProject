@@ -11,9 +11,4 @@ public class SimpleStructuredQuest : AbstractStructuredQuest
         base.Init();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
