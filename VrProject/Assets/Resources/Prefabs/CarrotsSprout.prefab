@@ -259,7 +259,9 @@ MonoBehaviour:
   usageSound: {fileID: 0}
   _clueText: Premi [CLICK SINISTRO] per piantare
   _interactDistance: 5
-  seed: {fileID: 1609356104971643463, guid: 71e2f40628cb4432d92974ed186646a1, type: 3}
+  seed: {fileID: 3740805742391472202, guid: b9b6b5bf48ead44df9722c94853c871c, type: 3}
+  offset: 0.89
+  coordinate: {x: 0, y: 1.03, z: 0}
   debug: 1
 --- !u!82 &-1866864612116095346
 AudioSource:

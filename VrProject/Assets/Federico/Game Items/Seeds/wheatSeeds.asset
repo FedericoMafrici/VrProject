@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: seeds for wheat
   thumbnail: {fileID: 0}
-  gameModel: {fileID: 631713865696746564, guid: 941371edb56534521b6a5794353f023b, type: 3}
+  gameModel: {fileID: 2310493937955870040, guid: 3bad3ba15996a4d389cf71352c465c92, type: 3}
   daysToGrow: 2
   cropToYield: {fileID: 11400000, guid: bfa426e72d0fb4d54ba8abdcf0ec8894, type: 2}
-  seedling: {fileID: 917184750054417480, guid: 749b782dcff4642ca85818fc0888447e, type: 3}
+  seedling: {fileID: 9199309928222160273, guid: 820062e1f6e194b2880d2a2b93541562, type: 3}

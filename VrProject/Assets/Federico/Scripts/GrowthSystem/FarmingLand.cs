@@ -23,13 +23,13 @@ public class FarmingLand : MonoBehaviour
               if(seed.itemName==Item.ItemName.AppleSeed)
                    {
                     this.tree=true;
-                   }
+                   }3
             tmp=Instantiate(seed.seed,gameObject.transform);
             tmp.transform.position=new Vector3(0.0f, 0.0f, 0.0f);
            
 
             crop=tmp.GetComponent<CropBehaviour>();
-            crop.transform.localPosition=new Vector3(0.0f, 0.20f, 0.0f);
+            crop.transform.localPosition=new Vector3(seed.coordinate.x, seed.coordinate.y, seed.coordinate.z);
             //crop.transform.localScale=new Vector3(0.4f,0.4f,0.4f);
             crop.Plant();
 

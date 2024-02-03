@@ -13,6 +13,8 @@ public class Seed : ItemTool
    //GameObject to be shown in the scene
     //The crop the seed will yield
     public GameObject seed;
+    public float offset=0.89f;
+     public Vector3 coordinate;
     //Debugging purpose
     public int debug=1;
 

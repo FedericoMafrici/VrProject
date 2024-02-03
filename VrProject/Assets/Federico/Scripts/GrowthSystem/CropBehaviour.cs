@@ -11,7 +11,9 @@ public class CropBehaviour : MonoBehaviour {
    // public GameObject seed;
     private GameObject seedling;
     private GameObject harvestable;
-   
+    public Vector3 harvestableCoordinate;
+
+    public Vector3 seedlingCoordinate;
     public CropState cropState;
     public int growth=0;
     public enum CropState
@@ -27,12 +29,11 @@ public class CropBehaviour : MonoBehaviour {
     { 
         seedling = Instantiate(seedToGrow.seedling,transform);
         seedling.transform.localPosition=Vector3.zero;
-        //seedling.transform.localScale =new Vector3(0.03f, 0.03f, 0.03f);  // Add this line
-       seedling.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+        
+        seedling.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.3f);
         ItemData cropToYield=seedToGrow.cropToYield;
         harvestable = Instantiate(cropToYield.gameModel,transform);
-        harvestable.transform.localPosition=Vector3.zero;
-        //harvestable.transform.localScale =new Vector3(0.02f, 0.02f, 0.02f);  // Add this lin
+        harvestable.transform.localPosition=new Vector3(harvestableCoordinate.x,harvestableCoordinate.y, harvestableCoordinate.z); // grano 
         harvestable.transform.localRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         switchState(CropState.Seed);
     }
