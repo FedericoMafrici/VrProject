@@ -37,6 +37,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                             out RaycastHit raycastHit3,
                             pickupDistance, pickupLayerMask)
                         && raycastHit3.transform.TryGetComponent(out item)
+                        && item.enabled
                         && hotbar.firstEmpty < Constants.Capacity) {
                         int lastItemIndex = hotbar.Add(item, true);
                         hotbar.Select(lastItemIndex);
@@ -72,6 +73,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                 if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward,
                         out RaycastHit raycastHit4, pickupDistance, pickupLayerMask)
                     && raycastHit4.transform.TryGetComponent(out item)
+                    && item.enabled
                     && hotbar.firstEmpty < Constants.Capacity) {
                     // item.Grab(objectGrabPointTransform, true); // TODO: lascio? Serve a vedere l'effetto di spostamento dell'oggetto mentre lo raccolgo
 
@@ -79,8 +81,10 @@ public class PlayerPickUpDrop : MonoBehaviour
 
                     item.GetComponent<AudioSource>().clip = item.grabSound;
                     item.GetComponent<AudioSource>().Play();
+                    item.ThrowGrabEvent(); //aggiunto da Pietro
 
                     Debug.Log(item + " added to the hotbar");
+                    
 
                     if (item.isDeposited) {
 

@@ -39,11 +39,13 @@ public class RemovablesCounter : MonoBehaviour {
 
     protected virtual void AllPartsRemoved() {
         _everythingRemoved= true;
-        Vector3 forceDirection = (_player.position - _spawnPoint.position).normalized;
-        forceDirection.x *= 4f;
-        forceDirection.y = Vector3.up.y * 2f; 
-        forceDirection.z *= 4f;
-        Spawner.Spawn(_toSpawn, _spawnPoint.position, forceDirection);
+        if (_toSpawn != null) {
+            Vector3 forceDirection = (_player.position - _spawnPoint.position).normalized;
+            forceDirection.x *= 4f;
+            forceDirection.y = Vector3.up.y * 2f;
+            forceDirection.z *= 4f;
+            Spawner.Spawn(_toSpawn, _spawnPoint.position, forceDirection);
+        }
         if (EverythingRemovedEvent!= null) {
             EverythingRemovedEvent(this);
         }
