@@ -12,7 +12,7 @@ public class Seed : ItemTool
     private KeyCode _interactKey = KeyCode.Mouse0; //aggiunto da Pietro
    //GameObject to be shown in the scene
     //The crop the seed will yield
-    public GameObject seed;
+    public GameObject crop;
     public float offset=0.89f;
      public Vector3 coordinate;
     //Debugging purpose
