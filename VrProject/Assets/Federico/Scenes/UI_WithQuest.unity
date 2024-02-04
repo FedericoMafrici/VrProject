@@ -6086,7 +6086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1973458707405871382, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_Name
-      value: Plant Panel
+      value: Plant Ui
       objectReference: {fileID: 0}
     - target: {fileID: 1973458707405871382, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_IsActive

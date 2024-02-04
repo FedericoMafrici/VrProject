@@ -24,14 +24,16 @@ public class FarmingLand : MonoBehaviour
                    {
                     this.tree=true;
                    }
-            tmp=Instantiate(seed.seed,gameObject.transform);
-            tmp.transform.position=new Vector3(0.0f, 0.0f, 0.0f);
-           
-
+            tmp=Instantiate(seed.crop,gameObject.transform);
+            tmp.transform.localPosition=new Vector3(0.0f,0.0f,0.0f);
+            //tmp=Instantiate(seed.seed,gameObject.transform);
+            //tmp.transform.position=new Vector3(0.0f, 0.0f, 0.0f);
             crop=tmp.GetComponent<CropBehaviour>();
-            crop.transform.localPosition=new Vector3(seed.coordinate.x, seed.coordinate.y, seed.coordinate.z);
+            crop.transform.localPosition=new Vector3(0.0f,0.0f,0.0f);
+            //crop.transform.localPosition=new Vector3(seed.coordinate.x, seed.coordinate.y, seed.coordinate.z);
             //crop.transform.localScale=new Vector3(0.4f,0.4f,0.4f);
             crop.Plant();
+
 
             if (CropPlanted != null) 
             {
