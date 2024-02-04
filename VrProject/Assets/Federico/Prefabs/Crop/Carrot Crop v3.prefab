@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4137121431291719801}
+  - {fileID: 3365496752857311976}
   - {fileID: 6388816861003066482}
   - {fileID: 1258426024987046057}
   m_Father: {fileID: 0}
@@ -49,12 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seedToGrow: {fileID: 0}
   stadi:
-  - {fileID: 3612399999997717187}
+  - {fileID: 2738036684950745170}
   - {fileID: 6044520890265073352}
   - {fileID: 1890671137902684691}
   cropState: 0
   growth: 0
---- !u!1001 &4530827352534488978
+--- !u!1001 &3991723634959926491
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -62,72 +62,64 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3649091788701833331}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.9999999
+    - target: {fileID: 1340391142741210249, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
+      propertyPath: m_Name
+      value: germoglioCarota
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.9999999
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.809
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9636305
+      value: -5.4519497e-17
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.26723832
+      value: -3.2072056e-17
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.70697904
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
       propertyPath: m_LocalRotation.z
+      value: 0.7072345
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 31
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
+    - target: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
-      propertyPath: m_Name
-      value: Germoglio carota
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
---- !u!1 &3612399999997717187 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
+--- !u!1 &2738036684950745170 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
-  m_PrefabInstance: {fileID: 4530827352534488978}
+  m_CorrespondingSourceObject: {fileID: 1340391142741210249, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
+  m_PrefabInstance: {fileID: 3991723634959926491}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4137121431291719801 stripped
+--- !u!4 &3365496752857311976 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 13ae5a6ca1d552b4689fffadbcd4ca55, type: 3}
-  m_PrefabInstance: {fileID: 4530827352534488978}
+  m_CorrespondingSourceObject: {fileID: 1860503451358408243, guid: 20bd03bcd6252475b858e58521c12071, type: 3}
+  m_PrefabInstance: {fileID: 3991723634959926491}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6823616055737138794
 PrefabInstance:
