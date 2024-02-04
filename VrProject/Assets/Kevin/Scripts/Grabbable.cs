@@ -43,9 +43,7 @@ public class Grabbable : MonoBehaviour
         this.isGrabbedFromGround = isGrabbedFromGround;
         this.objectGrabPointTransform = objectGrabPointTransform;
 
-        if (GrabEvent != null) {
-            GrabEvent();
-        }
+        ThrowGrabEvent();
     }
 
     public void Drop()
@@ -64,9 +62,7 @@ public class Grabbable : MonoBehaviour
         objectRigidBody.useGravity = true;
         objectRigidBody.isKinematic = false;
 
-        if (ReleaseEvent!= null) {
-            ReleaseEvent();
-        }
+        ThrowReleaseEvent();
     }
 
     public void Update() {
@@ -79,12 +75,13 @@ public class Grabbable : MonoBehaviour
             }
         }
         */
-        /*
+        
         if (objectGrabPointTransform != null) {
             Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * 8);
             transform.position = newPosition;
+            transform.rotation = objectGrabPointTransform.rotation * Quaternion.Euler(grabRotation);
         }
-        */
+        
     }
     
     private void FixedUpdate()
@@ -105,6 +102,7 @@ public class Grabbable : MonoBehaviour
             }
             */
             
+            /*
             if (isGrabbedFromGround) {
                 float lerpSpeed = 10;
                 Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
@@ -117,6 +115,7 @@ public class Grabbable : MonoBehaviour
                 objectRigidBody.MovePosition(objectGrabPointTransform.position);
                 objectRigidBody.MoveRotation(objectGrabPointTransform.rotation * Quaternion.Euler(grabRotation));
             }
+            */
             
             
         }
@@ -134,5 +133,17 @@ public class Grabbable : MonoBehaviour
             }
         }
         return userLayersMask;
+    }
+
+    public void ThrowGrabEvent() {
+        if (GrabEvent != null) {
+            GrabEvent();
+        }
+    }
+
+    public void ThrowReleaseEvent() {
+        if (ReleaseEvent != null) {
+            ReleaseEvent();
+        }
     }
 }

@@ -64,13 +64,13 @@ PrefabInstance:
       addedObject: {fileID: 1367049483994171092}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ca1ad932a20f1554aad3590197d384bc, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2466624006454745441}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ca1ad932a20f1554aad3590197d384bc, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2462054731036627937}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ca1ad932a20f1554aad3590197d384bc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6602234604641002026}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ca1ad932a20f1554aad3590197d384bc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 204962776034616012}
   m_SourcePrefab: {fileID: 100100000, guid: ca1ad932a20f1554aad3590197d384bc, type: 3}
 --- !u!1 &5234110970490837708 stripped
 GameObject:
@@ -125,28 +125,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2466624006454745441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5234110970490837708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754fc17baa1d64df1af38b3b3de0810c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInPlayerHand: 0
-  grabRotation: {x: 292.5, y: 0, z: 10}
-  itemName: 1
-  itemCategory: 0
-  depositPosition: {x: -23.415, y: 1.8180001, z: 22.501001}
-  depositRotation: {x: 3.2304254, y: 335.93576, z: 359.59088}
-  icon: {fileID: 21300000, guid: a4a6da324908941dbba6bb824a353fb8, type: 3}
-  isDeposited: 0
-  grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
 --- !u!82 &2462054731036627937
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11500,3 +11478,29 @@ MonoBehaviour:
     - {x: 0.21000534, y: -0.66229653, z: -0.7192086}
     - {x: 0.5809726, y: -0.64040935, z: -0.5023413}
     - {x: 0.26510933, y: -0.04150998, z: -0.9633244}
+--- !u!114 &204962776034616012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5234110970490837708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1294a65e108bf3d49b7a3fc55e4071bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInPlayerHand: 0
+  grabRotation: {x: 292.5, y: 0, z: 10}
+  itemName: 1
+  itemCategory: 0
+  depositPosition: {x: -23.415, y: 1.818, z: 22.501}
+  depositRotation: {x: 3.230425, y: 335.9358, z: 359.5909}
+  icon: {fileID: 21300000, guid: a4a6da324908941dbba6bb824a353fb8, type: 3}
+  isDeposited: 0
+  grabSound: {fileID: 0}
+  usageSound: {fileID: 0}
+  _targetType: 0
+  _interactRange: 3
+  _clueText: 
+  _clueID: 3

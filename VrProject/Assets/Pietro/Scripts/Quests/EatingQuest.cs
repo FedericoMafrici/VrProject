@@ -65,7 +65,6 @@ public class EatingQuest : Quest {
                 fe.EatEvent -= OnFoodEaten;
             }
         }
-        Debug.Log("Eating quest completed");
     }
 
     public override string GetQuestDescription() {

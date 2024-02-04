@@ -13,21 +13,16 @@ public class FollowUpQuestStarter : QuestEventReceiver {
     protected override void Awake() {
         base.Awake();
 
-        if (_toStartCollection == null) {
-            if (_toStartList == null) {
-                Debug.LogError(transform.name + ": QuestStarter has no list of quests to start");
-            } else if (_toStartList == null) {
-                Debug.LogWarning(transform.name + ": QuestStarter: list of quests to start is empty");
-            }
-
-            _toStartSet = _toStartList.ToHashSet();
-
-        } else {
-            if (_toStartList != null && _toStartList.Count > 0) {
-                Debug.LogWarning(transform.name + ": QuestStarter: Quest Set was specified through a collection, but list of quests to start is not empty, the list will be ignored");
-            }
-
+        if (_toStartCollection != null) {
             _toStartSet = GetQuestsFromParentTransform(_toStartCollection);
+        }
+
+        if (_toStartList != null) {
+            foreach (Quest quest in _toStartList) {
+                foreach (Quest questComponent in quest.transform.GetComponents<Quest>()) {
+                    _toStartSet.Add(questComponent);
+                }
+            }
         }
     }
 

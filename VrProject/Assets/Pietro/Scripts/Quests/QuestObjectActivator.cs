@@ -6,8 +6,10 @@ using UnityEngine.WSA;
 
 public class QuestObjectActivator : QuestEventReceiver {
     [SerializeField] List<GameObject> _gameObjects = new List<GameObject>();
+    [SerializeField] List<GameObject> _toExcludeList = new List<GameObject>();
     [SerializeField] private bool _startInactive = true;
     private HashSet<GameObject> _gameObjectsSet = new HashSet<GameObject>();
+    private HashSet<GameObject> _toExcludeSet = new HashSet<GameObject>();
     private bool _objectsActivated = false; //failsafe in case GameObjects get activated twice
 
     protected override void Awake() {
@@ -19,11 +21,17 @@ public class QuestObjectActivator : QuestEventReceiver {
             Debug.LogWarning(transform.name + " QuestObjectActivator: list of objects is empty");
         }
 
+        if (_toExcludeList == null) {
+            Debug.LogError(transform.name + " QuestObjectActivator: _toExcludeList is null");
+        }
+
         foreach (GameObject obj in _gameObjects) {
             if (obj != null) {
                 _gameObjectsSet.Add(obj);
             }
         }
+
+        _toExcludeSet = _toExcludeList.ToHashSet();
 
         if (_startInactive) {
             foreach (GameObject gameObject in _gameObjectsSet) {
@@ -34,18 +42,13 @@ public class QuestObjectActivator : QuestEventReceiver {
 
     protected override void OnEventReceived(Quest quest, EventType eventType) {
         //Debug.Log("event received");
-        if (!_objectsActivated) {
-            foreach (GameObject gameObject in _gameObjectsSet) {
-                ActivateGameObj(gameObject);
-            }
-            _objectsActivated= true;
-        }
+        ActivateItems();
 
         SetEventSubscription(false, quest, eventType);
     }
 
-    private void ActivateGameObj(GameObject gameObject, bool childrenToo = true) {
-        gameObject.SetActive(true);
+    private void SetActiveGameObject(bool active, GameObject gameObject, bool childrenToo = true) {
+        gameObject.SetActive(active);
 
         if (childrenToo) {
             Transform gameObjTransform = gameObject.transform;
@@ -53,9 +56,22 @@ public class QuestObjectActivator : QuestEventReceiver {
                 int childrenCount = gameObjTransform.childCount;
                 for (int i = 0; i < childrenCount; i++) {
                     GameObject child = gameObjTransform.GetChild(i).gameObject;
-                    child.SetActive(true);
+                    child.SetActive(active);
                 }
             }
+        }
+    }
+
+    private void ActivateItems() {
+        if (!_objectsActivated) {
+            foreach (GameObject gameObject in _gameObjectsSet) {
+                SetActiveGameObject(true, gameObject);
+            }
+
+            foreach (GameObject gameObject in _toExcludeList) {
+                SetActiveGameObject(false, gameObject);
+            }
+            _objectsActivated = true;
         }
     }
 }

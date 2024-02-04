@@ -150,11 +150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
-  itemName: 8
+  grabRotation: {x: 0, y: 0, z: 0}
+  itemName: 14
   itemCategory: 1
   depositPosition: {x: 0, y: 0, z: 0}
   depositRotation: {x: 0, y: 0, z: 0}
-  grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: a608be938f12b4ecab6ac8b926da6e31, type: 3}
   isDeposited: 0
   grabSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}

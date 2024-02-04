@@ -61,23 +61,4 @@ public class ClickRemover : AnimalPartRemover {
         return useResult;
     }
 
-    public override string GetActionText() {
-        string text = "Premi " + _interactKey.ToString() + " per ";
-
-        switch (_targetType) {
-            case RemovableType.WOOL:
-                text += " tosare";
-                break;
-
-            case RemovableType.MUD:
-                text += " pulire";
-                break;
-
-            default:
-                text += " interagire";
-                break;
-        }
-
-        return text;
-    }
 }

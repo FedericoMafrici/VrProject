@@ -37,7 +37,16 @@ public enum QuestID {
     SHEEP_FRIENDSHIP,
     SHEEP_EATING,
     SHEEP_SHAVING,
-    SHEEP_COLLECT_WOOL
+    SHEEP_COLLECT_WOOL,
+    SHEEP_STRUCTURED,
+    COW_STRUCTURED,
+    SPONGE_TUTORIAL,
+    BUCKET_TUTORIAL,
+    IRON_TUTORIAL,
+    POMADE_TUTORIAL,
+    WATERING_CAN_TUTORIAL,
+    SEED_TUTORIAL
+
 }
 
 public enum QuestState {
@@ -130,6 +139,7 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void Progress() {
+        Debug.Log("<color=yellow>" + this + ": quest progressed, id: " + _id + "</color>");
         if (QuestProgressed != null) {
             QuestProgressed(this);
         }
@@ -156,6 +166,7 @@ public abstract class Quest : MonoBehaviour {
     public virtual void Complete() {
         _state = QuestState.COMPLETED;
         HideMarkers();
+        Debug.Log("<color=red>" + this + ": quest completed, id: " + _id + "</color>");
         if (QuestCompleted != null) {
             QuestCompleted(this);
         }
@@ -181,7 +192,7 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void OnQuestStart() {
-        Debug.Log(transform.name + " quest started");
+        Debug.Log("<color=green>" + this + ": quest started, id: " + _id + "</color>");
         if (!_startOnEnter) {
             AreaCheck();
         }
@@ -226,5 +237,7 @@ public abstract class Quest : MonoBehaviour {
 
     public void SetIsStep(bool value) {
         _isStep = value;
+        if (_startOnEnter && _isStep)
+            _startOnEnter = false;
     }
 }

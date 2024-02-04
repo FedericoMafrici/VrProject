@@ -69,7 +69,6 @@ public class FriendshipQuest : Quest {
 
     public override void Complete() {
         base.Complete();
-        Debug.Log("Friendship quest completed");
     }
 
     public override string GetQuestDescription() {

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 9087689516929011544}
   - component: {fileID: 8086428834902937963}
   - component: {fileID: 1934784406395586417}
-  - component: {fileID: 6073777362331892131}
   - component: {fileID: 1719237934950260655}
-  m_Layer: 0
+  - component: {fileID: 2284279905966548932}
+  m_Layer: 10
   m_Name: Cotone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,28 +153,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6073777362331892131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6226854452908527272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84cd6529417944935b37b96a07438350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInPlayerHand: 0
-  itemName: 8
-  itemCategory: 1
-  depositPosition: {x: 0, y: 0, z: 0}
-  depositRotation: {x: 0, y: 0, z: 0}
-  grabRotation: {x: 0, y: 0, z: 0}
-  icon: {fileID: 21300000, guid: a608be938f12b4ecab6ac8b926da6e31, type: 3}
-  isDeposited: 0
-  grabSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}
-  usageSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}
 --- !u!82 &1719237934950260655
 AudioSource:
   m_ObjectHideFlags: 0
@@ -271,3 +249,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2284279905966548932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226854452908527272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cd6529417944935b37b96a07438350, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInPlayerHand: 0
+  grabRotation: {x: 0, y: 0, z: 0}
+  itemName: 14
+  itemCategory: 1
+  depositPosition: {x: -23.042, y: 2.368, z: 22.339}
+  depositRotation: {x: 0, y: 0, z: 0}
+  icon: {fileID: 21300000, guid: a608be938f12b4ecab6ac8b926da6e31, type: 3}
+  isDeposited: 0
+  grabSound: {fileID: 0}
+  usageSound: {fileID: 0}

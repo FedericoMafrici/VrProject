@@ -50,7 +50,7 @@ public class PlayerRaycast : MonoBehaviour
         AnimalPartRemover.InRemovalRange += OnAddClueEvent;
         AnimalPartRemover.RemovalStoppedEvent += OnAddClueEvent;
         AnimalPartRemover.OutOfRemovalRange += OnRemoveClueEvent;
-        AnimalPartRemover.RemovalStartedEvent -= OnRemoveClueEvent;
+        AnimalPartRemover.RemovalStartedEvent += OnRemoveClueEvent;
 
         //planting events
         Seed.InLandRange += OnAddClueEvent;
@@ -77,6 +77,7 @@ public class PlayerRaycast : MonoBehaviour
             if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit,
                     pickupDistance, pickupLayerMask)
                 && raycastHit.transform.TryGetComponent(out Item item)
+                && item.enabled
                 && hotbar.activeItemObj == null) {
                 clue.text = "Press E to grab\nPress Q to collect";
                 if (hotbar.firstEmpty == 6) {
@@ -86,6 +87,7 @@ public class PlayerRaycast : MonoBehaviour
             } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit2,
                            pickupDistance, pickupLayerMask)
                        && raycastHit2.transform.TryGetComponent(out Item item2)
+                       && item2.enabled
                        && hotbar.activeItemObj != null
                        && item2 != hotbar.activeItemObj) {
                 clue.text = "Press Q to collect";

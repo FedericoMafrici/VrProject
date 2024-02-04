@@ -1206,7 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetFoodsList: 0a0000000c000000
+  _targetFoodsList: 0f00000010000000
 --- !u!1 &835333651027343161
 GameObject:
   m_ObjectHideFlags: 0

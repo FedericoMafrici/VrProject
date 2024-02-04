@@ -7,7 +7,7 @@ public abstract class AnimalPartRemover : ItemTool {
     //[SerializeField] protected Camera _playerCamera;
     [SerializeField] protected RemovableType _targetType;
     [SerializeField] protected float _interactRange = 1.5f;
-    [SerializeField] private string _clueText;
+    private string _clueText;
     [SerializeField] private ClueID _clueID;
 
     public static event EventHandler<ClueEventArgs> InRemovalRange;
@@ -16,6 +16,12 @@ public abstract class AnimalPartRemover : ItemTool {
     public static event EventHandler<ClueEventArgs> RemovalStoppedEvent;
 
     public AnimalPartRemover(Item.ItemName itemName) : base(itemName) { }
+
+    public void Start() {
+        base.Start();
+        _clueText = GetActionText();
+
+    }
 
     protected virtual void RemovePart(RemovablePart toRemove) {
        toRemove.Remove();
@@ -26,7 +32,23 @@ public abstract class AnimalPartRemover : ItemTool {
     }
 
     public virtual string GetActionText() {
-        return ("");
+        string text = "Premi [CLICK SINISTRO] e muovi la visuale per ";
+
+        switch (_targetType) {
+            case RemovableType.WOOL:
+                text += " tosare";
+                break;
+
+            case RemovableType.MUD:
+                text += " pulire";
+                break;
+
+            default:
+                text += " interagire";
+                break;
+        }
+
+        return text;
     }
 
     protected void ThrowInRangeEvent() {
