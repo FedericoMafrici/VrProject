@@ -151,12 +151,12 @@ public class QuestMarkerManager : MonoBehaviour
         }
     }
 
-    public void OnItemGrabbed() {
+    public void OnItemGrabbed(Grabbable grabbable) {
         _itemGrabbed = true;
         CheckIfShow();
     }
 
-    public void OnItemReleased() {
+    public void OnItemReleased(Grabbable grabbabble) {
         _itemGrabbed = false;
         CheckIfShow();
     }

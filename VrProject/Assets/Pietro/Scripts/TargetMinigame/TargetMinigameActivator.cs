@@ -61,11 +61,11 @@ public class TargetMinigameActivator : ItemTool {
 
         if (interactionResult.enteredRange) {
             if (InMinigameRange != null) {
-                InMinigameRange(this, new ClueEventArgs(ClueID.TARGET, MakeClueText()));
+                InMinigameRange(this, new ClueEventArgs(ClueID.TARGET_MINIGAME, MakeClueText()));
             }
         } else if (interactionResult.exitedRange) {
             if (OutOfMinigameRange != null) {
-                OutOfMinigameRange(this, new ClueEventArgs(ClueID.TARGET, MakeClueText()));
+                OutOfMinigameRange(this, new ClueEventArgs(ClueID.TARGET_MINIGAME, MakeClueText()));
             }
         }
 
@@ -78,7 +78,7 @@ public class TargetMinigameActivator : ItemTool {
 
     void OnDestroy() {
         if (OutOfMinigameRange != null) {
-            OutOfMinigameRange(this, new ClueEventArgs(ClueID.TARGET, MakeClueText()));
+            OutOfMinigameRange(this, new ClueEventArgs(ClueID.TARGET_MINIGAME, MakeClueText()));
         }
     }
 

@@ -229,7 +229,7 @@ public class PlayerPickUpDrop : MonoBehaviour
             if (hotbar.itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<UnityEngine.UI.Image>().sprite) {
                 hotbar.InstantiateItem(i);
             }
-            ThrowPickUpEvent(item);
+            ThrowPickUpEvent(newItem);
 
             return true;
         } else {
