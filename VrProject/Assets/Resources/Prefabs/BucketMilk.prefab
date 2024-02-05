@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7818005799866545251}
   - component: {fileID: 6689557720372150516}
   - component: {fileID: -4260732948848563596}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BucketMilk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,11 +149,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
+  grabRotation: {x: 0, y: 0, z: 0}
   itemName: 11
   itemCategory: 1
   depositPosition: {x: -23.67609, y: 3.486794, z: 21.87197}
   depositRotation: {x: 0, y: 29.253, z: 0}
-  grabRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: 90163a49812e0459f9c40c1cda5d70fd, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}

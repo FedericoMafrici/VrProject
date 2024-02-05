@@ -9,6 +9,7 @@ using Quaternion = UnityEngine.Quaternion;
 public class Deposit : MonoBehaviour
 {
     public PlayerPickUpDrop player;
+    [SerializeField] private bool _startEmpty = false; //aggiunto da pietro, per controllare alcune cose del tutorial 
     public Dictionary<Item.ItemName, GameObject> itemAssets = new Dictionary<Item.ItemName, GameObject>();
     public Dictionary<Item.ItemName, GameObject> itemCounters = new Dictionary<Item.ItemName, GameObject>();
 
@@ -23,7 +24,11 @@ public class Deposit : MonoBehaviour
                 itemCounters.Add(itemName, GameObject.Find("ItemDepositCounter"+itemName));
                 if (itemCounters[itemName])
                 {
-                    itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 1;
+                    if (_startEmpty) {
+                        itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 0;
+                    } else {
+                        itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 1;
+                    }
                     
                     itemCounters[itemName].GetComponent<ItemDepositCounter>().player = player;
                 }
@@ -32,14 +37,18 @@ public class Deposit : MonoBehaviour
     }
 
     public void AddItem(Item.ItemName itemName, int amount = 1) {
-        if (itemCounters[itemName].GetComponent<ItemDepositCounter>().counter == 0) {
-            GameObject spawnedItem = SpawnItem(itemName);
-            Item[] itemComponents = spawnedItem.GetComponents<Item>();
-            foreach (Item itemComponent in itemComponents) {
-                itemComponent.GetComponent<Item>().isDeposited = true;
+        if (itemCounters.ContainsKey(itemName)) {
+            if (itemCounters[itemName].GetComponent<ItemDepositCounter>().counter == 0) {
+                GameObject spawnedItem = SpawnItem(itemName);
+                Item[] itemComponents = spawnedItem.GetComponents<Item>();
+                foreach (Item itemComponent in itemComponents) {
+                    itemComponent.GetComponent<Item>().isDeposited = true;
+                }
             }
+            itemCounters[itemName].GetComponent<ItemDepositCounter>().counter += amount;
+        } else {
+            Debug.LogWarning("No key " + itemName + " in itemCounters");
         }
-        itemCounters[itemName].GetComponent<ItemDepositCounter>().counter += amount;
     }
 
     private GameObject SpawnItem(Item.ItemName itemName) {

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1701144563845493644}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MarkerPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 5499947214203132684}
   - component: {fileID: 6703041896697332451}
   - component: {fileID: 1949680573505829351}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: ChickenFood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,14 +154,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
+  grabRotation: {x: 0, y: 0, z: 0}
   itemName: 12
   itemCategory: 2
   depositPosition: {x: -2.83, y: -1.21, z: -10}
+  depositRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: 2873afd8412734500a4afdee29aa9ac3, type: 3}
-  isFading: 0
   isDeposited: 0
-  isCollected: 0
+  grabSound: {fileID: 0}
+  usageSound: {fileID: 0}
+  _clueText: Premi [CLICK SINISTRO] per dare da mangiare
   _interactRange: 3
+  _consumeWhenEaten: 1
 --- !u!114 &5499947214203132684
 MonoBehaviour:
   m_ObjectHideFlags: 0

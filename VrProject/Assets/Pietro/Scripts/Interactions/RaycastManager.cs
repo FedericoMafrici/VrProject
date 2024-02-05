@@ -105,9 +105,7 @@ public class RaycastManager<T> where T : class {
                         _isInteracting = true;
                         _previousHitPosition = hit.point;
                     }
-                } else 
-
-                if (!didInteract) { 
+                } else if (!didInteract) { 
                     _isInteracting = false;
                     _accumulatedDistance = 0;
                 }
@@ -126,21 +124,25 @@ public class RaycastManager<T> where T : class {
         }
 
         //check if the user interacted with a new target and/or abandoned a target it was interacting with
-        if (didInteract) {
-            if (currentInteracted != _previousInteracted) {
-                if (currentInteracted != null) {
-                    result.interactedWithNewTarget = true;
-                }
+        if (currentInteracted != _previousInteracted) {
 
-                if (_previousInteracted != null) {
-                    //Debug.Log("Abandoned previous target");
-                    result.abandonedPreviousTarget = true;
-                }
+            if (_previousInteracted != null) {
+                //Debug.Log("Abandoned previous target");
+                result.abandonedPreviousTarget = true;
             }
 
-            _previousInteracted = currentInteracted;
+            if (didInteract) {
+                if (currentInteracted != null) {
+                    result.interactedWithNewTarget = true;       
+                }
+                _previousInteracted = currentInteracted;
+            } else {
+                _previousInteracted = null;
+            }
 
-        } else {
+            
+
+        } /*else {
             if (_previousInteracted != null) {
                 result.abandonedPreviousTarget = true;
             }
@@ -148,9 +150,10 @@ public class RaycastManager<T> where T : class {
 
             //user did not interact with anything during this call
             _previousInteracted = null;
-        }
+        }*/
 
         //keep memory of this execution
+
         _previousRayDidHit = result.currentRayDidHit;
         return result;
     }
