@@ -34,8 +34,8 @@ public class QuestMarkerManager : MonoBehaviour
         }
 
         _markerInstance = Instantiate(_markerPrefab, _markerPositionTransform.position, Quaternion.identity);
-        _markerRelativePosition = _markerInstance.transform.position - _markerPositionTransform.position;
-        _markerInstance.layer = LayerMask.GetMask("Ignore Raycast");
+        _markerRelativePosition = /*_markerInstance.transform.position*/ _markerPositionTransform.position - transform.position;
+        _markerInstance.layer = LayerMask.NameToLayer("Ignore Raycast");
         _markerInstance.SetActive(false);
         _upDownAnchorY = _markerInstance.transform.position.y;
 
@@ -191,11 +191,11 @@ public class QuestMarkerManager : MonoBehaviour
         if (_markerInstance != null) {
 
             //animate in an up and down motion mantaining _upDownAnchorY as the lowest point in the animation
-            _upDownAnchorY = _markerPositionTransform.position.y + _markerRelativePosition.y;
+            _upDownAnchorY = /*_markerPositionTransform.position.y*/ transform.position.y + _markerRelativePosition.y;
             float newY = _upDownAnchorY + _upDownAmplitude * Mathf.Sin(_upDownFrequency * Time.time) + _upDownAmplitude;
 
             //follow this transform's location but not its scale or rotation (thus simple parenting cannot be used)
-            _markerInstance.transform.position = new Vector3(_markerPositionTransform.position.x + _markerRelativePosition.x, newY, _markerPositionTransform.position.z + _markerRelativePosition.z);
+            _markerInstance.transform.position = new Vector3(/*_markerPositionTransform.position.x*/transform.position.x + _markerRelativePosition.x, newY, /*_markerPositionTransform.position.z*/ transform.position.z + _markerRelativePosition.z);
 
         }
     }

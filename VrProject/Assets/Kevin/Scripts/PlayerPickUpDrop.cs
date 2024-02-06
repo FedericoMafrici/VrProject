@@ -50,13 +50,17 @@ public class PlayerPickUpDrop : MonoBehaviour
                         Debug.Log(item + " grabbed");
 
                         if (item.isDeposited) {
+                            
                             Item[] itemComponents = item.GetComponents<Item>();
                             foreach (Item itemComponent in itemComponents) {
                                 itemComponent.isDeposited = false;
                             }
+                            deposit.RemoveItem(item.itemName, true);
+                            /*
                             if (--deposit.itemCounters[item.itemName].GetComponent<ItemDepositCounter>().counter != 0) {
                                 StartSpawning();
                             }
+                            */
                         }
                     }
 
@@ -92,24 +96,31 @@ public class PlayerPickUpDrop : MonoBehaviour
                         foreach (Item itemComponent in itemComponents) {
                             itemComponent.isDeposited = false;
                         }
+                        deposit.RemoveItem(item.itemName, true);
+                        /*
                         if (--deposit.itemCounters[item.itemName].GetComponent<ItemDepositCounter>().counter != 0) {
                             GameObject spawnedItem = SpawnItem(item.itemName);
-                            spawnedItem.GetComponent<Item>().isDeposited = true;
+                            foreach(Item itemComponent in spawnedItem.GetComponents<Item>())
+                                itemComponent.GetComponent<Item>().isDeposited = true;
                         }
+                        */
                     }
 
-                    item.StartFading();
                     ThrowPickUpEvent(item);
+                    item.StartFading();
                 } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
                            && hotbar.activeItemObj != null
                            && hotbar.activeItemObj.itemName != Item.ItemName.BucketMilk
                            && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
                     hotbar.activeItemObj.StartFading();
+                    deposit.AddItem(hotbar.activeItemObj.itemName); //aggiunto da pietro, incapsula il codice commentato sotto
+                    /*
                     if (deposit.itemCounters[hotbar.activeItemObj.itemName].GetComponent<ItemDepositCounter>().counter == 0) {
                         GameObject spawnedItem = SpawnItem(hotbar.activeItemObj.itemName);
                         spawnedItem.GetComponent<Item>().isDeposited = true;
                     }
                     deposit.itemCounters[hotbar.activeItemObj.itemName].GetComponent<ItemDepositCounter>().counter++;
+                    */
                     Debug.Log(hotbar.activeItemObj + " released into the deposit");
                     Drop(false);
                 }
@@ -159,9 +170,12 @@ public class PlayerPickUpDrop : MonoBehaviour
 
     public GameObject SpawnItem(Item.ItemName itemName)
     {
+        return deposit.SpawnItem(itemName);
+        /*
         return Instantiate(deposit.itemAssets[itemName], 
             deposit.itemAssets[itemName].GetComponent<Item>().depositPosition, 
             Quaternion.Euler(deposit.itemAssets[itemName].GetComponent<Item>().depositRotation));
+        */
     }
 
     /// <summary>

@@ -132,6 +132,7 @@ public class RaycastManager<T> where T : class {
             }
 
             if (didInteract) {
+                
                 if (currentInteracted != null) {
                     result.interactedWithNewTarget = true;       
                 }
