@@ -69,8 +69,8 @@ public class CollectingPoint : MonoBehaviour
 
         //throw event, needed for collect quest
 
-        if (ItemInCollectingPoint != null) {
-            foreach (Item i in itemComponents) {
+        foreach (Item i in itemComponents) {
+            if (ItemInCollectingPoint != null) {
                 ItemInCollectingPoint(i);
             }
         }
@@ -96,9 +96,9 @@ public class CollectingPoint : MonoBehaviour
             }
         }
 
-        //throw event, needed for collect quest
-        if (ItemOutOfCollectingPoint != null) {
-            foreach (Item i in itemComponents) {
+        foreach (Item i in itemComponents) {
+            //throw event, needed for collect quest
+            if (ItemOutOfCollectingPoint != null) { 
                 ItemOutOfCollectingPoint(i);
             }
         }

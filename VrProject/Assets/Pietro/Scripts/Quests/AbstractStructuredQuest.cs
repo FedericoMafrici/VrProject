@@ -6,7 +6,7 @@ using UnityEngine;
 using static Unity.VisualScripting.Member;
 
 public abstract class AbstractStructuredQuest : Quest {
-    [SerializeField] protected string _questCompletedDescription;
+    [SerializeField] protected string _questCompletedDescription = "";
 
     protected List<Quest> _steps = new List<Quest>();
     protected int _curStepIdx = 0;
