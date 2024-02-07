@@ -18,6 +18,8 @@ public class PlayerPickUpDrop : MonoBehaviour
     private const float pickupDistance = 5f;
     private Item item;
     public Deposit deposit;
+    private ChangeScenario pipeScript;
+    [SerializeField] private GameObject pipe;
     
     public Transform objectGrabPointTransform;
 
@@ -126,6 +128,9 @@ public class PlayerPickUpDrop : MonoBehaviour
                 }
 
             }
+            
+            // ------------- PRESSIONE TASTO H: nascondi o espandi quests list -------------
+            
             else if (Input.GetKeyDown(KeyCode.H))
             {
                 UI_QuestsList questsList = GameObject.Find("QuestsList").GetComponent<UI_QuestsList>();
@@ -133,6 +138,17 @@ public class PlayerPickUpDrop : MonoBehaviour
                     questsList.Close();
                 else
                     questsList.Open(false);
+            }
+            
+            // ------------- PRESSIONE BARRA SPAZIATRICE: cambio scenario -------------
+            
+            else if (Input.GetKeyDown(KeyCode.Space) 
+                     && (Vector3.Distance(pipe.transform.position, playerCameraTransform.position) < 5
+                         && Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, 
+                             out RaycastHit raycastHit5, pickupDistance, pickupLayerMask)
+                         && raycastHit5.transform.TryGetComponent(out pipeScript)))
+            {
+                pipeScript.SelectScenario((pipeScript.currentScenario + 1) % pipeScript.scenarioMap.Count);
             }
         }
     }
