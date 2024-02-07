@@ -45,17 +45,21 @@ public class UI_QuestsList : QuestEventReceiver
             numOfQuests++;
             
             QuestElement elem;
-            elem.orderNumber = quest.GetInfo().orderNumber;
+            elem.orderNumber = quest.orderNumber;
             elem.text = quest.GetQuestDescription();
             elem.isCompleted = (quest.GetState() == QuestState.COMPLETED);
-            elements.Add(quest.GetInfo().orderNumber, elem);
+            elements.Add(quest.orderNumber, elem);
 
             GameObject uiElem = Instantiate(uiElement, this.transform);
-            descriptions.Add(quest.GetInfo().orderNumber, uiElem.GetComponent<TMP_Text>());
-            checkboxes.Add(quest.GetInfo().orderNumber, uiElem.transform.GetChild(0).GetComponent<Image>());
-            checks.Add(quest.GetInfo().orderNumber, uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>());
+            descriptions.Add(quest.orderNumber, uiElem.GetComponent<TMP_Text>());
+            checkboxes.Add(quest.orderNumber, uiElem.transform.GetChild(0).GetComponent<Image>());
+            checks.Add(quest.orderNumber, uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>());
             
             uiElem.GetComponent<TMP_Text>().text = elem.text;
+            uiElem.GetComponent<RectTransform>().sizeDelta = new Vector2(uiElem.GetComponent<RectTransform>().sizeDelta.x,uiElem.GetComponent<TMP_Text>().preferredHeight + 25);
+            //uiElem.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(uiElem.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.x,uiElem.GetComponent<TMP_Text>().preferredHeight);
+            //uiElem.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(uiElem.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta.x,uiElem.GetComponent<TMP_Text>().preferredHeight);
+            
             if(!elem.isCompleted)
                 uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
 
@@ -66,20 +70,20 @@ public class UI_QuestsList : QuestEventReceiver
 
         else if (eventType == EventType.COMPLETE)
         {
-            QuestElement elem = elements[quest.GetInfo().orderNumber];
+            QuestElement elem = elements[quest.orderNumber];
             elem.isCompleted = true;
-            elements[quest.GetInfo().orderNumber] = elem;
-            checks[quest.GetInfo().orderNumber].gameObject.SetActive(true);
+            elements[quest.orderNumber] = elem;
+            checks[quest.orderNumber].gameObject.SetActive(true);
         }
         
         else if (eventType == EventType.PROGRESS)
         {
-            descriptions[quest.GetInfo().orderNumber].text = quest.GetQuestDescription();
+            descriptions[quest.orderNumber].text = quest.GetQuestDescription();
         }
         
         else if (eventType == EventType.AREA_EXIT)
         {
-            if (quest.GetInfo().orderNumber == 0)
+            if (quest.orderNumber == 0)
             {
                 Close();
                 numOfQuests = 0;
@@ -89,8 +93,12 @@ public class UI_QuestsList : QuestEventReceiver
                 checks.Clear();
                 for (int i = 0; i < transform.childCount; i++)
                 {
-                    if(transform.GetChild(i).tag == "QuestsUI")
-                        Destroy(transform.GetChild(i));
+                    if (transform.GetChild(i).tag == "QuestsUI")
+                    {
+                        transform.GetChild(i).gameObject.SetActive(false);
+                        Destroy(transform.GetChild(i).gameObject);
+                        
+                    }
                 }
                 Hide();
             }

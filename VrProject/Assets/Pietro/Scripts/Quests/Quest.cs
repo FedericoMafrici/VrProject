@@ -62,21 +62,15 @@ public enum QuestState {
     INACTIVE //not necesserily used, may be useful, signals a quest that has started, not completed but cannot be considered "active"
 }
 
-[Serializable] public struct JournalInformation
-{
-    public Animal.AnimalName animalName;
-    public string newInformation;
-    public int orderNumber;
-}
-
 public abstract class Quest : MonoBehaviour {
     [SerializeField] private QuestID _id;
     [SerializeField] private bool _startOnEnter = false;
     [SerializeField] private bool _showMarkersOnEnter = false;
-    [SerializeField] private JournalInformation _info;
     protected  QuestState _state = QuestState.NOT_STARTED;
     protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     private bool _inited = false;
+    
+    public int orderNumber;
 
     public event Action<Quest> EnteredArea;
     public event Action<Quest> ExitedArea;
@@ -235,11 +229,6 @@ public abstract class Quest : MonoBehaviour {
     }
 
     public abstract string GetQuestDescription();
-
-    public JournalInformation GetInfo()
-    {
-        return _info;
-    }
 
     public void SetIsStep(bool value) {
         _isStep = value;

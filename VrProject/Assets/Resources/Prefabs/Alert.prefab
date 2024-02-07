@@ -68,7 +68,7 @@ MonoBehaviour:
   m_text: Nuove informazioni sul diario!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 6b0fd7395dd79441baf16510618dee3d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 1837245801762503861}
   - component: {fileID: 3287559256145006070}
   - component: {fileID: 5235267526262108582}
+  - component: {fileID: 4203591903055087287}
   m_Layer: 5
   m_Name: Alert
   m_TagString: Untagged
@@ -210,3 +211,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4203591903055087287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987028746825738685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c969c5148024f8293eca0147e93b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _questCollection: {fileID: 0}
+  _targetQuestList: []
+  _eventList: 
