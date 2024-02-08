@@ -213,7 +213,8 @@ public void StartUI()
    AnimalsCanvas.SetActive(true);
    Menu.SetActive(false);
    Cursor.lockState =  CursorLockMode.None;
-   currkey=0;
+        Cursor.visible = true;
+        currkey =0;
         // initializing fields:
         animalMissions.text="";
         animalDescription.text="";
@@ -264,7 +265,8 @@ public void CloseUI()
    Menu.SetActive(false);
    currNode=animalList.First;
    Cursor.lockState = CursorLockMode.Locked ;
-}
+        Cursor.visible = false;
+    }
 public void CloseUIButton()
 {
    player.currState=false;

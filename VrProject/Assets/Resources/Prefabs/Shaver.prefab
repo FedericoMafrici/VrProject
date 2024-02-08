@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shaver
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ca1ad932a20f1554aad3590197d384bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -235,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 7
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -3653606841427484675, guid: ca1ad932a20f1554aad3590197d384bc, type: 3}
@@ -11502,5 +11506,4 @@ MonoBehaviour:
   usageSound: {fileID: 0}
   _targetType: 0
   _interactRange: 3
-  _clueText: 
   _clueID: 3

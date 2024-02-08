@@ -13,8 +13,8 @@ public class Grabbable : MonoBehaviour
     [HideInInspector] public bool isInPlayerHand = false;
     [SerializeField] private Vector3 grabRotation;
 
-    public event Action GrabEvent;
-    public event Action ReleaseEvent;
+    public event Action<Grabbable> GrabEvent;
+    public event Action<Grabbable> ReleaseEvent;
     private  float maxDistFromGrabPoint = 0.2f;
 
     private void Awake()
@@ -137,13 +137,13 @@ public class Grabbable : MonoBehaviour
 
     public void ThrowGrabEvent() {
         if (GrabEvent != null) {
-            GrabEvent();
+            GrabEvent(this);
         }
     }
 
     public void ThrowReleaseEvent() {
         if (ReleaseEvent != null) {
-            ReleaseEvent();
+            ReleaseEvent(this);
         }
     }
 }

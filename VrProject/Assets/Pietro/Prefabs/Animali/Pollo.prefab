@@ -5134,6 +5134,7 @@ GameObject:
   - component: {fileID: 6995293804508373529}
   - component: {fileID: 2832379409662343610}
   - component: {fileID: 8656639249752502440}
+  - component: {fileID: -1753791858394395556}
   m_Layer: 9
   m_Name: Pollo
   m_TagString: Untagged
@@ -5159,6 +5160,7 @@ Transform:
   - {fileID: 1482366539271758402}
   - {fileID: 2187175101183570909}
   - {fileID: 64901931093170189}
+  - {fileID: 3906743078923670658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &8986933929118236508
@@ -5272,6 +5274,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.42689118, y: 0.83669066, z: 0.8509113}
   m_Center: {x: 0.016205266, y: 0.38953197, z: -0.037246555}
+--- !u!114 &-1753791858394395556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3538090200553331241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5895899c0c058419b698e1c6c92ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _markerPositionTransform: {fileID: 3906743078923670658}
+  _markerPrefab: {fileID: 7535351951851594427, guid: 4deb470da103f614ca3f501c4edcde6f, type: 3}
+  _associatedQuests: 0400000005000000
 --- !u!1 &3567007814107613153
 GameObject:
   m_ObjectHideFlags: 0
@@ -7754,6 +7771,37 @@ Transform:
   - {fileID: 3263843235658999102}
   - {fileID: 428752923318300932}
   m_Father: {fileID: 8795246409344879434}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5067867427134513648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3906743078923670658}
+  m_Layer: 0
+  m_Name: MarkerPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3906743078923670658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5067867427134513648}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.36, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4202424589859799187}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5075795839112201635
 GameObject:

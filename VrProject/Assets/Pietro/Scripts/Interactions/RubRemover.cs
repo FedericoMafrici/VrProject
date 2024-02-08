@@ -42,14 +42,12 @@ public class RubRemover : AnimalPartRemover {
         RemovablePart toRemove = interactResult.currentInteracted;
         RemovablePart previousRemovable = interactResult.previousInteracted;
 
-        if (interactResult.canCallBehaviour) {
-            RemovePart(toRemove);
+        if (interactResult.interactedWithNewTarget) {
             if (interactResult.interactedWithNewTarget) {
                 toRemove.RemovalStarted();
                 ThrowRemStartedEvent();
             }
-            useResult.itemUsed = true;
-        }
+        }  
 
         if (interactResult.abandonedPreviousTarget) {
             previousRemovable.RemovalStopped();
@@ -60,6 +58,11 @@ public class RubRemover : AnimalPartRemover {
             ThrowInRangeEvent();
         } else if (interactResult.exitedRange /*&& interactResult.previousInteracted != null && CanBeRemoved(interactResult.previousInteracted)*/) {
             ThrowOutOfRangeEvent();
+        }
+
+        if (interactResult.canCallBehaviour) {
+            RemovePart(toRemove);
+            useResult.itemUsed = true;
         }
 
         return useResult;

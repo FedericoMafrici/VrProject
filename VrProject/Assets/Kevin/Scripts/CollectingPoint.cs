@@ -11,7 +11,106 @@ public class CollectingPoint : MonoBehaviour
 
     public event Action<Item> ItemInCollectingPoint;
     public event Action<Item> ItemOutOfCollectingPoint;
-    
+
+    private void OnTriggerEnter(Collider other) {
+        Item item = other.GetComponent<Item>();
+        if (item != null) {
+            if (!item.isInPlayerHand && !item.isCollected && item.itemCategory != Item.ItemCategory.Tool) {
+                CollectItem(item);
+            }
+
+            item.GrabEvent += OnItemGrabbed;
+            item.ReleaseEvent += OnItemDropped;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        Item item = other.GetComponent<Item>();
+        if (item != null) {
+            item.GrabEvent -= OnItemGrabbed;
+            item.ReleaseEvent -= OnItemDropped;
+            if (item.isCollected) {
+                //remove from collecting point
+                RemoveItem(item);
+            }
+        }
+    }
+
+    private void OnItemGrabbed(Grabbable grabbable) {
+        if (grabbable is Item) {
+            Item item = grabbable as Item;
+            if (item.isCollected) {
+                RemoveItem(item);
+            }
+        }
+    }
+
+    private void OnItemDropped(Grabbable grabbable) {
+        if (grabbable is Item) {
+            Item item = grabbable as Item;
+            if (!item.isInPlayerHand && !item.isCollected && item.itemCategory != Item.ItemCategory.Tool) {
+                CollectItem(item);
+            }
+        }
+
+    }
+
+    private void CollectItem(Item item) {
+        Item[] itemComponents = item.GetComponents<Item>();
+        foreach (Item i in itemComponents) {
+            i.isCollected = true;
+        }
+        if (collectedItems.ContainsKey(item.itemName)) {
+            collectedItems[item.itemName]++;
+        } else {
+            collectedItems.Add(item.itemName, 1);
+            Debug.Log("Item added");
+        }
+
+        //throw event, needed for collect quest
+
+        foreach (Item i in itemComponents) {
+            if (ItemInCollectingPoint != null) {
+                ItemInCollectingPoint(i);
+            }
+        }
+
+        //hide marker in case it was shown
+        QuestMarkerManager questMarkerManager = item.GetComponent<QuestMarkerManager>();
+        if (questMarkerManager != null) {
+            questMarkerManager.SetIsCollected(true);
+        }
+    }
+
+    private void RemoveItem(Item item) {
+        Item[] itemComponents = item.GetComponents<Item>();
+        foreach (Item i in itemComponents) {
+            i.isCollected = false;
+        }
+
+        if (collectedItems.ContainsKey(item.itemName)) {
+            collectedItems[item.itemName]--;
+            if (collectedItems[item.itemName] == 0) {
+                collectedItems.Remove(item.itemName);
+                Debug.Log("Item removed");
+            }
+        }
+
+        foreach (Item i in itemComponents) {
+            //throw event, needed for collect quest
+            if (ItemOutOfCollectingPoint != null) { 
+                ItemOutOfCollectingPoint(i);
+            }
+        }
+
+        //tell marker that it can be shown
+        QuestMarkerManager questMarkerManager = item.GetComponent<QuestMarkerManager>();
+        if (questMarkerManager != null) {
+            questMarkerManager.SetIsCollected(false);
+        }
+    }
+
+    /*
     void OnTriggerStay(Collider other)
     {
         // check se il collider ha reagito con il collider corretto del punto di raccolta (quello verticale)
@@ -86,9 +185,6 @@ public class CollectingPoint : MonoBehaviour
             }
         }
     }
+    */
 
-    void Update()
-    {
-    }
-    
 }

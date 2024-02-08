@@ -16,7 +16,7 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
     [SerializeField] private Dialogue _startingDialogue;
     [SerializeField] private List<TutorialStep> _tutorialSteps;
     [SerializeField] private DialogueTrigger _dialogueTrigger;
-    private Dialogue _currentDialogue = null;
+    private Dialogue _latestDialogue = null;
 
     protected override void Init() {
         if (_startingDialogue == null) {
@@ -47,28 +47,34 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
         base.Init();
     }
 
+    /*
     void Update() {
-            if (_currentDialogue != null) {
+        
+            if (_latestDialogue != null) {
                 //check if current dialogue is still active
                 if (_dialogueTrigger.dialogueManager.animator.GetBool("IsOpen") == false) {
 
-                    //if current dialogue is not active anymore set its reference to null
-                    _currentDialogue = null;
+                    //if latest dialogue is not active anymore set its reference to null
+                    _latestDialogue = null;
 
                 } else if (Input.GetKeyDown(KeyCode.P)) {
                     //if current dialogue is still active and player presses input then advance the dialogue 
-                    _dialogueTrigger.TriggerDialogueManager(_currentDialogue);
+                    _dialogueTrigger.TriggerDialogueManager();
                 }
             }
+        
     }
+    */
 
     private void UpdateActiveDialogue(Dialogue newDialogue) {
-        if ((newDialogue != null) && (newDialogue != _currentDialogue) && newDialogue.sentences.Count() > 0) {
+        if ((newDialogue != null) && (newDialogue != _latestDialogue) && newDialogue.sentences.Count() > 0) {
+            /*
             if (_currentDialogue != null) {
                 _dialogueTrigger.ForceEndCurrentDialogue();
             }
-            _currentDialogue = newDialogue;
-            _dialogueTrigger.TriggerDialogueManager(_currentDialogue);
+            */
+            _latestDialogue = newDialogue;
+            _dialogueTrigger.TriggerDialogueManager(_latestDialogue);
         }
     }
 

@@ -64,9 +64,21 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6733177361254619370, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
       propertyPath: m_Name
       value: ClosedPomade
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849762623622064168, guid: 3168a3b5a78cd3c4097772d19fdfd011, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

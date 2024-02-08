@@ -30,7 +30,7 @@ public class AnimalDataUi : QuestEventReceiver
             else if(eventType==EventType.COMPLETE)
             {
                 //new Information about the animal 
-                Debug.Log(quest.GetInfo().newInformation);
+                Debug.Log(quest.GetQuestDescription());
                 if(index<3)
                 {
                     index++;

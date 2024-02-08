@@ -49,7 +49,7 @@ public class ItemGenerator : MonoBehaviour
         yield return null;
     }
 
-    private void OnItemCollected() {
+    private void OnItemCollected(Grabbable grabbable) {
         if (_hasItem) {
             //Debug.LogWarning(transform.parent.name + " Item collected");
             _hasItem = false;

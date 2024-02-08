@@ -18,6 +18,8 @@ public class PlayerPickUpDrop : MonoBehaviour
     private const float pickupDistance = 5f;
     private Item item;
     public Deposit deposit;
+    private ChangeScenario pipeScript;
+    [SerializeField] private GameObject pipe;
     
     public Transform objectGrabPointTransform;
 
@@ -39,6 +41,13 @@ public class PlayerPickUpDrop : MonoBehaviour
                         && raycastHit3.transform.TryGetComponent(out item)
                         && item.enabled
                         && hotbar.firstEmpty < Constants.Capacity) {
+
+                        if (item.itemName == Item.ItemName.Leaf)
+                        {
+                            item.GetComponent<BoxCollider>().enabled = false;
+                            item.GetComponent<MeshCollider>().enabled = true;
+                        }
+
                         int lastItemIndex = hotbar.Add(item, true);
                         hotbar.Select(lastItemIndex);
                         hotbar.activeItemObj = item;
@@ -50,13 +59,17 @@ public class PlayerPickUpDrop : MonoBehaviour
                         Debug.Log(item + " grabbed");
 
                         if (item.isDeposited) {
+                            
                             Item[] itemComponents = item.GetComponents<Item>();
                             foreach (Item itemComponent in itemComponents) {
                                 itemComponent.isDeposited = false;
                             }
+                            deposit.RemoveItem(item.itemName, true);
+                            /*
                             if (--deposit.itemCounters[item.itemName].GetComponent<ItemDepositCounter>().counter != 0) {
                                 StartSpawning();
                             }
+                            */
                         }
                     }
 
@@ -92,29 +105,39 @@ public class PlayerPickUpDrop : MonoBehaviour
                         foreach (Item itemComponent in itemComponents) {
                             itemComponent.isDeposited = false;
                         }
+                        deposit.RemoveItem(item.itemName, true);
+                        /*
                         if (--deposit.itemCounters[item.itemName].GetComponent<ItemDepositCounter>().counter != 0) {
                             GameObject spawnedItem = SpawnItem(item.itemName);
-                            spawnedItem.GetComponent<Item>().isDeposited = true;
+                            foreach(Item itemComponent in spawnedItem.GetComponents<Item>())
+                                itemComponent.GetComponent<Item>().isDeposited = true;
                         }
+                        */
                     }
 
-                    item.StartFading();
                     ThrowPickUpEvent(item);
+                    item.StartFading();
                 } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
                            && hotbar.activeItemObj != null
                            && hotbar.activeItemObj.itemName != Item.ItemName.BucketMilk
                            && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
                     hotbar.activeItemObj.StartFading();
+                    deposit.AddItem(hotbar.activeItemObj.itemName); //aggiunto da pietro, incapsula il codice commentato sotto
+                    /*
                     if (deposit.itemCounters[hotbar.activeItemObj.itemName].GetComponent<ItemDepositCounter>().counter == 0) {
                         GameObject spawnedItem = SpawnItem(hotbar.activeItemObj.itemName);
                         spawnedItem.GetComponent<Item>().isDeposited = true;
                     }
                     deposit.itemCounters[hotbar.activeItemObj.itemName].GetComponent<ItemDepositCounter>().counter++;
+                    */
                     Debug.Log(hotbar.activeItemObj + " released into the deposit");
                     Drop(false);
                 }
 
             }
+            
+            // ------------- PRESSIONE TASTO H: nascondi o espandi quests list -------------
+            
             else if (Input.GetKeyDown(KeyCode.H))
             {
                 UI_QuestsList questsList = GameObject.Find("QuestsList").GetComponent<UI_QuestsList>();
@@ -122,6 +145,17 @@ public class PlayerPickUpDrop : MonoBehaviour
                     questsList.Close();
                 else
                     questsList.Open(false);
+            }
+            
+            // ------------- PRESSIONE BARRA SPAZIATRICE: cambio scenario -------------
+            
+            else if (Input.GetKeyDown(KeyCode.Space) 
+                     && (Vector3.Distance(pipe.transform.position, playerCameraTransform.position) < 5
+                         && Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, 
+                             out RaycastHit raycastHit5, pickupDistance, pickupLayerMask)
+                         && raycastHit5.transform.TryGetComponent(out pipeScript)))
+            {
+                pipeScript.SelectScenario((pipeScript.currentScenario + 1) % pipeScript.scenarioMap.Count);
             }
         }
     }
@@ -159,9 +193,12 @@ public class PlayerPickUpDrop : MonoBehaviour
 
     public GameObject SpawnItem(Item.ItemName itemName)
     {
+        return deposit.SpawnItem(itemName);
+        /*
         return Instantiate(deposit.itemAssets[itemName], 
             deposit.itemAssets[itemName].GetComponent<Item>().depositPosition, 
             Quaternion.Euler(deposit.itemAssets[itemName].GetComponent<Item>().depositRotation));
+        */
     }
 
     /// <summary>
@@ -229,7 +266,7 @@ public class PlayerPickUpDrop : MonoBehaviour
             if (hotbar.itemSlotArray[i].transform.Find("ItemButton").transform.Find("Image").transform.GetComponent<UnityEngine.UI.Image>().sprite) {
                 hotbar.InstantiateItem(i);
             }
-            ThrowPickUpEvent(item);
+            ThrowPickUpEvent(newItem);
 
             return true;
         } else {

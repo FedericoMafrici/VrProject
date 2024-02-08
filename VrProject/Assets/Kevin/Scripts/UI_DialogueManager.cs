@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     private Queue<string> sentences = new Queue<string>();
+    private Queue<Dialogue> dialogueQueue = new Queue<Dialogue>();
     
     public Animator animator;
     public TMP_Text nameText;
@@ -16,16 +17,27 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private GameObject knob;
     [SerializeField] private GameObject hotbar;
-    
 
+    private bool dialogueOngoing;
     void Awake()
     {
        
     }
+
+    public void EnqueDialogue(Dialogue dialogue) {
+        if (!dialogueOngoing) {
+            Debug.LogWarning("Starting dialogue");
+            InputManager.DisableInteractions();
+            StartDialogue(dialogue);
+        } else {
+            Debug.LogWarning("Enqueueing dialogue");
+            dialogueQueue.Enqueue(dialogue);
+        }
+    }
     
     public void StartDialogue(Dialogue dialogue)
     {
-        InputManager.DisableInteractions();
+        dialogueOngoing = true;
         knob.SetActive(false);
         hotbar.SetActive(false);
         animator.SetBool("IsOpen", true);
@@ -52,7 +64,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
-        StopAllCoroutines();
+        //StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
 
@@ -68,11 +80,17 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
-        InputManager.EnableInteractions();
-        animator.SetBool("IsOpen", false);
-        knob.SetActive(true);
-        hotbar.SetActive(true);
-
+        dialogueOngoing = false;
+        if (dialogueQueue.Count == 0) {
+            Debug.LogWarning("Ending dialogue");
+            InputManager.EnableInteractions();
+            animator.SetBool("IsOpen", false);
+            knob.SetActive(true);
+            hotbar.SetActive(true);
+        } else {
+            Debug.LogWarning("Dequeueing and staring dialogue");
+            StartDialogue(dialogueQueue.Dequeue());
+        }
     }
 
     public void Update()

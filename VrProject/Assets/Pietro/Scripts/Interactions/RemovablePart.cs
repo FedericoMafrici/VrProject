@@ -68,8 +68,8 @@ public abstract class RemovablePart : MonoBehaviour {
         return _isRemoved;
     }
 
-    public virtual void RemovalStarted() {}
-    public virtual void RemovalStopped() {}
+    public virtual void RemovalStarted() { }
+    public virtual void RemovalStopped() { }
 
     protected virtual void MakeNPCStartMoving(bool delayedStart = false, float delaySeconds = 0f) {
         if (_npcMover != null) {

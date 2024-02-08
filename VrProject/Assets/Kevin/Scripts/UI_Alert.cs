@@ -26,7 +26,7 @@ public class Alert : QuestEventReceiver
 
     protected override void OnEventReceived(Quest quest, EventType eventType)
     {
-        if (eventType == EventType.COMPLETE && quest.GetInfo().newInformation != null)
+        if (eventType == EventType.COMPLETE && quest.GetQuestDescription() != null)
         {
             Show();
         }

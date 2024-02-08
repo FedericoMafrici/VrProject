@@ -40,13 +40,19 @@ public enum QuestID {
     SHEEP_COLLECT_WOOL,
     SHEEP_STRUCTURED,
     COW_STRUCTURED,
-    SPONGE_TUTORIAL,
-    BUCKET_TUTORIAL,
-    IRON_TUTORIAL,
-    POMADE_TUTORIAL,
-    WATERING_CAN_TUTORIAL,
-    SEED_TUTORIAL
-
+    SPONGE_PICKUP_TUTORIAL,
+    BUCKET_PICKUP_TUTORIAL,
+    IRON_PICKUP_TUTORIAL,
+    POMADE_PICKUP_TUTORIAL,
+    WATERING_CAN_PICKUP_TUTORIAL,
+    SEED_PICKUP_TUTORIAL,
+    SHAVER_PICKUP_TUTORIAL,
+    CLEANING_TUTORIAL,
+    TARGET_MINIGAME_TUTORIAL,
+    HEALING_TUTORIAL,
+    WATERING_PLANT_TUTORIAL,
+    PLANTING_TUTORIAL,
+    SHAVING_TUTORIAL,
 }
 
 public enum QuestState {
@@ -56,21 +62,15 @@ public enum QuestState {
     INACTIVE //not necesserily used, may be useful, signals a quest that has started, not completed but cannot be considered "active"
 }
 
-[Serializable] public struct JournalInformation
-{
-    public Animal.AnimalName animalName;
-    public string newInformation;
-    public int orderNumber;
-}
-
 public abstract class Quest : MonoBehaviour {
     [SerializeField] private QuestID _id;
     [SerializeField] private bool _startOnEnter = false;
     [SerializeField] private bool _showMarkersOnEnter = false;
-    [SerializeField] private JournalInformation _info;
     protected  QuestState _state = QuestState.NOT_STARTED;
     protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     private bool _inited = false;
+    
+    public int orderNumber;
 
     public event Action<Quest> EnteredArea;
     public event Action<Quest> ExitedArea;
@@ -229,11 +229,6 @@ public abstract class Quest : MonoBehaviour {
     }
 
     public abstract string GetQuestDescription();
-
-    public JournalInformation GetInfo()
-    {
-        return _info;
-    }
 
     public void SetIsStep(bool value) {
         _isStep = value;

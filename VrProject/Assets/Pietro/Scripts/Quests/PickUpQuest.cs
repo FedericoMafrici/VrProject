@@ -7,7 +7,7 @@ public class PickUpQuest : Quest
     [SerializeField] private string _description;
     [SerializeField] private int _nToPickUp;
     private int _nPickedUp = 0;
-    [SerializeField] private Item.ItemName _targetItemName;
+    [SerializeField] private List<Item.ItemName> _targetItemNames;
     [SerializeField] private PlayerPickUpDrop _playerPickUp;
 
     protected override void Init() {
@@ -32,7 +32,7 @@ public class PickUpQuest : Quest
 
     private void OnPickUp(Item.ItemName itemName) {
         if (_state == QuestState.ACTIVE) {
-            if (itemName == _targetItemName) {
+            if (_targetItemNames.Contains(itemName)) {
                 _nPickedUp++;
                 Progress();
                 if (_nPickedUp >= _nToPickUp) {
@@ -45,7 +45,7 @@ public class PickUpQuest : Quest
 
     private void OnDrop(Item.ItemName itemName) {
         if (_state == QuestState.ACTIVE) {
-            if (itemName == _targetItemName) {
+            if (_targetItemNames.Contains(itemName)) {
                 if (_nPickedUp > 0) {
                     _nPickedUp--;
                     Progress();

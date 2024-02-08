@@ -17,7 +17,7 @@ public enum ClueID {
     HEAL,
     PLANT,
     WATER,
-    TARGET
+    TARGET_MINIGAME
 }
 
 public class PlayerRaycast : MonoBehaviour
