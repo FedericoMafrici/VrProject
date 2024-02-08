@@ -34,7 +34,8 @@ public /*abstract*/ class Item : Grabbable
         Carrot,
         EarOfWheat,
         TreeBranch,
-        Leaf
+        Leaf,
+        BaobabFruit
     }
 
     public enum ItemCategory

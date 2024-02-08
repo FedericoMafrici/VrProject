@@ -153,8 +153,8 @@ MonoBehaviour:
   grabRotation: {x: -10, y: 250, z: 0}
   itemName: 3
   itemCategory: 0
-  depositPosition: {x: -24.006, y: 1.2930002, z: 22.915}
-  depositRotation: {x: 90, y: 275.91232, z: 0}
+  depositPosition: {x: -23.836, y: 1.665, z: 26.026}
+  depositRotation: {x: 90, y: 302.85748, z: 0}
   icon: {fileID: 21300000, guid: d23471f561ae645d98eb48f6d56e45a8, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
