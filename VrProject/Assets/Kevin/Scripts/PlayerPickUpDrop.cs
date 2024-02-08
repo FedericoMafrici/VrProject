@@ -41,6 +41,13 @@ public class PlayerPickUpDrop : MonoBehaviour
                         && raycastHit3.transform.TryGetComponent(out item)
                         && item.enabled
                         && hotbar.firstEmpty < Constants.Capacity) {
+
+                        if (item.itemName == Item.ItemName.Leaf)
+                        {
+                            item.GetComponent<BoxCollider>().enabled = false;
+                            item.GetComponent<MeshCollider>().enabled = true;
+                        }
+
                         int lastItemIndex = hotbar.Add(item, true);
                         hotbar.Select(lastItemIndex);
                         hotbar.activeItemObj = item;

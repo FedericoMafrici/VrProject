@@ -15,7 +15,7 @@ public class ChangeScenario : QuestEventReceiver
     [SerializeField] private List<AudioClip> soundtracks = new List<AudioClip>(); // to be added through unity script in player
 
     public int currentScenario = 0;
-    public Dictionary<int, Scenario> scenarioMap;
+    public Dictionary<int, Scenario> scenarioMap = new Dictionary<int, Scenario>();
     private int completed = 0;
     
     [SerializeField] private List<Quest> quests;
