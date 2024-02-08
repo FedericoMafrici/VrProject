@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1386611283}
+  _startEmpty: 0
 --- !u!4 &4467552 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: df4eeec199d2d88499d933ed75b8928c, type: 3}
@@ -18832,6 +18833,7 @@ MonoBehaviour:
   clue: {fileID: 1277503207}
   hotbar: {fileID: 1507226465}
   deposit: {fileID: 4467549}
+  pipe: {fileID: 0}
   objectGrabPointTransform: {fileID: 1576924745}
 --- !u!82 &1386611284
 AudioSource:
@@ -18941,9 +18943,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94969f2c25584a2fadc3d798c8d0387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _questCollection: {fileID: 0}
+  _targetQuestList: []
+  _eventList: 
   soundtracks:
   - {fileID: 8300000, guid: e895f6ddcfc9b4d529dc0d5bed0605d4, type: 3}
   - {fileID: 8300000, guid: 999eeec7b8d3148268731599e1f64296, type: 3}
+  currentScenario: 0
+  quests: []
+  pipeCamera: {fileID: 0}
+  playerCamera: {fileID: 0}
+  player: {fileID: 0}
+  pipeAnimator: {fileID: 0}
 --- !u!1001 &1388574103
 PrefabInstance:
   m_ObjectHideFlags: 0
