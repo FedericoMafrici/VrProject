@@ -156,7 +156,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                              out RaycastHit raycastHit5, pickupDistance, pickupLayerMask)
                          && raycastHit5.transform.TryGetComponent(out pipeScript)))
             {
-                pipeScript.SelectScenario((pipeScript.currentScenario + 1) % pipeScript.scenarioMap.Count);
+                pipeScript.SelectScenario((pipeScript.currentScenario + 1) % pipeScript.scenarios.Count);
             }
         }
     }
