@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1571,6 +1571,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1202800965}
+    - targetCorrespondingSourceObject: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1202800971}
   m_SourcePrefab: {fileID: 100100000, guid: f452545cf95179443af413f768973e44, type: 3}
 --- !u!224 &701320290 stripped
 RectTransform:
@@ -2301,6 +2304,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ea3737a910fe9499ec42583292c132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &908309304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908309296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetFoodsList: 0f000000
 --- !u!1 &953766818 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 489555453955024431, guid: 4cd7ce1f6bdc7484992173806e71468f, type: 3}
@@ -2411,7 +2427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetFoodsList: 0b000000
+  _targetFoodsList: 0f000000
 --- !u!1001 &1034267028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2911,6 +2927,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ea3737a910fe9499ec42583292c132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1202800971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202800963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetFoodsList: 0f000000
 --- !u!1001 &1254570091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3351,6 +3380,123 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1573913409836871803, guid: e41d9b7e6660449fd8db9e3e8b235068, type: 3}
   m_PrefabInstance: {fileID: 1438729871}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1381113005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1381113010}
+  - component: {fileID: 1381113009}
+  - component: {fileID: 1381113008}
+  - component: {fileID: 1381113007}
+  - component: {fileID: 1381113006}
+  m_Layer: 0
+  m_Name: EatingQuest2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1381113006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381113005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c441076fd20134d4ca8897a22c475ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
+  _startOnEnter: 1
+  _showMarkersOnEnter: 0
+  orderNumber: 2
+  _foodEaters:
+  - {fileID: 1608859215}
+  - {fileID: 1022033171}
+  - {fileID: 908309304}
+  - {fileID: 1202800971}
+  _targetFood: 15
+  _nToEat: 3
+  _description: Dai da mangiare agli animali
+--- !u!114 &1381113007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381113005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd8447e8f2720048b398929563447d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 4
+  _startOnEnter: 1
+  _showMarkersOnEnter: 0
+  orderNumber: 2
+  _description: Dai da mangiare agli animali
+  _collectingPoint: {fileID: 1677072564}
+  _targetItem: 7
+  _nToCollect: 3
+--- !u!114 &1381113008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381113005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 0
+  priority: 0
+  blendDistance: 1
+  weight: 1
+  sharedProfile: {fileID: 0}
+--- !u!65 &1381113009
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381113005}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1381113010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381113005}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.18, y: 2.9, z: -2.73}
+  m_LocalScale: {x: 20.906515, y: 9.919514, z: 20.906515}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1438729871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3696,6 +3842,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       insertIndex: -1
       addedObject: {fileID: 908309298}
+    - targetCorrespondingSourceObject: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 908309304}
   m_SourcePrefab: {fileID: 100100000, guid: f452545cf95179443af413f768973e44, type: 3}
 --- !u!224 &1493098870 stripped
 RectTransform:
@@ -4081,6 +4230,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1608859209}
+    - targetCorrespondingSourceObject: {fileID: 563558083187554143, guid: f452545cf95179443af413f768973e44, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1608859215}
   m_SourcePrefab: {fileID: 100100000, guid: f452545cf95179443af413f768973e44, type: 3}
 --- !u!224 &1566123481 stripped
 RectTransform:
@@ -4184,6 +4336,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ea3737a910fe9499ec42583292c132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1608859215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608859207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetFoodsList: 0f000000
 --- !u!1001 &1628214751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4689,6 +4854,7 @@ MonoBehaviour:
   _targetQuestList:
   - {fileID: 359804047}
   - {fileID: 1789608974}
+  - {fileID: 1381113007}
   _eventList: 04000000050000000200000003000000
   animator: {fileID: 2023015187}
   quests_UI: {fileID: 953766818}
@@ -4713,13 +4879,13 @@ MonoBehaviour:
     m_Top: 30
     m_Bottom: 50
   m_ChildAlignment: 1
-  m_Spacing: 0
+  m_Spacing: 100
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 1
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!224 &1819155549 stripped
 RectTransform:
@@ -5070,6 +5236,7 @@ MonoBehaviour:
   clue: {fileID: 1353537814}
   hotbar: {fileID: 608787163}
   deposit: {fileID: 407657302}
+  pipe: {fileID: 0}
   objectGrabPointTransform: {fileID: 211293254}
 --- !u!114 &1915367337
 MonoBehaviour:
@@ -5203,7 +5370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
@@ -5266,6 +5433,7 @@ SceneRoots:
   - {fileID: 176866357}
   - {fileID: 783077545}
   - {fileID: 1789608973}
+  - {fileID: 1381113010}
   - {fileID: 901216150}
   - {fileID: 1607637457}
   - {fileID: 1171442062}

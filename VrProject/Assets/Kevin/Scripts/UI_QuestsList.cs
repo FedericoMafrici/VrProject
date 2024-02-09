@@ -56,7 +56,7 @@ public class UI_QuestsList : QuestEventReceiver
             checks.Add(quest.orderNumber, uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>());
             
             uiElem.GetComponent<TMP_Text>().text = elem.text;
-            uiElem.GetComponent<RectTransform>().sizeDelta = new Vector2(uiElem.GetComponent<RectTransform>().sizeDelta.x,uiElem.GetComponent<TMP_Text>().preferredHeight + 25);
+            //uiElem.GetComponent<RectTransform>().sizeDelta = new Vector2(uiElem.GetComponent<RectTransform>().sizeDelta.x,uiElem.GetComponent<TMP_Text>().preferredHeight + 25);
             //uiElem.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(uiElem.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta.x,uiElem.GetComponent<TMP_Text>().preferredHeight);
             //uiElem.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector2(uiElem.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta.x,uiElem.GetComponent<TMP_Text>().preferredHeight);
             
