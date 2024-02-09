@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject knob;
     [SerializeField] private GameObject hotbar;
 
+    Coroutine _sentenceCoroutine = null; //aggiunto da Pietro
     private bool dialogueOngoing;
     void Awake()
     {
@@ -64,8 +65,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
-        //StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentence));
+        if (_sentenceCoroutine != null) {
+            StopCoroutine(_sentenceCoroutine);
+        }
+        _sentenceCoroutine = StartCoroutine(TypeSentence(sentence));
     }
 
     IEnumerator TypeSentence(string sentence)
@@ -83,6 +86,8 @@ public class DialogueManager : MonoBehaviour
         dialogueOngoing = false;
         if (dialogueQueue.Count == 0) {
             Debug.LogWarning("Ending dialogue");
+            StopCoroutine(_sentenceCoroutine);
+            _sentenceCoroutine = null;
             InputManager.EnableInteractions();
             animator.SetBool("IsOpen", false);
             knob.SetActive(true);

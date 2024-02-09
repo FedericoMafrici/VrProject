@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TargetMinigameQuest : Quest {
     [SerializeField] private string _description;
+    [SerializeField] private string _finalDescription;
     [SerializeField] private List<TargetMinigame> _targetMinigameList;
     private HashSet<TargetMinigame> _targetMinigameSet = new HashSet<TargetMinigame>();
 
@@ -39,6 +40,11 @@ public class TargetMinigameQuest : Quest {
     }
 
     public override string GetQuestDescription() {
+        if (_state != QuestState.COMPLETED) {
+            return _description;
+        } else {
+            return _finalDescription;
+        }
         return _description;
     }
 }

@@ -279,5 +279,5 @@ MonoBehaviour:
   _positiveClueTextAppendix: ferrare il cavallo
   _interactRange: 3
   _animalType: 1
-  additionalRequiredItem: 2
+  additionalRequiredItem: 3
   _negativeClueText: Hai bisogno del martello per ferrare il cavallo!
