@@ -14,14 +14,14 @@ public class LookAtQuest : Quest {
     }
 
     private void OnLookEvent(object sender, ClueEventArgs args) {
-        if (args.clueID == _target) {
-
-                SetEventSubscription(false, _target);
-                Progress();
-                Complete();
-            }
-        
+        if (args.clueID == _target &&
+            (!(sender is TargetMinigameActivator) || !(sender as TargetMinigameActivator).NeedsAdditionalItem())) {
+            SetEventSubscription(false, _target);
+            Progress();
+            Complete();
+        }
     }
+
 
     private void SetEventSubscription(bool subscribe, ClueID id) {
         switch(id) {

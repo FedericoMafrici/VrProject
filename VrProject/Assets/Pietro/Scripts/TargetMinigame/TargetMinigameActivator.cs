@@ -110,4 +110,7 @@ public class TargetMinigameActivator : ItemTool {
         return result;
     }
 
+    public bool NeedsAdditionalItem() {
+        return _needsAdditionalItem;
+    }
 }
