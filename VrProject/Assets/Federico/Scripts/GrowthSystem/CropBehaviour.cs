@@ -6,7 +6,7 @@ using UnityEngine;
 public class CropBehaviour : MonoBehaviour {
 
     public SeedData seedToGrow;
-    
+    public bool isTree=false;
     [Header("stages of Life")]
     public List<GameObject> stadi;
 
@@ -60,7 +60,7 @@ public class CropBehaviour : MonoBehaviour {
         {
             return ;
         }
-        
+
         switch(index)
         {
             case 0: 
@@ -72,7 +72,6 @@ public class CropBehaviour : MonoBehaviour {
             case 2:
             cropState=CropState.Harvestable;
             break;
-
         }
 
         int i=0;
@@ -82,6 +81,12 @@ public class CropBehaviour : MonoBehaviour {
                 if(i==index)
                {    
                 obj.SetActive(true);
+                if(i==2 && !isTree)
+                {
+                     obj.transform.parent=  null;
+                    Debug.Log("harvestabl ready ");
+                    Destroy(gameObject);
+                }
                }
                 else
                 {
