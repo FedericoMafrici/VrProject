@@ -61,7 +61,7 @@ public class TargetMinigame : MonoBehaviour {
 
             case Animal.AnimalName.Horse:
                 if (emptyObjects.Count != numTotalTargets) {
-                    Debug.Log("ERRORE quest cavallo: numero di empty objects minore del numero " + numTotalTargets + " di target richiesti.");
+                    Debug.LogError("ERRORE quest cavallo: numero di empty objects minore del numero " + numTotalTargets + " di target richiesti.");
                 } else {
                     for (int i = 0; i < numTotalTargets; i++) {
                         relativePositions.Add(emptyObjects[i].transform.localPosition);

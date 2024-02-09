@@ -53,6 +53,7 @@ public enum QuestID {
     WATERING_PLANT_TUTORIAL,
     PLANTING_TUTORIAL,
     SHAVING_TUTORIAL,
+    HAMMER_PICKUP_TUTORIAL
 }
 
 public enum QuestState {

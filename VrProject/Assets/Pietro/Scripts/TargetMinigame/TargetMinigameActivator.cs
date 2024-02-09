@@ -5,14 +5,17 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class TargetMinigameActivator : ItemTool {
-    [SerializeField] private string _clueTextAppendix = "mungere";
+    [SerializeField] private string _positiveClueTextAppendix = "mungere";
     [SerializeField] private float _interactRange = 2f;
     [SerializeField] private Animal.AnimalName _animalType;
-
+    [SerializeField] private ItemName additionalRequiredItem = ItemName.NoItem;
+    [SerializeField] private string _negativeClueText = "";
+    
     private RaycastManager<TargetMinigame> _raycastManager;
     //private KeyCode _interactKey = KeyCode.Mouse0;
 
-    private const string _clueText = "Premi [CLICK SINISTRO] per ";
+    private const string _positiveClueText = "Premi [CLICK SINISTRO] per ";
+    private bool _needsAdditionalItem;
 
     public static event EventHandler<ClueEventArgs> InMinigameRange;
     public static event EventHandler<ClueEventArgs> OutOfMinigameRange;
@@ -23,6 +26,7 @@ public class TargetMinigameActivator : ItemTool {
     public void Start() {
         base.Start();
         InitRaycastManager();
+        _needsAdditionalItem = additionalRequiredItem != ItemName.NoItem;
     }
 
 
@@ -52,8 +56,13 @@ public class TargetMinigameActivator : ItemTool {
 
         //check result of raycast and determine if minigame can be started
         //update return value accordingly
-        if (interactionResult.canCallBehaviour) {
+
+        if (HasAdditionalItem(itemManager.GetPlayerPickUpDrop()) && interactionResult.canCallBehaviour) {
             Debug.LogWarning("Starting minigame");
+            Debug.LogWarning("Camera is " + playerCamera.name);
+            Debug.LogWarning("Minigame is " + minigame.name);
+            Debug.LogWarning("ItemManager is " + itemManager.name);
+            Debug.LogWarning("Player pick up is " + itemManager.GetPlayerPickUpDrop().name);
             minigame.BeginMinigame(playerCamera, itemManager.GetPlayerPickUpDrop());
             useResult.itemUsed = true;
             useResult.itemConsumed = false;
@@ -82,7 +91,23 @@ public class TargetMinigameActivator : ItemTool {
         }
     }
 
-    private string MakeClueText() {
-        return _clueText + _clueTextAppendix;
+    private bool HasAdditionalItem(PlayerPickUpDrop playerPickUp) {
+        bool result = true;
+        if (additionalRequiredItem != ItemName.NoItem) {
+            result = playerPickUp.hotbar.Contains(additionalRequiredItem);
+        }
+        _needsAdditionalItem = !result;
+        return result;
     }
+
+    private string MakeClueText() {
+        string result;
+        if (!_needsAdditionalItem) {
+            result = _positiveClueText + _positiveClueTextAppendix;
+        } else {
+            result = _negativeClueText;
+        }
+        return result;
+    }
+
 }

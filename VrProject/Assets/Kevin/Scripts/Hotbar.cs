@@ -249,4 +249,33 @@ public class Hotbar : MonoBehaviour
             InstantiateItem(i);
         }
     }
+
+    public bool Contains(Item.ItemName targetName) {
+        foreach (ItemWrapper wrapper in itemWrappers) {
+            if (wrapper != null && wrapper.itemName == targetName) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public int FindItem(Item.ItemName targetName) {
+        int count = itemWrappers.Length;
+        int i = 0;
+        bool found = false;
+        while (!found && i <itemWrappers.Length) {
+            if (itemWrappers[i].itemName == targetName) {
+                found = true;
+            } else {
+                i++;
+            }
+        }
+
+        if (!found) {
+            i = -1;
+        }
+
+        return i;
+    }
 }

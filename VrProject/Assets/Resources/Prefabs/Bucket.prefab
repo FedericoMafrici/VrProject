@@ -185,9 +185,11 @@ MonoBehaviour:
   isDeposited: 0
   grabSound: {fileID: 0}
   usageSound: {fileID: 0}
-  _clueTextAppendix: mungere
+  _positiveClueTextAppendix: mungere la mucca
   _interactRange: 3
   _animalType: 2
+  additionalRequiredItem: 21
+  _negativeClueText: 
 --- !u!82 &816202085441958928
 AudioSource:
   m_ObjectHideFlags: 0

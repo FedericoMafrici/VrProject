@@ -35,7 +35,8 @@ public /*abstract*/ class Item : Grabbable
         EarOfWheat,
         TreeBranch,
         Leaf,
-        BaobabFruit
+        BaobabFruit,
+        NoItem //needed for TargetMinigameActivator
     }
 
     public enum ItemCategory

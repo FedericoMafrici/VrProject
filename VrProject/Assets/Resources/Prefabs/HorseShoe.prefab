@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 2491186114938167404}
   - component: {fileID: 4566745616723347477}
   - component: {fileID: 7582299688084567343}
-  - component: {fileID: -7863693965428866276}
   - component: {fileID: 6207420454838121361}
+  - component: {fileID: 5427993518938712727}
   m_Layer: 3
   m_Name: HorseShoe
   m_TagString: Untagged
@@ -158,28 +158,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-7863693965428866276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448041571732064648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754fc17baa1d64df1af38b3b3de0810c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInPlayerHand: 0
-  grabRotation: {x: 76.85222, y: 84.08259, z: 50.650734}
-  itemName: 2
-  itemCategory: 0
-  depositPosition: {x: -23.047, y: 1.819, z: 22.202}
-  depositRotation: {x: -0.000008457695, y: 216.30844, z: 359.135}
-  icon: {fileID: 21300000, guid: 56d5f5e7492e44a49a460f66c5bab93e, type: 3}
-  isDeposited: 0
-  grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
 --- !u!82 &6207420454838121361
 AudioSource:
   m_ObjectHideFlags: 0
@@ -276,3 +254,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5427993518938712727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448041571732064648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661438925b8ba38489827ac2b7fe73d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInPlayerHand: 0
+  grabRotation: {x: 76.85222, y: 84.08259, z: 50.65073}
+  itemName: 2
+  itemCategory: 0
+  depositPosition: {x: -23.047, y: 1.819, z: 22.202}
+  depositRotation: {x: -0.000008457695, y: 216.3084, z: 359.135}
+  icon: {fileID: 21300000, guid: 56d5f5e7492e44a49a460f66c5bab93e, type: 3}
+  isDeposited: 0
+  grabSound: {fileID: 0}
+  usageSound: {fileID: 0}
+  _positiveClueTextAppendix: ferrare il cavallo
+  _interactRange: 3
+  _animalType: 1
+  additionalRequiredItem: 2
+  _negativeClueText: Hai bisogno del martello per ferrare il cavallo!

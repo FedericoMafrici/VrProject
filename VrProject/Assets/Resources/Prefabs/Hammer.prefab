@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8479377051741730557}
   - component: {fileID: 5929054645379580471}
   - component: {fileID: 3856783729008324382}
-  - component: {fileID: 6357492988397578389}
   - component: {fileID: 5561009604795845712}
   - component: {fileID: -2519587458339846807}
   - component: {fileID: -3051953959327607044}
+  - component: {fileID: 8497469558532383260}
   m_Layer: 3
   m_Name: Hammer
   m_TagString: Untagged
@@ -116,27 +116,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6357492988397578389
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5280690162103575522}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.21260864, y: 0.39015985, z: 0.05633521}
-  m_Center: {x: -0.0039337575, y: 0.021280684, z: 0.0012060404}
 --- !u!114 &5561009604795845712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +133,7 @@ MonoBehaviour:
   itemName: 3
   itemCategory: 0
   depositPosition: {x: -23.836, y: 1.665, z: 26.026}
-  depositRotation: {x: 90, y: 302.85748, z: 0}
+  depositRotation: {x: 90, y: 302.8575, z: 0}
   icon: {fileID: 21300000, guid: d23471f561ae645d98eb48f6d56e45a8, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
@@ -269,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
+  outlineWidth: 7
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 8327444864838603468, guid: 0f02b2388eee2c240b5cae867d982e3f, type: 3}
@@ -666,3 +645,24 @@ MonoBehaviour:
     - {x: 0.3350197, y: 0.31910685, z: -0.8865284}
     - {x: 0.89281005, y: 0.049233165, z: -0.44773474}
     - {x: 0.32149968, y: -0.33118555, z: -0.8871043}
+--- !u!65 &8497469558532383260
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5280690162103575522}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.18868402, y: 0.3600339, z: 0.036888294}
+  m_Center: {x: -0.01064539, y: 0.01722166, z: -0.00012877397}

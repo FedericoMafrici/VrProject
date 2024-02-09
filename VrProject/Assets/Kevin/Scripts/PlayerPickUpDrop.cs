@@ -150,6 +150,7 @@ public class PlayerPickUpDrop : MonoBehaviour
             // ------------- PRESSIONE BARRA SPAZIATRICE: cambio scenario -------------
             
             else if (Input.GetKeyDown(KeyCode.Space) 
+                && pipe != null 
                      && (Vector3.Distance(pipe.transform.position, playerCameraTransform.position) < 5
                          && Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, 
                              out RaycastHit raycastHit5, pickupDistance, pickupLayerMask)

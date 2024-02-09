@@ -54,7 +54,7 @@ public abstract class AbstractStructuredQuest : Quest {
     }
 
     public override void AreaCheck() {
-        _currentStep.AreaCheck();
+            _currentStep.AreaCheck();  
     }
 
     public override void Complete() {
