@@ -84,7 +84,7 @@ PrefabInstance:
       addedObject: {fileID: 5679743894038481456}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8adbeaa4003f5a94aa7a1b6d6b47ed77, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5348200222303245507}
+      addedObject: {fileID: -8021560342165685584}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8adbeaa4003f5a94aa7a1b6d6b47ed77, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8342957492244804089}
@@ -143,7 +143,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5348200222303245507
+--- !u!114 &-8021560342165685584
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,19 +152,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8125123169854650179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a895f4056de6643aaa2c1698d007c9ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e4ae10cca7cd0664db5779f8a963e58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
   grabRotation: {x: 0, y: 0, z: 0}
   itemName: 15
   itemCategory: 2
-  depositPosition: {x: -23.473001, y: 2.385, z: 22.632002}
+  depositPosition: {x: -23.473, y: 2.385, z: 22.632}
   depositRotation: {x: 0, y: 0, z: 0}
   icon: {fileID: 21300000, guid: 11a6c9b476e6942858a56f4d274283fe, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
   usageSound: {fileID: 0}
+  _clueText: Premi [CLICK SINISTRO] per dare da mangiare
+  _interactRange: 3
+  _consumeWhenEaten: 1
 --- !u!82 &-8342957492244804089
 AudioSource:
   m_ObjectHideFlags: 0
