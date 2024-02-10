@@ -9,7 +9,9 @@ public class CropBehaviour : MonoBehaviour {
     public bool isTree=false;
     [Header("stages of Life")]
     public List<GameObject> stadi;
-
+   // [Header("stages of Life")]
+    private int childNumber=0;
+    
     private int index=0; // curr growth state of the plant ! 
      
     public CropState cropState;
@@ -49,6 +51,21 @@ public class CropBehaviour : MonoBehaviour {
             }
     
     }
+    public void OnCropGrabbed(Grabbable crop)
+    {
+        childNumber--;
+        crop.GrabEvent-=OnCropGrabbed;
+        Transform parent=crop.transform.parent;
+        crop.transform.parent=null;
+        if(childNumber==0)
+        {
+                    Debug.Log(" Harvestable ready");
+                    Destroy(parent.gameObject);
+                    Destroy(gameObject);
+
+        }
+
+    }
     //GROWTH SYSTEM
     public void Growth()
     {
@@ -83,9 +100,17 @@ public class CropBehaviour : MonoBehaviour {
                 obj.SetActive(true);
                 if(i==2 && !isTree)
                 {
-                     obj.transform.parent=  null;
-                    Debug.Log("harvestabl ready ");
-                    Destroy(gameObject);
+                    obj.transform.parent=  null;
+                    Grabbable[] childrens = obj.GetComponentsInChildren<Grabbable>();
+                    childNumber=childrens.Length;
+                    Debug.Log(childrens);
+                    Debug.Log(childrens.Length);
+                    foreach (Grabbable child in childrens)
+                    {
+                       child.GrabEvent+=OnCropGrabbed;
+                    }
+
+
                 }
                }
                 else
