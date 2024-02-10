@@ -144,7 +144,7 @@ MonoBehaviour:
   _patrolArea: {fileID: 0}
   _minPatrolDelay: 5
   _maxPatrolDelay: 15
-  _interestsList: 
+  _interestsList: 0b00000008000000
   _startingSpecialBehaviour: 0
 --- !u!195 &7563250159030947027
 NavMeshAgent:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetFoodsList: 
+  _targetFoodsList: 1200000014000000
 --- !u!1001 &3481557041688720279
 PrefabInstance:
   m_ObjectHideFlags: 0
