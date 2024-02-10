@@ -53,7 +53,32 @@ public enum QuestID {
     WATERING_PLANT_TUTORIAL,
     PLANTING_TUTORIAL,
     SHAVING_TUTORIAL,
-    HAMMER_PICKUP_TUTORIAL
+    HAMMER_PICKUP_TUTORIAL,
+    APPLE_GROWTH_QUEST,
+    WHEAT_GROWTH_QUEST,
+    CARROT_GROWTH_QUEST,
+    BAOBAB_GROWTH_QUEST,
+    ACACIA_GROWTH_QUEST,
+    APPLE_COLLECT_QUEST,
+    WHEAT_COLLECT_QUEST,
+    CARROT_COLLECT_QUEST,
+    BAOBAB_COLLECT_QUEST,
+    TREE_BRANCH_FEED_QUEST,
+    ALOE_PICKUP_QUEST,
+    ALOE_COLLECT_QUEST,
+    LION_FRIENDSHIP,
+    LION_DISTRACT,
+    ELEPHANT_FRIENDSHIP,
+    ELEPHANT_EATING,
+    ELEPHANT_STRUCTURED,
+    ELEPHANT_STEP1,
+    ELEPHANT_STEP2,
+    ZEBRA_FRIENDSHIP,
+    ZEBRA_EATING,
+    ZEBRA_REUNITE,
+    GIRAFFE_FRIENDSHIP,
+    GIRAFFE_EATING,
+    GIRAFFE_HEAL,
 }
 
 public enum QuestState {
@@ -67,6 +92,7 @@ public abstract class Quest : MonoBehaviour {
     [SerializeField] private QuestID _id;
     [SerializeField] private bool _startOnEnter = false;
     [SerializeField] private bool _showMarkersOnEnter = false;
+    [SerializeField] protected bool _autoComplete = false; //for debugging purposes
     protected  QuestState _state = QuestState.NOT_STARTED;
     protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     private bool _inited = false;
@@ -100,7 +126,15 @@ public abstract class Quest : MonoBehaviour {
             Debug.LogWarning(transform.name + " BoxCollider component is not set as \"is trigger\"");
         }
 
-        _inited= true;
+        orderNumber = QuestOrderAssigner.GetOrderNumber();
+        _inited = true;
+
+        if (_autoComplete) {
+            bool completed = AutoComplete();
+            if (!completed) {
+                Debug.LogWarning(transform.name + ": " + this + ": could not auto complete quest");
+            }
+        }
     }
 
     protected virtual void OnTriggerEnter(Collider other) {
@@ -235,5 +269,16 @@ public abstract class Quest : MonoBehaviour {
         _isStep = value;
         if (_startOnEnter && _isStep)
             _startOnEnter = false;
+    }
+
+    public virtual bool AutoComplete() {
+        Debug.LogWarning(transform.name + ": " + this + ", auto complete not supported by this kind of quest");
+        return false;
+    }
+
+    protected virtual void ForceStart() {
+        if (_state == QuestState.NOT_STARTED) {
+            StartQuest();
+        }
     }
 }

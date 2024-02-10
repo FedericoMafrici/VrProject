@@ -37,8 +37,10 @@ public class AnimalRemoverQuest : Quest {
         if (_state == QuestState.ACTIVE) {
             _nCompletedAnimals++;
             Progress();
-            RemoveMarker(rc.transform);
-            rc.EverythingRemovedEvent -= OnAnimalCleared;
+            if (rc != null) {
+                RemoveMarker(rc.transform);
+                rc.EverythingRemovedEvent -= OnAnimalCleared;
+            }
             if (_nCompletedAnimals >= _totalAnimals) {
                 _totalAnimals = _nCompletedAnimals;
                 SetAllSubscriptions(false);
@@ -115,5 +117,14 @@ public class AnimalRemoverQuest : Quest {
         if (markerManager != null) {
             markerManager.RemoveAssociatedQuest(GetID());
         }
+    }
+    public override bool AutoComplete() {
+        ForceStart();
+
+        while(_nCompletedAnimals < _totalAnimals) {
+            OnAnimalCleared(null);
+        }
+
+        return true;
     }
 }

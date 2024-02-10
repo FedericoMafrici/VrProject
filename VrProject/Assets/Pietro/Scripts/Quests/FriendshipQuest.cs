@@ -102,5 +102,26 @@ public class FriendshipQuest : Quest {
 
     }
 
+    public override bool AutoComplete() {
+        ForceStart();
+
+        while (_nBefriended < _nToBefriend) {
+            _nBefriended++;
+            Progress();
+        }
+
+        // complete quest
+        _nBefriended = _nToBefriend;
+        Complete();
+
+        // unsubscribe from event
+        foreach (Pettable _pettable in _pettables) {
+            _pettable.Befriended -= OnAnimalBefriended;
+        }
+
+        return true;
+
+    }
+
 
 }

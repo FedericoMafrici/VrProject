@@ -76,4 +76,13 @@ public class LookAtQuest : Quest {
     public override string GetQuestDescription() {
         return _description;
     }
+
+    public override bool AutoComplete() {
+        ForceStart();
+
+        SetEventSubscription(false, _target);
+        Progress();
+        Complete();
+        return true;
+    }
 }

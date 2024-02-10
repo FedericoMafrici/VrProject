@@ -92,6 +92,15 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
         }
     }
 
+    protected override void ForceStart() {
+        _startingDialogue.sentences = new string[0];
+        foreach (TutorialStep step in _tutorialSteps) {
+            step.endStepDialogue.sentences = new string[0];
+        }
+
+        base.ForceStart();
+    }
+
     protected override void OnStepCompleted(Quest step) {
 
         //whenever a step is completed trigger its corresponding end step dialogue
@@ -99,4 +108,5 @@ public class TutorialStructuredQuest : AbstractStructuredQuest {
         base.OnStepCompleted(step);
 
     }
+
 }

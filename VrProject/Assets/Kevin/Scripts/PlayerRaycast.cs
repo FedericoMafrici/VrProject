@@ -80,7 +80,7 @@ public class PlayerRaycast : MonoBehaviour
                 && item.enabled
                 && hotbar.activeItemObj == null) {
                 clue.text = "Press E to grab\nPress Q to collect";
-                if (hotbar.firstEmpty == 6) {
+                if (hotbar.firstEmpty == 6 && !hotbar.Contains(item.itemName)) {
                     clue.text += "\n\n Release an item to grab or collect another object!";
                 }
                 toOutline = raycastHit.transform;
@@ -91,7 +91,7 @@ public class PlayerRaycast : MonoBehaviour
                        && hotbar.activeItemObj != null
                        && item2 != hotbar.activeItemObj) {
                 clue.text = "Press Q to collect";
-                if (hotbar.firstEmpty == 6) {
+                if (hotbar.firstEmpty == 6 && !hotbar.Contains(item2.itemName)) {
                     clue.text += "\n\n Release an item to collect another object!";
                 }
                 toOutline = raycastHit2.transform;

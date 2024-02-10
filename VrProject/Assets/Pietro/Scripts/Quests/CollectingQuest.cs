@@ -96,4 +96,10 @@ public class CollectingQuest : Quest {
             markerManager.RemoveShowRequest(GetID());
         }
     }
+
+    public override bool AutoComplete() {
+        ForceStart();
+        AddItem(_nToCollect - _nCollected);
+        return true;
+    }
 }

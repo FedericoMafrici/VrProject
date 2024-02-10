@@ -101,4 +101,22 @@ public class EatingQuest : Quest {
     private bool FoodIsOk(ItemConsumable eaten) {
         return eaten != null && eaten.itemName == _targetFood;
     }
+
+    public override bool AutoComplete() {
+        ForceStart();
+
+        while(_nEaten < _nToEat) {
+            _nEaten++;
+            Progress();
+        }
+
+        Complete();
+
+        // unsubscribe from event
+        foreach (FoodEater fe in _foodEaters) {
+            fe.EatEvent -= OnFoodEaten;
+        }
+
+        return true;
+    }
 }

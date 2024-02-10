@@ -63,6 +63,7 @@ public abstract class AbstractStructuredQuest : Quest {
     }
 
     protected override void OnQuestStart() {
+        base.OnQuestStart();
         StartCurrStep();
     }
 
@@ -136,6 +137,22 @@ public abstract class AbstractStructuredQuest : Quest {
 
     public Quest GetCurrentStep() {
         return _currentStep;
+    }
+
+    public override bool AutoComplete() {
+        ForceStart();
+
+        bool canComplete = true;
+        while (canComplete && _state != QuestState.COMPLETED) {
+            Quest _prevStep = _currentStep;
+            canComplete = _currentStep.AutoComplete();
+            if (!CurrentStepIsFinal() && (_prevStep == _currentStep)) {
+                Debug.LogWarning(transform.name + ": " + this + ": quest did not advance step during auto complete");
+                canComplete = false;
+            }
+        }
+
+        return canComplete;
     }
 
 }
