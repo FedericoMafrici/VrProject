@@ -11,7 +11,12 @@ public enum TargetType {
     APPLE_FOOD,
     APPLE_SEED,
     CHICKEN_FOOD,
-    TREE_BRANCH
+    TREE_BRANCH,
+    CARROT,
+    WHEAT,
+    BAOBAB_FRUIT,
+    ALOE_LEAF,
+    MEAT
 }
 
 public class Targettable : MonoBehaviour {

@@ -84,10 +84,13 @@ PrefabInstance:
       addedObject: {fileID: 5057917087874979695}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fb417d6d6e4f9aa46a38fc778fb15f1c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4327297008405476020}
+      addedObject: {fileID: -8195170083755324557}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fb417d6d6e4f9aa46a38fc778fb15f1c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3786511794009757901}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fb417d6d6e4f9aa46a38fc778fb15f1c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3883648077222149427}
   m_SourcePrefab: {fileID: 100100000, guid: fb417d6d6e4f9aa46a38fc778fb15f1c, type: 3}
 --- !u!1 &1767690309440296164 stripped
 GameObject:
@@ -143,7 +146,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2633984327022396855, guid: fb417d6d6e4f9aa46a38fc778fb15f1c, type: 3}
---- !u!114 &4327297008405476020
+--- !u!114 &-8195170083755324557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,19 +155,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1767690309440296164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84cd6529417944935b37b96a07438350, type: 3}
+  m_Script: {fileID: 11500000, guid: e4ae10cca7cd0664db5779f8a963e58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
   grabRotation: {x: 0, y: 30, z: -70}
-  itemName: 18
-  itemCategory: 1
+  itemName: 5
+  itemCategory: 2
   depositPosition: {x: -23.369, y: 0.997, z: 22.792}
-  depositRotation: {x: 270, y: 232.85495, z: 0}
-  icon: {fileID: 0}
-  isDeposited: 1
+  depositRotation: {x: 270, y: 232.8549, z: 0}
+  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  isDeposited: 0
   grabSound: {fileID: 0}
   usageSound: {fileID: 0}
+  _clueText: Premi [CLICK SINISTRO] per dare da mangiare
+  _interactRange: 3
+  _consumeWhenEaten: 1
 --- !u!82 &3786511794009757901
 AudioSource:
   m_ObjectHideFlags: 0
@@ -261,3 +267,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3883648077222149427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767690309440296164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c49576c64a3a644b64d36557534620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 8
+  _maxFollowers: 3

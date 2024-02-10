@@ -12,7 +12,7 @@ public class CollectingPoint : MonoBehaviour
     public event Action<Item> ItemInCollectingPoint;
     public event Action<Item> ItemOutOfCollectingPoint;
 
-    /*
+    
     private void OnTriggerEnter(Collider other) {
         Item item = other.GetComponent<Item>();
         if (item != null) {
@@ -110,9 +110,10 @@ public class CollectingPoint : MonoBehaviour
             questMarkerManager.SetIsCollected(false);
         }
     }
-    */
+    
+    
 
-   
+   /*
     void OnTriggerStay(Collider other)
     {
         // check se il collider ha reagito con il collider corretto del punto di raccolta (quello verticale)
@@ -142,8 +143,9 @@ public class CollectingPoint : MonoBehaviour
 
                     //throw event, needed for collect quest
 
-                    if (ItemInCollectingPoint != null) {
-                        foreach (Item i in itemComponents) {
+
+                    foreach (Item i in itemComponents) {
+                        if (ItemInCollectingPoint != null) {
                             ItemInCollectingPoint(i);
                         }
                     }
@@ -171,9 +173,10 @@ public class CollectingPoint : MonoBehaviour
                     }
 
                     //throw event, needed for collect quest
-                    
-                    if (ItemOutOfCollectingPoint != null) {
-                        foreach (Item i in itemComponents) {
+
+
+                    foreach (Item i in itemComponents) {
+                        if (ItemOutOfCollectingPoint != null) {
                             ItemOutOfCollectingPoint(i);
                         }
                     }
@@ -187,6 +190,8 @@ public class CollectingPoint : MonoBehaviour
             }
         }
     }
+   */
+   
     
 
 }

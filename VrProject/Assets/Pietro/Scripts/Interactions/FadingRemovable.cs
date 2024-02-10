@@ -57,12 +57,10 @@ public class FadingRemovable : RemovablePart {
     }
 
     public override void RemovalStarted() {
-        Debug.LogWarning("<color=orange> NPC stopped moving </color>");
         MakeNPCStopMoving();
     }
 
     public override void RemovalStopped() {
-        Debug.LogWarning("<color=cyan> NPC will start moving in 2 seconds </color>");
         MakeNPCStartMoving(true, 2f);
     }
 }

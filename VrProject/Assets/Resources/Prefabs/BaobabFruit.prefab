@@ -84,10 +84,13 @@ PrefabInstance:
       addedObject: {fileID: 5319331651612456755}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2c93b9aaa2521ef4c867bc6be7d83786, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 263728047749767445}
+      addedObject: {fileID: 8827582662374488485}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2c93b9aaa2521ef4c867bc6be7d83786, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3497240239045396602}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2c93b9aaa2521ef4c867bc6be7d83786, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 772671103600771944}
   m_SourcePrefab: {fileID: 100100000, guid: 2c93b9aaa2521ef4c867bc6be7d83786, type: 3}
 --- !u!1 &3525104922556320529 stripped
 GameObject:
@@ -143,7 +146,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7204696322290031916, guid: 2c93b9aaa2521ef4c867bc6be7d83786, type: 3}
---- !u!114 &263728047749767445
+--- !u!114 &8827582662374488485
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,7 +155,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3525104922556320529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a895f4056de6643aaa2c1698d007c9ab, type: 3}
+  m_Script: {fileID: 11500000, guid: e4ae10cca7cd0664db5779f8a963e58f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
@@ -161,10 +164,13 @@ MonoBehaviour:
   itemCategory: 2
   depositPosition: {x: -22.999, y: 2.454, z: 22.237}
   depositRotation: {x: 0, y: 332.82, z: 0}
-  icon: {fileID: 0}
-  isDeposited: 1
+  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  isDeposited: 0
   grabSound: {fileID: 0}
   usageSound: {fileID: 0}
+  _clueText: Premi [CLICK SINISTRO] per dare da mangiare
+  _interactRange: 3
+  _consumeWhenEaten: 1
 --- !u!82 &3497240239045396602
 AudioSource:
   m_ObjectHideFlags: 0
@@ -261,3 +267,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &772671103600771944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525104922556320529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c49576c64a3a644b64d36557534620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 11
+  _maxFollowers: 3

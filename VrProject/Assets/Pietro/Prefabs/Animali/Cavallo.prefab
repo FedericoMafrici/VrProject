@@ -1172,7 +1172,7 @@ MonoBehaviour:
   _patrolArea: {fileID: 0}
   _minPatrolDelay: 5
   _maxPatrolDelay: 15
-  _interestsList: 
+  _interestsList: 0500000009000000
   _startingSpecialBehaviour: 0
 --- !u!114 &4341194997790134242
 MonoBehaviour:
