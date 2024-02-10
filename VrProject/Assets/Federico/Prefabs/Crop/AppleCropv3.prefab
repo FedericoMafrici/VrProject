@@ -48,10 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedToGrow: {fileID: 0}
+  isTree: 0
   stadi:
   - {fileID: 2858571430351790157}
   - {fileID: 2855259010068165722}
   - {fileID: 7229617807425317622}
+  cropType: 1
   cropState: 0
   growth: 0
 --- !u!1001 &1325737930690232267

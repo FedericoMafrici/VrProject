@@ -11,7 +11,7 @@ public class FarmingLand : MonoBehaviour
     GameObject tmp;
     public CropBehaviour  crop=null;
 
-    public event Action<CropBehaviour, bool> CropPlanted;
+    public event Action<FarmingLand, CropBehaviour, bool> CropPlanted;
 
     public  void Interact(Seed seed)
     {
@@ -37,7 +37,7 @@ public class FarmingLand : MonoBehaviour
 
             if (CropPlanted != null) 
             {
-                CropPlanted(crop, tree);
+                CropPlanted(this, crop, tree);
             }
 
         }

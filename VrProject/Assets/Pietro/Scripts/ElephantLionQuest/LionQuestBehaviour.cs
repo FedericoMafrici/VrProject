@@ -26,7 +26,7 @@ public class LionQuestBehaviour : MonoBehaviour {
         }
     }
 
-    void OnCropPlanted(CropBehaviour plantedCrop, bool isTree) {
+    void OnCropPlanted(FarmingLand land, CropBehaviour plantedCrop, bool isTree) {
         if (isTree) {
             _farmingLand.CropPlanted -= OnCropPlanted;
             _crop = plantedCrop;
@@ -44,13 +44,13 @@ public class LionQuestBehaviour : MonoBehaviour {
         }
     }
 
-    void OnCropGrowth(CropBehaviour.CropState newState) {
+    void OnCropGrowth(CropBehaviour crop, CropBehaviour.CropState newState) {
         if (newState == CropBehaviour.CropState.Harvestable) {
             DistractLion();
         }
     }
 
-    void OnCropDestroyed() {
+    void OnCropDestroyed(CropBehaviour crop) {
         if (_crop != null) {
             _crop.GrowthEvent -= OnCropGrowth;
             _crop.CropDestroyed -= OnCropDestroyed;
@@ -64,9 +64,9 @@ public class LionQuestBehaviour : MonoBehaviour {
 
     private void CheckCrop() {
         if (_farmingLand.crop != null) {
-            OnCropPlanted(_farmingLand.crop, _farmingLand.tree);
+            OnCropPlanted(_farmingLand, _farmingLand.crop, _farmingLand.tree);
             if (_farmingLand.tree) {
-                OnCropGrowth(_crop.cropState);
+                OnCropGrowth(_crop, _crop.cropState);
             }
         }
     }
