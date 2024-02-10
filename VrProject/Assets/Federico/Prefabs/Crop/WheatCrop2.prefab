@@ -90,5 +90,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedToGrow: {fileID: 11400000, guid: 344ecbcbe7a184fe39fd4cb60efa5260, type: 2}
+  isTree: 0
+  stadi: []
+  cropType: 3
   cropState: 0
   growth: 0

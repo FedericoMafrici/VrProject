@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 126029956790443118}
   - {fileID: 4770203546694879761}
   - {fileID: 3445688649034689814}
+  cropType: 5
   cropState: 0
   growth: 0
 --- !u!1001 &1542820301830576143

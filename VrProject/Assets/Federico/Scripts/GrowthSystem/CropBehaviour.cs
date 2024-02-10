@@ -6,130 +6,128 @@ using UnityEngine;
 public class CropBehaviour : MonoBehaviour {
 
     public SeedData seedToGrow;
-    public bool isTree=false;
+    public bool isTree = false;
     [Header("stages of Life")]
     public List<GameObject> stadi;
-   // [Header("stages of Life")]
-    private int childNumber=0;
-    
-    private int index=0; // curr growth state of the plant ! 
-     
+    // [Header("stages of Life")]
+    private int childNumber = 0;
+
+    private int index = 0; // curr growth state of the plant ! 
+
+    public CropType cropType; //aggiunto da Pietro
     public CropState cropState;
-    public int growth=0;
-    public enum CropState
-    {
-        Seed,SeedLing,Harvestable
+    public int growth = 0;
+    public enum CropState {
+        Seed, SeedLing, Harvestable
     }
-    void start()
-    {
-        index=0;
+    void start() {
+        index = 0;
     }
 
-   // public GameObject seed;
-    
-    public event Action<CropState> GrowthEvent; //aggiunto da Pietro
-    public event Action CropDestroyed; //aggiunto da Pietro - not used yet, needed to manage possible case in which the crop gets destroyed
+    // public GameObject seed;
+
+    public event Action<CropBehaviour, CropState> GrowthEvent; //aggiunto da Pietro
+    public event Action<CropBehaviour> CropDestroyed; //aggiunto da Pietro - not used yet, needed to manage possible case in which the crop gets destroyed
 
     // PLANTING SYSTEM //it should receive the seedData from outside 
-    public void Plant( )
-    { 
-            int i=0;
-            Debug.Log(gameObject.transform.localPosition);
-            // set active the first element 
-            // es per la carota è il germoglio !
-            foreach(var obj in stadi)
-            {
-                if(i==0)
-               {    
+    public void Plant() {
+        int i = 0;
+        Debug.Log(gameObject.transform.localPosition);
+        // set active the first element 
+        // es per la carota è il germoglio !
+        foreach (var obj in stadi) {
+            if (i == 0) {
                 obj.SetActive(true);
-               }
-                else
-                {
-                    obj.SetActive(false);
-                }
-                i++;
+            } else {
+                obj.SetActive(false);
             }
-    
+            i++;
+        }
+
     }
-    public void OnCropGrabbed(Grabbable crop)
-    {
+    public void OnCropGrabbed(Grabbable crop) {
         childNumber--;
-        crop.GrabEvent-=OnCropGrabbed;
-        Transform parent=crop.transform.parent;
-        crop.transform.parent=null;
-        if(childNumber==0)
-        {
-                    Debug.Log(" Harvestable ready");
-                    Destroy(parent.gameObject);
-                    Destroy(gameObject);
+        crop.GrabEvent -= OnCropGrabbed;
+        Transform parent = crop.transform.parent;
+        crop.transform.parent = null;
+        if (childNumber == 0) {
+
+            Debug.Log(" Harvestable ready");
+
+            //throw destroyed event
+            if (CropDestroyed != null) {
+                CropDestroyed(this);
+            }
+
+            Destroy(parent.gameObject);
+            Destroy(gameObject);
 
         }
 
     }
     //GROWTH SYSTEM
-    public void Growth()
-    {
-        if(index<2)
-       { 
-        index++; 
-       }
-        else
-        {
-            return ;
+    public void Growth() {
+        if (index < 2) {
+            index++;
+        } else {
+            return;
         }
 
-        switch(index)
-        {
-            case 0: 
-            cropState=CropState.Seed;
-            break;
+        switch (index) {
+            case 0:
+                cropState = CropState.Seed;
+                break;
             case 1:
-            cropState=CropState.SeedLing;
-            break;
+                cropState = CropState.SeedLing;
+                break;
             case 2:
-            cropState=CropState.Harvestable;
-            break;
+                cropState = CropState.Harvestable;
+                break;
         }
 
-        int i=0;
-          foreach(var obj in stadi)
-            {
-               
-                if(i==index)
-               {    
+        int i = 0;
+        foreach (var obj in stadi) {
+
+            if (i == index) {
                 obj.SetActive(true);
-                if(i==2 && !isTree)
-                {
-                    obj.transform.parent=  null;
+                if (i == 2 && !isTree) {
+                    obj.transform.parent = null;
                     Grabbable[] childrens = obj.GetComponentsInChildren<Grabbable>();
-                    childNumber=childrens.Length;
+                    childNumber = childrens.Length;
                     Debug.Log(childrens);
                     Debug.Log(childrens.Length);
-                    foreach (Grabbable child in childrens)
-                    {
-                       child.GrabEvent+=OnCropGrabbed;
+                    foreach (Grabbable child in childrens) {
+                        child.GrabEvent += OnCropGrabbed;
                     }
 
 
                 }
-               }
-                else
-                {
-                    obj.SetActive(false);
-                }
-                i++;
+            } else {
+                obj.SetActive(false);
             }
+            i++;
+        }
         //TODO 
         // eventually, in the final state, (index ==2)   we kill the parent as done below in the commented code but lets see if it's needed
-         // PIETRO QUEST 
-           if (GrowthEvent != null) {
-            GrowthEvent(cropState);
+        // PIETRO QUEST 
+        if (GrowthEvent != null) {
+            GrowthEvent(this, cropState);
         }
-         
-         }
+
+    }
 
 
 
+}
+
+//aggiunto da Pietro
+public enum CropType {
+    DEFAULT,
+    APPLE,
+    CARROT,
+    WHEAT,
+    BAOBAB, 
+    ACACIA
 }
 
 

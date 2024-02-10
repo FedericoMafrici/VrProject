@@ -43,8 +43,6 @@ public class PatrolBehaviour : MovementBehaviour {
                     //sample patrol area to find a new target, if no target is found re-sample during next update
                     if (GenerateRandomTarget())
                         _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay before generating new target
-                    else
-                        Debug.LogWarning(_npcMover.transform + " target generation failed, resampling at next update");
 
                 }
             }
