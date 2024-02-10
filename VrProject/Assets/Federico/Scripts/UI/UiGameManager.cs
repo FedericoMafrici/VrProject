@@ -15,6 +15,9 @@ public class UiGameManager : MonoBehaviour
 
 [Header("Testo dinamica per missioni aggiunta")]// add here the information about animal 
 public QuestListD uiPanel;
+
+public QuestListD PlantuiPanel;
+
 public  AnimalData leone;
 
 public AnimalData mucca;
@@ -105,6 +108,8 @@ void Start()
     {
          
             int i=0;
+            currAnimalKey=0;
+            currPlantKey=0;
                 //adding all the quest inserted into the quests list 
             if (_animals != null) {
                 foreach (AnimalDataUi animal in _animals) {
@@ -142,7 +147,7 @@ void Start()
       Debug.Log(entity.description[entity.index]);
       
       description.text=entity.description[entity.index];
-      image.sprite=entity.AnimalSprite;
+      image.sprite=entity.currAnimalImage;
       foreach(Quest quest in entity._targetQuestSet)  
       {
        
@@ -192,7 +197,7 @@ void Start()
    
 void DisplayAnimalData()
 {
-     missions.text="";
+    missions.text="";
     description.text="";
     image.sprite=null;
 
@@ -207,7 +212,7 @@ void DisplayAnimalData()
 
       description.text=entity.description[entity.index];
     
-      image.sprite=entity.AnimalSprite;
+      image.sprite=entity.currAnimalImage;
     foreach(Quest quest in entity._targetQuestSet)  
       {
        
@@ -317,6 +322,7 @@ public void DisplayPlantData()
     plantMissions.text="";
     plantDescription.text="";
     Plantsimage.sprite=null;
+    PlantuiPanel.deleteMissions();
        if (plantMap.TryGetValue(currPlantKey, out AnimalDataUi value))
         {
             entity=value;
@@ -327,15 +333,14 @@ public void DisplayPlantData()
         }
            
            
-           Plantsimage.sprite=entity.AnimalSprite;
+           Plantsimage.sprite=entity.currAnimalImage;
 
-          foreach(Quest quest in entity._targetQuestSet)  
+        foreach(Quest quest in entity._targetQuestSet)  
       {
-        plantMissions.text+="-"+quest.GetQuestDescription();
-        plantMissions.text+="\n";
+       PlantuiPanel.AddMission(quest);
       }     
 
-      description.text=entity.description[entity.index];
+      plantDescription.text=entity.description[entity.index];
       if(currPlantKey==0)
       {
        // NextAnimalButton.Sprite=null;
@@ -344,7 +349,7 @@ public void DisplayPlantData()
        buttonColor.a=0f;
        tmp.color=buttonColor;
       }
-      else if(currPlantKey==animalNumber-1)
+      else if(currPlantKey==plantNumber-1)
       {
         
         Image tmp=NextPlantlButton.GetComponent<Image>();
@@ -352,7 +357,7 @@ public void DisplayPlantData()
         buttonColor.a=0f;
         tmp.color=buttonColor;
 
-        tmp.sprite=leftArrow;
+        
       }
       else 
       {
@@ -372,11 +377,26 @@ public void DisplayPlantData()
 }
 public void DisplayAnimal()
 {
+  // restting button 
+     Image tmp=PreviousPlantButton.GetComponent<Image>();
+        Color buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+        // same for right arrow 
+        tmp=NextPlantlButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
+  
+  
    missions.text="";
    description.text="";
    image.sprite=null;
    uiPanel.deleteMissions();
    currAnimalKey=0;
+   currPlantKey=0;
    DisplayAnimalData();
    AnimalsCanvas.SetActive(true);
    PlantsCanvas.SetActive(false);
@@ -388,7 +408,20 @@ public void DisplayAnimal()
 }
 public void DisplayPlant()
 {
-     plantMissions.text="";
+    // restting button 
+     Image tmp=PreviousPlantButton.GetComponent<Image>();
+        Color buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+        // same for right arrow 
+        tmp=NextPlantlButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
+        
+    plantMissions.text="";
     plantDescription.text="";
     Plantsimage.sprite=null;
     currAnimalKey=0;
@@ -402,8 +435,21 @@ public void DisplayPlant()
 }
 public void DisplayMenu()
 {
+      // restting button 
+     Image tmp=PreviousPlantButton.GetComponent<Image>();
+        Color buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+        // same for right arrow 
+        tmp=NextPlantlButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
+
    ControlSettings.SetActive(false);
-   PlantsCanvas.SetActive(true);
+   PlantsCanvas.SetActive(false);
    AnimalsCanvas.SetActive(false);
    Menu.SetActive(true);
    
@@ -433,6 +479,7 @@ public void NextPlant()
 {
         if(currPlantKey+1<plantNumber) 
         {
+        PlantuiPanel.deleteMissions();
         currPlantKey+=1;
         DisplayPlantData();
         }
@@ -442,6 +489,7 @@ public void PreviousPlant()
 {
         if(currPlantKey!=0)
         {
+            PlantuiPanel.deleteMissions();
             currPlantKey-=1;
             DisplayPlantData();
         }
@@ -449,6 +497,19 @@ public void PreviousPlant()
 }
 public void DisplayControlSettings()
 {
+       // restting button 
+     Image tmp=PreviousPlantButton.GetComponent<Image>();
+        Color buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+        // same for right arrow 
+        tmp=NextPlantlButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
+
    AnimalsCanvas.SetActive(false);
    ControlSettings.SetActive(true);
    PlantsCanvas.SetActive(false);
@@ -456,17 +517,45 @@ public void DisplayControlSettings()
 }
 public void StartUI()
 {
+       // restting button 
+     Image tmp=PreviousPlantButton.GetComponent<Image>();
+        Color buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+        // same for right arrow 
+        tmp=NextPlantlButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
+
+   currAnimalKey=0;
+   currPlantKey=0;
    gameObject.SetActive(true);
    playerCamera.SetActive(false);
    ControlSettings.SetActive(false);
    AnimalsCanvas.SetActive(true);
    Menu.SetActive(false);
    Cursor.lockState =  CursorLockMode.None;
-        Cursor.visible = true;
-       DisplayAnimal();
+   Cursor.visible = true;
+   DisplayAnimal();
 }
 public void CloseUI()
 {
+      // restting button 
+     Image tmp=PreviousPlantButton.GetComponent<Image>();
+        Color buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+        // same for right arrow 
+        tmp=NextPlantlButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
+        
    gameObject.SetActive(false);
    playerCamera.SetActive(true);
    PlantsCanvas.SetActive(false);

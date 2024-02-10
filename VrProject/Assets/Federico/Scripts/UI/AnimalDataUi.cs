@@ -15,14 +15,20 @@ public class AnimalDataUi : QuestEventReceiver
     // Descrizione degli animali    
     public string[] description = new string[3];
     //Descrizione delle missioni degli animali 
-    public int index=0;
+    public int index=3;
     // immagine da visualizzare
     public Sprite AnimalSprite;
+    public Sprite currAnimalImage;
     public   HashSet<Quest> quests = new HashSet<Quest>();
     
      protected override void OnEventReceived(Quest quest,EventType eventType)
     {
-            if(eventType==EventType.PROGRESS)
+            if(eventType==EventType.AREA_ENTER)
+            {
+               currAnimalImage=AnimalSprite;
+              
+            }
+            else if(eventType==EventType.PROGRESS)
             {
                Debug.Log(quest.GetQuestDescription());
               
@@ -36,6 +42,7 @@ public class AnimalDataUi : QuestEventReceiver
                     index++;
                 }
                 //disicrivi dagli eventi(?) se mi iscrivo o no, la quest
+                SetEventSubscription(false,quest,EventType.AREA_ENTER);
                 SetEventSubscription(false,quest,EventType.COMPLETE);
                 SetEventSubscription(false,quest,EventType.PROGRESS);
             }

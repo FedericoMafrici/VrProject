@@ -15,7 +15,7 @@ public class QuestListD : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        uiElement = (GameObject) Resources.Load("Prefabs/Description");
+        
     }
 
     // Update is called once per frame
@@ -25,8 +25,9 @@ public class QuestListD : MonoBehaviour
     }
     public void AddMission(Quest quest)
     {
-           GameObject uiElem=Instantiate(uiElement,this.transform);
-       //missionsList.Add(uiElem);
+        uiElement = (GameObject) Resources.Load("Prefabs/Description");
+        GameObject uiElem=Instantiate(uiElement,this.transform);
+        //missionsList.Add(uiElem);
         uiElem.GetComponent<TMP_Text>().text = quest.GetQuestDescription();
        if(!(quest.GetState()==QuestState.COMPLETED)) {
             uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
