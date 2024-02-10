@@ -66,4 +66,14 @@ public class PickUpQuest : Quest
         return _description + " " + _nPickedUp + "/" + _nToPickUp;
     }
 
+    public override bool AutoComplete() {
+        ForceStart();
+
+        while (_nPickedUp < _nToPickUp) {
+            _nPickedUp++;
+            Progress();
+        }
+        Complete();
+        return true;
+    }
 }

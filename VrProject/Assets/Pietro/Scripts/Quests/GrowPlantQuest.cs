@@ -11,6 +11,7 @@ public class GrowPlantQuest : Quest
     [SerializeField] private string _description;
     [SerializeField] private List<FarmingLand> _landsList; 
     [SerializeField] private int _nToGrow;
+    [SerializeField] private CropType _targetCropType;
 
 
     private HashSet<FarmingLand> _lands;
@@ -45,12 +46,10 @@ public class GrowPlantQuest : Quest
     }
 
     private void OnCropPlanted(FarmingLand farmingLand, CropBehaviour crop, bool isTree) {
-        if (true) { //if crop is of required type 
+        if (crop.cropType == _targetCropType) { //if crop is of required type 
             Debug.LogWarning(transform.name + " quest detected that a crop was planted");
             crop.GrowthEvent += OnCropGrowth;
             crop.CropDestroyed += OnCropDestroyed;
-        } else {
-
         }
     }
 
@@ -81,5 +80,19 @@ public class GrowPlantQuest : Quest
 
     public override string GetQuestDescription() {
         return _description + " " + _nGrown + "/" + _nToGrow;
+    }
+
+    public override bool AutoComplete() {
+        ForceStart();
+
+        while (_nGrown < _nToGrow) {
+            _nGrown++;
+            Progress();
+        }
+        Complete();
+        foreach (FarmingLand land in _lands) {
+            land.CropPlanted -= OnCropPlanted;
+        }
+        return true;
     }
 }

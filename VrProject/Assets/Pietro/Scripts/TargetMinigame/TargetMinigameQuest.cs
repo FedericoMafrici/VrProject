@@ -47,4 +47,10 @@ public class TargetMinigameQuest : Quest {
         }
         return _description;
     }
+
+    public override bool AutoComplete() {
+        ForceStart();
+        OnMinigameCompleted();
+        return true;
+    }
 }

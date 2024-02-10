@@ -53,4 +53,10 @@ public class EscortQuest : Quest {
     public override string GetQuestDescription() {
         return _description;
     }
+
+    public override bool AutoComplete() {
+        ForceStart();
+        DestinationReached();
+        return true;
+    }
 }

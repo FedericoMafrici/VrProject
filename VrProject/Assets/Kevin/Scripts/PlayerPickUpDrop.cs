@@ -40,7 +40,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                             pickupDistance, pickupLayerMask)
                         && raycastHit3.transform.TryGetComponent(out item)
                         && item.enabled
-                        && hotbar.firstEmpty < Constants.Capacity) {
+                        && (hotbar.firstEmpty < Constants.Capacity || hotbar.Contains(item.itemName))) {
 
                         if (item.itemName == Item.ItemName.Leaf)
                         {
@@ -87,7 +87,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                         out RaycastHit raycastHit4, pickupDistance, pickupLayerMask)
                     && raycastHit4.transform.TryGetComponent(out item)
                     && item.enabled
-                    && hotbar.firstEmpty < Constants.Capacity) {
+                    && (hotbar.firstEmpty < Constants.Capacity || hotbar.Contains(item.itemName))) {
                     // item.Grab(objectGrabPointTransform, true); // TODO: lascio? Serve a vedere l'effetto di spostamento dell'oggetto mentre lo raccolgo
 
                     hotbar.Add(item, false);

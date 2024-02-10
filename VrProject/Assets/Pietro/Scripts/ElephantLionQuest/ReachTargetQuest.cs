@@ -37,4 +37,11 @@ public class ReachTargetQuest : Quest {
     public override string GetQuestDescription() {
         return _description;
     }
+
+    public override bool AutoComplete() {
+        ForceStart();
+        TargetReached();
+        return true;
+
+    }
 }

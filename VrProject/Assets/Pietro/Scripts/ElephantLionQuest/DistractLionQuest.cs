@@ -48,4 +48,10 @@ public class DistractLionQuest : Quest
     public override string GetQuestDescription() {
         return _description;
     }
+
+    public override bool AutoComplete() {
+        ForceStart();
+        OnLionDistracted();
+        return true;
+    }
 }
