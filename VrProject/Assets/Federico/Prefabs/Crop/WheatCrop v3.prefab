@@ -147,7 +147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609084245846461139, guid: 8a43afadbae964eb59d2b88094aa8893, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6309886968464402543, guid: 8a43afadbae964eb59d2b88094aa8893, type: 3}
       propertyPath: m_Name
@@ -229,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 51738379268534907, guid: c3edf56a98d0a49679097496786df2be, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 69959966760974340, guid: c3edf56a98d0a49679097496786df2be, type: 3}
       propertyPath: m_UseGravity
@@ -237,7 +237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 69959966760974340, guid: c3edf56a98d0a49679097496786df2be, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 547312831188746087, guid: c3edf56a98d0a49679097496786df2be, type: 3}
       propertyPath: m_LocalPosition.x
@@ -285,7 +285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 719055922570917504, guid: c3edf56a98d0a49679097496786df2be, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1370177562773653850, guid: c3edf56a98d0a49679097496786df2be, type: 3}
       propertyPath: m_LocalScale.x
@@ -309,7 +309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1962970905940926869, guid: c3edf56a98d0a49679097496786df2be, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2169506677233289362, guid: c3edf56a98d0a49679097496786df2be, type: 3}
       propertyPath: m_LocalScale.x
@@ -385,7 +385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7357911217204095816, guid: c3edf56a98d0a49679097496786df2be, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -425,7 +425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609084245846461139, guid: 8a43afadbae964eb59d2b88094aa8893, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6309886968464402543, guid: 8a43afadbae964eb59d2b88094aa8893, type: 3}
       propertyPath: m_Name
@@ -585,7 +585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609084245846461139, guid: 8a43afadbae964eb59d2b88094aa8893, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6309886968464402543, guid: 8a43afadbae964eb59d2b88094aa8893, type: 3}
       propertyPath: m_Name
