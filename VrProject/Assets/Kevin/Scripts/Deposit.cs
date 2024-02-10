@@ -13,6 +13,7 @@ public class Deposit : MonoBehaviour
 {
     public PlayerPickUpDrop player;
     [SerializeField] private bool _startEmpty = false; //aggiunto da pietro, per controllare alcune cose del tutorial 
+    [SerializeField] private bool _addAllItems = false; //aggiunto da pietro
     public Dictionary<Item.ItemName, GameObject> itemAssets = new Dictionary<Item.ItemName, GameObject>();
     public Dictionary<Item.ItemName, GameObject> itemCounters = new Dictionary<Item.ItemName, GameObject>();
     private Dictionary<Item.ItemName, GameObject> _spawnedItems = new Dictionary<Item.ItemName, GameObject>();
@@ -29,7 +30,7 @@ public class Deposit : MonoBehaviour
                 if (itemCounters[itemName])
                 {
                     itemCounters[itemName].GetComponent<ItemDepositCounter>().player = player;
-                    if (_startEmpty) {
+                    if (_startEmpty || _addAllItems) {
                         itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 0;
                         AddItem(itemName); //add one of each object in order to precompute its outline
                                            //these object will be deleted during the next update cycle
@@ -39,6 +40,10 @@ public class Deposit : MonoBehaviour
                     
                 }
             }
+        }
+
+        if (_addAllItems) {
+            _startEmpty = false;
         }
 
         if (_startEmpty) {
