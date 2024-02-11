@@ -389,6 +389,18 @@ public void DisplayAnimal()
         buttonColor.a=255f;
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
+        // Animal button
+        tmp=PreviousAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+       
+        tmp=NextAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
   
   
    missions.text="";
@@ -420,6 +432,18 @@ public void DisplayPlant()
         buttonColor.a=255f;
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
+        // Animal button
+        tmp=PreviousAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+       
+        tmp=NextAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
         
     plantMissions.text="";
     plantDescription.text="";
@@ -447,11 +471,24 @@ public void DisplayMenu()
         buttonColor.a=255f;
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
+        // Animal button
+        tmp=PreviousAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+       
+        tmp=NextAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
 
-   ControlSettings.SetActive(false);
-   PlantsCanvas.SetActive(false);
-   AnimalsCanvas.SetActive(false);
-   Menu.SetActive(true);
+        soundON();
+        ControlSettings.SetActive(false);
+        PlantsCanvas.SetActive(false);
+        AnimalsCanvas.SetActive(false);
+        Menu.SetActive(true);
    
 }
 
@@ -497,7 +534,7 @@ public void PreviousPlant()
 }
 public void DisplayControlSettings()
 {
-       // restting button 
+  // restting button 
      Image tmp=PreviousPlantButton.GetComponent<Image>();
         Color buttonColor=tmp.color;
         buttonColor.a=255f;
@@ -505,6 +542,18 @@ public void DisplayControlSettings()
         tmp.sprite=leftArrow;
         // same for right arrow 
         tmp=NextPlantlButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
+        // Animal button
+        tmp=PreviousAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+       
+        tmp=NextAnimalButton.GetComponent<Image>();
         buttonColor=tmp.color;
         buttonColor.a=255f;
         tmp.color=buttonColor;
@@ -525,6 +574,18 @@ public void StartUI()
         tmp.sprite=leftArrow;
         // same for right arrow 
         tmp=NextPlantlButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
+        // Animal button
+        tmp=PreviousAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+       
+        tmp=NextAnimalButton.GetComponent<Image>();
         buttonColor=tmp.color;
         buttonColor.a=255f;
         tmp.color=buttonColor;
@@ -555,7 +616,7 @@ public void CloseUI()
         buttonColor.a=255f;
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
-        
+
    gameObject.SetActive(false);
    playerCamera.SetActive(true);
    PlantsCanvas.SetActive(false);

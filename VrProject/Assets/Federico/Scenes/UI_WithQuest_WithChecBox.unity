@@ -486,7 +486,7 @@ MonoBehaviour:
     cui hanno bisogno, infatti, proviene  dai vegetali che fanno parte della loro
     dieta."
   index: 3
-  AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
+  AnimalSprite: {fileID: 21300000, guid: 54bad072db7ef4eb5a82740e1d9e8c3f, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
 --- !u!1 &88692109
 GameObject:
@@ -1254,7 +1254,7 @@ MonoBehaviour:
     leone invecchia e pi\xF9 le criniere diventano folte, scure e lunghe, un vero
     simbolo di potere che conferisce importanza all\u2019interno del branco"
   index: 3
-  AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
+  AnimalSprite: {fileID: 21300000, guid: 32b2f0fa281dd48a899bbea82dd84332, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
 --- !u!224 &307040238
 RectTransform:
@@ -1709,7 +1709,7 @@ MonoBehaviour:
     dei bovini sono chiamate mucche, i maschi sono denominati tori  Le razze che
     oggi alleviamo discendono dall\u2019uro, un bovino ormai estinto."
   index: 3
-  AnimalSprite: {fileID: 21300000, guid: 5a247be5dcd974db694aba637e606b4b, type: 3}
+  AnimalSprite: {fileID: 21300000, guid: b5be477f91cbb4e4e9ee46082ae04c86, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
 --- !u!4 &485946981
 Transform:
@@ -2731,7 +2731,7 @@ MonoBehaviour:
     visto che ingurgitano quintali di foglie e bevono circa 180 litri d\u2019acqua
     al giorno"
   index: 3
-  AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
+  AnimalSprite: {fileID: 21300000, guid: 2d5f16dd887de49c7a274dd62b44ef30, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
 --- !u!1 &652622872
 GameObject:
@@ -4750,7 +4750,7 @@ MonoBehaviour:
     quasi un uovo al giorno, e se nel pollaio \xE8 presente anche un gallo atto alla
     riproduzione, allora, con molta probabilit\xE0, le uova saranno anche fertili."
   index: 3
-  AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
+  AnimalSprite: {fileID: 21300000, guid: bb1889a5c605e42d59861a80d7378ec3, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
 --- !u!1 &1076443300
 GameObject:
@@ -4960,7 +4960,7 @@ MonoBehaviour:
     montagne con facilit\xE0, e possono costruire le loro dimore a oltre 2000 metri
     di altitudine."
   index: 3
-  AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
+  AnimalSprite: {fileID: 21300000, guid: 999ff3dda66894d7f8f5d099a4a15ccc, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
 --- !u!1 &1099234688
 GameObject:
@@ -5123,6 +5123,7 @@ MonoBehaviour:
   _id: 0
   _startOnEnter: 1
   _showMarkersOnEnter: 0
+  _autoComplete: 0
   orderNumber: 0
   description: Press enter
   _nInputsBeforeComplete: 3
@@ -7521,7 +7522,7 @@ MonoBehaviour:
     piedi per via della particolare struttura che permette di sostenere il loro peso
     con uno sforzo muscolare minimo."
   index: 3
-  AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
+  AnimalSprite: {fileID: 21300000, guid: 737f29b3894ad43aca43100238724498, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
 --- !u!1001 &1564108225
 PrefabInstance:
@@ -8428,6 +8429,7 @@ MonoBehaviour:
   _id: 0
   _startOnEnter: 1
   _showMarkersOnEnter: 0
+  _autoComplete: 0
   orderNumber: 0
   description: 'Quest numero 2 '
   _nInputsBeforeComplete: 1
@@ -10170,6 +10172,7 @@ MonoBehaviour:
   _id: 0
   _startOnEnter: 1
   _showMarkersOnEnter: 0
+  _autoComplete: 0
   orderNumber: 0
   description: Quest numero 3
   _nInputsBeforeComplete: 1

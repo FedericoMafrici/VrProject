@@ -215,9 +215,25 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 103409911448242868, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1082634433523652318, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_Name
       value: Carrot Crop harvestable
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534089827287049842, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534089827287049842, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534089827287049842, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 2534089827287049842, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -225,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2534089827287049842, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: 0.116
       objectReference: {fileID: 0}
     - target: {fileID: 2534089827287049842, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -259,9 +275,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2534089827287049842, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3313621730615011139, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.82199997
+      objectReference: {fileID: 0}
+    - target: {fileID: 3313621730615011139, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7570001
       objectReference: {fileID: 0}
     - target: {fileID: 3313621730615011139, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -271,9 +295,17 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5647127507453262950, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6431280549275161392, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.09900001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431280549275161392, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7570001
       objectReference: {fileID: 0}
     - target: {fileID: 6431280549275161392, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -284,12 +316,20 @@ PrefabInstance:
       value: 0.352
       objectReference: {fileID: 0}
     - target: {fileID: 7119517148629995921, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.757
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119517148629995921, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.714
       objectReference: {fileID: 0}
     - target: {fileID: 8490204737031831239, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8490204737031831239, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
