@@ -31,8 +31,8 @@ public class NPCMover : MonoBehaviour {
     [SerializeField] private float _inRangeRadius = 10.0f;
     [SerializeField] private float _closeRadius = 5.0f;
     [SerializeField] private float _veryCloseRadius = 2f;
+    [SerializeField] private Animator _animator = null;
     private float _toWaitBeforeMoving = 0.0f;
-    private Animator _animator;
     private Coroutine _waitingCoroutine = null;
     private FoodEater _foodEater;
 
@@ -54,7 +54,10 @@ public class NPCMover : MonoBehaviour {
 
     // Start is called before the first frame update
     void Awake() {
-        _animator = GetComponent<Animator>();
+        if (_animator == null) {
+            _animator = GetComponent<Animator>();
+        }
+
         _foodEater = GetComponent<FoodEater>();
         NavMeshAgent _agent = GetComponent<NavMeshAgent>();
         if (_agent != null ) {
