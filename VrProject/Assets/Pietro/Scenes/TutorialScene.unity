@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -176,6 +176,7 @@ MonoBehaviour:
   - itemName: 9
     amount: 1
   _addOnce: 1
+  _spreadOnUpdates: 0
 --- !u!4 &88289419 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6084150311587386979, guid: ddac45297f8e371418fb933c1db33083, type: 3}
@@ -457,13 +458,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 2
-  _isStep: 1
   _startOnEnter: 0
   _showMarkersOnEnter: 0
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _description: Raccogli il cibo per i polli
   _nToPickUp: 1
-  _targetItemName: 12
+  _targetItemNames: 
   _playerPickUp: {fileID: 1260936900}
 --- !u!114 &128068129
 MonoBehaviour:
@@ -551,13 +552,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 3
-  _isStep: 1
   _startOnEnter: 0
   _showMarkersOnEnter: 0
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _description: Raccogli un uovo
   _nToPickUp: 1
-  _targetItemName: 7
+  _targetItemNames: 
   _playerPickUp: {fileID: 1260936900}
 --- !u!114 &171680202
 MonoBehaviour:
@@ -760,10 +761,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 1
-  _isStep: 0
   _startOnEnter: 1
   _showMarkersOnEnter: 0
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _questCompletedDescription: Hai completato il tutorial
   _startingDialogue:
     sprite: {fileID: 21300000, guid: cd8786df9da6a4257beabd941a04e10b, type: 3}
@@ -1208,6 +1209,7 @@ MonoBehaviour:
   - {fileID: 1188192801}
   - {fileID: 830304451}
   - {fileID: 588897775}
+  _toExcludeList: []
   _startInactive: 1
 --- !u!1001 &395882431
 PrefabInstance:
@@ -1357,6 +1359,7 @@ MonoBehaviour:
   - itemName: 12
     amount: 1
   _addOnce: 1
+  _spreadOnUpdates: 0
 --- !u!1001 &442412855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1782,10 +1785,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 4
-  _isStep: 1
   _startOnEnter: 0
   _showMarkersOnEnter: 0
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _foodEaters:
   - {fileID: 882770830}
   - {fileID: 1942528264}
@@ -2317,6 +2320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1260936900}
+  _startEmpty: 0
+  _addAllItems: 0
 --- !u!4 &655900143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: abc60364fc48f404b85bea7c22345864, type: 3}
@@ -2490,6 +2495,7 @@ MonoBehaviour:
   _gameObjects:
   - {fileID: 851790381}
   - {fileID: 1055780787}
+  _toExcludeList: []
   _startInactive: 1
 --- !u!1 &830304451 stripped
 GameObject:
@@ -2792,6 +2798,7 @@ MonoBehaviour:
   _eventList: 01000000
   _gameObjects:
   - {fileID: 1753318028}
+  _toExcludeList: []
   _startInactive: 1
 --- !u!1 &1240624021
 GameObject:
@@ -2840,10 +2847,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 7
-  _isStep: 1
   _startOnEnter: 0
   _showMarkersOnEnter: 0
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _description: Metti le uova nell'apecar
   _collectingPoint: {fileID: 724263144}
   _targetItem: 7
@@ -2916,10 +2923,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 6
-  _isStep: 1
   _startOnEnter: 0
   _showMarkersOnEnter: 0
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _description: Metti l'uovo nell'apecar
   _collectingPoint: {fileID: 724263144}
   _targetItem: 7
@@ -3083,6 +3090,7 @@ MonoBehaviour:
   clue: {fileID: 1646902656}
   hotbar: {fileID: 1595855428}
   deposit: {fileID: 655900142}
+  pipe: {fileID: 0}
   objectGrabPointTransform: {fileID: 238907285}
 --- !u!114 &1260936901
 MonoBehaviour:
@@ -3130,6 +3138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 2116202581}
   _petDistance: 3
+  _clueText: Premi [CLICK DESTRO] e muovi [MOUSE] per accarezzare
 --- !u!1 &1284275886
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,10 +3185,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 8
-  _isStep: 0
   _startOnEnter: 0
   _showMarkersOnEnter: 0
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _questCompletedDescription: 
   _startingDialogue:
     sprite: {fileID: 0}
@@ -3330,7 +3339,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.5
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: e284a670171441046981894d2cabde56, type: 2}
   m_BuildHeightMesh: 0
@@ -3540,10 +3549,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 10
-  _isStep: 0
   _startOnEnter: 0
   _showMarkersOnEnter: 1
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _description: 'Pulisci gli animali:'
   _removableType: 0
   _totalAnimals: 2
@@ -3708,10 +3717,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 5
-  _isStep: 1
   _startOnEnter: 0
   _showMarkersOnEnter: 0
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _foodEaters:
   - {fileID: 882770830}
   - {fileID: 1942528264}
@@ -4744,6 +4753,7 @@ MonoBehaviour:
   _eventList: 01000000
   _gameObjects:
   - {fileID: 595518606}
+  _toExcludeList: []
   _startInactive: 1
 --- !u!114 &1942528264 stripped
 MonoBehaviour:
@@ -4820,10 +4830,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _id: 9
-  _isStep: 1
   _startOnEnter: 0
   _showMarkersOnEnter: 0
-  _alert: {fileID: 0}
+  _autoComplete: 0
+  orderNumber: 0
   _target: 1
   _description: 
 --- !u!4 &1993785790 stripped
@@ -4989,6 +4999,7 @@ MonoBehaviour:
   - itemName: 12
     amount: 2
   _addOnce: 1
+  _spreadOnUpdates: 0
 --- !u!114 &2081649750 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5942791135506767704, guid: e893c75b3dc345a439757aa735efe822, type: 3}
@@ -5116,15 +5127,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.9033133
+      value: -20.25
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.255
+      value: 2.415
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.198782
+      value: 25.72
       objectReference: {fileID: 0}
     - target: {fileID: 9005220659476430818, guid: 2d3a85ecde41a8246a79669975912b74, type: 3}
       propertyPath: m_LocalRotation.w

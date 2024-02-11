@@ -22,7 +22,7 @@ public class TargetMinigame : MonoBehaviour {
     private GameObject spawnedItem = null;
     private Target currentTarget = null;
     private int numSpawnedTargets = 0;
-    private Camera playerCamera = null;
+    private Camera mainCamera = null;
     private NPCMover _npc;
     private PlayerPickUpDrop playerPickUp = null;
     private bool minigameRunning = false;
@@ -97,10 +97,11 @@ public class TargetMinigame : MonoBehaviour {
         //disable player inputs
         InputManager.DisableInteractions();
         InputManager.DisableMovement();
+        InputManager.DisableMenu();
 
         //change camera
-        this.playerCamera = playerCamera;
-        SwitchCamera(playerCamera, minigameCamera);
+        this.mainCamera = Camera.main;
+        SwitchCamera(mainCamera, minigameCamera);
 
         //spawn additional item if needed
         SetAdditionalItem(true);
@@ -166,12 +167,13 @@ public class TargetMinigame : MonoBehaviour {
         SetAdditionalItem(false);
 
         //reset camera
-        SwitchCamera(minigameCamera, playerCamera);
-        playerCamera = null;
+        SwitchCamera(minigameCamera, mainCamera);
+        mainCamera = null;
 
         //enable inputs
         InputManager.EnableInteractions();
         InputManager.EnableMovement();
+        InputManager.EnableMenu();
 
         //enable NPC collider
         Collider coll = _npc.GetComponent<Collider>();
