@@ -5,6 +5,7 @@ using UnityEngine;
 public static class InputManager {
     private static int _disableInteractionsRequests = 0;
     private static int _disableMovementRequests = 0;
+    private static int _disableMenuRequests = 0;
 
     public static void EnableInteractions() {
         if (_disableInteractionsRequests > 0) {
@@ -40,6 +41,24 @@ public static class InputManager {
 
     public static bool MovementIsEnabled() {
         return _disableMovementRequests == 0;
+    }
+
+    public static void EnableMenu() {
+        if (_disableMenuRequests > 0) {
+            _disableMenuRequests--;
+            Debug.Log("Menu enabled");
+        }
+    }
+
+    public static void DisableMenu() {
+        _disableMenuRequests++;
+        if (_disableMenuRequests == 1) {
+            Debug.Log("Menu disabled");
+        }
+    }
+
+    public static bool MenuIsEnabled() {
+        return (_disableMenuRequests == 0);
     }
 
 }

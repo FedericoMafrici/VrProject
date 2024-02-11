@@ -16,20 +16,22 @@ public class PlayerUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && InputManager.MenuIsEnabled())
     {
         currState=!currState;
         Debug.Log(currState);
         if(currState)
         {
-            
+            InputManager.DisableInteractions();
+            InputManager.DisableMovement();
             UiManager.StartUI();
             
         }
         else
         {
-       
-        UiManager.CloseUI();
+                InputManager.EnableInteractions();
+                InputManager.EnableMovement();
+                UiManager.CloseUI();
         }
     }
     }
