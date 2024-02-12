@@ -48,6 +48,15 @@ public class FarmingLand : MonoBehaviour
            }
         }
     }
+
+    public void DestroyCrop() {
+
+        if (crop!=null) {
+            crop.DestroyCrop();
+            tree = false;
+            crop = null;
+        }
+    }
 }
 
  /*

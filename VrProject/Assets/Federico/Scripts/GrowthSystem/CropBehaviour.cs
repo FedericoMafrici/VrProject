@@ -117,6 +117,19 @@ public class CropBehaviour : MonoBehaviour {
     }
 
 
+    public void DestroyCrop() {
+        if (CropDestroyed != null) {
+            CropDestroyed(this);
+        }
+
+        foreach (GameObject obj in stadi) {
+            Destroy(obj.gameObject);
+        }
+
+        Destroy(this.gameObject);
+    }
+
+
 
 }
 

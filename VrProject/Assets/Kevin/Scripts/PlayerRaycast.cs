@@ -17,7 +17,8 @@ public enum ClueID {
     HEAL,
     PLANT,
     WATER,
-    TARGET_MINIGAME
+    TARGET_MINIGAME,
+    REMOVE_CROP
 }
 
 public class PlayerRaycast : MonoBehaviour
@@ -63,6 +64,10 @@ public class PlayerRaycast : MonoBehaviour
         //target minigame events
         TargetMinigameActivator.InMinigameRange+= OnAddClueEvent;
         TargetMinigameActivator.OutOfMinigameRange+= OnRemoveClueEvent;
+
+        //shovel events
+        CropRemover.InRange += OnAddClueEvent;
+        CropRemover.OutOfRange += OnRemoveClueEvent;
     }
 
     void Update()

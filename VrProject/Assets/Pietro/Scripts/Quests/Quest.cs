@@ -79,6 +79,7 @@ public enum QuestID {
     GIRAFFE_FRIENDSHIP,
     GIRAFFE_EATING,
     GIRAFFE_HEAL,
+    SHOVEL_PICKUP_TUTORIAL
 }
 
 public enum QuestState {
