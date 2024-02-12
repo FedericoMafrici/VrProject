@@ -23,21 +23,22 @@ public class Deposit : MonoBehaviour
         Array itemNames = Enum.GetValues(typeof(Item.ItemName));
         foreach(Item.ItemName itemName in itemNames)
         {
-            itemAssets.Add(itemName, (GameObject) Resources.Load("Prefabs/"+itemName, typeof(GameObject)));
-            
-            if (itemName != Item.ItemName.BucketMilk && itemName != Item.ItemName.OpenPomade){
-                itemCounters.Add(itemName, GameObject.Find("ItemDepositCounter"+itemName));
-                if (itemCounters[itemName])
-                {
-                    itemCounters[itemName].GetComponent<ItemDepositCounter>().player = player;
-                    if (_startEmpty || _addAllItems) {
-                        itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 0;
-                        AddItem(itemName); //add one of each object in order to precompute its outline
-                                           //these object will be deleted during the next update cycle
-                    } else {
-                        itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 1;
+            if (itemName != Item.ItemName.NoItem) {
+                itemAssets.Add(itemName, (GameObject)Resources.Load("Prefabs/" + itemName, typeof(GameObject)));
+
+                if (itemName != Item.ItemName.BucketMilk && itemName != Item.ItemName.OpenPomade) {
+                    itemCounters.Add(itemName, GameObject.Find("ItemDepositCounter" + itemName));
+                    if (itemCounters[itemName]) {
+                        itemCounters[itemName].GetComponent<ItemDepositCounter>().player = player;
+                        if (_startEmpty || _addAllItems) {
+                            itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 0;
+                            AddItem(itemName); //add one of each object in order to precompute its outline
+                                               //these object will be deleted during the next update cycle
+                        } else {
+                            itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 1;
+                        }
+
                     }
-                    
                 }
             }
         }

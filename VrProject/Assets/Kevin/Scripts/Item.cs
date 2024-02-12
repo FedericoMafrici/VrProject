@@ -36,7 +36,8 @@ public /*abstract*/ class Item : Grabbable
         TreeBranch,
         Leaf,
         BaobabFruit,
-        NoItem //needed for TargetMinigameActivator
+        NoItem, //needed for TargetMinigameActivator
+        Shovel
     }
 
     public enum ItemCategory
