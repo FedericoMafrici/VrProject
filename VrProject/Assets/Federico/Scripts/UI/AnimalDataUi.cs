@@ -17,6 +17,7 @@ public class AnimalDataUi : QuestEventReceiver
     //Descrizione delle missioni degli animali 
     public int index=3;
     // immagine da visualizzare
+    public Sprite AnimalTitleImage;
     public Sprite AnimalSprite;
     public Sprite currAnimalImage;
     public   HashSet<Quest> quests = new HashSet<Quest>();

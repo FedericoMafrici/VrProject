@@ -13,18 +13,18 @@ public class UiGameManager : MonoBehaviour
  // Informazioni per ogni animale da aggiungere tramite inspector
 
 
-[Header("Testo dinamica per missioni aggiunta")]// add here the information about animal 
+[Header("Pannelli interattivi che stampano le missioni")]// add here the information about animal 
 public QuestListD uiPanel;
 
 public QuestListD PlantuiPanel;
-
+// questi da togliere 
 public  AnimalData leone;
 
 public AnimalData mucca;
-[Header("Animals Ui information ")]// add here the information about animal 
+[Header("Informazioni Animali Ui  ")]// add here the information about animal 
 [SerializeField] private List<AnimalDataUi> _animals; 
 
-[Header("Plant Ui information ")]// add here the information about animal 
+[Header("Informazioni Piante Ui  ")]// add here the information about animal 
 [SerializeField] private List<AnimalDataUi> _plants; 
  private LinkedList<AnimalData> animalList = new LinkedList<AnimalData>();
 
@@ -51,7 +51,7 @@ public GameObject playerCamera;
 
 
 // Instanzia quelle che sono i vari componenti del canvas che poi cambieranno a seconda dell'interazione dell'utente 
-
+[Header("Animal Panel Components")]// add here the information about animal 
 public TMP_Text description;
 public TMP_Text missions;
 public Button gameControls;
@@ -59,10 +59,12 @@ public Button menu;
 public Button NextAnimalButton;
 public Button PreviousAnimalButton;
 public Image image;
+public Image AnimalNameTitle;
 private LinkedListNode<AnimalData> currNode;
 
 
 private LinkedListNode<GameObject> missionsList;
+
 
 // COMPONENT FOR SETTINGS UI 
 public TMP_Text setttingsList;
@@ -77,7 +79,7 @@ public GameObject PlantsCanvas;
 
 
  // COMPONENT FOR THE UI MENU 
-
+[Header("Componenti UI MENU")]
  public Button soundOn;
  
  public Button soundOf;
@@ -93,9 +95,10 @@ public GameObject PlantsCanvas;
   public Sprite leftArrow;
   public Sprite rightArrow;
 // COMPONENT FOR THE PLANT UI 
+[Header("Componenti UI Piante")]
 public TMP_Text plantDescription;
 public TMP_Text plantMissions;
-
+public Image plantNameTitle;
 public Button NextPlantlButton;
 public Button PreviousPlantButton;
 public Image Plantsimage;
@@ -145,7 +148,7 @@ void Start()
        // Debugging Purpose 
       //AnimalsCanvas.SetActive(true);
       Debug.Log(entity.description[entity.index]);
-      
+      AnimalNameTitle.sprite=entity.AnimalTitleImage;
       description.text=entity.description[entity.index];
       image.sprite=entity.currAnimalImage;
       foreach(Quest quest in entity._targetQuestSet)  
@@ -211,7 +214,7 @@ void DisplayAnimalData()
         }
 
       description.text=entity.description[entity.index];
-    
+      AnimalNameTitle.sprite=entity.AnimalTitleImage;
       image.sprite=entity.currAnimalImage;
     foreach(Quest quest in entity._targetQuestSet)  
       {
@@ -230,6 +233,7 @@ void DisplayAnimalData()
        Color buttonColor=tmp.color;
        buttonColor.a=0f;
        tmp.color=buttonColor;
+       PreviousAnimalButton.gameObject.SetActive(false);
       }
       else if(currAnimalKey==animalNumber-1)
       {
@@ -240,6 +244,7 @@ void DisplayAnimalData()
         tmp.color=buttonColor;
 
         tmp.sprite=leftArrow;
+        NextAnimalButton.gameObject.SetActive(false);
       }
       else 
       {
@@ -254,6 +259,8 @@ void DisplayAnimalData()
         buttonColor.a=255f;
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
       }
 }
 /*
@@ -348,6 +355,7 @@ public void DisplayPlantData()
        Color buttonColor=tmp.color;
        buttonColor.a=0f;
        tmp.color=buttonColor;
+       PreviousAnimalButton.gameObject.SetActive(false);
       }
       else if(currPlantKey==plantNumber-1)
       {
@@ -356,7 +364,7 @@ public void DisplayPlantData()
         Color buttonColor=tmp.color;
         buttonColor.a=0f;
         tmp.color=buttonColor;
-
+        NextAnimalButton.gameObject.SetActive(false);
         
       }
       else 
@@ -372,6 +380,8 @@ public void DisplayPlantData()
         buttonColor.a=255f;
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
       }
 
 }
@@ -401,7 +411,9 @@ public void DisplayAnimal()
         buttonColor.a=255f;
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
-  
+
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
   
    missions.text="";
    description.text="";
@@ -445,6 +457,9 @@ public void DisplayPlant()
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
         
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
+
     plantMissions.text="";
     plantDescription.text="";
     Plantsimage.sprite=null;
@@ -483,6 +498,9 @@ public void DisplayMenu()
         buttonColor.a=255f;
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
+
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
 
         soundON();
         ControlSettings.SetActive(false);
@@ -559,6 +577,10 @@ public void DisplayControlSettings()
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
 
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
+
+
    AnimalsCanvas.SetActive(false);
    ControlSettings.SetActive(true);
    PlantsCanvas.SetActive(false);
@@ -591,21 +613,24 @@ public void StartUI()
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
 
-   currAnimalKey=0;
-   currPlantKey=0;
-   gameObject.SetActive(true);
-   playerCamera.SetActive(false);
-   ControlSettings.SetActive(false);
-   AnimalsCanvas.SetActive(true);
-   Menu.SetActive(false);
-   Cursor.lockState =  CursorLockMode.None;
-   Cursor.visible = true;
-   DisplayAnimal();
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
+
+        currAnimalKey=0;
+        currPlantKey=0;
+        gameObject.SetActive(true);
+        playerCamera.SetActive(false);
+        ControlSettings.SetActive(false);
+        AnimalsCanvas.SetActive(true);
+        Menu.SetActive(false);
+        Cursor.lockState =  CursorLockMode.None;
+        Cursor.visible = true;
+        DisplayAnimal();
 }
 public void CloseUI()
 {
-      // restting button 
-     Image tmp=PreviousPlantButton.GetComponent<Image>();
+        // restting button 
+        Image tmp=PreviousPlantButton.GetComponent<Image>();
         Color buttonColor=tmp.color;
         buttonColor.a=255f;
         tmp.color=buttonColor;
@@ -616,6 +641,23 @@ public void CloseUI()
         buttonColor.a=255f;
         tmp.color=buttonColor;
         tmp.sprite=rightArrow;
+        // Animal button
+        tmp=PreviousAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=leftArrow;
+       
+        tmp=NextAnimalButton.GetComponent<Image>();
+        buttonColor=tmp.color;
+        buttonColor.a=255f;
+        tmp.color=buttonColor;
+        tmp.sprite=rightArrow;
+
+
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
+
 
    gameObject.SetActive(false);
    playerCamera.SetActive(true);

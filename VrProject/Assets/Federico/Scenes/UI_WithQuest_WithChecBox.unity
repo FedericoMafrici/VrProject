@@ -486,8 +486,9 @@ MonoBehaviour:
     cui hanno bisogno, infatti, proviene  dai vegetali che fanno parte della loro
     dieta."
   index: 3
+  AnimalTitleImage: {fileID: 21300000, guid: 3cd4a9e47915745aa9c2314fae33e145, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 54bad072db7ef4eb5a82740e1d9e8c3f, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!1 &88692109
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,16 +741,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211474073}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 19.259247}
-  m_LocalScale: {x: 0.55199015, y: 1.4569981, z: 1.4569981}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5304998, y: 3.63129, z: 3.63129}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1323791438}
-  m_Father: {fileID: 1534949647}
+  m_Father: {fileID: 1912012784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135.60815, y: -25.277763}
+  m_AnchoredPosition: {x: 764, y: 20.000008}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &211474075
@@ -1047,7 +1048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 442b660cc53d6412ea36dd54c3aff9ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 128da47dcdf8e4a6c8dd88d560b2568b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1254,8 +1255,9 @@ MonoBehaviour:
     leone invecchia e pi\xF9 le criniere diventano folte, scure e lunghe, un vero
     simbolo di potere che conferisce importanza all\u2019interno del branco"
   index: 3
+  AnimalTitleImage: {fileID: 21300000, guid: 6fcc73205c2f940d2ad0316b7dc57a0c, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 32b2f0fa281dd48a899bbea82dd84332, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!224 &307040238
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1709,8 +1711,9 @@ MonoBehaviour:
     dei bovini sono chiamate mucche, i maschi sono denominati tori  Le razze che
     oggi alleviamo discendono dall\u2019uro, un bovino ormai estinto."
   index: 3
+  AnimalTitleImage: {fileID: 21300000, guid: a0bfced7e99f04c71acec6a93721a0a6, type: 3}
   AnimalSprite: {fileID: 21300000, guid: b5be477f91cbb4e4e9ee46082ae04c86, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!4 &485946981
 Transform:
   m_ObjectHideFlags: 0
@@ -1753,16 +1756,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488367244}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 19.259247}
-  m_LocalScale: {x: 0.55199015, y: 1.4569981, z: 1.4569981}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5304998, y: 3.63129, z: 3.63129}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 567149007}
-  m_Father: {fileID: 1534949647}
+  m_Father: {fileID: 1912012784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135.60815, y: 104.52153}
+  m_AnchoredPosition: {x: 764, y: 343.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &488367246
@@ -1886,16 +1889,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536266252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 19.259247}
-  m_LocalScale: {x: 0.55199015, y: 1.4569981, z: 1.4569981}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5304998, y: 3.63129, z: 3.63129}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 29208125}
-  m_Father: {fileID: 1534949647}
+  m_Father: {fileID: 1912012784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135.60815, y: 16.85183}
+  m_AnchoredPosition: {x: 764, y: 125.00002}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &536266254
@@ -2731,8 +2734,9 @@ MonoBehaviour:
     visto che ingurgitano quintali di foglie e bevono circa 180 litri d\u2019acqua
     al giorno"
   index: 3
+  AnimalTitleImage: {fileID: 21300000, guid: dd204a81a9cd440c1b2fab9c855a5861, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 2d5f16dd887de49c7a274dd62b44ef30, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!1 &652622872
 GameObject:
   m_ObjectHideFlags: 0
@@ -3325,14 +3329,14 @@ RectTransform:
   m_GameObject: {fileID: 882707716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.06677317, y: 0.06677317, z: 0.06677317}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.03758508, y: 0.03758508, z: 0.03758508}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1715761241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -354, y: 33}
+  m_AnchoredPosition: {x: -360.5, y: 61}
   m_SizeDelta: {x: 4962, y: 2422}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &882707718
@@ -3355,7 +3359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1f2e7f114b4024f72ab129b005a06259, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 918f0c79d611c41f5aa9bd93907f7308, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3688,8 +3692,9 @@ MonoBehaviour:
   - Il leone fa grr. il leone fa grr prr.
   - Il leone fa grr. il leone fa grr prr. eskereee.
   index: 0
+  AnimalTitleImage: {fileID: 0}
   AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!1 &917956005 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3470944676103561902, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
@@ -4330,6 +4335,81 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
   m_PrefabInstance: {fileID: 936892786}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &956539698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 956539699}
+  - component: {fileID: 956539701}
+  - component: {fileID: 956539700}
+  m_Layer: 5
+  m_Name: AnimaleTitolo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &956539699
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956539698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.054366, y: 0.054366, z: 0.054366}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1715761241}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 358, y: 352}
+  m_SizeDelta: {x: 4962, y: 2422}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &956539700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956539698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c9f53adc781da45dbaef252915b1ead7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &956539701
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956539698}
+  m_CullTransparentMesh: 1
 --- !u!1 &980728874
 GameObject:
   m_ObjectHideFlags: 0
@@ -4358,14 +4438,14 @@ RectTransform:
   m_GameObject: {fileID: 980728874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -66}
-  m_LocalScale: {x: 1.1041918, y: 0.8534075, z: 0.16489546}
+  m_LocalScale: {x: 1.1870062, y: 0.7253879, z: 0.16489546}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1715761241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -367, y: -286}
+  m_AnchoredPosition: {x: -334, y: -205}
   m_SizeDelta: {x: 500, y: -464.19995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &980728876
@@ -4750,8 +4830,9 @@ MonoBehaviour:
     quasi un uovo al giorno, e se nel pollaio \xE8 presente anche un gallo atto alla
     riproduzione, allora, con molta probabilit\xE0, le uova saranno anche fertili."
   index: 3
+  AnimalTitleImage: {fileID: 21300000, guid: 48200aff2f17c4827abd8c98f29ae2cc, type: 3}
   AnimalSprite: {fileID: 21300000, guid: bb1889a5c605e42d59861a80d7378ec3, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!1 &1076443300
 GameObject:
   m_ObjectHideFlags: 0
@@ -4960,8 +5041,9 @@ MonoBehaviour:
     montagne con facilit\xE0, e possono costruire le loro dimore a oltre 2000 metri
     di altitudine."
   index: 3
+  AnimalTitleImage: {fileID: 21300000, guid: f8c42e903e557492688d24f9fafde72f, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 999ff3dda66894d7f8f5d099a4a15ccc, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!1 &1099234688
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,8 +5113,9 @@ MonoBehaviour:
     da erba, ma all'interno dei pascoli questi animali sono spesso alimentati con
     fieno e avena."
   index: 3
+  AnimalTitleImage: {fileID: 21300000, guid: d462765b066264c929197c6209e30d38, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!1 &1124558070
 GameObject:
   m_ObjectHideFlags: 0
@@ -5072,8 +5155,9 @@ MonoBehaviour:
   - maiali
   - maialonzano
   index: 0
+  AnimalTitleImage: {fileID: 0}
   AnimalSprite: {fileID: 21300000, guid: 9e5cadb20e6d944c09c5f54ea9428612, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!4 &1124558072
 Transform:
   m_ObjectHideFlags: 0
@@ -6503,81 +6587,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421002394}
   m_CullTransparentMesh: 1
---- !u!1 &1459317411
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1459317412}
-  - component: {fileID: 1459317414}
-  - component: {fileID: 1459317413}
-  m_Layer: 5
-  m_Name: AnimaleDescrizioneTitolo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1459317412
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459317411}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12876299, y: 0.12876299, z: 0.12876299}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1912012784}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 344, y: 289}
-  m_SizeDelta: {x: 4962, y: 2422}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1459317413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459317411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3789b393e3ed840c894df5cd9afd1952, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1459317414
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459317411}
-  m_CullTransparentMesh: 1
 --- !u!1 &1472103373
 GameObject:
   m_ObjectHideFlags: 0
@@ -6632,8 +6641,9 @@ MonoBehaviour:
   - Il leone fa grr. il leone fa grr prr.
   - Il leone fa grr. il leone fa grr prr. eskereee.
   index: 0
+  AnimalTitleImage: {fileID: 0}
   AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!1 &1474003698
 GameObject:
   m_ObjectHideFlags: 0
@@ -7327,16 +7337,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496907178}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 19.259247}
-  m_LocalScale: {x: 0.55199015, y: 1.4569981, z: 1.4569981}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5304998, y: 3.63129, z: 3.63129}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 933585905}
-  m_Father: {fileID: 1534949647}
+  m_Father: {fileID: 1912012784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 135.60815, y: 60.586365}
+  m_AnchoredPosition: {x: 764, y: 234}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1496907180
@@ -7444,11 +7454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1534949647 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4237177212887535556, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
-  m_PrefabInstance: {fileID: 1912012783}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1537516524
 GameObject:
   m_ObjectHideFlags: 0
@@ -7522,8 +7527,9 @@ MonoBehaviour:
     piedi per via della particolare struttura che permette di sostenere il loro peso
     con uno sforzo muscolare minimo."
   index: 3
+  AnimalTitleImage: {fileID: 21300000, guid: c9f53adc781da45dbaef252915b1ead7, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 737f29b3894ad43aca43100238724498, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!1001 &1564108225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7622,7 +7628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1973458707405871382, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1973458707405871382, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_TagString
@@ -7710,15 +7716,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -8499,6 +8505,7 @@ GameObject:
   - component: {fileID: 1671104197}
   - component: {fileID: 1671104196}
   - component: {fileID: 1671104199}
+  - component: {fileID: 1671104200}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8619,6 +8626,7 @@ MonoBehaviour:
   NextAnimalButton: {fileID: 640129089}
   PreviousAnimalButton: {fileID: 2102406809}
   image: {fileID: 1688902924}
+  AnimalNameTitle: {fileID: 956539700}
   setttingsList: {fileID: 1936463704}
   additionalRules: {fileID: 2057477218}
   PlantsCanvas: {fileID: 1247114496}
@@ -8636,9 +8644,97 @@ MonoBehaviour:
   rightArrow: {fileID: 21300000, guid: 5c7c62f4c1c8c49aba9c70de2900b76f, type: 3}
   plantDescription: {fileID: 1534949646}
   plantMissions: {fileID: 454565335}
+  plantNameTitle: {fileID: 0}
   NextPlantlButton: {fileID: 442523819}
   PreviousPlantButton: {fileID: 294915754}
   Plantsimage: {fileID: 27265232}
+--- !u!114 &1671104200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671104195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de2070c7b6b841ed877597413ef9cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1681020126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1681020127}
+  - component: {fileID: 1681020129}
+  - component: {fileID: 1681020128}
+  m_Layer: 5
+  m_Name: nomePiantaTitolo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1681020127
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681020126}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.054369997, y: 0.054369997, z: 0.054369997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1912012784}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 358, y: 352}
+  m_SizeDelta: {x: 4962, y: 2422}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1681020128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681020126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c9f53adc781da45dbaef252915b1ead7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1681020129
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681020126}
+  m_CullTransparentMesh: 1
 --- !u!114 &1688902924 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6198491519916841133, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
@@ -9069,215 +9165,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774374690}
-  m_CullTransparentMesh: 1
---- !u!1 &1774391714
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1774391715}
-  - component: {fileID: 1774391717}
-  - component: {fileID: 1774391716}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1774391715
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774391714}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1902649094}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1774391716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774391714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1774391717
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774391714}
-  m_CullTransparentMesh: 1
---- !u!1 &1794711450
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1794711451}
-  - component: {fileID: 1794711453}
-  - component: {fileID: 1794711452}
-  m_Layer: 5
-  m_Name: misssioneTitolo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1794711451
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794711450}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.06677317, y: 0.06677317, z: 0.06677317}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1912012784}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -354, y: -32}
-  m_SizeDelta: {x: 4962, y: 2422}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1794711452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794711450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1f2e7f114b4024f72ab129b005a06259, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1794711453
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1794711450}
   m_CullTransparentMesh: 1
 --- !u!1 &1797247603
 GameObject:
@@ -10121,8 +10008,9 @@ MonoBehaviour:
     a quelle dei cani o dei bambini, dimostrano consapevolezza di s\xE9, esprimono
     gusti e antipatie, apprezzano il gioco creativo e sperimentano emozioni."
   index: 3
+  AnimalTitleImage: {fileID: 21300000, guid: d522dd55511ca416cb2e977fd5cd89e1, type: 3}
   AnimalSprite: {fileID: 21300000, guid: fb8dd50a2d9bc4e9fb182b5535d566b7, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!4 &1855354198
 Transform:
   m_ObjectHideFlags: 0
@@ -10262,7 +10150,8 @@ MonoBehaviour:
   _questCollection: {fileID: 0}
   _targetQuestList:
   - {fileID: 1183491349}
-  _eventList: 02000000
+  - {fileID: 1660854113}
+  _eventList: 0200000004000000
   _animal: 3
   description:
   - esisteranno mai le piante del pesto?
@@ -10270,8 +10159,9 @@ MonoBehaviour:
   - maiali
   - maialonzano
   index: 0
+  AnimalTitleImage: {fileID: 0}
   AnimalSprite: {fileID: 21300000, guid: 9e5cadb20e6d944c09c5f54ea9428612, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!4 &1874446299
 Transform:
   m_ObjectHideFlags: 0
@@ -10396,8 +10286,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.167525, y: 7.455043, z: 2.1845}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1774391715}
+  m_Children: []
   m_Father: {fileID: 1564108226}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -10449,9 +10338,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1671104199}
-        m_TargetAssemblyTypeName: UiGameManager, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1671104200}
+        m_TargetAssemblyTypeName: LoadingSceneF, Assembly-CSharp
+        m_MethodName: LoadFarm
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10845,11 +10734,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4237177212887535556, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 388
+      value: 375
       objectReference: {fileID: 0}
     - target: {fileID: 4237177212887535556, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 83
+      value: 235
       objectReference: {fileID: 0}
     - target: {fileID: 5130588401704883588, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -10879,6 +10768,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6198491519916841133, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 32b2f0fa281dd48a899bbea82dd84332, type: 3}
     - target: {fileID: 6446490053716173448, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5304993
@@ -11009,11 +10902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9198613051769655120, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -369
+      value: -359
       objectReference: {fileID: 0}
     - target: {fileID: 9198613051769655120, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 230
+      value: 247
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -11025,24 +10918,24 @@ PrefabInstance:
       insertIndex: 1
       addedObject: {fileID: 889025434}
     - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 1459317412}
-    - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 294915753}
     - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1794711451}
-    - targetCorrespondingSourceObject: {fileID: 4237177212887535556, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      addedObject: {fileID: 1681020127}
+    - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1929340830}
+    - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 211474074}
-    - targetCorrespondingSourceObject: {fileID: 4237177212887535556, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 536266253}
-    - targetCorrespondingSourceObject: {fileID: 4237177212887535556, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 488367245}
-    - targetCorrespondingSourceObject: {fileID: 4237177212887535556, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1496907179}
     m_AddedComponents: []
@@ -11106,8 +10999,84 @@ MonoBehaviour:
   - Il leone fa grr. il leone fa grr prr.
   - Il leone fa grr. il leone fa grr prr. eskereee.
   index: 0
+  AnimalTitleImage: {fileID: 0}
   AnimalSprite: {fileID: 21300000, guid: 18e6bdda987dc4f179c2f1636f235b7e, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
+--- !u!1 &1929340829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1929340830}
+  - component: {fileID: 1929340832}
+  - component: {fileID: 1929340831}
+  m_Layer: 5
+  m_Name: misssioneTitolo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1929340830
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929340829}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.03759, y: 0.03759, z: 0.03759}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1912012784}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -360.5, y: 61}
+  m_SizeDelta: {x: 4962, y: 2422}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1929340831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929340829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 918f0c79d611c41f5aa9bd93907f7308, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1929340832
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929340829}
+  m_CullTransparentMesh: 1
 --- !u!1 &1931358333
 GameObject:
   m_ObjectHideFlags: 0
@@ -11553,8 +11522,9 @@ MonoBehaviour:
   - maiali
   - maialonzano
   index: 0
+  AnimalTitleImage: {fileID: 0}
   AnimalSprite: {fileID: 21300000, guid: 9e5cadb20e6d944c09c5f54ea9428612, type: 3}
-  currAnimalImage: {fileID: 21300000, guid: 87021417b16ba482e8d444bf2c19c1ad, type: 3}
+  currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
 --- !u!4 &2010630955
 Transform:
   m_ObjectHideFlags: 0
@@ -11621,7 +11591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -608, y: -364}
+  m_AnchoredPosition: {x: -648, y: -364}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2102406809
@@ -11717,81 +11687,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102406807}
-  m_CullTransparentMesh: 1
---- !u!1 &2108231468
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2108231469}
-  - component: {fileID: 2108231471}
-  - component: {fileID: 2108231470}
-  m_Layer: 5
-  m_Name: AnimaleDescrizioneTitolo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2108231469
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2108231468}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 207}
-  m_LocalScale: {x: 0.12876299, y: 0.12876299, z: 0.12876299}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1715761241}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 344, y: 289}
-  m_SizeDelta: {x: 4962, y: 2422}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2108231470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2108231468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3789b393e3ed840c894df5cd9afd1952, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &2108231471
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2108231468}
   m_CullTransparentMesh: 1
 --- !u!1 &2139881313
 GameObject:
@@ -12206,11 +12101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4237177212887535556, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 388
+      value: 375
       objectReference: {fileID: 0}
     - target: {fileID: 4237177212887535556, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 94
+      value: 235
       objectReference: {fileID: 0}
     - target: {fileID: 5130588401704883588, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -12240,6 +12135,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6198491519916841133, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 32b2f0fa281dd48a899bbea82dd84332, type: 3}
     - target: {fileID: 6446490053716173448, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5304993
@@ -12370,11 +12269,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9198613051769655120, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -369
+      value: -359
       objectReference: {fileID: 0}
     - target: {fileID: 9198613051769655120, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 230
+      value: 247
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12383,10 +12282,7 @@ PrefabInstance:
       insertIndex: 2
       addedObject: {fileID: 980728875}
     - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 2108231469}
-    - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
-      insertIndex: 7
+      insertIndex: 6
       addedObject: {fileID: 294856255}
     - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       insertIndex: -1
@@ -12394,6 +12290,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 882707717}
+    - targetCorrespondingSourceObject: {fileID: 2318388984411073287, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 956539699}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3470944676103561902, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       insertIndex: -1
