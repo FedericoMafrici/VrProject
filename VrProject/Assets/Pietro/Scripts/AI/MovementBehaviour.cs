@@ -115,6 +115,8 @@ public abstract class MovementBehaviour {
         bool inaccessibleItem = false;
         Item item = targettable.GetComponent<Item>();
         inaccessibleItem = (item != null && (item.isDeposited || item.isCollected));
+        AnimalFood animalFood = targettable.GetComponent<AnimalFood>();
+        inaccessibleItem = inaccessibleItem || (animalFood != null && animalFood.IsPlanted());
 
         //return true if:
         //NPCMover is interested in Targettable type

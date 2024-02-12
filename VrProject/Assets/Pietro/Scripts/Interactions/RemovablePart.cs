@@ -6,7 +6,8 @@ using UnityEngine;
 
 public enum RemovableType {
     WOOL,
-    MUD
+    MUD,
+    WOUND
 }
 
 public abstract class RemovablePart : MonoBehaviour {

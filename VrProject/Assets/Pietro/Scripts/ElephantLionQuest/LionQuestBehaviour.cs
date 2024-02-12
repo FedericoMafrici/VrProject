@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class LionQuestBehaviour : MonoBehaviour {
     [SerializeField] private FarmingLand _farmingLand;
-    [SerializeField] private CropBehaviour _crop;
+    private CropBehaviour _crop;
     [SerializeField] private NPCMover _npcMover;
     private bool _isDistracted = false;
 

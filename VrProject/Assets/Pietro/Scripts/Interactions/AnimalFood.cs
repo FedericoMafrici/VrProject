@@ -8,6 +8,7 @@ public class AnimalFood : ItemConsumable {
     [SerializeField] private string _clueText = "Premi [CLICK SINISTRO] per dare da mangiare";
     [SerializeField] private float _interactRange = 3f;
     [SerializeField] private bool _consumeWhenEaten = true;
+    [SerializeField] private bool _isPlanted = false;
     private RaycastManager<FoodEater> _raycastManager;
     private KeyCode _interactKey = KeyCode.Mouse0;
     
@@ -75,6 +76,15 @@ public class AnimalFood : ItemConsumable {
         if (OutOfFeedRange != null) {
             OutOfFeedRange(this, new ClueEventArgs(ClueID.FEED, _clueText));
         }
+    }
+
+    public bool IsPlanted() {
+        return _isPlanted;
+    }
+
+    public override void Grab(Transform objectGrabPointTransform, bool isGrabbedFromGround) {
+        _isPlanted = false;
+        base.Grab(objectGrabPointTransform, isGrabbedFromGround);
     }
 
 }
