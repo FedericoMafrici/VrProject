@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3980100318916736061}
   - component: {fileID: 7294121648296793927}
   - component: {fileID: 4488369988528860382}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Leonessa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,6 +255,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2d49e9e73c1cf324e886c9e7037fac86, type: 3}
       propertyPath: m_Name
       value: Leonessa
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2d49e9e73c1cf324e886c9e7037fac86, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

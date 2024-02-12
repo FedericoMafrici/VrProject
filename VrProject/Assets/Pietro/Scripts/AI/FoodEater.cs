@@ -51,8 +51,8 @@ public class FoodEater : MonoBehaviour {
         //food.StartFading();
     }
 
-    public bool FoodInterestsAnimal(ItemConsumable food) {
-        return _targetFoods.Contains(food.itemName);
+    public bool FoodInterestsAnimal(AnimalFood food) {
+        return _targetFoods.Contains(food.itemName) && !food.IsPlanted();
     }
 }
 

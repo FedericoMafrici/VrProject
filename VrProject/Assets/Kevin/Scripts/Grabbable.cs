@@ -23,7 +23,7 @@ public class Grabbable : MonoBehaviour
             objectRigidBody = GetComponent<Rigidbody>();
     }
 
-    public void Grab(Transform objectGrabPointTransform, bool isGrabbedFromGround)
+    public virtual void Grab(Transform objectGrabPointTransform, bool isGrabbedFromGround)
     {
         if (objectRigidBody == null) {
             objectRigidBody = GetComponent<Rigidbody>();
