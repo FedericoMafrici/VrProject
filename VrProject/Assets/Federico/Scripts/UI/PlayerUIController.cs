@@ -16,7 +16,7 @@ public class PlayerUIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && InputManager.MenuIsEnabled())
+        if ((Input.GetKeyDown(KeyCode.Tab) || Input.GetKeyDown(KeyCode.Escape)) && InputManager.MenuIsEnabled())
     {
         currState=!currState;
         Debug.Log(currState);

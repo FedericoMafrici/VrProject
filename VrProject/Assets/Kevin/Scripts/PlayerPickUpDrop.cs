@@ -42,8 +42,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                         && item.enabled
                         && (hotbar.firstEmpty < Constants.Capacity || hotbar.Contains(item.itemName))) {
 
-                        if (item.itemName == Item.ItemName.Leaf)
-                        {
+                        if (item.itemName == Item.ItemName.Leaf) {
                             item.GetComponent<BoxCollider>().enabled = false;
                             item.GetComponent<MeshCollider>().enabled = true;
                         }
@@ -59,7 +58,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                         Debug.Log(item + " grabbed");
 
                         if (item.isDeposited) {
-                            
+
                             Item[] itemComponents = item.GetComponents<Item>();
                             foreach (Item itemComponent in itemComponents) {
                                 itemComponent.isDeposited = false;

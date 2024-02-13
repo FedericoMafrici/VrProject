@@ -122,6 +122,8 @@ public class CropBehaviour : MonoBehaviour {
             CropDestroyed(this);
         }
 
+        this.transform.parent = null;
+
         foreach (GameObject obj in stadi) {
             Destroy(obj.gameObject);
         }

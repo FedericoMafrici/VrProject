@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class JustTriggerQuest : Quest
 {
-    //A simple "quest" used to trigger some events when it starts
+    [SerializeField] bool _startOnInit = false;
+
+    protected override void Init() {
+        base.Init();
+        if (_startOnInit) {
+            StartQuest();
+        }
+    }
 
     protected override void OnQuestStart() {
         base.OnQuestStart();

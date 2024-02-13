@@ -30,6 +30,7 @@ public class Deposit : MonoBehaviour
                     itemCounters.Add(itemName, GameObject.Find("ItemDepositCounter" + itemName));
                     if (itemCounters[itemName]) {
                         itemCounters[itemName].GetComponent<ItemDepositCounter>().player = player;
+                        //itemCounters[itemName].GetComponent<ItemDepositCounter>().transform.parent = this.transform;
                         if (_startEmpty || _addAllItems) {
                             itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 0;
                             AddItem(itemName); //add one of each object in order to precompute its outline
@@ -100,6 +101,7 @@ public class Deposit : MonoBehaviour
             GameObject spawned = Instantiate(itemAssets[itemName],
                 itemAssets[itemName].GetComponent<Item>().depositPosition,
                 Quaternion.Euler(itemAssets[itemName].GetComponent<Item>().depositRotation));
+            spawned.transform.parent = transform;
 
             //add reference to the instantiated object
             if (spawned) {

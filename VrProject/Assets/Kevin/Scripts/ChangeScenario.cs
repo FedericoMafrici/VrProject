@@ -71,4 +71,8 @@ public class ChangeScenario : QuestEventReceiver
         player.GetComponent<FirstPersonController>().enabled = true;
         scenarios[currentScenario].pipeCamera.gameObject.SetActive(false);
     }
+
+    public Transform GetCurrentScenarioParent() {
+        return scenarios[currentScenario].spawnedObjectsParent;
+    }
 }

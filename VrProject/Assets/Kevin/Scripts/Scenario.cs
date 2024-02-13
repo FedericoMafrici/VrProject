@@ -13,6 +13,7 @@ public class Scenario : MonoBehaviour
     public Animator pipeAnimator;
     public AudioClip soundtrack;
     public Scene scene;
+    public Transform spawnedObjectsParent;
 
     public Vector3 mainCameraPos;
     public Vector3 mainCameraRot;

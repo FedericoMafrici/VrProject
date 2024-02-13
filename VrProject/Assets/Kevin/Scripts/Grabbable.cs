@@ -42,6 +42,7 @@ public class Grabbable : MonoBehaviour
         }
         this.isGrabbedFromGround = isGrabbedFromGround;
         this.objectGrabPointTransform = objectGrabPointTransform;
+        this.transform.parent = null;
 
         ThrowGrabEvent();
     }
@@ -61,6 +62,7 @@ public class Grabbable : MonoBehaviour
         }
         objectRigidBody.useGravity = true;
         objectRigidBody.isKinematic = false;
+        this.transform.parent = SpawnedObjectsParentGetter.GetParent();
 
         ThrowReleaseEvent();
     }

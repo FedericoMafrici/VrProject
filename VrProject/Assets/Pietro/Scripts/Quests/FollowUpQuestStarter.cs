@@ -14,7 +14,7 @@ public class FollowUpQuestStarter : QuestEventReceiver {
         base.Awake();
 
         if (_toStartCollection != null) {
-            _toStartSet = GetQuestsFromParentTransform(_toStartCollection);
+            GetQuestsFromParentTransform(_toStartCollection, _toStartSet);
         }
 
         if (_toStartList != null) {

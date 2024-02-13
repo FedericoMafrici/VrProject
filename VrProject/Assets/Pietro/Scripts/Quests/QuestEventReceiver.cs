@@ -16,6 +16,7 @@ public abstract class QuestEventReceiver : MonoBehaviour {
 
     [Header("Quests to listen settings")]
     [SerializeField] private Transform _questCollection; //a reference to a transform whose children are the quest that need to be subscripted to
+    [SerializeField] private List<Transform> _questCollectionList; //a reference to a transform whose children are the quest that need to be subscripted to
     [SerializeField] private List<Quest> _targetQuestList; //used if _questSetParent is null to determine set of quest to subscribe to
     [Header("Events to subscribe to")]
     [SerializeField] private List<EventType> _eventList;
@@ -25,7 +26,13 @@ public abstract class QuestEventReceiver : MonoBehaviour {
     protected virtual void Awake() {
 
         if (_questCollection != null) {
-            _targetQuestSet = GetQuestsFromParentTransform(_questCollection);
+            GetQuestsFromParentTransform(_questCollection, _targetQuestSet);
+        }
+
+        if (_questCollectionList != null) {
+            foreach (Transform collection in _questCollectionList) {
+                GetQuestsFromParentTransform(collection, _targetQuestSet);
+            }
         }
 
         if (_targetQuestList != null) {
@@ -132,18 +139,17 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         }
     }
 
-    protected HashSet<Quest> GetQuestsFromParentTransform(Transform collection) {
-        HashSet<Quest> quests = new HashSet<Quest>();
+    protected void GetQuestsFromParentTransform(Transform collection, HashSet<Quest> _questSet) {
+        //HashSet<Quest> quests = new HashSet<Quest>();
         int nChildren = collection.childCount;
 
         for (int i = 0; i < nChildren; i++) {
             Transform child = collection.GetChild(i);
             Quest[] toAddArray = child.GetComponents<Quest>();
             foreach (Quest q in toAddArray) {
-                    quests.Add(q);
+                    _questSet.Add(q);
             }
         }
 
-        return quests;
     }
 }
