@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
   grabRotation: {x: 0, y: 30, z: -70}
-  itemName: 5
+  itemName: 18
   itemCategory: 2
   depositPosition: {x: -23.369, y: 0.997, z: 22.792}
   depositRotation: {x: 270, y: 232.8549, z: 0}
@@ -171,6 +171,7 @@ MonoBehaviour:
   _clueText: Premi [CLICK SINISTRO] per dare da mangiare
   _interactRange: 3
   _consumeWhenEaten: 1
+  _isPlanted: 0
 --- !u!82 &3786511794009757901
 AudioSource:
   m_ObjectHideFlags: 0

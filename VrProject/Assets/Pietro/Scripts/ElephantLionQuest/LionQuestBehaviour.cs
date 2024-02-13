@@ -27,7 +27,7 @@ public class LionQuestBehaviour : MonoBehaviour {
     }
 
     void OnCropPlanted(FarmingLand land, CropBehaviour plantedCrop, bool isTree) {
-        if (isTree) {
+        if (plantedCrop.cropType == CropType.ACACIA) {
             _farmingLand.CropPlanted -= OnCropPlanted;
             _crop = plantedCrop;
             _crop.GrowthEvent += OnCropGrowth;
