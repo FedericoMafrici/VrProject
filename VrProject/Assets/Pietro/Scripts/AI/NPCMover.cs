@@ -44,7 +44,7 @@ public class NPCMover : MonoBehaviour {
     [Header("Interests")]
     [SerializeField] private List<TargetType> _interestsList;
     public HashSet<TargetType> InterestsSet = new HashSet<TargetType>();
-    private MovementBehaviour _currentBeahviour;
+    private MovementBehaviour _currentBehaviour;
 
     [Header("Behaviour generator parameters")]
     [SerializeField] BehaviourID _startingSpecialBehaviour;
@@ -74,27 +74,28 @@ public class NPCMover : MonoBehaviour {
         _behaviourGenerator = GetComponent<BehaviourGenerator>();
         GenerateStartingBehaviour();
 
-        if (_currentBeahviour == null) {
+        if (_currentBehaviour == null) {
             //create default behaviour
             PatrolBehaviour tmpPatrolBehaviour = new PatrolBehaviour(transform, _patrolArea, new Vector2(_minPatrolDelay, _maxPatrolDelay));
 
             if (tmpPatrolBehaviour.HasValidParameters) {
-                _currentBeahviour = tmpPatrolBehaviour;
+                _currentBehaviour = tmpPatrolBehaviour;
                 _state = MovingState.PATROL;
             }
 
-        } else if (!_currentBeahviour.HasValidParameters) {
+        } else if (!_currentBehaviour.HasValidParameters) {
             Debug.LogWarning("MovementBehaviour for " + transform.name + " has invalid parameters, disabling behaviour");
-            _currentBeahviour = null;
+            _currentBehaviour = null;
         }
-     
+
+        UpdateAnimationSpeed();
 
     }
 
     // Update is called once per frame
     void Update() {
         
-        if (_currentBeahviour != null) {
+        if (_currentBehaviour != null) {
             /*
             if (_nextBehaviour != null) {
                 _movementBehaviour.Delete();
@@ -103,7 +104,7 @@ public class NPCMover : MonoBehaviour {
                
             }
             */
-            _currentBeahviour.Move();
+            _currentBehaviour.Move();
             UpdateAnimations();
         }
     }
@@ -226,7 +227,7 @@ public class NPCMover : MonoBehaviour {
     }
 
     public MovementBehaviour GetMovementBehaviour() {
-        return _currentBeahviour;
+        return _currentBehaviour;
     }
 
     public void SetBehaviour(BehaviourID id) {
@@ -255,25 +256,27 @@ public class NPCMover : MonoBehaviour {
     }
 
     public void SetBehaviour(MovementBehaviour movementBehaviour) {
-        if (_currentBeahviour != null) {
-            _currentBeahviour.Delete();
+        if (_currentBehaviour != null) {
+            _currentBehaviour.Delete();
         }
 
         if (movementBehaviour != null && movementBehaviour.HasValidParameters) {
 
-            _currentBeahviour = movementBehaviour;
+            _currentBehaviour = movementBehaviour;
         } else {
             if (movementBehaviour != null) {
                 movementBehaviour.Delete();
             }
 
-            _currentBeahviour = null;
+            _currentBehaviour = null;
         }
+
+        UpdateAnimationSpeed();
     }
 
     public void StartMoving() {
-        if (_currentBeahviour != null)
-            _currentBeahviour.Start();
+        if (_currentBehaviour != null)
+            _currentBehaviour.Start();
     }
 
     public void StartMovingDelayed(float seconds) {
@@ -290,8 +293,8 @@ public class NPCMover : MonoBehaviour {
     }
 
     public void StopMoving(float seconds = 0f) {
-        if (_currentBeahviour != null)
-            _currentBeahviour.Stop();
+        if (_currentBehaviour != null)
+            _currentBehaviour.Stop();
 
         if (seconds > 0f) {
             //Only stop for the given amount of time, then start moving again
@@ -340,8 +343,8 @@ public class NPCMover : MonoBehaviour {
     }
 
     public bool IsTargetReached() {
-        if (_currentBeahviour is TargetBehaviour) {
-            return (_currentBeahviour as TargetBehaviour).IsTargetReached();
+        if (_currentBehaviour is TargetBehaviour) {
+            return (_currentBehaviour as TargetBehaviour).IsTargetReached();
         }
 
         return false;
@@ -349,7 +352,16 @@ public class NPCMover : MonoBehaviour {
 
     private void UpdateAnimations() {
         if (_animator != null) {
-            _animator.SetFloat("speed", _currentBeahviour.GetCurSpeed());
+            float speed = _currentBehaviour.GetCurVelocity();
+            _animator.SetFloat("speed", speed);
+        }
+    }
+
+    public void UpdateAnimationSpeed() {
+        if (_currentBehaviour != null && _animator != null) {
+            _animator.speed = _currentBehaviour.GetMovementSpeed();
+        } else if (_animator != null) {
+            _animator.speed = 1;
         }
     }
 

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DistractLionQuest : Quest
 {
-    [SerializeField] private string _description;
+    [SerializeField] private string _inactiveDescription;
+    [SerializeField] private string _activeDescription;
+    [SerializeField] private string _completeDescription;
     [SerializeField] private LionQuestBehaviour _lion;
     [SerializeField] private NPCMover _adultElephant;
 
@@ -46,7 +48,15 @@ public class DistractLionQuest : Quest
     }
 
     public override string GetQuestDescription() {
-        return _description;
+        if (_state == QuestState.NOT_STARTED) {
+            return _inactiveDescription;
+
+        } else if (_state == QuestState.COMPLETED) {
+            return _completeDescription;
+
+        } else {
+            return _activeDescription;
+        }
     }
 
     public override bool AutoComplete() {

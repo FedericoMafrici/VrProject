@@ -65,13 +65,15 @@ public class LionQuestBehaviour : MonoBehaviour {
     private void CheckCrop() {
         if (_farmingLand.crop != null) {
             OnCropPlanted(_farmingLand, _farmingLand.crop, _farmingLand.tree);
-            if (_farmingLand.tree) {
+            if (_farmingLand.crop.cropType == CropType.ACACIA) {
                 OnCropGrowth(_crop, _crop.cropState);
             }
         }
     }
 
+    
     private void OnEnable() {
         CheckCrop();
     }
+    
 }

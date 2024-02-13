@@ -157,8 +157,17 @@ public abstract class MovementBehaviour {
         _agent.isStopped = false;
     }
 
-    public float GetCurSpeed() {
+    public float GetCurVelocity() {
         return _agent.velocity.magnitude;
+    }
+
+    public float GetMovementSpeed() {
+        return _agent.speed;
+    }
+
+    protected void SetAgentMovingSpeed(float newSpeed) {
+        _agent.speed = newSpeed;
+        _npcMover.UpdateAnimationSpeed();
     }
 
     }

@@ -27,6 +27,10 @@ public class TargetBehaviour : MovementBehaviour {
         ValidateParameters();
     }
 
+    public override void Delete() {
+        _agent.isStopped = false;
+    }
+
     public override void Move() {
 
         NavMeshHit hit;
@@ -43,13 +47,15 @@ public class TargetBehaviour : MovementBehaviour {
                 justReachedTarget = true;
                 _agent.isStopped = true;
                 if (_isFar) {
-                    _agent.speed *= _speedMultiplier;
+                    SetAgentMovingSpeed(_agent.speed * _speedMultiplier);
+                    //_agent.speed *= _speedMultiplier;
                     _isFar = false;
                 }
             } else {
                 _agent.isStopped = false;
                 if (!_isFar && _agent.remainingDistance >= _maxDistance) {
-                    _agent.speed /= _speedMultiplier;
+                    SetAgentMovingSpeed(_agent.speed / _speedMultiplier);
+                    //_agent.speed /= _speedMultiplier;
                     _isFar = true;
                 }
             }

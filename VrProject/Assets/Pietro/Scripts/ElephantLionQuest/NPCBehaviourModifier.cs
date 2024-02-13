@@ -24,6 +24,7 @@ public class NPCBehaviourModifier : QuestEventReceiver {
         if (!_alreadyChanged) {
 
             if (_behaviourID == BehaviourID.PATROL) {
+                Debug.LogWarning("Setting " + _npcMover + " patrol area to " + _patrolArea);
                 _npcMover.SetPatrolArea(_patrolArea);
             } else {
                 _npcMover.SetBehaviour(_behaviourID);

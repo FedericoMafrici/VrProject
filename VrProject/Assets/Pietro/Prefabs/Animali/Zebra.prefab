@@ -100,7 +100,7 @@ MonoBehaviour:
   _patrolArea: {fileID: 0}
   _minPatrolDelay: 5
   _maxPatrolDelay: 15
-  _interestsList: 0c0000000b00000009000000050000000a000000
+  _interestsList: 0c0000000b000000
   _startingSpecialBehaviour: 0
 --- !u!114 &2662024192703577623
 MonoBehaviour:
@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef74623798f98d4885d22d463d955c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetFoodsList: 13000000140000000f0000001000000011000000
+  _targetFoodsList: 1300000014000000
 --- !u!114 &1726189493844146834
 MonoBehaviour:
   m_ObjectHideFlags: 0

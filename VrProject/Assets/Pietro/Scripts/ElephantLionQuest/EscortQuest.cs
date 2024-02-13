@@ -7,7 +7,8 @@ public class EscortQuest : Quest {
     [SerializeField] private NPCMover _toEscort;
     [SerializeField] private Transform _destination;
     [SerializeField] private float _requiredDistance = 5f; //when object to escort reaches this distance from the destination the quest completes
-    [SerializeField] private string _description;
+    [SerializeField] private string _activeDescription;
+    [SerializeField] private string _completeDescription;
 
     private Action _updateFunction = () => { } ;
 
@@ -51,7 +52,11 @@ public class EscortQuest : Quest {
     }
 
     public override string GetQuestDescription() {
-        return _description;
+        if (_state == QuestState.COMPLETED) {
+            return _completeDescription;
+        } else {
+            return _activeDescription;
+        }
     }
 
     public override bool AutoComplete() {
