@@ -91,6 +91,7 @@ public class UiGameManager : MonoBehaviour {
 
     public Sprite soundButtonPurpleOFF;
 
+    private bool currSoundState=true;
     public Sprite leftArrow;
     public Sprite rightArrow;
     // COMPONENT FOR THE PLANT UI 
@@ -199,7 +200,7 @@ public class UiGameManager : MonoBehaviour {
         } else {
             return;
         }
-
+        
         description.text = entity.description[entity.index];
         AnimalNameTitle.sprite = entity.AnimalTitleImage;
         image.sprite = entity.currAnimalImage;
@@ -318,7 +319,7 @@ public class UiGameManager : MonoBehaviour {
 
 
         Plantsimage.sprite = entity.currAnimalImage;
-
+        plantNameTitle.sprite=entity.AnimalTitleImage;
         foreach (Quest quest in entity._targetQuestSet) {
             PlantuiPanel.AddMission(quest);
         }
@@ -469,8 +470,14 @@ public class UiGameManager : MonoBehaviour {
 
         PreviousAnimalButton.gameObject.SetActive(true);
         NextAnimalButton.gameObject.SetActive(true);
-
+        if(currSoundState) 
+        {
         soundON();
+        }
+        else
+        {
+        soundOFF();
+        }
         ControlSettings.SetActive(false);
         PlantsCanvas.SetActive(false);
         AnimalsCanvas.SetActive(false);
@@ -547,6 +554,9 @@ public class UiGameManager : MonoBehaviour {
     }
     public void StartUI() {
         // restting button 
+        InputManager.DisableInteractions();
+            InputManager.DisableMovement();
+
         Image tmp = PreviousPlantButton.GetComponent<Image>();
         Color buttonColor = tmp.color;
         buttonColor.a = 255f;
@@ -577,15 +587,19 @@ public class UiGameManager : MonoBehaviour {
         currAnimalKey = 0;
         currPlantKey = 0;
         gameObject.SetActive(true);
+        DisplayAnimal();
         playerCamera.SetActive(false);
         ControlSettings.SetActive(false);
         AnimalsCanvas.SetActive(true);
         Menu.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        DisplayAnimal();
+        
     }
     public void CloseUI() {
+       InputManager.EnableInteractions();
+                InputManager.EnableMovement();
+
         // restting button 
         Image tmp = PreviousPlantButton.GetComponent<Image>();
         Color buttonColor = tmp.color;
@@ -661,11 +675,12 @@ public class UiGameManager : MonoBehaviour {
     public void soundON() {
         soundOn.image.sprite = soundButtonGreenON;
         soundOf.image.sprite = soundButtonPurpleOFF;
-
+        currSoundState=true;
     }
     public void soundOFF() {
         soundOn.image.sprite = soundButtonPurpleON;
         soundOf.image.sprite = soundButtonGreenOFF;
+        currSoundState=false;
     }
 
     private void Update() {
