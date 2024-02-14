@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 725849375278986034}
   - component: {fileID: 1968957567844094179}
   - component: {fileID: 5728317927171614544}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shovel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

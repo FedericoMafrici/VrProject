@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3477405313432751215
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 198.80162
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 152.58237
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 180.00008
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.989
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2334656
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.972
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.20555747
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.20555747
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6765694
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.6765694
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 213.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      propertyPath: m_Name
+      value: AcaciaSeed
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1411667689252607357}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6595517974913359991}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9031616874666097368}
+  m_SourcePrefab: {fileID: 100100000, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+--- !u!1 &4360417257792876862 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a0c808aa87dd5ca4ca2f39d2701501ee, type: 3}
+  m_PrefabInstance: {fileID: 3477405313432751215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1411667689252607357
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4360417257792876862}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0013872783, y: 0.0007985424, z: 0.0015412467}
+  m_Center: {x: 0.000011549617, y: 0.00001612114, z: 0.00080267637}
+--- !u!54 &6595517974913359991
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4360417257792876862}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &9031616874666097368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4360417257792876862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a03ec70153cc4fa995ef3c21c9e762e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInPlayerHand: 0
+  grabRotation: {x: 270, y: 224.112, z: 180}
+  itemName: 23
+  itemCategory: 0
+  depositPosition: {x: -23.989, y: 1.2334656, z: 22.972}
+  depositRotation: {x: 270, y: 213.79999, z: 0}
+  icon: {fileID: 21300000, guid: c0912fddd739045628eff27acf3f8b28, type: 3}
+  isDeposited: 0
+  grabSound: {fileID: 0}
+  usageSound: {fileID: 0}
+  _clueText: Premi [CLICK SINISTRO] per piantare
+  _interactDistance: 5
+  crop: {fileID: 3438708890017034305, guid: b88f3e9f915944f739b850463a5015f6, type: 3}
+  offset: 0
+  coordinate: {x: 0, y: 0, z: 0}
+  debug: 1

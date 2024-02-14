@@ -25,6 +25,7 @@ public class FarmingLand : MonoBehaviour
                     this.tree=true;
                    }
             tmp=Instantiate(seed.crop,gameObject.transform);
+            tmp.transform.parent = this.transform;
             tmp.transform.localPosition=new Vector3(0.0f,0.0f,0.0f);
             //tmp=Instantiate(seed.seed,gameObject.transform);
             //tmp.transform.position=new Vector3(0.0f, 0.0f, 0.0f);
