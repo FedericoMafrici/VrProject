@@ -84,9 +84,9 @@ public class PlayerRaycast : MonoBehaviour
                 && raycastHit.transform.TryGetComponent(out Item item)
                 && item.enabled
                 && hotbar.activeItemObj == null) {
-                clue.text = "Press E to grab\nPress Q to collect";
+                clue.text = "Premi [E] per prendere in mano\nPremi [Q] per raccogliere";
                 if (hotbar.firstEmpty == 6 && !hotbar.Contains(item.itemName)) {
-                    clue.text += "\n\n Release an item to grab or collect another object!";
+                    clue.text += "\n\n Devi depositare o lasciare un oggetto per poterne raccogliere un altro"; /*Release an item to grab or collect another object!*/
                 }
                 toOutline = raycastHit.transform;
             } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit2,
@@ -95,14 +95,18 @@ public class PlayerRaycast : MonoBehaviour
                        && item2.enabled
                        && hotbar.activeItemObj != null
                        && item2 != hotbar.activeItemObj) {
-                clue.text = "Press Q to collect";
+                clue.text = "Premi [Q] per raccogliere";
                 if (hotbar.firstEmpty == 6 && !hotbar.Contains(item2.itemName)) {
-                    clue.text += "\n\n Release an item to collect another object!";
+                    clue.text += "\n\n Devi depositare o lasciare un oggetto per poterne raccogliere un altro";  /*Release an item to collect another object!*/
                 }
                 toOutline = raycastHit2.transform;
             } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
                        && hotbar.activeItemObj != null) {
-                clue.text = "Press Q to release the item";
+                if (hotbar.activeItemObj.itemName != Item.ItemName.BucketMilk && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
+                    clue.text = "Premi [Q] per depositate l'oggetto";
+                } else {
+                    clue.text = "Questo oggetto non può essere depositato";
+                }
             } else
                 clue.text = "";
 
