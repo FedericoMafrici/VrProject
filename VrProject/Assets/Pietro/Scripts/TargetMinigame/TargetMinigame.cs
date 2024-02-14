@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
@@ -16,6 +17,10 @@ public class TargetMinigame : MonoBehaviour {
     [SerializeField] private Transform toSpawnAtStart;
     [Header("Item that will be held after minigame")]
     [SerializeField] private GameObject resultItemPrefab;
+    [Header("Reference to Animator (if needed)")]
+    [SerializeField] private Animator _animator;
+    private float _animationPrevSpeed;
+
     //[Header("Minigame camera reference")]
     private Camera minigameCamera;
 
@@ -87,6 +92,13 @@ public class TargetMinigame : MonoBehaviour {
 
         //make NPC stop moving
         _npc.StopMoving();
+
+        //animate
+        if (_animator!= null) {
+            _animator.SetBool("minigameRunning", true);
+            _animationPrevSpeed = _animator.speed;
+            _animator.speed = 1;
+        }
 
         //disable NPC collider
         Collider coll = _npc.GetComponent<Collider>();
@@ -179,6 +191,13 @@ public class TargetMinigame : MonoBehaviour {
         Collider coll = _npc.GetComponent<Collider>();
         if (coll != null) {
             coll.enabled = true;
+        }
+
+        //animate
+        if (_animator != null) {
+            _animator.SetBool("minigameRunning", false);
+            _animator.speed = _animationPrevSpeed;
+            _animationPrevSpeed = _animator.speed;
         }
 
         //make NPC move again
