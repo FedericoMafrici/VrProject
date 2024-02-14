@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Quaternion = UnityEngine.Quaternion;
@@ -94,6 +95,7 @@ public abstract class Quest : MonoBehaviour {
     [SerializeField] private bool _startOnEnter = false;
     [SerializeField] private bool _showMarkersOnEnter = false;
     [SerializeField] protected bool _autoComplete = false; //for debugging purposes
+    [SerializeField] protected bool _autoStart = false;
     protected  QuestState _state = QuestState.NOT_STARTED;
     protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     private bool _inited = false;
@@ -135,6 +137,8 @@ public abstract class Quest : MonoBehaviour {
             if (!completed) {
                 Debug.LogWarning(transform.name + ": " + this + ": could not auto complete quest");
             }
+        } else if (_autoStart) {
+            StartQuest();
         }
     }
 
