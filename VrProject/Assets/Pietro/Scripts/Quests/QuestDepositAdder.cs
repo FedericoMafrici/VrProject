@@ -43,6 +43,7 @@ public class QuestDepositAdder : QuestEventReceiver {
     }
 
     protected override void OnEventReceived(Quest quest, EventType eventType) {
+        Debug.LogWarning("Complete event received");
         if (!_addOnce || !_alreadyAdded) {
 
             if (_spreadOnUpdates) {
