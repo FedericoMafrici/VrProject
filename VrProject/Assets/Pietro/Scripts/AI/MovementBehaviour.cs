@@ -119,7 +119,7 @@ public abstract class MovementBehaviour {
         FoodEater foodEater = _npcMover.GetComponent<FoodEater>();
 
         if (animalFood != null && foodEater != null) {
-            inaccessibleItem = inaccessibleItem || foodEater.FoodInterestsAnimal(animalFood);
+            inaccessibleItem = inaccessibleItem || !foodEater.FoodInterestsAnimal(animalFood);
         }
 
         //inaccessibleItem = inaccessibleItem || (animalFood != null && animalFood.IsPlanted()) || (foodEater != null && foodEater);
