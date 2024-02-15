@@ -154,7 +154,7 @@ MonoBehaviour:
   itemCategory: 0
   depositPosition: {x: -23.415, y: 1.201, z: 25.025}
   depositRotation: {x: -19.907, y: 88.71, z: 0.95}
-  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: 6c1349ece2eb04d86ac8418bb95f1810, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
   usageSound: {fileID: 0}

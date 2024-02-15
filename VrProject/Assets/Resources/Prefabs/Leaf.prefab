@@ -134,13 +134,14 @@ MonoBehaviour:
   itemCategory: 2
   depositPosition: {x: -23.742, y: 0.859, z: 22.949}
   depositRotation: {x: 14.72319, y: 327.5661, z: 196.241}
-  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 21300000, guid: 189e9b44caebd4a469c452d3552b27e7, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
   usageSound: {fileID: 0}
   _clueText: Premi [CLICK SINISTRO] per dare da mangiare
   _interactRange: 3
   _consumeWhenEaten: 1
+  _isPlanted: 0
 --- !u!64 &125166507496007633
 MeshCollider:
   m_ObjectHideFlags: 0
