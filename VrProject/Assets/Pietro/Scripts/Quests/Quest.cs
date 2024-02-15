@@ -97,7 +97,7 @@ public abstract class Quest : MonoBehaviour {
     [SerializeField] protected bool _autoComplete = false; //for debugging purposes
     [SerializeField] protected bool _autoStart = false;
     protected  QuestState _state = QuestState.NOT_STARTED;
-    [SerializeField] protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
+    protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     private bool _inited = false;
 
     protected bool _inArea = false;
@@ -211,6 +211,9 @@ public abstract class Quest : MonoBehaviour {
     }
 
     public virtual void Complete() {
+        if (_inArea) {
+            PlayerExitedQuestArea();
+        }
         _state = QuestState.COMPLETED;
         HideMarkers();
         Debug.Log("<color=red>" + this + ": quest completed, id: " + _id + "</color>");
@@ -289,8 +292,15 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void ForceStart() {
-        if (_state == QuestState.NOT_STARTED) {
-            StartQuest();
+            if (_state == QuestState.NOT_STARTED) {
+                StartQuest();
+            if (!_inArea) {
+                PlayerEnteredQuestArea();
+            }
+            /*
+            PlayerEnteredQuestArea();
+            PlayerExitedQuestArea();
+            */
+            }
         }
-    }
 }

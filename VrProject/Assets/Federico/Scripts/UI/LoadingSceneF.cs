@@ -7,6 +7,6 @@ public class LoadingSceneF : MonoBehaviour
 {
     public void LoadFarm()
     {
-                SceneManager.LoadScene("Farm");
+                SceneManager.LoadScene("Main_Scene");
     }
 }
