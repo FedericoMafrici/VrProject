@@ -18,8 +18,7 @@ public class PlayerPickUpDrop : MonoBehaviour
     private const float pickupDistance = 5f;
     private Item item;
     public Deposit deposit;
-    private ChangeScenario pipeScript;
-    [SerializeField] private GameObject pipe;
+    public ChangeScenario changeScenario;
     
     public Transform objectGrabPointTransform;
 
@@ -146,23 +145,20 @@ public class PlayerPickUpDrop : MonoBehaviour
                     questsList.Open(false);
             }
             
-            // ------------- PRESSIONE BARRA SPAZIATRICE: cambio scenario -------------
+            // ------------- PRESSIONE L: cambio scenario -------------
             
-            else if (Input.GetKeyDown(KeyCode.Space) 
-                && pipe != null 
-                     && (Vector3.Distance(pipe.transform.position, playerCameraTransform.position) < 5
-                         && Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, 
-                             out RaycastHit raycastHit5, pickupDistance, pickupLayerMask)
-                         && raycastHit5.transform.TryGetComponent(out pipeScript)))
+            else if (Input.GetKeyDown(KeyCode.L) 
+                && Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit5, pickupDistance, pickupLayerMask)
+                && raycastHit5.transform.TryGetComponent(out AudioSource audio))
             {
-                if (pipeScript.currentScenario + 1 < pipeScript.scenarios.Count 
-                    && pipeScript.scenarios[pipeScript.currentScenario + 1].unlocked)
+                if (changeScenario.currentScenario + 1 < changeScenario.scenarios.Count 
+                    && changeScenario.scenarios[changeScenario.currentScenario + 1].unlocked)
                 {
-                    pipeScript.SelectScenario(pipeScript.currentScenario + 1);
+                    changeScenario.SelectScenario(changeScenario.currentScenario + 1);
                 }
                 else
                 {
-                    pipeScript.SelectScenario(0);
+                    changeScenario.SelectScenario(0);
                 }
             }
         }
