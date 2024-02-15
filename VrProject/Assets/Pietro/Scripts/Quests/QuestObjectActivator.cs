@@ -47,7 +47,7 @@ public class QuestObjectActivator : QuestEventReceiver {
         SetEventSubscription(false, quest, eventType);
     }
 
-    private void SetActiveGameObject(bool active, GameObject gameObject, bool childrenToo = true) {
+    private void SetActiveGameObject(bool active, GameObject gameObject, bool childrenToo = false) {
         gameObject.SetActive(active);
 
         if (childrenToo) {

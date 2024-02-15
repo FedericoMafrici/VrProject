@@ -116,13 +116,19 @@ public abstract class MovementBehaviour {
         Item item = targettable.GetComponent<Item>();
         inaccessibleItem = (item != null && (item.isDeposited || item.isCollected));
         AnimalFood animalFood = targettable.GetComponent<AnimalFood>();
-        inaccessibleItem = inaccessibleItem || (animalFood != null && animalFood.IsPlanted());
+        FoodEater foodEater = _npcMover.GetComponent<FoodEater>();
+
+        if (animalFood != null && foodEater != null) {
+            inaccessibleItem = inaccessibleItem || foodEater.FoodInterestsAnimal(animalFood);
+        }
+
+        //inaccessibleItem = inaccessibleItem || (animalFood != null && animalFood.IsPlanted()) || (foodEater != null && foodEater);
 
         //return true if:
         //NPCMover is interested in Targettable type
         //Targettable still allows for subscribers
         //If targettable item it is accessible
-        return _npcMover.InterestsSet.Contains(targettable.GetTargetType()) && targettable.CanSubscribe(_npcMover) && !inaccessibleItem;
+        return !inaccessibleItem && _npcMover.InterestsSet.Contains(targettable.GetTargetType()) && targettable.CanSubscribe(_npcMover);
     }
 
     protected virtual void ManageStateUpdate(MovingState nextState, Targettable newTarget) {

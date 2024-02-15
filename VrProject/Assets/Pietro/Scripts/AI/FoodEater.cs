@@ -7,7 +7,10 @@ using UnityEngine;
 
 public class FoodEater : MonoBehaviour {
     [SerializeField] private List<Item.ItemName> _targetFoodsList;
+    [SerializeField] private GameObject _foodIcon;
     private HashSet<Item.ItemName> _targetFoods = new HashSet<Item.ItemName>();
+    private bool _isHungry = true;
+
 
     public event EventHandler<EatEventArgs> EatEvent;
 
@@ -20,7 +23,7 @@ public class FoodEater : MonoBehaviour {
     }
 
     public void AutoEatFood(AnimalFood eaten) {
-        if (eaten != null && !eaten.isInPlayerHand && !eaten.isCollected && !eaten.isDeposited && !eaten.isFading && !eaten.IsConsumed() && FoodInterestsAnimal(eaten)) {
+        if (eaten != null && FoodInterestsAnimal(eaten) && !eaten.isInPlayerHand && !eaten.isCollected && !eaten.isDeposited && !eaten.isFading && !eaten.IsConsumed()) {
             UnityEngine.Debug.Log("eating food");
             EatFood(eaten);
             Destroy(eaten.gameObject);
@@ -48,11 +51,31 @@ public class FoodEater : MonoBehaviour {
             EatEvent(this, new EatEventArgs(food, transform));
         }
         food.Consume();
+        _isHungry = false;
+        if (_foodIcon != null) {
+            _foodIcon.gameObject.SetActive(true);
+        }
+        StartCoroutine(WaitBeforeHungry());
         //food.StartFading();
     }
 
     public bool FoodInterestsAnimal(AnimalFood food) {
-        return _targetFoods.Contains(food.itemName) && !food.IsPlanted();
+        return _isHungry && _targetFoods.Contains(food.itemName) && !food.IsPlanted();
+    }
+
+    IEnumerator WaitBeforeHungry() {
+        yield return new WaitForSeconds(30);
+        _isHungry = true;
+        if (_foodIcon != null) {
+            _foodIcon.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnEnable() {
+        _isHungry = true;
+        if (_foodIcon != null) {
+            _foodIcon.gameObject.SetActive(false);
+        }
     }
 }
 
@@ -64,4 +87,5 @@ public class EatEventArgs : EventArgs {
         this.eaten = eaten;
         this.animal = animal;
     }
+    
 }
