@@ -97,10 +97,12 @@ public abstract class Quest : MonoBehaviour {
     [SerializeField] protected bool _autoComplete = false; //for debugging purposes
     [SerializeField] protected bool _autoStart = false;
     protected  QuestState _state = QuestState.NOT_STARTED;
-    protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
+    [SerializeField] protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     private bool _inited = false;
+
+    protected bool _inArea = false;
     
-    public int orderNumber;
+    [HideInInspector]public int orderNumber;
 
     public event Action<Quest> EnteredArea;
     public event Action<Quest> ExitedArea;
@@ -109,10 +111,8 @@ public abstract class Quest : MonoBehaviour {
     public event Action<Quest> QuestCompleted;
 
     private void Start() {
+        
         CheckInit();
-        if (!_isStep) {
-            AreaCheck();
-        }
     }
 
     protected void CheckInit() {
@@ -123,14 +123,14 @@ public abstract class Quest : MonoBehaviour {
 
     protected virtual void Init() {
         BoxCollider coll = GetComponent<BoxCollider>();
-        if (coll == null) {
-            Debug.LogWarning(transform.name + " no BoxCollider component found");
-        } else if (!coll.isTrigger) {
+        if (coll == null && _startOnEnter) {
+            //Debug.LogWarning(transform.name + " no BoxCollider component found");
+        } else if (coll != null && !coll.isTrigger) {
             Debug.LogWarning(transform.name + " BoxCollider component is not set as \"is trigger\"");
         }
 
-        orderNumber = QuestOrderAssigner.GetOrderNumber();
         _inited = true;
+        QuestOrderAssigner.GetOrderNumber(this);
 
         if (_autoComplete) {
             bool completed = AutoComplete();
@@ -139,6 +139,10 @@ public abstract class Quest : MonoBehaviour {
             }
         } else if (_autoStart) {
             StartQuest();
+        }
+
+        if (!_isStep) {
+            AreaCheck();
         }
     }
 
@@ -155,6 +159,7 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void PlayerEnteredQuestArea() {
+        _inArea= true;
         if (!_isStep && _startOnEnter) {
             StartQuest();
         }
@@ -169,6 +174,7 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void PlayerExitedQuestArea() {
+        _inArea= false;
         if (ExitedArea != null) {
             ExitedArea(this);
         }
@@ -186,7 +192,8 @@ public abstract class Quest : MonoBehaviour {
     }
 
     public virtual void AreaCheck() {
-        if (PlayerIsInQuestArea()) {
+        CheckInit();
+        if (PlayerIsInQuestArea() && !_inArea) {
             PlayerEnteredQuestArea();
         }
     }

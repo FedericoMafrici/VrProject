@@ -12,7 +12,6 @@ public class Scenario : MonoBehaviour
     public Camera pipeCamera;
     public AudioClip soundtrack;
     public GameObject scene;
-    public Transform spawnedObjectsParent;
     public bool unlocked;
     public AudioSource pipeEmitter;
 

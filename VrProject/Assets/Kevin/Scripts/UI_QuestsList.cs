@@ -48,6 +48,7 @@ public class UI_QuestsList : QuestEventReceiver
             elem.orderNumber = quest.orderNumber;
             elem.text = quest.GetQuestDescription();
             elem.isCompleted = (quest.GetState() == QuestState.COMPLETED);
+            Debug.LogWarning("Adding quest " + quest + " with order number: " + quest.orderNumber);
             elements.Add(quest.orderNumber, elem);
 
             GameObject uiElem = Instantiate(uiElement, this.transform);

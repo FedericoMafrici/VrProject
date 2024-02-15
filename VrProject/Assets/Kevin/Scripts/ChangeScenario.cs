@@ -33,16 +33,20 @@ public class ChangeScenario : QuestEventReceiver
                 gameObject.transform.GetComponent<AudioSource>().Stop();
             gameObject.transform.GetComponent<AudioSource>().clip = scenarios[newScenario].soundtrack;
             gameObject.transform.GetComponent<AudioSource>().Play();
-            
-           scenarios[currentScenario].scene.SetActive(false);
-           scenarios[newScenario].scene.SetActive(true);
+
+            if (currentScenario != newScenario) {
+                scenarios[currentScenario].scene.SetActive(false);
+                scenarios[newScenario].scene.SetActive(true);
+            }
 
            player.transform.position = scenarios[newScenario].playerPos;
            player.transform.rotation = Quaternion.Euler(scenarios[newScenario].playerRot);
            
            currentScenario = newScenario;
 
-           scenarios[currentScenario].pipeEmitter.Play();
+            if (scenarios[currentScenario].pipeEmitter != null) {
+                scenarios[currentScenario].pipeEmitter.Play();
+            }
         }
         else
         {
@@ -82,9 +86,5 @@ public class ChangeScenario : QuestEventReceiver
         mainCamera.gameObject.SetActive(true);
         player.GetComponent<FirstPersonController>().enabled = true;
         scenarios[currentScenario].pipeCamera.gameObject.SetActive(false);
-    }
-
-    public Transform GetCurrentScenarioParent() {
-        return scenarios[currentScenario].spawnedObjectsParent;
     }
 }
