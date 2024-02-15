@@ -22,27 +22,28 @@ public class ChangeScenario : QuestEventReceiver
 
     public void Start()
     {
-        SelectScenario(0);
+        currentScenario = 0;
+        gameObject.transform.GetComponent<AudioSource>().clip = scenarios[currentScenario].soundtrack;
+        gameObject.transform.GetComponent<AudioSource>().Play();
+        SelectScenario(currentScenario);
     }
 
     public void SelectScenario(int newScenario)
     {
-        if (newScenario < scenarios.Count && scenarios[newScenario] != null)
+        if (newScenario < scenarios.Count && scenarios[newScenario] != null && newScenario != currentScenario)
         {
             if(gameObject.transform.GetComponent<AudioSource>().isPlaying)
                 gameObject.transform.GetComponent<AudioSource>().Stop();
             gameObject.transform.GetComponent<AudioSource>().clip = scenarios[newScenario].soundtrack;
             gameObject.transform.GetComponent<AudioSource>().Play();
             
-           scenarios[currentScenario].scene.SetActive(false);
-           scenarios[newScenario].scene.SetActive(true);
-
-           player.transform.position = scenarios[newScenario].playerPos;
-           player.transform.rotation = Quaternion.Euler(scenarios[newScenario].playerRot);
-           
-           currentScenario = newScenario;
-
-           scenarios[currentScenario].pipeEmitter.Play();
+            scenarios[newScenario].scene.SetActive(true);
+            player.transform.position = scenarios[newScenario].playerPos; 
+            player.transform.rotation = Quaternion.Euler(scenarios[newScenario].playerRot);
+            scenarios[currentScenario].scene.SetActive(false);
+            currentScenario = newScenario;
+            
+            scenarios[currentScenario].pipeEmitter.Play();
         }
         else
         {
@@ -52,25 +53,21 @@ public class ChangeScenario : QuestEventReceiver
 
     protected override void OnEventReceived(Quest quest, EventType eventType)
     {
-        if (eventType == EventType.COMPLETE && !quest.IsStep())
+        if (eventType == EventType.COMPLETE)
         {
-            scenarios[currentScenario].questsCompletedCount++;
-            if (scenarios[currentScenario].questsCompletedCount == scenarios[currentScenario].questsList.transform.childCount)
-            {
-                scenarios[currentScenario + 1].unlocked = true;
-                StartCoroutine(PlayAnimation());
-            }
+            scenarios[currentScenario + 1].unlocked = true;
+            StartCoroutine(PlayAnimation());
         }
     }
     
     IEnumerator PlayAnimation()
     {
-        mainCamera.gameObject.SetActive(false);
-        player.GetComponent<FirstPersonController>().enabled = false;
         scenarios[currentScenario].pipeCamera.gameObject.SetActive(true);
+        mainCamera.gameObject.SetActive(false);
+        // player.GetComponent<FirstPersonController>().enabled = false;
 
         yield return new WaitForSeconds(1f);
-
+        
         if (currentScenario == 0)
         {
             pipeAnimator.SetBool("IsSpawned", true);
@@ -80,8 +77,8 @@ public class ChangeScenario : QuestEventReceiver
         yield return new WaitForSeconds(1f);
 
         mainCamera.gameObject.SetActive(true);
-        player.GetComponent<FirstPersonController>().enabled = true;
         scenarios[currentScenario].pipeCamera.gameObject.SetActive(false);
+        // player.GetComponent<FirstPersonController>().enabled = true;
     }
 
     public Transform GetCurrentScenarioParent() {

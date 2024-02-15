@@ -75,6 +75,7 @@ public class PlayerRaycast : MonoBehaviour
         Transform toOutline = null; //aggiunto da Pietro
         RaycastHit raycastHit;
         RaycastHit raycastHit2;
+        RaycastHit raycastHit3;
 
         if (InputManager.InteractionsAreEnabled()) {
             // ------------- AGGIORNAMENTO INFORMAZIONI TESTUALI SOTTO IL CURSORE -------------
@@ -105,8 +106,12 @@ public class PlayerRaycast : MonoBehaviour
                 if (hotbar.activeItemObj.itemName != Item.ItemName.BucketMilk && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
                     clue.text = "Premi [Q] per depositate l'oggetto";
                 } else {
-                    clue.text = "Questo oggetto non può essere depositato";
+                    clue.text = "Questo oggetto non puÃ² essere depositato";
                 }
+            } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit3,
+                    pickupDistance, pickupLayerMask)
+                && raycastHit3.transform.TryGetComponent(out AudioSource pipeId)) {
+                clue.text = "Premi [L] per cambiare scenario";
             } else
                 clue.text = "";
 

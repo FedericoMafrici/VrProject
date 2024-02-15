@@ -8,7 +8,6 @@ public class Scenario : MonoBehaviour
 {
     public ScenarioName name;
     public GameObject questsList;
-    public int questsCompletedCount;
     public Camera pipeCamera;
     public AudioClip soundtrack;
     public GameObject scene;
