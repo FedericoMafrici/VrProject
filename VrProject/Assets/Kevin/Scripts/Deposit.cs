@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using static UnityEditor.Progress;
 using Quaternion = UnityEngine.Quaternion;
 
@@ -101,7 +102,8 @@ public class Deposit : MonoBehaviour
             GameObject spawned = Instantiate(itemAssets[itemName],
                 itemAssets[itemName].GetComponent<Item>().depositPosition,
                 Quaternion.Euler(itemAssets[itemName].GetComponent<Item>().depositRotation));
-            spawned.transform.parent = transform;
+
+            spawned.transform.parent = transform.parent;
 
             //add reference to the instantiated object
             if (spawned) {
