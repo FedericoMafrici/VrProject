@@ -18,44 +18,46 @@ public class ChangeScenario : QuestEventReceiver
     
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject player;
+    [SerializeField] private Animator pipeAnimator;
 
     public void Start()
     {
-        
         SelectScenario(0);
     }
 
     public void SelectScenario(int newScenario)
     {
-        if (scenarios[newScenario] != null)
+        if (newScenario < scenarios.Count && scenarios[newScenario] != null)
         {
             if(gameObject.transform.GetComponent<AudioSource>().isPlaying)
                 gameObject.transform.GetComponent<AudioSource>().Stop();
-            currentScenario = newScenario;
             gameObject.transform.GetComponent<AudioSource>().clip = scenarios[newScenario].soundtrack;
             gameObject.transform.GetComponent<AudioSource>().Play();
             
-           // CAMBIO SCENA
+           scenarios[currentScenario].scene.SetActive(false);
+           scenarios[newScenario].scene.SetActive(true);
 
-           mainCamera.transform.position = scenarios[newScenario].mainCameraPos;
-           mainCamera.transform.rotation = Quaternion.Euler(scenarios[newScenario].mainCameraRot);
            player.transform.position = scenarios[newScenario].playerPos;
            player.transform.rotation = Quaternion.Euler(scenarios[newScenario].playerRot);
+           
+           currentScenario = newScenario;
 
+           scenarios[currentScenario].pipeEmitter.Play();
+        }
+        else
+        {
+            Debug.Log("Errore: non esiste nessuno scenario successivo");
         }
     }
 
     protected override void OnEventReceived(Quest quest, EventType eventType)
     {
-        if (eventType == EventType.COMPLETE)
+        if (eventType == EventType.COMPLETE && !quest.IsStep())
         {
             scenarios[currentScenario].questsCompletedCount++;
-            if (scenarios[currentScenario].questsCompletedCount == scenarios[currentScenario].questsList.Count)
+            if (scenarios[currentScenario].questsCompletedCount == scenarios[currentScenario].questsList.transform.childCount)
             {
-                mainCamera.gameObject.SetActive(false);
-                player.GetComponent<FirstPersonController>().enabled = false;
-                scenarios[currentScenario].pipeCamera.gameObject.SetActive(true);
-                
+                scenarios[currentScenario + 1].unlocked = true;
                 StartCoroutine(PlayAnimation());
             }
         }
@@ -63,9 +65,19 @@ public class ChangeScenario : QuestEventReceiver
     
     IEnumerator PlayAnimation()
     {
+        mainCamera.gameObject.SetActive(false);
+        player.GetComponent<FirstPersonController>().enabled = false;
+        scenarios[currentScenario].pipeCamera.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(1f);
-        scenarios[currentScenario].pipeAnimator.SetBool("IsSpawned", true);
-        yield return new WaitForSeconds(4f);
+
+        if (currentScenario == 0)
+        {
+            pipeAnimator.SetBool("IsSpawned", true);
+            yield return new WaitForSeconds(2f);
+        }
+        
+        yield return new WaitForSeconds(1f);
 
         mainCamera.gameObject.SetActive(true);
         player.GetComponent<FirstPersonController>().enabled = true;

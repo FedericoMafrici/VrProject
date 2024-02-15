@@ -7,16 +7,15 @@ using UnityEngine.UIElements;
 public class Scenario : MonoBehaviour
 {
     public ScenarioName name;
-    public List<Quest> questsList;
+    public GameObject questsList;
     public int questsCompletedCount;
     public Camera pipeCamera;
-    public Animator pipeAnimator;
     public AudioClip soundtrack;
-    public Scene scene;
+    public GameObject scene;
     public Transform spawnedObjectsParent;
+    public bool unlocked;
+    public AudioSource pipeEmitter;
 
-    public Vector3 mainCameraPos;
-    public Vector3 mainCameraRot;
     public Vector3 playerPos;
     public Vector3 playerRot;
 }
