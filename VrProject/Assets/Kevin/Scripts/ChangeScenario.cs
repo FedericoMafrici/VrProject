@@ -36,7 +36,6 @@ public class ChangeScenario : QuestEventReceiver
                 gameObject.transform.GetComponent<AudioSource>().Stop();
             gameObject.transform.GetComponent<AudioSource>().clip = scenarios[newScenario].soundtrack;
             gameObject.transform.GetComponent<AudioSource>().Play();
-<<<<<<< HEAD
             
             scenarios[newScenario].scene.SetActive(true);
             player.transform.position = scenarios[newScenario].playerPos; 
@@ -45,7 +44,6 @@ public class ChangeScenario : QuestEventReceiver
             currentScenario = newScenario;
             
             scenarios[currentScenario].pipeEmitter.Play();
-=======
 
             if (currentScenario != newScenario) {
                 scenarios[currentScenario].scene.SetActive(false);
@@ -60,7 +58,6 @@ public class ChangeScenario : QuestEventReceiver
             if (scenarios[currentScenario].pipeEmitter != null) {
                 scenarios[currentScenario].pipeEmitter.Play();
             }
->>>>>>> d29e146dd578ad0967b57d3fcedc4d3e03db4f46
         }
         else
         {
