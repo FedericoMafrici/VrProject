@@ -7,6 +7,8 @@ public class LoadingSceneF : MonoBehaviour
 {
     public void LoadFarm()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
                 SceneManager.LoadScene("Main_Scene");
     }
 }
