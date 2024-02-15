@@ -54,7 +54,9 @@ public abstract class AbstractStructuredQuest : Quest {
     }
 
     public override void AreaCheck() {
-            _currentStep.AreaCheck();  
+        if (_currentStep != null && !_inArea) {
+            _currentStep.AreaCheck();
+        }
     }
 
     public override void Complete() {
@@ -145,7 +147,9 @@ public abstract class AbstractStructuredQuest : Quest {
         bool canComplete = true;
         while (canComplete && _state != QuestState.COMPLETED) {
             Quest _prevStep = _currentStep;
+
             canComplete = _currentStep.AutoComplete();
+
             if (!CurrentStepIsFinal() && (_prevStep == _currentStep)) {
                 Debug.LogWarning(transform.name + ": " + this + ": quest did not advance step during auto complete");
                 canComplete = false;

@@ -5,9 +5,8 @@ using UnityEngine;
 public static class QuestOrderAssigner {
     private static int nQuests = 0;
 
-    public static int GetOrderNumber() {
-        int result = nQuests;
+    public static void GetOrderNumber(Quest quest) {
+        quest.orderNumber = nQuests;
         nQuests++;
-        return result;
     }
 }
