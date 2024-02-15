@@ -486,7 +486,7 @@ MonoBehaviour:
     bere solamente una volta ogni due giorni: la maggior parte dell\u2019acqua di
     cui hanno bisogno, infatti, proviene  dai vegetali che fanno parte della loro
     dieta."
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: 3cd4a9e47915745aa9c2314fae33e145, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 54bad072db7ef4eb5a82740e1d9e8c3f, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -1256,7 +1256,7 @@ MonoBehaviour:
     a proteggere il branco.Le criniere dei leoni hanno tutte una storia: pi\xF9 il
     leone invecchia e pi\xF9 le criniere diventano folte, scure e lunghe, un vero
     simbolo di potere che conferisce importanza all\u2019interno del branco"
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: 6fcc73205c2f940d2ad0316b7dc57a0c, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 32b2f0fa281dd48a899bbea82dd84332, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -1713,7 +1713,7 @@ MonoBehaviour:
     pi\xF9 volte per poterne assimilare tutti i preziosi componenti. Solo le femmine
     dei bovini sono chiamate mucche, i maschi sono denominati tori  Le razze che
     oggi alleviamo discendono dall\u2019uro, un bovino ormai estinto."
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: a0bfced7e99f04c71acec6a93721a0a6, type: 3}
   AnimalSprite: {fileID: 21300000, guid: b5be477f91cbb4e4e9ee46082ae04c86, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -2586,7 +2586,7 @@ MonoBehaviour:
     gli alberi e le pozze d\u2019acqua, cosa per loro vitale nell\u2019arida savana,
     visto che ingurgitano quintali di foglie e bevono circa 180 litri d\u2019acqua
     al giorno"
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: dd204a81a9cd440c1b2fab9c855a5861, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 2d5f16dd887de49c7a274dd62b44ef30, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -3121,15 +3121,15 @@ RectTransform:
   m_GameObject: {fileID: 889025433}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -66}
-  m_LocalScale: {x: 1.10419, y: 0.85341, z: 0.16489999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1912012784}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -367, y: -286}
-  m_SizeDelta: {x: 500, y: -464.19995}
+  m_AnchoredPosition: {x: -334, y: -275}
+  m_SizeDelta: {x: 500, y: -550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &889025435
 MonoBehaviour:
@@ -3149,7 +3149,7 @@ MonoBehaviour:
     m_Top: 25
     m_Bottom: 50
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: -100
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -3285,7 +3285,7 @@ MonoBehaviour:
     e versatili per l\u2019uomo, grazie alle sue molteplici propriet\xE0 benefiche.
     La specie pi\xF9 conosciuta e diffusa \xE8 l\u2019Aloe Vera, ma esistono ben
     400 specie diverse di questa particolare pianta."
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: 5e23650d5904d4cc79eb6ded0ec30b88, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 20590949cedae4b9291a221a744a3880, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -3898,15 +3898,15 @@ RectTransform:
   m_GameObject: {fileID: 980728874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -66}
-  m_LocalScale: {x: 1.1870062, y: 0.7253879, z: 0.16489546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1715761241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -334, y: -205}
-  m_SizeDelta: {x: 500, y: -464.19995}
+  m_AnchoredPosition: {x: -334, y: -275}
+  m_SizeDelta: {x: 500, y: -550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &980728876
 MonoBehaviour:
@@ -3926,7 +3926,7 @@ MonoBehaviour:
     m_Top: 25
     m_Bottom: 50
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: -100
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -4156,7 +4156,7 @@ MonoBehaviour:
     cerca di semi, erbe, lombrichi, vermetti, insetti, e simili.La gallina depone
     quasi un uovo al giorno, e se nel pollaio \xE8 presente anche un gallo atto alla
     riproduzione, allora, con molta probabilit\xE0, le uova saranno anche fertili."
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: 48200aff2f17c4827abd8c98f29ae2cc, type: 3}
   AnimalSprite: {fileID: 21300000, guid: bb1889a5c605e42d59861a80d7378ec3, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -4234,7 +4234,7 @@ MonoBehaviour:
     ai loro zoccoli robusti e appuntiti, queste zebre possono arrampicarsi sulle
     montagne con facilit\xE0, e possono costruire le loro dimore a oltre 2000 metri
     di altitudine."
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: f8c42e903e557492688d24f9fafde72f, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 999ff3dda66894d7f8f5d099a4a15ccc, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -4307,7 +4307,7 @@ MonoBehaviour:
     maschi maturi, detti arieti. La dieta delle pecore \xE8 costituita principalmente
     da erba, ma all'interno dei pascoli questi animali sono spesso alimentati con
     fieno e avena."
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: d462765b066264c929197c6209e30d38, type: 3}
   AnimalSprite: {fileID: 21300000, guid: acbf5c2c52fca4173b11ae9a177d2088, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -4358,7 +4358,7 @@ MonoBehaviour:
     cui bianche, rosse, viola, nere e gialle. Le carote sono un\u2019ottima fonte
     di beta carotene, una molecola dalle propriet\xE0 antiossidanti e che migliorano
     la vista. "
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: 21ab850d873a84850b4c0a57a1c9ad5b, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 57794681e16c443979d780dfa9caf9e8, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -4412,6 +4412,7 @@ MonoBehaviour:
   _startOnEnter: 1
   _showMarkersOnEnter: 0
   _autoComplete: 0
+  _autoStart: 0
   orderNumber: 0
   description: Press enter
   _nInputsBeforeComplete: 3
@@ -5312,7 +5313,7 @@ MonoBehaviour:
     il clima \xE8 pi\xF9 secco. Il frutto del baobab ha una forma particolare e la
     sua buccia \xE8 pelosa, il suo frutto \xE8 molto apprezzato da alcune scimmie
     e ha un sapore simile allo zenzero."
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: f70b976869a8b4dcb907d6a62aa3a71e, type: 3}
   AnimalSprite: {fileID: 21300000, guid: cadd5ebd697df46aa90d3cac90a016d8, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -5404,6 +5405,14 @@ PrefabInstance:
       value: 'Lorem Ipsum Pietro '
       objectReference: {fileID: 0}
     - target: {fileID: 65802043235339754, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_fontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 65802043235339754, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_margin.w
+      value: -129.38753
+      objectReference: {fileID: 0}
+    - target: {fileID: 65802043235339754, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_margin.z
       value: 7.323448
       objectReference: {fileID: 0}
@@ -5426,6 +5435,10 @@ PrefabInstance:
     - target: {fileID: 65802043235339754, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_fontColor.r
       value: 0.43529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 65802043235339754, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 65802043235339754, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_sharedMaterial
@@ -5660,6 +5673,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2430975586852611887, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_fontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430975586852611887, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_margin.w
+      value: -124.854294
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430975586852611887, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_margin.z
+      value: 24.133492
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430975586852611887, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -5678,6 +5703,10 @@ PrefabInstance:
     - target: {fileID: 2430975586852611887, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_fontColor.r
       value: 0.43529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430975586852611887, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2430975586852611887, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_sharedMaterial
@@ -6198,7 +6227,7 @@ MonoBehaviour:
     leader \xE8 in genere la femmina pi\xF9 anziana.I cavalli possono dormire in
     piedi per via della particolare struttura che permette di sostenere il loro peso
     con uno sforzo muscolare minimo."
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: c9f53adc781da45dbaef252915b1ead7, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 737f29b3894ad43aca43100238724498, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -6973,6 +7002,7 @@ MonoBehaviour:
   _startOnEnter: 1
   _showMarkersOnEnter: 0
   _autoComplete: 0
+  _autoStart: 0
   orderNumber: 0
   description: 'Quest numero 2 '
   _nInputsBeforeComplete: 1
@@ -8545,7 +8575,7 @@ MonoBehaviour:
     animali dotati di grande intelligenza. Possiedono capacit\xE0 cognitive simili
     a quelle dei cani o dei bambini, dimostrano consapevolezza di s\xE9, esprimono
     gusti e antipatie, apprezzano il gioco creativo e sperimentano emozioni."
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: d522dd55511ca416cb2e977fd5cd89e1, type: 3}
   AnimalSprite: {fileID: 21300000, guid: fb8dd50a2d9bc4e9fb182b5535d566b7, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -8599,6 +8629,7 @@ MonoBehaviour:
   _startOnEnter: 1
   _showMarkersOnEnter: 0
   _autoComplete: 0
+  _autoStart: 0
   orderNumber: 0
   description: Quest numero 3
   _nInputsBeforeComplete: 1
@@ -8704,7 +8735,7 @@ MonoBehaviour:
     che pu\xF2 durare da 6 a 10 mesi a seconda della variet\xE0 e del clima. Attraverso
     la macinazione del grano si ottiene la farina, usata per tantissime ricette come
     pasta, pane e pizza!"
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: 2d31456c4f9dd4101aee4beae8f2cc7a, type: 3}
   AnimalSprite: {fileID: 21300000, guid: bcf880d6afd0f47be82e3ccf363792f4, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -9555,7 +9586,7 @@ MonoBehaviour:
     piante per ripararsi alla sua ombra. Inoltre, diverse specie erbivore e uccelli
     si nutrono delle sue foglie, rendendo l\u2019acacia un abitante fondamentale
     di questo ecosistema"
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: 2186ff44c18414c0bbf80658d979df01, type: 3}
   AnimalSprite: {fileID: 21300000, guid: ba47f4b4d4f8a4e779d3dcb15b7e5225, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}
@@ -10088,7 +10119,7 @@ MonoBehaviour:
     verdi sono nate successivamente. La biografia di Isaac Newton, scritta da un
     suo contemporaneo e amico, conferma la veridicit\xE0 del celebre aneddoto sulla
     mela, che ha portato alla stesura della legge gravitazionale! "
-  index: 3
+  index: 0
   AnimalTitleImage: {fileID: 21300000, guid: caa478218e5284efda3966eaf6e2a3e5, type: 3}
   AnimalSprite: {fileID: 21300000, guid: 7296d2cbc78b446eda632233caa62767, type: 3}
   currAnimalImage: {fileID: 21300000, guid: 7352cdb405ee7496e8945b437cbd49a3, type: 3}

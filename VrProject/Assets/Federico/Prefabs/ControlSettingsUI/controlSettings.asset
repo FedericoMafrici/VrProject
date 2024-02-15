@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44431ea0c4814005beeecf5454cc897, type: 3}
   m_Name: controlSettings
   m_EditorClassIdentifier: 
-  comandi: WASD movimento, poi boh capiscilo da solo salame
+  comandi: WASD movimento, poi boh capiscilo da solo /n salame
   regoleAggiuntive: "questo \xE8 un esempio di regole aggiuntive cosi magari servono "

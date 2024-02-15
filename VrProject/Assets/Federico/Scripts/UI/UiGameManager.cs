@@ -48,7 +48,7 @@ public class UiGameManager : MonoBehaviour {
 
     public GameObject playerCamera;
 
-
+    //public GameObject realPlayerCamera;
     // Instanzia quelle che sono i vari componenti del canvas che poi cambieranno a seconda dell'interazione dell'utente 
     [Header("Animal Panel Components")]// add here the information about animal 
     public TMP_Text description;
@@ -157,8 +157,8 @@ public class UiGameManager : MonoBehaviour {
 
 
         }
-        setttingsList.text = controlSettings.comandi;
-        additionalRules.text = controlSettings.regoleAggiuntive;
+        setttingsList.text = "WASD → movimento \n movimento Mouse → rotazione visuale/Movimento cursore (nei menù) \n click sinistro → utilizza oggetto attivo/Interazione contestuale/Selezione elementi (nei menù) \n click destro → interazione mano libera \n Q → lascia oggetto E → raccogli oggetto/parla con NPC \n P → avanza dialogo/Avanza pop-up tutorial \n tasti numerici → selezione oggetti nella hotbar \n Esc → apri menù \n ";
+        additionalRules.text = "le galline produranno periodicamente uova basta avere un po di pazienza! \n usando la pala è possibile rimuovere alberi e piante indesiderate! \n se non sai piu come procedere consulta il tuo diario per sapere cosa ti manca \n incontrando degli animali sbloccherai delle preziosi informazioni";
         // bottoni automatici 
         if (currAnimalKey == 0) {
             // NextAnimalButton.Sprite=null;
@@ -657,6 +657,17 @@ public class UiGameManager : MonoBehaviour {
     public void MuteSounds() {
         // Trova tutti gli AudioListener nella scena
         AudioListener[] audioListeners = FindObjectsOfType<AudioListener>();
+        playerCamera.SetActive(true);
+       AudioListener playerListener= playerCamera.GetComponent<AudioListener>();
+
+        if (playerListener == null)
+        {
+            Debug.LogError("Nessun componente AudioListener trovato sulla camera principale.");
+        }
+
+          
+        playerListener.enabled=false;
+        playerCamera.SetActive(false);
 
         // Disabilita gli AudioListener
         foreach (AudioListener listener in audioListeners) {
@@ -666,6 +677,17 @@ public class UiGameManager : MonoBehaviour {
     public void EnableSounds() {
         // Trova tutti gli AudioListener nella scena
         AudioListener[] audioListeners = FindObjectsOfType<AudioListener>();
+        playerCamera.SetActive(true);
+       AudioListener playerListener= playerCamera.GetComponent<AudioListener>();
+
+        if (playerListener == null)
+        {
+            Debug.LogError("Nessun componente AudioListener trovato sulla camera principale.");
+        }
+
+          
+        playerListener.enabled=true;
+        playerCamera.SetActive(false);
 
         // Disabilita gli AudioListener
         foreach (AudioListener listener in audioListeners) {
