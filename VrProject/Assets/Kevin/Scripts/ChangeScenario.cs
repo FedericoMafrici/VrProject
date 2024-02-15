@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using StarterAssets;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public enum ScenarioName
 
 public class ChangeScenario : QuestEventReceiver
 {
-    public int currentScenario = 0;
+    public int currentScenario;
 
     public List<Scenario> scenarios = new List<Scenario>();
     
@@ -32,28 +33,26 @@ public class ChangeScenario : QuestEventReceiver
     {
         if (newScenario < scenarios.Count && scenarios[newScenario] != null && newScenario != currentScenario)
         {
+            if(newScenario == 0)
+                pipeAnimator.SetBool("IsSpawned", true);
+            
             if(gameObject.transform.GetComponent<AudioSource>().isPlaying)
                 gameObject.transform.GetComponent<AudioSource>().Stop();
             gameObject.transform.GetComponent<AudioSource>().clip = scenarios[newScenario].soundtrack;
             gameObject.transform.GetComponent<AudioSource>().Play();
             
             scenarios[newScenario].scene.SetActive(true);
-            player.transform.position = scenarios[newScenario].playerPos; 
-            player.transform.rotation = Quaternion.Euler(scenarios[newScenario].playerRot);
-            scenarios[currentScenario].scene.SetActive(false);
-            currentScenario = newScenario;
+
+            player.GetComponent<FirstPersonController>().enabled = false;
             
-            scenarios[currentScenario].pipeEmitter.Play();
+            player.transform.position = scenarios[newScenario].playerPos;
+            player.transform.rotation = Quaternion.Euler(scenarios[newScenario].playerRot);
 
-            if (currentScenario != newScenario) {
-                scenarios[currentScenario].scene.SetActive(false);
-                scenarios[newScenario].scene.SetActive(true);
-            }
-
-           player.transform.position = scenarios[newScenario].playerPos;
-           player.transform.rotation = Quaternion.Euler(scenarios[newScenario].playerRot);
-           
-           currentScenario = newScenario;
+            StartCoroutine(EnableFPController());
+            
+            scenarios[currentScenario].scene.SetActive(false);
+            
+            currentScenario = newScenario;
 
             if (scenarios[currentScenario].pipeEmitter != null) {
                 scenarios[currentScenario].pipeEmitter.Play();
@@ -63,6 +62,12 @@ public class ChangeScenario : QuestEventReceiver
         {
             Debug.Log("Errore: non esiste nessuno scenario successivo");
         }
+    }
+
+    IEnumerator EnableFPController()
+    {
+        yield return new WaitForEndOfFrame();
+        player.GetComponent<FirstPersonController>().enabled = true;
     }
 
     protected override void OnEventReceived(Quest quest, EventType eventType)
