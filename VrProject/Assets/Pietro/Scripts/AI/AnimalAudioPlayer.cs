@@ -24,7 +24,8 @@ public class AnimalAudioPlayer : MonoBehaviour
             Debug.LogError(transform.name + ": no audio source found");
         }
 
-        PlayAndReset(Random.Range(0, _clips.Count-1));
+        _audioCoroutine = StartCoroutine(SoundCoroutine());
+        //PlayAndReset(Random.Range(0, _clips.Count-1));
         
     }
 
