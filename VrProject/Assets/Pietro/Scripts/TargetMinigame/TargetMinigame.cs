@@ -44,10 +44,13 @@ public class TargetMinigame : MonoBehaviour {
             Debug.LogError(transform.name + ": TargetMinigame, no minigame camera set");
         }
 
-        if (minigameCamera.enabled) {
+        if (minigameCamera.gameObject.activeSelf) {
+            minigameCamera.gameObject.SetActive(false);
+            /*
             AudioListener al = minigameCamera.GetComponent<AudioListener>();
             al.enabled = false;
             minigameCamera.enabled = false;
+            */
         }
 
         _npc = GetComponent<NPCMover>();
@@ -234,22 +237,38 @@ public class TargetMinigame : MonoBehaviour {
 
     private void SwitchCamera(Camera oldCamera, Camera cam) {
         AudioListener audioListener;
+        bool alEnabled = true;
         if (oldCamera != null) {
+            audioListener = oldCamera.GetComponent<AudioListener>();
+            alEnabled = (audioListener != null && audioListener.enabled);
+            oldCamera.gameObject.SetActive(false);
+            /*
             audioListener = oldCamera.GetComponent<AudioListener>();
             if (audioListener != null) {
                 audioListener.enabled = false;
             }
             oldCamera.enabled = false;
-            
+            */
+
         }
 
         if (cam != null) {
-            cam.enabled = true;
-            audioListener = cam.GetComponent<AudioListener>();
-            if (audioListener != null) {
-                audioListener.enabled = true;
+
+            cam.gameObject.SetActive(true);
+            if (alEnabled) {
+                audioListener = cam.GetComponent<AudioListener>();
+                if (audioListener != null && !alEnabled) {
+                    audioListener.enabled = false;
+                }
             }
         }
+        /*
+        cam.enabled = true;
+        audioListener = cam.GetComponent<AudioListener>();
+        if (audioListener != null) {
+            audioListener.enabled = true;
+        }
+        */
     }
 
     private void SetAdditionalItem(bool activate) {
