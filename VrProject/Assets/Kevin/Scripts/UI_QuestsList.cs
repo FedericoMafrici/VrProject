@@ -57,15 +57,14 @@ public class UI_QuestsList : QuestEventReceiver {
                 uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
 
             Show();
-            if (numOfQuests == 1)
-                Open(true);
+            Open();
         } else if (eventType == EventType.COMPLETE) {
             QuestElement elem = elements[quest.name];
             elem.isCompleted = true;
             elements[quest.name] = elem;
             checks[elem.name].gameObject.SetActive(true);
 
-        } else if (eventType == EventType.PROGRESS) {
+        } else if (eventType == EventType.PROGRESS && elements.ContainsKey(quest.name)) {
 
             descriptions[quest.name].text = quest.GetQuestDescription();
 
@@ -92,16 +91,16 @@ public class UI_QuestsList : QuestEventReceiver {
         }
     }
 
-    public void Open(bool isWaitingNecessary) {
-        // if(isWaitingNecessary)
-        //     Thread.Sleep(1000);
+    public void Open() {
+        if (!animator.GetBool("IsOpen"))
+        {
+            animator.SetBool("IsOpen", true); 
+            isOpen = true;
 
-        animator.SetBool("IsOpen", true);
-        isOpen = true;
+            hint.text = "Premi H per nascondere";
 
-        hint.text = "Premi H per nascondere";
-
-        ShowText();
+            ShowText();
+        }
     }
 
     public void Close() {

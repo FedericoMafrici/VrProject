@@ -142,7 +142,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                 if(questsList.isOpen)
                     questsList.Close();
                 else
-                    questsList.Open(false);
+                    questsList.Open();
             }
             
             // ------------- PRESSIONE L: cambio scenario -------------
