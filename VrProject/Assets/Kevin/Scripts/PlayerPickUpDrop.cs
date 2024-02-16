@@ -149,8 +149,7 @@ public class PlayerPickUpDrop : MonoBehaviour
             
             else if (Input.GetKeyDown(KeyCode.L) 
                 && Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit5, pickupDistance, pickupLayerMask)
-                && pickupLayerMask == LayerMask.GetMask("Pipe"))
-            {
+                && raycastHit5.transform.gameObject.layer == LayerMask.NameToLayer("Pipe") /*&& pickupLayerMask == LayerMask.GetMask("Pipe")*/) {
                 if (changeScenario.currentScenario + 1 < changeScenario.scenarios.Count 
                     && changeScenario.scenarios[changeScenario.currentScenario + 1].unlocked)
                 {

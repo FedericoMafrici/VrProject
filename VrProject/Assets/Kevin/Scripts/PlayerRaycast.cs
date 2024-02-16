@@ -109,8 +109,8 @@ public class PlayerRaycast : MonoBehaviour
                     clue.text = "Questo oggetto non può essere depositato";
                 }
             } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit3,
-                    pickupDistance, pickupLayerMask)
-                && pickupLayerMask == LayerMask.GetMask("Pipe")) {
+                    pickupDistance, pickupLayerMask) && raycastHit3.transform.gameObject.layer == LayerMask.NameToLayer("Pipe")
+                /*&& pickupLayerMask == LayerMask.GetMask("Pipe")*/) {
                 clue.text = "Premi [L] per cambiare scenario";
             } else
                 clue.text = "";
