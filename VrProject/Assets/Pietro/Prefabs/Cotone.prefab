@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7044965, w: 0.70970744}
   m_LocalPosition: {x: 1.1975, y: -1.7468405, z: -1.5625}
-  m_LocalScale: {x: 0.5225647, y: 0.5225647, z: 0.52256465}
+  m_LocalScale: {x: 0.9475044, y: 0.9475044, z: 0.94750416}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
   itemCategory: 1
   depositPosition: {x: -23.042, y: 2.368, z: 22.339}
   depositRotation: {x: 0, y: 0, z: 0}
-  icon: {fileID: 21300000, guid: a608be938f12b4ecab6ac8b926da6e31, type: 3}
+  icon: {fileID: 21300000, guid: 2169003242da74a3c904cd565c46ec90, type: 3}
   isDeposited: 0
-  grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
+  grabSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}
+  usageSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}
