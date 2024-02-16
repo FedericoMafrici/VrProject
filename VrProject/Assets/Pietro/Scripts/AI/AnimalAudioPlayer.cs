@@ -23,6 +23,8 @@ public class AnimalAudioPlayer : MonoBehaviour
         if (_audioSource == null ) {
             Debug.LogError(transform.name + ": no audio source found");
         }
+
+        PlayAndReset(Random.Range(0, _clips.Count-1));
         
     }
 
@@ -47,6 +49,15 @@ public class AnimalAudioPlayer : MonoBehaviour
         _audioCoroutine = StartCoroutine(SoundCoroutine());
     }
 
+    public void PlayRandomAndReset() {
+        PlaySound(Random.Range(0, _clips.Count-1));
+        if (_audioCoroutine != null) {
+            StopCoroutine(_audioCoroutine);
+        }
+
+        _audioCoroutine = StartCoroutine(SoundCoroutine());
+    }
+
     public void PlayAndReset(AudioClip clip) {
         PlaySound(clip);
         if (_audioCoroutine != null) {
@@ -58,7 +69,7 @@ public class AnimalAudioPlayer : MonoBehaviour
 
     IEnumerator SoundCoroutine() {
         yield return new WaitForSeconds(Random.Range(_minDelay, _maxDelay));
-        PlayAndReset(Random.Range(0, _clips.Count -1));
+        PlayRandomAndReset();
     }
 
     private void OnEnable() {
