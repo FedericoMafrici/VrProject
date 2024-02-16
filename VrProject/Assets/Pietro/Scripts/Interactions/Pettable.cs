@@ -12,9 +12,11 @@ public class Pettable : MonoBehaviour {
     [SerializeField] private Bar _progressBar;
     [SerializeField] private GameObject _heartIcon;
 
+
     public event EventHandler Befriended;
 
     private void Start() {
+
         if (_progressBar == null)
             Debug.LogError("No progress bar assigned to " + transform.name);
 
@@ -27,6 +29,7 @@ public class Pettable : MonoBehaviour {
     }
 
     public void Pet(Petter petter, float travelledDistance) {
+
         if (_friendship < _maxFriendship) {
             _friendship += travelledDistance * _friendshipGrowthRate;
             if (_friendship >= _maxFriendship) {
