@@ -37,40 +37,55 @@ public class UI_QuestsList : QuestEventReceiver {
     }
 
     protected override void OnEventReceived(Quest quest, EventType eventType) {
+        Debug.LogWarning("Received " + eventType + " from " + quest.name);
         if (eventType == EventType.AREA_ENTER) {
+
             numOfQuests++;
 
             QuestElement elem;
             elem.name = quest.name;
             elem.text = quest.GetQuestDescription();
             elem.isCompleted = (quest.GetState() == QuestState.COMPLETED);
-            elements.Add(elem.name, elem);
 
-            GameObject uiElem = Instantiate(uiElement, this.transform);
-            descriptions.Add(elem.name, uiElem.GetComponent<TMP_Text>());
-            checkboxes.Add(elem.name, uiElem.transform.GetChild(0).GetComponent<Image>());
-            checks.Add(elem.name, uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>());
+            if (!elements.ContainsKey(elem.name)) {
+                elements.Add(elem.name, elem);
 
-            uiElem.GetComponent<TMP_Text>().text = elem.text;
-            
-            if (!elem.isCompleted)
-                uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
 
-            Show();
-            Open();
+                GameObject uiElem = Instantiate(uiElement, this.transform);
+                descriptions.Add(elem.name, uiElem.GetComponent<TMP_Text>());
+                checkboxes.Add(elem.name, uiElem.transform.GetChild(0).GetComponent<Image>());
+                checks.Add(elem.name, uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>());
+
+                uiElem.GetComponent<TMP_Text>().text = elem.text;
+
+                if (!elem.isCompleted)
+                    uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
+
+                Show();
+                Open();
+            }
+
         } else if (eventType == EventType.COMPLETE) {
-            QuestElement elem = elements[quest.name];
-            elem.isCompleted = true;
-            elements[quest.name] = elem;
-            checks[elem.name].gameObject.SetActive(true);
+            if (elements.ContainsKey(quest.name)) {
+                QuestElement elem = elements[quest.name];
+                elem.isCompleted = true;
+                elements[quest.name] = elem;
+                checks[elem.name].gameObject.SetActive(true);
+            }
 
         } else if (eventType == EventType.PROGRESS && elements.ContainsKey(quest.name)) {
 
             descriptions[quest.name].text = quest.GetQuestDescription();
 
-        } else if (eventType == EventType.AREA_EXIT)
-        {
+
+        } else if (eventType == EventType.AREA_EXIT) {
             numOfQuests--;
+            if (elements.ContainsKey(quest.name)) {
+                elements.Remove(quest.name);
+                descriptions.Remove(quest.name);
+                checkboxes.Remove(quest.name);
+                checks.Remove(quest.name);
+            }
             if (numOfQuests == 0) {
                 Close();
                 numOfQuests = 0;
@@ -78,7 +93,7 @@ public class UI_QuestsList : QuestEventReceiver {
                 descriptions.Clear();
                 checkboxes.Clear();
                 checks.Clear();
-                
+
                 for (int i = 0; i < transform.childCount; i++) {
                     if (transform.GetChild(i).tag == "QuestsUI") {
                         transform.GetChild(i).gameObject.SetActive(false);

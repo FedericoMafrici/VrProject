@@ -68,12 +68,14 @@ public class PickUpQuest : Quest
 
     public override bool AutoComplete() {
         ForceStart();
+        AutoCompletePreCheck();
 
         while (_nPickedUp < _nToPickUp) {
             _nPickedUp++;
             Progress();
         }
         Complete();
+        AutoCompletePostCheck();
         return true;
     }
 }

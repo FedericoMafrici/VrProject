@@ -99,7 +99,9 @@ public class CollectingQuest : Quest {
 
     public override bool AutoComplete() {
         ForceStart();
+        AutoCompletePreCheck();
         AddItem(_nToCollect - _nCollected);
+        AutoCompletePostCheck();
         return true;
     }
 }

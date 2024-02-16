@@ -312,4 +312,16 @@ public abstract class Quest : MonoBehaviour {
             */
             }
         }
+
+    protected void AutoCompletePreCheck() {
+        if (!PlayerIsInQuestArea()) {
+            PlayerEnteredQuestArea();
+        }
+    }
+
+    protected void AutoCompletePostCheck() {
+        if (!PlayerIsInQuestArea()) {
+            PlayerExitedQuestArea();
+        }
+    }
 }

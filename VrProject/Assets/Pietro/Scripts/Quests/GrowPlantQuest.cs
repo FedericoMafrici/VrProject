@@ -84,6 +84,7 @@ public class GrowPlantQuest : Quest
 
     public override bool AutoComplete() {
         ForceStart();
+        AutoCompletePreCheck();
 
         while (_nGrown < _nToGrow) {
             _nGrown++;
@@ -93,6 +94,7 @@ public class GrowPlantQuest : Quest
         foreach (FarmingLand land in _lands) {
             land.CropPlanted -= OnCropPlanted;
         }
+        AutoCompletePostCheck();
         return true;
     }
 }

@@ -50,7 +50,9 @@ public class TargetMinigameQuest : Quest {
 
     public override bool AutoComplete() {
         ForceStart();
+        AutoCompletePreCheck();
         OnMinigameCompleted();
+        AutoCompletePostCheck();
         return true;
     }
 }
