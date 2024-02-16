@@ -27,9 +27,19 @@ public class EatingQuest : Quest {
         }
 
         base.Init();
+
+        foreach (FoodEater fe in _foodEaters) {
+            if (fe != null) {
+                fe.EatEvent += OnFoodEaten;
+            }
+        }
     }
 
     private void OnFoodEaten(object sender, EatEventArgs args) {
+        if (_state != QuestState.ACTIVE && !_isStep) { 
+            StartQuest();
+        }
+
         if (_state == QuestState.ACTIVE && FoodIsOk(args.eaten)) {
             _nEaten++;
             Progress();
@@ -50,12 +60,6 @@ public class EatingQuest : Quest {
 
     protected override void OnQuestStart() {
         base.OnQuestStart();
-
-        foreach (FoodEater fe in _foodEaters) {
-            if (fe != null) {
-                fe.EatEvent += OnFoodEaten;
-            }
-        }
     }
 
     public override void Complete() {
