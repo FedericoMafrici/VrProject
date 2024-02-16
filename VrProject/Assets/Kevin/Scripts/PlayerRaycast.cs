@@ -101,16 +101,16 @@ public class PlayerRaycast : MonoBehaviour
                     clue.text += "\n\n Devi depositare o lasciare un oggetto per poterne raccogliere un altro";  /*Release an item to collect another object!*/
                 }
                 toOutline = raycastHit2.transform;
-            } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
+            } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < pickupDistance
                        && hotbar.activeItemObj != null) {
                 if (hotbar.activeItemObj.itemName != Item.ItemName.BucketMilk && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
-                    clue.text = "Premi [Q] per depositate l'oggetto";
+                    clue.text = "Premi [Q] per depositare l'oggetto";
                 } else {
                     clue.text = "Questo oggetto non può essere depositato";
                 }
             } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit3,
                     pickupDistance, pickupLayerMask)
-                && raycastHit3.transform.TryGetComponent(out AudioSource pipeId)) {
+                && pickupLayerMask == LayerMask.GetMask("Pipe")) {
                 clue.text = "Premi [L] per cambiare scenario";
             } else
                 clue.text = "";
