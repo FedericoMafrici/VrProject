@@ -101,8 +101,6 @@ public abstract class Quest : MonoBehaviour {
     private bool _inited = false;
 
     protected bool _inArea = false;
-    
-    [HideInInspector]public int orderNumber;
 
     public event Action<Quest> StepEnteredArea;
     public event Action<Quest> StepExitedArea;
@@ -132,7 +130,6 @@ public abstract class Quest : MonoBehaviour {
         }
 
         _inited = true;
-        QuestOrderAssigner.GetOrderNumber(this);
 
         if (_autoComplete) {
             bool completed = AutoComplete();
