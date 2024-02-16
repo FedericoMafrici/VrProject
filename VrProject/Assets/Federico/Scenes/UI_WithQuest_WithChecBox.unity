@@ -2769,8 +2769,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de97c5c8592074d8baa6de47ee52b5a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sky1: {fileID: 2100000, guid: 4f0579e073abe59409641925c6e53e31, type: 2}
-  sky2: {fileID: 2100000, guid: f5dcd562bbe8e6741845a6ba29547444, type: 2}
+  sky1: {fileID: 2100000, guid: e11f5b66aad75483b8cd16ee18a0c917, type: 2}
+  sky2: {fileID: 2100000, guid: a59fe87939f259d40a7ee37624c9568b, type: 2}
   firstLevel: 1
 --- !u!1 &773684157
 GameObject:
@@ -4431,7 +4431,6 @@ MonoBehaviour:
   _showMarkersOnEnter: 0
   _autoComplete: 0
   _autoStart: 0
-  orderNumber: 0
   description: Press enter
   _nInputsBeforeComplete: 3
   _inputKey: 13
@@ -5564,7 +5563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1973458707405871382, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1973458707405871382, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_TagString
@@ -5699,6 +5698,10 @@ PrefabInstance:
       value: -124.854294
       objectReference: {fileID: 0}
     - target: {fileID: 2430975586852611887, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
+      propertyPath: m_margin.x
+      value: -5.2529373
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430975586852611887, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_margin.z
       value: 24.133492
       objectReference: {fileID: 0}
@@ -5780,7 +5783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3334422139548209595, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.6063805
+      value: 3.24
       objectReference: {fileID: 0}
     - target: {fileID: 3334422139548209595, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_LocalScale.y
@@ -5796,7 +5799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3334422139548209595, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 89
+      value: 82
       objectReference: {fileID: 0}
     - target: {fileID: 3470944676103561902, guid: 176877d9914ba48a0bf98347953d225b, type: 3}
       propertyPath: m_Name
@@ -7021,7 +7024,6 @@ MonoBehaviour:
   _showMarkersOnEnter: 0
   _autoComplete: 0
   _autoStart: 0
-  orderNumber: 0
   description: 'Quest numero 2 '
   _nInputsBeforeComplete: 1
   _inputKey: 109
@@ -8648,7 +8650,6 @@ MonoBehaviour:
   _showMarkersOnEnter: 0
   _autoComplete: 0
   _autoStart: 0
-  orderNumber: 0
   description: Quest numero 3
   _nInputsBeforeComplete: 1
   _inputKey: 108
