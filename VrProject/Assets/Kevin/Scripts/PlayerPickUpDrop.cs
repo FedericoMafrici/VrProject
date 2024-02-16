@@ -115,7 +115,7 @@ public class PlayerPickUpDrop : MonoBehaviour
 
                     ThrowPickUpEvent(item);
                     item.StartFading();
-                } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < 10
+                } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < pickupDistance
                            && hotbar.activeItemObj != null
                            && hotbar.activeItemObj.itemName != Item.ItemName.BucketMilk
                            && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
@@ -142,14 +142,14 @@ public class PlayerPickUpDrop : MonoBehaviour
                 if(questsList.isOpen)
                     questsList.Close();
                 else
-                    questsList.Open(false);
+                    questsList.Open();
             }
             
             // ------------- PRESSIONE L: cambio scenario -------------
             
             else if (Input.GetKeyDown(KeyCode.L) 
                 && Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit5, pickupDistance, pickupLayerMask)
-                && raycastHit5.transform.TryGetComponent(out AudioSource audio))
+                && pickupLayerMask == LayerMask.GetMask("Pipe"))
             {
                 if (changeScenario.currentScenario + 1 < changeScenario.scenarios.Count 
                     && changeScenario.scenarios[changeScenario.currentScenario + 1].unlocked)

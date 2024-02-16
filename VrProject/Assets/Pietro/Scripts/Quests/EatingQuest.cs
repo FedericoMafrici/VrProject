@@ -104,8 +104,8 @@ public class EatingQuest : Quest {
 
     public override bool AutoComplete() {
         ForceStart();
-
-        while(_nEaten < _nToEat) {
+        AutoCompletePreCheck();
+        while (_nEaten < _nToEat) {
             _nEaten++;
             Progress();
         }
@@ -116,6 +116,7 @@ public class EatingQuest : Quest {
         foreach (FoodEater fe in _foodEaters) {
             fe.EatEvent -= OnFoodEaten;
         }
+        AutoCompletePostCheck();
 
         return true;
     }

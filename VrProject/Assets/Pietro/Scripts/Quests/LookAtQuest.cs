@@ -79,10 +79,11 @@ public class LookAtQuest : Quest {
 
     public override bool AutoComplete() {
         ForceStart();
-
+        AutoCompletePreCheck();
         SetEventSubscription(false, _target);
         Progress();
         Complete();
+        AutoCompletePostCheck();
         return true;
     }
 }

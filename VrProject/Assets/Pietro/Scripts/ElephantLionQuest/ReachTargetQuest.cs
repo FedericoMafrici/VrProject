@@ -40,7 +40,9 @@ public class ReachTargetQuest : Quest {
 
     public override bool AutoComplete() {
         ForceStart();
+        AutoCompletePreCheck();
         TargetReached();
+        AutoCompletePostCheck();
         return true;
 
     }

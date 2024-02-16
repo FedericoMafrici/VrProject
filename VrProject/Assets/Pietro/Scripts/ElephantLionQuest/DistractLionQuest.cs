@@ -60,8 +60,13 @@ public class DistractLionQuest : Quest
     }
 
     public override bool AutoComplete() {
+       
         ForceStart();
+        AutoCompletePreCheck();
+
         OnLionDistracted();
+
+        AutoCompletePostCheck();
         return true;
     }
 }

@@ -120,10 +120,12 @@ public class AnimalRemoverQuest : Quest {
     }
     public override bool AutoComplete() {
         ForceStart();
+        AutoCompletePreCheck();
 
-        while(_nCompletedAnimals < _totalAnimals) {
+        while (_nCompletedAnimals < _totalAnimals) {
             OnAnimalCleared(null);
         }
+        AutoCompletePostCheck();
 
         return true;
     }

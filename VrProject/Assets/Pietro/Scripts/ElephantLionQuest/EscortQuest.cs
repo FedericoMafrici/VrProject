@@ -61,7 +61,9 @@ public class EscortQuest : Quest {
 
     public override bool AutoComplete() {
         ForceStart();
+        AutoCompletePreCheck();
         DestinationReached();
+        AutoCompletePostCheck();
         return true;
     }
 }

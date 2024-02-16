@@ -79,14 +79,17 @@ public abstract class AbstractStructuredQuest : Quest {
     }
 
     protected virtual void OnStepCompleted(Quest step) {
+        Debug.LogWarning("Step completed: " + step.name);
         if (StepCompleted != null) {
             StepCompleted(this, new StepEventArgs(_currentStep, _curStepIdx));
         }
 
         if (CurrentStepIsFinal()) {
+            Progress();
             Complete();
         } else {
             AdvanceStep();
+            Progress();
         }
     }
 

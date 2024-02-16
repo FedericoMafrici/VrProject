@@ -72,8 +72,10 @@ public class ChangeScenario : QuestEventReceiver
     {
         if (eventType == EventType.COMPLETE)
         {
-            scenarios[currentScenario + 1].unlocked = true;
-            StartCoroutine(PlayAnimation());
+            if (scenarios.Count > currentScenario + 1) {
+                scenarios[currentScenario + 1].unlocked = true;
+                StartCoroutine(PlayAnimation());
+            }
         }
     }
     

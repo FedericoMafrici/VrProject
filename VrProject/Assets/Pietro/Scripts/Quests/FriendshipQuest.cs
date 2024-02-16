@@ -105,6 +105,7 @@ public class FriendshipQuest : Quest {
     public override bool AutoComplete() {
         ForceStart();
 
+        AutoCompletePreCheck();
         while (_nBefriended < _nToBefriend) {
             _nBefriended++;
             Progress();
@@ -118,6 +119,7 @@ public class FriendshipQuest : Quest {
         foreach (Pettable _pettable in _pettables) {
             _pettable.Befriended -= OnAnimalBefriended;
         }
+        AutoCompletePostCheck();
 
         return true;
 
