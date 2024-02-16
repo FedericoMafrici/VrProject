@@ -120,8 +120,8 @@ public abstract class AbstractStructuredQuest : Quest {
     private void UnsubscribeFromCurrStep() {
         _currentStep.QuestProgressed -= OnStepProgressed;
         _currentStep.QuestCompleted -= OnStepCompleted;
-        _currentStep.EnteredArea -= OnPlayerEnteredArea;
-        _currentStep.ExitedArea -= OnPlayerExitedArea;
+        _currentStep.StepEnteredArea -= OnPlayerEnteredArea;
+        _currentStep.StepExitedArea -= OnPlayerExitedArea;
         //_currentStep.DisableCollider();
     }
 
@@ -129,8 +129,8 @@ public abstract class AbstractStructuredQuest : Quest {
         //_currentStep.EnableCollider();
         _currentStep.QuestProgressed += OnStepProgressed;
         _currentStep.QuestCompleted += OnStepCompleted;
-        _currentStep.EnteredArea += OnPlayerEnteredArea;
-        _currentStep.ExitedArea += OnPlayerExitedArea;
+        _currentStep.StepEnteredArea += OnPlayerEnteredArea;
+        _currentStep.StepExitedArea += OnPlayerExitedArea;
     }
 
     public int GetNSteps() {

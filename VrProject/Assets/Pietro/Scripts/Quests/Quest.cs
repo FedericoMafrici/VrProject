@@ -101,9 +101,9 @@ public abstract class Quest : MonoBehaviour {
     private bool _inited = false;
 
     protected bool _inArea = false;
-    
-    [HideInInspector]public int orderNumber;
 
+    public event Action<Quest> StepEnteredArea;
+    public event Action<Quest> StepExitedArea;
     public event Action<Quest> EnteredArea;
     public event Action<Quest> ExitedArea;
     public event Action<Quest> QuestStarted;
@@ -130,7 +130,6 @@ public abstract class Quest : MonoBehaviour {
         }
 
         _inited = true;
-        QuestOrderAssigner.GetOrderNumber(this);
 
         if (_autoComplete) {
             bool completed = AutoComplete();
@@ -168,14 +167,24 @@ public abstract class Quest : MonoBehaviour {
             ShowMarkers();
         }
 
-        if (EnteredArea != null) {
+
+
+        if (EnteredArea != null && _state == QuestState.ACTIVE) {
             EnteredArea(this);
+        }
+
+        if (StepEnteredArea != null) {
+            StepEnteredArea(this);
         }
     }
 
     protected virtual void PlayerExitedQuestArea() {
         _inArea= false;
-        if (ExitedArea != null) {
+        if (StepExitedArea != null) {
+            StepExitedArea(this);
+        }
+
+        if (ExitedArea != null && (_state == QuestState.ACTIVE || _state == QuestState.COMPLETED)) {
             ExitedArea(this);
         }
 

@@ -15,6 +15,7 @@ public struct InteractionResult<T> {
     public bool interactedWithNewTarget;
     public bool abandonedPreviousTarget;
     public float travelledDistance;
+    public Vector3 hitPosition;
     public T currentInteracted;
     public T previousInteracted;
 
@@ -66,10 +67,12 @@ public class RaycastManager<T> where T : class {
         result.exitedRange = false;
         result.interactedWithNewTarget = false;
         result.abandonedPreviousTarget = false;
+        result.hitPosition = Vector3.zero;
 
         if (_canInteract) {
             bool hitSomething = Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, _range, layerMask);
             if (hitSomething) {
+                result.hitPosition = hit.point;
                 Transform hitTransform = hit.transform;
                 currentInteracted = hitTransform.GetComponent<T>();
                 ValidateInteractability(ref currentInteracted, CanInteract);

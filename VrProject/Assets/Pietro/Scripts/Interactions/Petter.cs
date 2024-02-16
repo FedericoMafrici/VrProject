@@ -9,6 +9,7 @@ public class Petter : MonoBehaviour {
     [SerializeField] Camera _playerCamera;
     [SerializeField] private float _petDistance = 1.0f;
     [SerializeField] private string _clueText = "Premi [CLICK DESTRO] e muovi [MOUSE] per accarezzare";
+    [SerializeField] private HeartSpawner _heartSpawner;
     private RaycastManager<Pettable> _raycastManager;
     private KeyCode _interactKey = KeyCode.Mouse1;
 
@@ -64,6 +65,9 @@ public class Petter : MonoBehaviour {
 
         if (interactResult.canCallBehaviour) {
             petted.Pet(this, interactResult.travelledDistance);
+            if (_heartSpawner != null) {
+                _heartSpawner.SpawnHeart(interactResult.hitPosition, _playerCamera.transform);
+            }
         }
 
     }

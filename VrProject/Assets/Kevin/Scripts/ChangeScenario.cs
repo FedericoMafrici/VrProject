@@ -26,22 +26,20 @@ public class ChangeScenario : QuestEventReceiver
         currentScenario = 0;
         gameObject.transform.GetComponent<AudioSource>().clip = scenarios[currentScenario].soundtrack;
         gameObject.transform.GetComponent<AudioSource>().Play();
-        SelectScenario(currentScenario);
     }
 
     public void SelectScenario(int newScenario)
     {
         if (newScenario < scenarios.Count && scenarios[newScenario] != null && newScenario != currentScenario)
         {
-            if(newScenario == 0)
-                pipeAnimator.SetBool("IsSpawned", true);
-            
             if(gameObject.transform.GetComponent<AudioSource>().isPlaying)
                 gameObject.transform.GetComponent<AudioSource>().Stop();
             gameObject.transform.GetComponent<AudioSource>().clip = scenarios[newScenario].soundtrack;
             gameObject.transform.GetComponent<AudioSource>().Play();
             
             scenarios[newScenario].scene.SetActive(true);
+            if(newScenario == 0)
+                pipeAnimator.SetBool("IsSpawned", true);
 
             player.GetComponent<FirstPersonController>().enabled = false;
             
