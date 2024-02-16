@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 85bdd529a7fbcc344b810462de0c2b46, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.46622723, g: 0.56011504, b: 0.60742897, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2496,6 +2496,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5572952031494595450, guid: 526227cd5b70c864190362793faa433f, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 686065836}
+    - targetCorrespondingSourceObject: {fileID: 5572952031494595450, guid: 526227cd5b70c864190362793faa433f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 686065827}
   m_SourcePrefab: {fileID: 100100000, guid: 526227cd5b70c864190362793faa433f, type: 3}
@@ -2754,6 +2757,21 @@ MonoBehaviour:
   currState: 0
   canvasTrigger: {fileID: 1715761237}
   UiManager: {fileID: 1671104199}
+--- !u!114 &686065836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686065792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de97c5c8592074d8baa6de47ee52b5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sky1: {fileID: 2100000, guid: 4f0579e073abe59409641925c6e53e31, type: 2}
+  sky2: {fileID: 2100000, guid: f5dcd562bbe8e6741845a6ba29547444, type: 2}
+  firstLevel: 1
 --- !u!1 &773684157
 GameObject:
   m_ObjectHideFlags: 0
