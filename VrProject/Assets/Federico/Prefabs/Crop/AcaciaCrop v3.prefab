@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedToGrow: {fileID: 0}
-  isTree: 0
+  isTree: 1
   stadi:
   - {fileID: 126029956790443118}
   - {fileID: 4770203546694879761}
