@@ -96,9 +96,11 @@ public abstract class Quest : MonoBehaviour {
     [SerializeField] private bool _showMarkersOnEnter = false;
     [SerializeField] protected bool _autoComplete = false; //for debugging purposes
     [SerializeField] protected bool _autoStart = false;
+    [SerializeField] protected bool _deleteWhenCompleted = false;
     protected  QuestState _state = QuestState.NOT_STARTED;
     protected bool _isStep = false; //should be false if the true is a step in a StructuredQuest, false otherwise
     private bool _inited = false;
+    protected bool _deleted = false;
 
     protected bool _inArea = false;
 
@@ -109,6 +111,7 @@ public abstract class Quest : MonoBehaviour {
     public event Action<Quest> QuestStarted;
     public event Action<Quest> QuestProgressed;
     public event Action<Quest> QuestCompleted;
+    public event Action<Quest> QuestDeleted;
 
     private void Start() {
         
@@ -158,38 +161,42 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void PlayerEnteredQuestArea() {
-        _inArea= true;
-        if (!_isStep && _startOnEnter) {
-            StartQuest();
-        }
+        if (!_deleted) {
+            _inArea = true;
+            if (!_isStep && _startOnEnter) {
+                StartQuest();
+            }
 
-        if (_state == QuestState.ACTIVE && _showMarkersOnEnter) {
-            ShowMarkers();
-        }
+            if (_state == QuestState.ACTIVE && _showMarkersOnEnter) {
+                ShowMarkers();
+            }
 
 
 
-        if (EnteredArea != null && _state == QuestState.ACTIVE) {
-            EnteredArea(this);
-        }
+            if (EnteredArea != null && (_state == QuestState.ACTIVE || _state == QuestState.COMPLETED)) {
+                EnteredArea(this);
+            }
 
-        if (StepEnteredArea != null) {
-            StepEnteredArea(this);
+            if (StepEnteredArea != null) {
+                StepEnteredArea(this);
+            }
         }
     }
 
     protected virtual void PlayerExitedQuestArea() {
-        _inArea= false;
-        if (StepExitedArea != null) {
-            StepExitedArea(this);
-        }
+        if (!_deleted) {
+            _inArea = false;
+            if (StepExitedArea != null) {
+                StepExitedArea(this);
+            }
 
-        if (ExitedArea != null && (_state == QuestState.ACTIVE || _state == QuestState.COMPLETED)) {
-            ExitedArea(this);
-        }
+            if (ExitedArea != null && (_state == QuestState.ACTIVE || _state == QuestState.COMPLETED)) {
+                ExitedArea(this);
+            }
 
-        if (_state == QuestState.ACTIVE && _showMarkersOnEnter) {
-            HideMarkers();
+            if (_state == QuestState.ACTIVE && _showMarkersOnEnter) {
+                HideMarkers();
+            }
         }
     }
 
@@ -220,14 +227,21 @@ public abstract class Quest : MonoBehaviour {
     }
 
     public virtual void Complete() {
-        if (_inArea) {
-            PlayerExitedQuestArea();
-        }
         _state = QuestState.COMPLETED;
         HideMarkers();
         Debug.Log("<color=red>" + this + ": quest completed, id: " + _id + "</color>");
         if (QuestCompleted != null) {
             QuestCompleted(this);
+        }
+
+        if (_deleteWhenCompleted) {
+            if (_inArea) {
+                PlayerExitedQuestArea();
+            }
+            _deleted = true;
+            if (QuestDeleted != null) {
+                QuestDeleted(this);
+            }
         }
     }
 

@@ -11,7 +11,8 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         COMPLETE,
         PROGRESS,
         AREA_ENTER,
-        AREA_EXIT
+        AREA_EXIT,
+        DELETED
     }
 
     [Header("Quests to listen settings")]
@@ -88,6 +89,10 @@ public abstract class QuestEventReceiver : MonoBehaviour {
         OnEventReceived(quest, EventType.AREA_EXIT);
     }
 
+    protected virtual void OnQuestDeleted(Quest quest) {
+        OnEventReceived(quest, EventType.DELETED);
+    }
+
     protected void SetEventSubscription(bool subscribe, Quest quest, EventType eventType) {
         switch (eventType) {
             case EventType.START:
@@ -123,6 +128,13 @@ public abstract class QuestEventReceiver : MonoBehaviour {
                     quest.ExitedArea += OnExitedQuestArea;
                 } else {
                     quest.ExitedArea -= OnExitedQuestArea;
+                }
+                break;
+            case EventType.DELETED:
+                if (subscribe) {
+                    quest.ExitedArea += OnQuestDeleted;
+                } else {
+                    quest.ExitedArea -= OnQuestDeleted;
                 }
                 break;
             default:

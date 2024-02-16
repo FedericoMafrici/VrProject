@@ -44,13 +44,13 @@ public abstract class AbstractStructuredQuest : Quest {
     }
 
     private void OnPlayerEnteredArea(Quest step) {
-        //equivalent code of OnTriggerEnter
-        PlayerEnteredQuestArea();
+            //equivalent code of OnTriggerEnter
+            PlayerEnteredQuestArea();
     }
 
     private void OnPlayerExitedArea(Quest step) {
-        //equivalent code of OnTriggerExit
-        PlayerExitedQuestArea();
+            //equivalent code of OnTriggerExit
+            PlayerExitedQuestArea();
     }
 
     public override void AreaCheck() {
