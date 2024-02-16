@@ -157,8 +157,8 @@ public class UiGameManager : MonoBehaviour {
 
 
         }
-        setttingsList.text = "WASD → movimento \n movimento Mouse → rotazione visuale/Movimento cursore (nei menù) \n click sinistro → utilizza oggetto attivo/Interazione contestuale/Selezione elementi (nei menù) \n click destro → interazione mano libera \n Q → lascia oggetto E → raccogli oggetto/parla con NPC \n P → avanza dialogo/Avanza pop-up tutorial \n tasti numerici → selezione oggetti nella hotbar \n Esc → apri menù \n ";
-        additionalRules.text = "le galline produranno periodicamente uova basta avere un po di pazienza! \n usando la pala è possibile rimuovere alberi e piante indesiderate! \n se non sai piu come procedere consulta il tuo diario per sapere cosa ti manca \n incontrando degli animali sbloccherai delle preziosi informazioni";
+        setttingsList.text = "WASD → movimento \n Movimento Mouse → rotazione visuale/movimento cursore (nei menù) \n Click sinistro → Utilizza oggetto attivo/Interazione contestuale/Selezione elementi (nei menù) \n Click destro → Interazione mano libera \n Q → lascia oggetto E → raccogli oggetto/parla con NPC \n P → avanza dialogo/Avanza pop-up tutorial \n Tasti numerici → selezione oggetti nella hotbar \n Esc → apri menù \n ";
+        additionalRules.text = "Le galline produranno periodicamente uova basta avere un po di pazienza! \n Usando la pala è possibile rimuovere alberi e piante indesiderate! \n Se non sai piu come procedere consulta il tuo diario per sapere cosa ti manca \n Incontrando degli animali sbloccherai delle preziosi informazioni";
         // bottoni automatici 
         if (currAnimalKey == 0) {
             // NextAnimalButton.Sprite=null;
