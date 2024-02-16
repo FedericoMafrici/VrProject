@@ -255,12 +255,11 @@ public class TargetMinigame : MonoBehaviour {
         if (cam != null) {
 
             cam.gameObject.SetActive(true);
-            if (alEnabled) {
-                audioListener = cam.GetComponent<AudioListener>();
-                if (audioListener != null && !alEnabled) {
-                    audioListener.enabled = false;
-                }
+            audioListener = cam.GetComponent<AudioListener>();
+            if (audioListener != null && !alEnabled) {
+                audioListener.enabled = false;
             }
+
         }
         /*
         cam.enabled = true;
