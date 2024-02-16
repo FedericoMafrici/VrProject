@@ -118,6 +118,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -648868044355513867, guid: 769866b8f5a18944f8bdb757cc302ef1, type: 3}
+      propertyPath: MaxDistance
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: -648868044355513867, guid: 769866b8f5a18944f8bdb757cc302ef1, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3364929146393952705, guid: 769866b8f5a18944f8bdb757cc302ef1, type: 3}
       propertyPath: m_Name
       value: Giraffa (1) Variant
