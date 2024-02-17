@@ -17,4 +17,12 @@ public class Scenario : MonoBehaviour
 
     public Vector3 playerPos;
     public Vector3 playerRot;
+    public Transform positionTransform;
+
+    private void Awake() {
+        if (positionTransform != null) {
+            playerPos = positionTransform.position;
+            playerRot = positionTransform.rotation.eulerAngles;
+        }
+    }
 }

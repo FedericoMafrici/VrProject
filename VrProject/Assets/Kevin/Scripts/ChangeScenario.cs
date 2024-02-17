@@ -67,7 +67,7 @@ public class ChangeScenario : QuestEventReceiver
 
     IEnumerator EnableFPController()
     {
-        yield return new WaitForEndOfFrame();
+        yield return null;
         player.GetComponent<FirstPersonController>().enabled = true;
     }
 
