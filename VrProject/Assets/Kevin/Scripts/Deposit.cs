@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Rendering;
+#if UNITY_EDITOR
 using static UnityEditor.Progress;
+#endif
 using Quaternion = UnityEngine.Quaternion;
 
 public class Deposit : MonoBehaviour

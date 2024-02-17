@@ -4,106 +4,99 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor.Search;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 
-[Serializable] public struct QuestElement
-{
-    public string name;
-    public string text;
-    public bool isCompleted;
-}
-
 public class UI_QuestsList : QuestEventReceiver {
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject quests_UI;
+    [SerializeField] private GameObject questsUI;
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text hint;
 
-    private int numOfQuests = 0;
-    private GameObject uiElement;
-    private Dictionary<string, QuestElement> elements = new Dictionary<string, QuestElement>();
-    private Dictionary<string, TMP_Text> descriptions = new Dictionary<string, TMP_Text>();
-    private Dictionary<string, Image> checkboxes = new Dictionary<string, Image>();
-    private Dictionary<string, Image> checks = new Dictionary<string, Image>();
+    private Dictionary<string, Quest> allQuests = new Dictionary<string, Quest>();
+    private Dictionary<string, GameObject> elements = new Dictionary<string, GameObject>();
 
     public bool isOpen;
 
     protected override void Awake() {
         base.Awake();
-        Hide();
-        uiElement = (GameObject)Resources.Load("Prefabs/Description");
+        Close();
     }
 
     protected override void OnEventReceived(Quest quest, EventType eventType) {
         Debug.LogWarning("Received " + eventType + " from " + quest.name);
         if (eventType == EventType.AREA_ENTER) {
+            
+            allQuests.Add(quest.name, quest);
 
-            numOfQuests++;
+            if (!elements.ContainsKey(quest.name)) {
+                GameObject uiElem = Instantiate((GameObject) Resources.Load("Prefabs/Description"), this.transform);
+                elements.Add(quest.name, uiElem);
 
-            QuestElement elem;
-            elem.name = quest.name;
-            elem.text = quest.GetQuestDescription();
-            elem.isCompleted = (quest.GetState() == QuestState.COMPLETED);
-
-            if (!elements.ContainsKey(elem.name)) {
-                elements.Add(elem.name, elem);
-
-
-                GameObject uiElem = Instantiate(uiElement, this.transform);
-                descriptions.Add(elem.name, uiElem.GetComponent<TMP_Text>());
-                checkboxes.Add(elem.name, uiElem.transform.GetChild(0).GetComponent<Image>());
-                checks.Add(elem.name, uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>());
-
-                uiElem.GetComponent<TMP_Text>().text = elem.text;
-
-                if (!elem.isCompleted)
+                uiElem.GetComponent<TMP_Text>().text = quest.GetQuestDescription();
+                if (quest.GetState() != QuestState.COMPLETED)
                     uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(false);
-
-                Show();
-                Open();
+                else
+                    uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
             }
 
         } else if (eventType == EventType.COMPLETE) {
-            if (elements.ContainsKey(quest.name)) {
-                QuestElement elem = elements[quest.name];
-                elem.isCompleted = true;
-                elements[quest.name] = elem;
-                checks[elem.name].gameObject.SetActive(true);
+            
+            if (allQuests.ContainsKey(quest.name))
+            {
+                allQuests[quest.name] = quest;
+            }
+            
+            if (elements.ContainsKey(quest.name))
+            {
+                GameObject uiElem = elements[quest.name];
+                uiElem.transform.GetChild(0).GetChild(0).GetComponent<Image>().gameObject.SetActive(true);
+            }
+            
+        } else if (eventType == EventType.PROGRESS) {
+            
+            if (allQuests.ContainsKey(quest.name))
+            {
+                allQuests[quest.name] = quest;
+            }
+            
+            if (elements.ContainsKey(quest.name))
+            {
+                GameObject uiElem = elements[quest.name];
+                uiElem.GetComponent<TMP_Text>().text = quest.GetQuestDescription();
             }
 
-        } else if (eventType == EventType.PROGRESS && elements.ContainsKey(quest.name)) {
-
-            descriptions[quest.name].text = quest.GetQuestDescription();
-
+        } else if (eventType == EventType.DELETED) {
+            
+            allQuests.Remove(quest.name);
+            if (elements.ContainsKey(quest.name))
+            {
+                Destroy(elements[quest.name]);
+                elements.Remove(quest.name);
+            }
 
         } else if (eventType == EventType.AREA_EXIT) {
-            numOfQuests--;
+
             if (elements.ContainsKey(quest.name)) {
+                Destroy(elements[quest.name]);
                 elements.Remove(quest.name);
-                descriptions.Remove(quest.name);
-                checkboxes.Remove(quest.name);
-                checks.Remove(quest.name);
             }
-            if (numOfQuests == 0) {
-                Close();
-                numOfQuests = 0;
-                elements.Clear();
-                descriptions.Clear();
-                checkboxes.Clear();
-                checks.Clear();
-
-                for (int i = 0; i < transform.childCount; i++) {
-                    if (transform.GetChild(i).tag == "QuestsUI") {
-                        transform.GetChild(i).gameObject.SetActive(false);
-                        Destroy(transform.GetChild(i).gameObject);
-
-                    }
-                }
-                Hide();
-            }
+            
         }
+        
+        if (elements.Count == 0) {
+            Close();
+            Hide();
+        }
+        else if (elements.Count == 1)
+        {
+            Open();
+            Show();
+        }
+
     }
 
     public void Open() {
@@ -113,66 +106,48 @@ public class UI_QuestsList : QuestEventReceiver {
             isOpen = true;
 
             hint.text = "Premi H per nascondere";
-
-            ShowText();
         }
+        StartCoroutine(ShowText());
     }
 
     public void Close() {
-        animator.SetBool("IsOpen", false);
-        isOpen = false;
+        if (animator.GetBool("IsOpen"))
+        {
+            animator.SetBool("IsOpen", false);
+            isOpen = false;
 
-        hint.text = "Premi H per espandere";
-
-        HideText();
+            hint.text = "Premi H per espandere";
+        }
+        StartCoroutine(HideText());
     }
 
-    void ShowText() {
-        StartCoroutine(ShowTextCoroutine());
-    }
-
-    IEnumerator ShowTextCoroutine() {
+    IEnumerator ShowText() {
         yield return new WaitForSeconds(0.65f);
 
         title.gameObject.SetActive(true);
-        foreach (String str in elements.Keys)
+        foreach (String name in elements.Keys)
         {
-            descriptions[str].text = elements[str].text;
-            descriptions[str].gameObject.SetActive(true);
-
-            checkboxes[str].gameObject.SetActive(true);
-
-
-            if (elements[str].isCompleted)
-                checks[str].gameObject.SetActive(true);
+            elements[name].SetActive(true);
         }
     }
 
-    void HideText() {
-        StartCoroutine(HideTextCoroutine());
-    }
-
-    IEnumerator HideTextCoroutine() {
+    IEnumerator HideText() {
         yield return new WaitForSeconds(0.35f);
 
         title.gameObject.SetActive(false);
-        foreach (String str in elements.Keys)
+        foreach (String name in elements.Keys)
         {
-            descriptions[str].gameObject.SetActive(false);
-            checkboxes[str].gameObject.SetActive(false);
-            checks[str].gameObject.SetActive(false);
+            elements[name].SetActive(false);
         }
     }
 
-    private void Show() {
-        quests_UI.gameObject.SetActive(true);
-        title.gameObject.SetActive(true);
+    public void Show() {
+        questsUI.gameObject.SetActive(true);
         hint.gameObject.SetActive(true);
     }
 
-    private void Hide() {
-        quests_UI.gameObject.SetActive(false);
-        title.gameObject.SetActive(false);
+    public void Hide() {
+        questsUI.gameObject.SetActive(false);
         hint.gameObject.SetActive(false);
     }
 }

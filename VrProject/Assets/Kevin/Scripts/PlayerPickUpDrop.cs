@@ -74,9 +74,13 @@ public class PlayerPickUpDrop : MonoBehaviour
                     }
 
                     ThrowPickUpEvent(item);
-                } else if (hotbar.activeItemObj.itemCategory != Item.ItemCategory.Tool) {
+                } else if (hotbar.activeItemObj.itemCategory != Item.ItemCategory.Tool)
+                {
+                    int slot = hotbar.numSelectedButton;
                     Drop();
                     item = null;
+                    if (hotbar.itemWrappers[slot].amount != 0)
+                        StartCoroutine(GrabAnother(slot));
                 }
             }
 
@@ -147,10 +151,14 @@ public class PlayerPickUpDrop : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.H))
             {
                 UI_QuestsList questsList = GameObject.Find("QuestsList").GetComponent<UI_QuestsList>();
-                if(questsList.isOpen)
+                if (questsList.isOpen)
+                {
                     questsList.Close();
+                }
                 else
+                {
                     questsList.Open();
+                }
             }
             
             // ------------- PRESSIONE L: cambio scenario -------------
@@ -301,6 +309,12 @@ public class PlayerPickUpDrop : MonoBehaviour
             }
         }
 
+    }
+
+    IEnumerator GrabAnother(int slot)
+    {
+        yield return new WaitForSeconds(0.5f);
+        hotbar.InstantiateItem(slot);
     }
 
 }

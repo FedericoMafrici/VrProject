@@ -11,7 +11,7 @@ public class ItemAmount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hotbar.itemWrappers[slot] != null)
+        if (hotbar.itemWrappers != null && hotbar.itemWrappers[slot] != null)
         {
             int amount = hotbar.itemWrappers[slot].amount;
             if (amount == 0 || amount == 1)

@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
-using Palmmedia.ReportGenerator.Core.CodeAnalysis;
+//using Palmmedia.ReportGenerator.Core.CodeAnalysis;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.PackageManager;
+#endif
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;

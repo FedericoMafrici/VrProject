@@ -1,7 +1,9 @@
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor.Search;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 

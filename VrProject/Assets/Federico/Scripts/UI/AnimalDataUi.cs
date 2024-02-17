@@ -17,7 +17,7 @@ public class AnimalDataUi : QuestEventReceiver
     //Descrizione delle missioni degli animali 
     public int index=3;
     
-    public bool imageChanged=true;
+    public bool imageChanged=false;
     // immagine da visualizzare
     public Sprite AnimalTitleImage;
     public Sprite AnimalSprite;
