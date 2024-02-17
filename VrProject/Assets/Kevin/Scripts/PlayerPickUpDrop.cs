@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static Item;
 
 public class PlayerPickUpDrop : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                         && item.enabled
                         && (hotbar.firstEmpty < Constants.Capacity || hotbar.Contains(item.itemName))) {
 
-                        if (item.itemName == Item.ItemName.Leaf) {
+                        if (item.itemName == Item.ItemName.Leaf && (item as AnimalFood).IsPlanted()) {
                             item.GetComponent<BoxCollider>().enabled = false;
                             item.GetComponent<MeshCollider>().enabled = true;
                         }
@@ -87,6 +88,12 @@ public class PlayerPickUpDrop : MonoBehaviour
                     && item.enabled
                     && (hotbar.firstEmpty < Constants.Capacity || hotbar.Contains(item.itemName))) {
                     // item.Grab(objectGrabPointTransform, true); // TODO: lascio? Serve a vedere l'effetto di spostamento dell'oggetto mentre lo raccolgo
+
+                    if (item.itemName == Item.ItemName.Leaf && (item as AnimalFood).IsPlanted()) {
+                        item.GetComponent<BoxCollider>().enabled = false;
+                        item.GetComponent<MeshCollider>().enabled = true;
+
+                    }
 
                     hotbar.Add(item, false);
 
@@ -275,6 +282,17 @@ public class PlayerPickUpDrop : MonoBehaviour
         } else {
             return false;
         }
+    }
+
+    IEnumerator RegenerateItem(Item.ItemName name, Transform itemTransform, Transform parent) {
+        Vector3 position = itemTransform.position;
+        Quaternion rotation = itemTransform.rotation;
+        yield return new WaitForSeconds(1);
+        GameObject spawned = Instantiate((GameObject)Resources.Load("Prefabs/" + name, typeof(GameObject)));
+        spawned.transform.position = position;
+        spawned.transform.rotation = rotation;
+        spawned.transform.parent = parent;
+
     }
 
 }
