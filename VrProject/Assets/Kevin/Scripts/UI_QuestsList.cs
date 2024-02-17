@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
@@ -18,7 +19,8 @@ public class UI_QuestsList : QuestEventReceiver {
 
     private Dictionary<string, Quest> allQuests = new Dictionary<string, Quest>();
     private Dictionary<string, GameObject> elements = new Dictionary<string, GameObject>();
-
+    
+    public bool commandLocked;
     public bool isOpen;
 
     protected override void Awake() {
@@ -87,11 +89,11 @@ public class UI_QuestsList : QuestEventReceiver {
             
         }
         
-        if (elements.Count == 0) {
+        if (elements.Count == 0 && isOpen) {
             Close();
             Hide();
         }
-        else if (elements.Count == 1)
+        else if (elements.Count == 1 && !isOpen)
         {
             Open();
             Show();
@@ -122,23 +124,29 @@ public class UI_QuestsList : QuestEventReceiver {
     }
 
     IEnumerator ShowText() {
-        yield return new WaitForSeconds(0.65f);
+        yield return new WaitForSeconds(0.5f);
 
         title.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
         foreach (String name in elements.Keys)
         {
             elements[name].SetActive(true);
+            yield return new WaitForSeconds(0.1f);
         }
+        commandLocked = false;
     }
 
     IEnumerator HideText() {
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(0.2f);
 
-        title.gameObject.SetActive(false);
-        foreach (String name in elements.Keys)
+        foreach (String name in elements.Keys.Reverse())
         {
             elements[name].SetActive(false);
+            yield return new WaitForSeconds(0.1f);
         }
+        yield return new WaitForSeconds(0.1f);
+        title.gameObject.SetActive(false);
+        commandLocked = false;
     }
 
     public void Show() {
@@ -146,7 +154,14 @@ public class UI_QuestsList : QuestEventReceiver {
         hint.gameObject.SetActive(true);
     }
 
-    public void Hide() {
+    public void Hide()
+    {
+        StartCoroutine(HideAfterAWhile());
+    }
+    
+    IEnumerator HideAfterAWhile()
+    {
+        yield return new WaitForSeconds(1.5f);
         questsUI.gameObject.SetActive(false);
         hint.gameObject.SetActive(false);
     }
