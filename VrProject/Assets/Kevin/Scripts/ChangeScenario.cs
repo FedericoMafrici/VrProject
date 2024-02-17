@@ -14,7 +14,10 @@ public enum ScenarioName
 public class ChangeScenario : QuestEventReceiver
 {
     public int currentScenario;
+    private bool firstLevel=true;
 
+    public Material sky1;
+    public Material sky2;
     public List<Scenario> scenarios = new List<Scenario>();
     
     [SerializeField] private Camera mainCamera;
@@ -51,9 +54,21 @@ public class ChangeScenario : QuestEventReceiver
             scenarios[currentScenario].scene.SetActive(false);
             
             currentScenario = newScenario;
-
+            
             if (scenarios[currentScenario].pipeEmitter != null) {
                 scenarios[currentScenario].pipeEmitter.Play();
+            }
+            //AGGIUNTO DA FEDE
+            if(sky1!=null && sky2!=null) {
+                if(firstLevel) {
+                RenderSettings.skybox = sky1;
+                firstLevel=false;
+                }
+                else
+                {
+                    RenderSettings.skybox=sky2;
+                    firstLevel=true;
+                }
             }
         }
         else
