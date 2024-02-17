@@ -14,10 +14,6 @@ public enum ScenarioName
 public class ChangeScenario : QuestEventReceiver
 {
     public int currentScenario;
-    private bool firstLevel=true;
-
-    public Material sky1;
-    public Material sky2;
     public List<Scenario> scenarios = new List<Scenario>();
     
     [SerializeField] private Camera mainCamera;
@@ -29,6 +25,7 @@ public class ChangeScenario : QuestEventReceiver
         currentScenario = 0;
         gameObject.transform.GetComponent<AudioSource>().clip = scenarios[currentScenario].soundtrack;
         gameObject.transform.GetComponent<AudioSource>().Play();
+        RenderSettings.skybox = (Material) Resources.Load("Skyboxes/FarmSky");
     }
 
     public void SelectScenario(int newScenario)
@@ -59,18 +56,8 @@ public class ChangeScenario : QuestEventReceiver
                 scenarios[currentScenario].pipeEmitter.Play();
             }
 
-            //AGGIUNTO DA FEDE
-            if(sky1!=null && sky2!=null) {
-                if(firstLevel) {
-                RenderSettings.skybox = sky1;
-                firstLevel=false;
-                }
-                else
-                {
-                    RenderSettings.skybox=sky2;
-                    firstLevel=true;
-                }
-            }
+            if(scenarios[currentScenario].sky != null)
+                RenderSettings.skybox = scenarios[currentScenario].sky;
         }
         else
         {

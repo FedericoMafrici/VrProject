@@ -13,6 +13,7 @@ public class Scenario : MonoBehaviour
     public GameObject scene;
     public bool unlocked;
     public AudioSource pipeEmitter;
+    public Material sky;
 
     public Vector3 playerPos;
     public Vector3 playerRot;
