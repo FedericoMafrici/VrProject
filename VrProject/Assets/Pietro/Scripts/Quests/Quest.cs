@@ -149,13 +149,13 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void OnTriggerEnter(Collider other) {
-        if ((_state != QuestState.COMPLETED) && (LayerMask.GetMask("Player") & (1 << other.transform.gameObject.layer)) > 0) {
+        if ((LayerMask.GetMask("Player") & (1 << other.transform.gameObject.layer)) > 0) {
             PlayerEnteredQuestArea();
         }
     }
 
     protected virtual void OnTriggerExit(Collider other) {
-        if  ((_state != QuestState.COMPLETED) && (LayerMask.GetMask("Player") & (1 << other.transform.gameObject.layer)) > 0) {
+        if  ((LayerMask.GetMask("Player") & (1 << other.transform.gameObject.layer)) > 0) {
             PlayerExitedQuestArea();
         }
     }
