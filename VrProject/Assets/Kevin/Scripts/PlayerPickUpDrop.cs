@@ -74,9 +74,13 @@ public class PlayerPickUpDrop : MonoBehaviour
                     }
 
                     ThrowPickUpEvent(item);
-                } else if (hotbar.activeItemObj.itemCategory != Item.ItemCategory.Tool) {
+                } else if (hotbar.activeItemObj.itemCategory != Item.ItemCategory.Tool)
+                {
+                    int slot = hotbar.numSelectedButton;
                     Drop();
                     item = null;
+                    if (hotbar.itemWrappers[slot].amount != 0)
+                        StartCoroutine(GrabAnother(slot));
                 }
             }
 
@@ -305,6 +309,12 @@ public class PlayerPickUpDrop : MonoBehaviour
             }
         }
 
+    }
+
+    IEnumerator GrabAnother(int slot)
+    {
+        yield return new WaitForSeconds(0.5f);
+        hotbar.InstantiateItem(slot);
     }
 
 }

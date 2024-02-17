@@ -47,7 +47,7 @@ public class PlayerItemManager : MonoBehaviour {
                 }
             }
 
-            //this is out of the for loop in orderd to execute the behaviour following use/consume exactly once
+            //this is out of the for loop in order to execute the behaviour following use/consume exactly once
             if (itemUsed) {
                 heldItem.gameObject.GetComponent<AudioSource>().clip = heldItem.usageSound;
                 heldItem.gameObject.GetComponent<AudioSource>().Play();
