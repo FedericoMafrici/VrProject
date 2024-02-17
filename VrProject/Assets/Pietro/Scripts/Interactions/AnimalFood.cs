@@ -82,6 +82,10 @@ public class AnimalFood : ItemConsumable {
         return _isPlanted;
     }
 
+    public void SetIsPlanted(bool value) {
+        _isPlanted = value;
+    }
+
     public override void Grab(Transform objectGrabPointTransform, bool isGrabbedFromGround) {
         _isPlanted = false;
         base.Grab(objectGrabPointTransform, isGrabbedFromGround);

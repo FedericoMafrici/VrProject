@@ -45,6 +45,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                         if (item.itemName == Item.ItemName.Leaf && (item as AnimalFood).IsPlanted()) {
                             item.GetComponent<BoxCollider>().enabled = false;
                             item.GetComponent<MeshCollider>().enabled = true;
+                            StartCoroutine(RegenerateItem(ItemName.Leaf, item.transform, item.transform.parent));
                         }
 
                         int lastItemIndex = hotbar.Add(item, true);
@@ -92,7 +93,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                     if (item.itemName == Item.ItemName.Leaf && (item as AnimalFood).IsPlanted()) {
                         item.GetComponent<BoxCollider>().enabled = false;
                         item.GetComponent<MeshCollider>().enabled = true;
-
+                        StartCoroutine(RegenerateItem(ItemName.Leaf, item.transform, item.transform.parent));
                     }
 
                     hotbar.Add(item, false);
@@ -287,11 +288,18 @@ public class PlayerPickUpDrop : MonoBehaviour
     IEnumerator RegenerateItem(Item.ItemName name, Transform itemTransform, Transform parent) {
         Vector3 position = itemTransform.position;
         Quaternion rotation = itemTransform.rotation;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(30);
+        Debug.Log("Respawining item");
         GameObject spawned = Instantiate((GameObject)Resources.Load("Prefabs/" + name, typeof(GameObject)));
         spawned.transform.position = position;
         spawned.transform.rotation = rotation;
         spawned.transform.parent = parent;
+        if (name == ItemName.Leaf) {
+            AnimalFood afComponent = spawned.GetComponent<AnimalFood>();
+            if (afComponent != null) {
+                afComponent.SetIsPlanted(true);
+            }
+        }
 
     }
 
