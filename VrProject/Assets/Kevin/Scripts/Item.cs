@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Timers;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Search;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;

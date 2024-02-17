@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.WSA;
+//using UnityEngine.WSA;
 
 public class QuestObjectActivator : QuestEventReceiver {
     [SerializeField] List<GameObject> _gameObjects = new List<GameObject>();

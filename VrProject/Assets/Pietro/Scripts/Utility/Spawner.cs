@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor.PackageManager;
+#endif
 using UnityEngine;
+#if UNITY_EDITOR
 using static UnityEditor.Experimental.GraphView.GraphView;
+#endif
 
 public class Spawner {
 

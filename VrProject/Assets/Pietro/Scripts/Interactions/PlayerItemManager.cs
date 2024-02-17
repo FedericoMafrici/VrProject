@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using static UnityEditor.Progress;
+#endif
 
 public class PlayerItemManager : MonoBehaviour {
     [SerializeField] Camera _playerCamera;

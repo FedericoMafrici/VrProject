@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+#if UNITY_EDITOR
 using static UnityEditor.Searcher.Searcher.AnalyticsEvent;
+#endif
 
 public abstract class QuestEventReceiver : MonoBehaviour {
     protected enum EventType {
