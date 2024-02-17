@@ -42,7 +42,7 @@ public class ChangeScenario : QuestEventReceiver
                 pipeAnimator.SetBool("IsSpawned", true);
 
             player.GetComponent<FirstPersonController>().enabled = false;
-            
+
             player.transform.position = scenarios[newScenario].playerPos;
             player.transform.rotation = Quaternion.Euler(scenarios[newScenario].playerRot);
 
