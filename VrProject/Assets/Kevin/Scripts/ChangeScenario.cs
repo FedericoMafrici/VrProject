@@ -58,6 +58,7 @@ public class ChangeScenario : QuestEventReceiver
             if (scenarios[currentScenario].pipeEmitter != null) {
                 scenarios[currentScenario].pipeEmitter.Play();
             }
+
             //AGGIUNTO DA FEDE
             if(sky1!=null && sky2!=null) {
                 if(firstLevel) {
