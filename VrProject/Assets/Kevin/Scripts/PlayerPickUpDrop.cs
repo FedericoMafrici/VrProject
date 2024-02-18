@@ -313,6 +313,8 @@ public class PlayerPickUpDrop : MonoBehaviour
             if (afComponent != null) {
                 afComponent.SetIsPlanted(true);
             }
+            spawned.GetComponent<MeshCollider>().enabled = false;
+            spawned.GetComponent<BoxCollider>().enabled = true;
         }
 
     }
