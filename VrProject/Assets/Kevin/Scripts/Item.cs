@@ -126,4 +126,5 @@ public /*abstract*/ class Item : Grabbable
 public struct UseResult {
     public bool itemUsed;
     public bool itemConsumed;
+    public bool supressSound;
 }

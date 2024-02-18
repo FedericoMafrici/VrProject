@@ -32,6 +32,7 @@ public class PlayerItemManager : MonoBehaviour {
         Item heldItem = _hotbar.activeItemObj;
         bool itemUsed = false;
         bool itemConsumed = false;
+        bool suppressSound = false;
 
         if ( heldItem != null ) {
             Item[] itemComponents = heldItem.GetComponents<Item>();
@@ -47,12 +48,18 @@ public class PlayerItemManager : MonoBehaviour {
                 if (!itemConsumed && useResult.itemConsumed) {
                     itemConsumed = true;
                 }
+
+                if (!suppressSound && useResult.supressSound) {
+                    suppressSound = true;
+                }
             }
 
             //this is out of the for loop in order to execute the behaviour following use/consume exactly once
             if (itemUsed) {
-                heldItem.gameObject.GetComponent<AudioSource>().clip = heldItem.usageSound;
-                heldItem.gameObject.GetComponent<AudioSource>().Play();
+                if (!suppressSound) {
+                    heldItem.gameObject.GetComponent<AudioSource>().clip = heldItem.usageSound;
+                    heldItem.gameObject.GetComponent<AudioSource>().Play();
+                }
                 //throw used event
                 if (ItemUsed != null) {
                     ItemUsed(this, new UsedItemEventArgs(heldItem));

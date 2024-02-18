@@ -55,6 +55,10 @@ public class FoodEater : MonoBehaviour {
         if (_foodIcon != null) {
             _foodIcon.gameObject.SetActive(true);
         }
+        AnimalAudioPlayer audioSource = GetComponent<AnimalAudioPlayer>();
+        if (audioSource != null && food.usageSound != null) {
+            audioSource.PlaySound(food.usageSound);
+        }
         StartCoroutine(WaitBeforeHungry());
         //food.StartFading();
     }

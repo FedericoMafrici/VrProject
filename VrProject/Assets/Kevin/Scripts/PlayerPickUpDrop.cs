@@ -243,10 +243,12 @@ public class PlayerPickUpDrop : MonoBehaviour
     }
     
     public void ThrowPickUpEvent(Item item) {
-        Item[] itemComponents = item.GetComponents<Item>();
-        if (item != null && PickUpEvent != null) {
-            foreach (Item i in itemComponents) {
-                PickUpEvent(item.itemName);
+        if (item != null) {
+            Item[] itemComponents = item.GetComponents<Item>();
+            if (item != null && PickUpEvent != null) {
+                foreach (Item i in itemComponents) {
+                    PickUpEvent(item.itemName);
+                }
             }
         }
     }

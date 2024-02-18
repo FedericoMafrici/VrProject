@@ -52,6 +52,7 @@ public class AnimalFood : ItemConsumable {
             eater.ForceEatFood(this);
             useResult.itemUsed = true;
             useResult.itemConsumed = _consumeWhenEaten;
+            useResult.supressSound = true;
             //RemovePart(result.currentInteracted);
         }
 
