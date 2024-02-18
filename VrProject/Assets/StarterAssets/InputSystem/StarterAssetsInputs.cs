@@ -41,7 +41,7 @@ namespace StarterAssets
 		}
 
 		public void OnJump(InputValue value) {
-			if (InputManager.MovementIsEnabled())
+			if (InputManager.JumpIsEnabled() && InputManager.MovementIsEnabled())
 				JumpInput(value.isPressed);
 		}
 

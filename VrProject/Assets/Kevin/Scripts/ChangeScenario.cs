@@ -84,6 +84,10 @@ public class ChangeScenario : QuestEventReceiver
     
     IEnumerator PlayAnimation()
     {
+        InputManager.DisableDialogues();
+        InputManager.DisableMenu();
+        InputManager.DisableInteractions();
+        InputManager.DisableMovement();
         scenarios[currentScenario].pipeCamera.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);
         // player.GetComponent<FirstPersonController>().enabled = false;
@@ -100,6 +104,10 @@ public class ChangeScenario : QuestEventReceiver
 
         mainCamera.gameObject.SetActive(true);
         scenarios[currentScenario].pipeCamera.gameObject.SetActive(false);
+        InputManager.EnableMenu();
+        InputManager.EnableInteractions();
+        InputManager.EnableMovement();
+        InputManager.EnableDialogues();
         // player.GetComponent<FirstPersonController>().enabled = true;
     }
 }

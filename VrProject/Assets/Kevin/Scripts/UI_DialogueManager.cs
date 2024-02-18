@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
     public void EnqueDialogue(Dialogue dialogue) {
         if (!dialogueOngoing) {
             //Debug.LogWarning("Starting dialogue");
-            InputManager.DisableMenu();
+            //InputManager.DisableMenu();
             InputManager.DisableInteractions();
             StartDialogue(dialogue);
         } else {
@@ -93,7 +93,7 @@ public class DialogueManager : MonoBehaviour
             //Debug.LogWarning("Ending dialogue");
             StopCoroutine(_sentenceCoroutine);
             _sentenceCoroutine = null;
-            InputManager.EnableMenu();
+            //InputManager.EnableMenu();
             InputManager.EnableInteractions();
             animator.SetBool("IsOpen", false);
             knob.SetActive(true);

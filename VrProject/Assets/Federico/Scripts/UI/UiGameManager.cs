@@ -556,6 +556,7 @@ public class UiGameManager : MonoBehaviour {
         // restting button 
         InputManager.DisableInteractions();
             InputManager.DisableMovement();
+        InputManager.DisableDialogues();
 
         Image tmp = PreviousPlantButton.GetComponent<Image>();
         Color buttonColor = tmp.color;
@@ -598,7 +599,8 @@ public class UiGameManager : MonoBehaviour {
     }
     public void CloseUI() {
        InputManager.EnableInteractions();
-                InputManager.EnableMovement();
+        InputManager.EnableMovement();
+        InputManager.EnableDialogues();
 
         // restting button 
         Image tmp = PreviousPlantButton.GetComponent<Image>();
