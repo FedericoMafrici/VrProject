@@ -148,15 +148,17 @@ public class PlayerPickUpDrop : MonoBehaviour
             
             // ------------- PRESSIONE TASTO H: nascondi o espandi quests list -------------
             
-            else if (Input.GetKeyDown(KeyCode.H))
+            else if (Input.GetKeyDown(KeyCode.H) && !GameObject.Find("QuestsList").GetComponent<UI_QuestsList>().commandLocked)
             {
                 UI_QuestsList questsList = GameObject.Find("QuestsList").GetComponent<UI_QuestsList>();
                 if (questsList.isOpen)
                 {
+                    questsList.commandLocked = true;
                     questsList.Close();
                 }
                 else
                 {
+                    questsList.commandLocked = true;
                     questsList.Open();
                 }
             }
