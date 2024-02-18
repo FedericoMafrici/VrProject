@@ -22,7 +22,7 @@ TagManager:
   - RemovablePart
   - Pipe
   - PipeWrapper
-  - 
+  - RenderInFront
   - 
   - 
   - 
@@ -44,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: RenderInFront
+    uniqueID: 151279033
     locked: 0

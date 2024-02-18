@@ -16,12 +16,15 @@ public class UI_QuestsList : QuestEventReceiver {
     [SerializeField] private GameObject questsUI;
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text hint;
+    [SerializeField] private Transform _layoutGroupTransform;
 
     private Dictionary<string, Quest> allQuests = new Dictionary<string, Quest>();
     private Dictionary<string, GameObject> elements = new Dictionary<string, GameObject>();
     
     public bool commandLocked;
     public bool isOpen;
+
+    private bool _isHidden = false; //aggiunto da pietro
 
     protected override void Awake() {
         base.Awake();
@@ -31,11 +34,18 @@ public class UI_QuestsList : QuestEventReceiver {
     protected override void OnEventReceived(Quest quest, EventType eventType) {
         Debug.LogWarning("Received " + eventType + " from " + quest.name);
         if (eventType == EventType.AREA_ENTER) {
-            
-            allQuests.Add(quest.name, quest);
+
+            if (!allQuests.ContainsKey(quest.name)) {
+                allQuests.Add(quest.name, quest);
+            }
 
             if (!elements.ContainsKey(quest.name)) {
                 GameObject uiElem = Instantiate((GameObject) Resources.Load("Prefabs/Description"), this.transform);
+
+                if (_layoutGroupTransform != null) {
+                    uiElem.transform.SetParent(_layoutGroupTransform, false);
+                }
+
                 elements.Add(quest.name, uiElem);
 
                 uiElem.GetComponent<TMP_Text>().text = quest.GetQuestDescription();
@@ -125,44 +135,68 @@ public class UI_QuestsList : QuestEventReceiver {
 
     IEnumerator ShowText() {
         yield return new WaitForSeconds(0.5f);
+        if (_isHidden || !isOpen) {
+            yield break;
+        }
 
-        title.gameObject.SetActive(true);
+        if (elements.Keys.Count > 0) {
+            title.gameObject.SetActive(true);
+        }
         yield return new WaitForSeconds(0.2f);
+        if (_isHidden || !isOpen) {
+            yield break;
+        }
         foreach (String name in elements.Keys)
         {
             elements[name].SetActive(true);
             yield return new WaitForSeconds(0.1f);
+            if (_isHidden || !isOpen) {
+                yield break;
+            }
         }
         commandLocked = false;
     }
 
     IEnumerator HideText() {
         yield return new WaitForSeconds(0.2f);
+        if (!_isHidden || isOpen) {
+            yield break;
+        }
 
         foreach (String name in elements.Keys.Reverse())
         {
             elements[name].SetActive(false);
             yield return new WaitForSeconds(0.1f);
+            if (!_isHidden || isOpen) {
+                yield break;
+            }
         }
         yield return new WaitForSeconds(0.1f);
+        if (!_isHidden || isOpen) {
+            yield break;
+        }
         title.gameObject.SetActive(false);
         commandLocked = false;
     }
 
     public void Show() {
+        _isHidden = false;
         questsUI.gameObject.SetActive(true);
         hint.gameObject.SetActive(true);
     }
 
     public void Hide()
     {
+        _isHidden = true;
         StartCoroutine(HideAfterAWhile());
     }
     
     IEnumerator HideAfterAWhile()
     {
         yield return new WaitForSeconds(1.5f);
-        questsUI.gameObject.SetActive(false);
-        hint.gameObject.SetActive(false);
+        if (_isHidden) {
+            questsUI.gameObject.SetActive(false);
+            hint.gameObject.SetActive(false);
+        }
     }
 }
