@@ -172,7 +172,7 @@ public abstract class Quest : MonoBehaviour {
             }
 
 
-
+            //Debug.LogWarning(name + " is trying to send EnteredArea event, state is " + _state);
             if (EnteredArea != null && (_state == QuestState.ACTIVE || _state == QuestState.COMPLETED)) {
                 EnteredArea(this);
             }
@@ -209,12 +209,14 @@ public abstract class Quest : MonoBehaviour {
 
     public virtual void AreaCheck() {
         CheckInit();
-        if (PlayerIsInQuestArea() && !_inArea) {
+        //Debug.LogWarning(name + "Area check: Player in quest area: " + PlayerIsInQuestArea());
+        if (PlayerIsInQuestArea()) {
+            
             PlayerEnteredQuestArea();
         }
     }
 
-    public bool PlayerIsInQuestArea() {
+    public virtual bool PlayerIsInQuestArea() {
         //checks if player is inside the quest area
         BoxCollider area = GetQuestArea();
         if (area != null && area.enabled) {
@@ -267,6 +269,7 @@ public abstract class Quest : MonoBehaviour {
     protected virtual void OnQuestStart() {
         Debug.Log("<color=green>" + this + ": quest started, id: " + _id + "</color>");
         if (!_startOnEnter) {
+            //Debug.LogWarning(name + "performing area check after being started");
             AreaCheck();
         }
     }

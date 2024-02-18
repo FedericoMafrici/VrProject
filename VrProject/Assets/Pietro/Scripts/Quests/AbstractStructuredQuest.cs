@@ -65,8 +65,9 @@ public abstract class AbstractStructuredQuest : Quest {
     }
 
     protected override void OnQuestStart() {
-        base.OnQuestStart();
+        Debug.LogWarning(name + " quest started");
         StartCurrStep();
+        base.OnQuestStart();
     }
 
     public override void Deactivate() {
@@ -79,7 +80,7 @@ public abstract class AbstractStructuredQuest : Quest {
     }
 
     protected virtual void OnStepCompleted(Quest step) {
-        Debug.LogWarning("Step completed: " + step.name);
+        //Debug.LogWarning("Step completed: " + step.name);
         if (StepCompleted != null) {
             StepCompleted(this, new StepEventArgs(_currentStep, _curStepIdx));
         }
@@ -102,6 +103,13 @@ public abstract class AbstractStructuredQuest : Quest {
         _curStepIdx++;
         _currentStep = _steps[_curStepIdx];
         SubscribeToCurrStep();
+
+        if (_inArea && !PlayerIsInQuestArea()) {
+            PlayerExitedQuestArea();
+        } else if (!_inArea && PlayerIsInQuestArea()) {
+            PlayerEnteredQuestArea();
+        }
+
         StartCurrStep();
     }
 
@@ -160,6 +168,10 @@ public abstract class AbstractStructuredQuest : Quest {
         }
 
         return canComplete;
+    }
+
+    public override bool PlayerIsInQuestArea() {
+        return _currentStep.PlayerIsInQuestArea();
     }
 
 }

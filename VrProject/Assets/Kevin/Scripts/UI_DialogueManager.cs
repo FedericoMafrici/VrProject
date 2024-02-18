@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private GameObject knob;
     [SerializeField] private GameObject hotbar;
+    [SerializeField] private GameObject _questUI;
 
     Coroutine _sentenceCoroutine = null; //aggiunto da Pietro
     private bool dialogueOngoing;
@@ -27,12 +28,12 @@ public class DialogueManager : MonoBehaviour
 
     public void EnqueDialogue(Dialogue dialogue) {
         if (!dialogueOngoing) {
-            Debug.LogWarning("Starting dialogue");
+            //Debug.LogWarning("Starting dialogue");
             InputManager.DisableMenu();
             InputManager.DisableInteractions();
             StartDialogue(dialogue);
         } else {
-            Debug.LogWarning("Enqueueing dialogue");
+            //Debug.LogWarning("Enqueueing dialogue");
             dialogueQueue.Enqueue(dialogue);
         }
     }
@@ -42,6 +43,9 @@ public class DialogueManager : MonoBehaviour
         dialogueOngoing = true;
         knob.SetActive(false);
         hotbar.SetActive(false);
+        if (_questUI != null) {
+            _questUI.SetActive(false);
+        }
         animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;
@@ -86,7 +90,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueOngoing = false;
         if (dialogueQueue.Count == 0) {
-            Debug.LogWarning("Ending dialogue");
+            //Debug.LogWarning("Ending dialogue");
             StopCoroutine(_sentenceCoroutine);
             _sentenceCoroutine = null;
             InputManager.EnableMenu();
@@ -94,8 +98,11 @@ public class DialogueManager : MonoBehaviour
             animator.SetBool("IsOpen", false);
             knob.SetActive(true);
             hotbar.SetActive(true);
+            if (_questUI != null) {
+                _questUI.SetActive(true);
+            }
         } else {
-            Debug.LogWarning("Dequeueing and staring dialogue");
+            //Debug.LogWarning("Dequeueing and staring dialogue");
             StartDialogue(dialogueQueue.Dequeue());
         }
     }

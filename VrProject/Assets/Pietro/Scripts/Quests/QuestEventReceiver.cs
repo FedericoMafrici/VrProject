@@ -134,9 +134,9 @@ public abstract class QuestEventReceiver : MonoBehaviour {
                 break;
             case EventType.DELETED:
                 if (subscribe) {
-                    quest.ExitedArea += OnQuestDeleted;
+                    quest.QuestDeleted += OnQuestDeleted;
                 } else {
-                    quest.ExitedArea -= OnQuestDeleted;
+                    quest.QuestDeleted -= OnQuestDeleted;
                 }
                 break;
             default:
