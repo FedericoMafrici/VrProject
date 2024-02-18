@@ -10,6 +10,7 @@ public class CheatCodeAutoCompleter : MonoBehaviour {
     [SerializeField] private List<KeyCode> _completeTutorialInputs = new List<KeyCode> {KeyCode.T, KeyCode.U, KeyCode.T, KeyCode.O, KeyCode.R, KeyCode.I, KeyCode.A, KeyCode.L};
     [SerializeField] private List<KeyCode> _completeSavannahInputs = new List<KeyCode> { KeyCode.S, KeyCode.A, KeyCode.V, KeyCode.A, KeyCode.N, KeyCode.A};
     [SerializeField] private List<KeyCode> _completeFarmInputs = new List<KeyCode> { KeyCode.F, KeyCode.A, KeyCode.R, KeyCode.M };
+    [SerializeField] private List<KeyCode> _jumpInputs = new List<KeyCode> { KeyCode.J, KeyCode.U, KeyCode.M, KeyCode.P};
 
     private HashSet<Quest> _farmQuests = new HashSet<Quest>();
     private HashSet<Quest> _savannahQuests = new HashSet<Quest>();
@@ -36,6 +37,7 @@ public class CheatCodeAutoCompleter : MonoBehaviour {
             int tutorialResult = -1;
             int farmResult = -1;
             int savannahResult = -1;
+            int jumpResult = -1;
             bool somethingTriggered = false;
 
             if (!_tutorialCompleted && !somethingTriggered) {
@@ -47,8 +49,6 @@ public class CheatCodeAutoCompleter : MonoBehaviour {
                     if (_startingTutorial.GetState() != QuestState.COMPLETED) {
                         _startingTutorial.AutoComplete();
                     }
-                } else if (tutorialResult > 0) {
-                    Debug.LogWarning("Cheatcode advanced for Tutorial");
                 }
             }
             if (!_farmCompleted && !somethingTriggered) {
@@ -64,8 +64,6 @@ public class CheatCodeAutoCompleter : MonoBehaviour {
                             }
                     }
 
-                } else if (farmResult > 0) {
-                    Debug.LogWarning("Cheatcode advanced for Farm");
                 }
             }
 
@@ -82,14 +80,30 @@ public class CheatCodeAutoCompleter : MonoBehaviour {
                         }
                     }
 
-                } else if (savannahResult > 0) {
-                    Debug.LogWarning("Cheatcode advanced for Savannah");
                 }
             }
+
+            
+            if (!somethingTriggered) {
+                jumpResult = CheckCheatCodeSequence(_jumpInputs, index);
+                if (jumpResult == -2) {
+                    somethingTriggered = true;
+                    _currentInputIdx = 0;
+
+                    if (InputManager.JumpIsEnabled()) {
+                        InputManager.DisableJump();
+                    } else {
+                        InputManager.EnableJump();
+                    }
+
+                }
+            }
+            
 
             if (!somethingTriggered) {
                 int maxIndex = (farmResult > tutorialResult) ? farmResult : tutorialResult;
                 maxIndex = (maxIndex > savannahResult) ? maxIndex : savannahResult;
+                maxIndex = (maxIndex > jumpResult) ? maxIndex : jumpResult;
                 if (maxIndex <= -1) {
                     _currentInputIdx= 0;
                 } else {

@@ -25,10 +25,29 @@ public class FriendshipQuest : Quest {
             Debug.LogWarning(transform.name + ": no description");
         }
 
+        //subscribe to pettables
+        foreach (Pettable pettable in _pettables) {
+            if (_state != QuestState.COMPLETED) { //quest might complete while iterating, check that this is not the case before executing code
+                if (pettable != null) {
+
+                    pettable.Befriended += OnAnimalBefriended;
+
+                    //check if pettable was already befriended
+                    if (pettable.IsAtMaxFriendship()) {
+                        OnAnimalBefriended(pettable, EventArgs.Empty);
+                    }
+                }
+            }
+        }
+
         base.Init();
     }
 
     private void OnAnimalBefriended(object sender, EventArgs args) {
+        if (_state == QuestState.NOT_STARTED && !_isStep) {
+            StartQuest();
+        }
+
         if (_state == QuestState.ACTIVE) {
             Debug.Log("Animal befriended: " + (sender as Pettable).transform.name);
             _nBefriended++;
@@ -50,21 +69,6 @@ public class FriendshipQuest : Quest {
 
     protected override void OnQuestStart() {
         base.OnQuestStart();
-
-        //subscribe to pettables
-        foreach (Pettable pettable in _pettables) {
-            if (_state != QuestState.COMPLETED) { //quest might complete while iterating, check that this is not the case before executing code
-                if (pettable != null) {
-
-                    pettable.Befriended += OnAnimalBefriended;
-
-                    //check if pettable was already befriended
-                    if (pettable.IsAtMaxFriendship()) {
-                        OnAnimalBefriended(pettable, EventArgs.Empty);
-                    }
-                }
-            }
-        }
     }
 
     public override void Complete() {

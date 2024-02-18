@@ -24,7 +24,7 @@ public class UI_QuestsList : QuestEventReceiver {
     public bool commandLocked;
     public bool isOpen;
 
-    private bool _isHidden = false; //aggiunto da pietro
+    private bool _isInactive = false; //aggiunto da pietro;
 
     protected override void Awake() {
         base.Awake();
@@ -32,7 +32,8 @@ public class UI_QuestsList : QuestEventReceiver {
     }
 
     protected override void OnEventReceived(Quest quest, EventType eventType) {
-        Debug.LogWarning("Received " + eventType + " from " + quest.name);
+        int prevElementsCount = elements.Count;
+        //Debug.LogWarning("Received " + eventType + " from " + quest.name);
         if (eventType == EventType.AREA_ENTER) {
 
             if (!allQuests.ContainsKey(quest.name)) {
@@ -99,11 +100,11 @@ public class UI_QuestsList : QuestEventReceiver {
             
         }
         
-        if (elements.Count == 0 && isOpen) {
+        if (prevElementsCount > 0 && elements.Count == 0) {
             Close();
             Hide();
         }
-        else if (elements.Count == 1 && !isOpen)
+        else if (prevElementsCount == 0 && elements.Count > 0)
         {
             Open();
             Show();
@@ -119,6 +120,7 @@ public class UI_QuestsList : QuestEventReceiver {
 
             hint.text = "Premi H per nascondere";
         }
+
         StartCoroutine(ShowText());
     }
 
@@ -130,12 +132,14 @@ public class UI_QuestsList : QuestEventReceiver {
 
             hint.text = "Premi H per espandere";
         }
+
         StartCoroutine(HideText());
     }
 
     IEnumerator ShowText() {
         yield return new WaitForSeconds(0.5f);
-        if (_isHidden || !isOpen) {
+        if (_isInactive || !isOpen) {
+            commandLocked = false;
             yield break;
         }
 
@@ -143,14 +147,16 @@ public class UI_QuestsList : QuestEventReceiver {
             title.gameObject.SetActive(true);
         }
         yield return new WaitForSeconds(0.2f);
-        if (_isHidden || !isOpen) {
+        if (_isInactive || !isOpen) {
+            commandLocked = false;
             yield break;
         }
         foreach (String name in elements.Keys)
         {
             elements[name].SetActive(true);
             yield return new WaitForSeconds(0.1f);
-            if (_isHidden || !isOpen) {
+            if (_isInactive || !isOpen) {
+                commandLocked = false;
                 yield break;
             }
         }
@@ -159,7 +165,11 @@ public class UI_QuestsList : QuestEventReceiver {
 
     IEnumerator HideText() {
         yield return new WaitForSeconds(0.2f);
-        if (!_isHidden || isOpen) {
+        if (_isInactive || isOpen) {
+            if (elements.Keys.Count == 0) {
+                title.gameObject.SetActive(false);
+            }
+            commandLocked = false;
             yield break;
         }
 
@@ -167,12 +177,20 @@ public class UI_QuestsList : QuestEventReceiver {
         {
             elements[name].SetActive(false);
             yield return new WaitForSeconds(0.1f);
-            if (!_isHidden || isOpen) {
+            if (_isInactive || isOpen) {
+                if (elements.Keys.Count == 0) {
+                    title.gameObject.SetActive(false);
+                }
+                commandLocked = false;
                 yield break;
             }
         }
         yield return new WaitForSeconds(0.1f);
-        if (!_isHidden || isOpen) {
+        if (_isInactive || isOpen) {
+            if (elements.Keys.Count== 0) {
+                title.gameObject.SetActive(false);
+            }
+            commandLocked = false;
             yield break;
         }
         title.gameObject.SetActive(false);
@@ -180,21 +198,21 @@ public class UI_QuestsList : QuestEventReceiver {
     }
 
     public void Show() {
-        _isHidden = false;
+        _isInactive = false;
         questsUI.gameObject.SetActive(true);
         hint.gameObject.SetActive(true);
     }
 
     public void Hide()
     {
-        _isHidden = true;
+        _isInactive = true;
         StartCoroutine(HideAfterAWhile());
     }
     
     IEnumerator HideAfterAWhile()
     {
         yield return new WaitForSeconds(1.5f);
-        if (_isHidden) {
+        if (_isInactive) {
             questsUI.gameObject.SetActive(false);
             hint.gameObject.SetActive(false);
         }

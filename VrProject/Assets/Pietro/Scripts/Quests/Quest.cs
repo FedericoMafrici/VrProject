@@ -201,7 +201,7 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void Progress() {
-        Debug.Log("<color=yellow>" + this + ": quest progressed, id: " + _id + "</color>");
+        //Debug.Log("<color=yellow>" + this + ": quest progressed, id: " + _id + "</color>");
         if (QuestProgressed != null) {
             QuestProgressed(this);
         }
@@ -231,7 +231,7 @@ public abstract class Quest : MonoBehaviour {
     public virtual void Complete() {
         _state = QuestState.COMPLETED;
         HideMarkers();
-        Debug.Log("<color=red>" + this + ": quest completed, id: " + _id + "</color>");
+        //Debug.Log("<color=red>" + this + ": quest completed, id: " + _id + "</color>");
         if (QuestCompleted != null) {
             QuestCompleted(this);
         }
@@ -267,7 +267,7 @@ public abstract class Quest : MonoBehaviour {
     }
 
     protected virtual void OnQuestStart() {
-        Debug.Log("<color=green>" + this + ": quest started, id: " + _id + "</color>");
+        //Debug.Log("<color=green>" + this + ": quest started, id: " + _id + "</color>");
         if (!_startOnEnter) {
             //Debug.LogWarning(name + "performing area check after being started");
             AreaCheck();
@@ -331,14 +331,18 @@ public abstract class Quest : MonoBehaviour {
         }
 
     protected void AutoCompletePreCheck() {
+        
         if (!PlayerIsInQuestArea()) {
             PlayerEnteredQuestArea();
         }
+        
     }
 
     protected void AutoCompletePostCheck() {
+        
         if (!PlayerIsInQuestArea()) {
             PlayerExitedQuestArea();
         }
+        
     }
 }

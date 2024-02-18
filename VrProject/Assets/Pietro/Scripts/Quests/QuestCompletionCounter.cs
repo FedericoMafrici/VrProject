@@ -29,8 +29,6 @@ public class QuestCompletionCounter : Quest {
     }
 
     private void OnQuestCompleteEvent(Quest quest) {
-        Debug.LogWarning("Quest completed event received");
-        Debug.LogWarning("Event received from " + quest + " current state is: " + _state);
         if (_state == QuestState.ACTIVE) {
             quest.QuestCompleted -= OnQuestCompleteEvent;
             AdvanceCounter();

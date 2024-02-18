@@ -365,4 +365,10 @@ public class NPCMover : MonoBehaviour {
         }
     }
 
+    public void SetAgentMovingSpeed(float newSpeed) {
+        if (_currentBehaviour != null) {
+            _currentBehaviour.SetAgentMovingSpeed(newSpeed);
+        }
+    }
+
 }

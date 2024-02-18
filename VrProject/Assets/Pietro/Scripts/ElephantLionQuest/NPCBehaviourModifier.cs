@@ -6,6 +6,8 @@ public class NPCBehaviourModifier : QuestEventReceiver {
     [SerializeField] private NPCMover _npcMover;
     [SerializeField] private BehaviourID _behaviourID;
     [SerializeField] private BoxCollider _patrolArea;
+    [SerializeField] private bool changeSpeed = true;
+    [SerializeField] private float _newSpeed = 1.0f;
 
     private bool _alreadyChanged = false;
 
@@ -28,6 +30,9 @@ public class NPCBehaviourModifier : QuestEventReceiver {
                 _npcMover.SetPatrolArea(_patrolArea);
             } else {
                 _npcMover.SetBehaviour(_behaviourID);
+            }
+            if (changeSpeed && _newSpeed > 0.0f) {
+                _npcMover.SetAgentMovingSpeed(_newSpeed);
             }
 
             _alreadyChanged = true;

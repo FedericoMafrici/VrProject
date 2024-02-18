@@ -171,7 +171,7 @@ public abstract class MovementBehaviour {
         return _agent.speed;
     }
 
-    protected void SetAgentMovingSpeed(float newSpeed) {
+    public void SetAgentMovingSpeed(float newSpeed) {
         _agent.speed = newSpeed;
         _npcMover.UpdateAnimationSpeed();
     }

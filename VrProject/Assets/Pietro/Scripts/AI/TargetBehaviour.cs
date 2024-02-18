@@ -7,7 +7,8 @@ using UnityEngine.AI;
 public class TargetBehaviour : MovementBehaviour {
     private float _minDistance;
     private float _maxDistance;
-    private float _speedMultiplier = 2f; //multiplies speed of agent when it's too distant from the target
+    private float _farSpeedMultiplier = 1f;
+    private float _closeSpeedMultiplier = 2f; //multiplies speed of agent when it's too distant from the target
     private Transform _target;
     private bool _reachTarget = false;
     private bool _isFar = false;
@@ -47,14 +48,14 @@ public class TargetBehaviour : MovementBehaviour {
                 justReachedTarget = true;
                 _agent.isStopped = true;
                 if (_isFar) {
-                    SetAgentMovingSpeed(_agent.speed * _speedMultiplier);
+                    SetAgentMovingSpeed(_agent.speed * _closeSpeedMultiplier);
                     //_agent.speed *= _speedMultiplier;
                     _isFar = false;
                 }
             } else {
                 _agent.isStopped = false;
                 if (!_isFar && _agent.remainingDistance >= _maxDistance) {
-                    SetAgentMovingSpeed(_agent.speed / _speedMultiplier);
+                    SetAgentMovingSpeed(_agent.speed * _farSpeedMultiplier);
                     //_agent.speed /= _speedMultiplier;
                     _isFar = true;
                 }

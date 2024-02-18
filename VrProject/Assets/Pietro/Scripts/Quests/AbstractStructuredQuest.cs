@@ -61,11 +61,9 @@ public abstract class AbstractStructuredQuest : Quest {
 
     public override void Complete() {
         base.Complete();
-        Debug.Log("Structured quest completed");
     }
 
     protected override void OnQuestStart() {
-        Debug.LogWarning(name + " quest started");
         StartCurrStep();
         base.OnQuestStart();
     }
