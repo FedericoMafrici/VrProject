@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using System.Timers;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Timer = System.Timers.Timer;
 
 //aggiunto da Pietro
 public enum ClueID {
@@ -32,11 +36,17 @@ public class PlayerRaycast : MonoBehaviour
     private const float pickupDistance = 5f;
     private Item item;
     private Transform _previousOutlined = null; //aggiunto da Pietro
+    public Timer toolWarningTimer = new System.Timers.Timer();
     public Deposit deposit;
 
     public Dictionary<ClueID, string> _addedClues = new Dictionary<ClueID, string>(); //aggiunto da Pietro
 
-    private void Start() {
+    private void Start()
+    {
+        //timer event
+        toolWarningTimer.Interval = 1500;
+        toolWarningTimer.Elapsed += new ElapsedEventHandler(OnTimerElapsed);
+        
         //petter events
         Petter.InPetRange += OnAddClueEvent;
         Petter.StoppedPetting += OnAddClueEvent;
@@ -80,6 +90,11 @@ public class PlayerRaycast : MonoBehaviour
         if (InputManager.InteractionsAreEnabled()) {
             // ------------- AGGIORNAMENTO INFORMAZIONI TESTUALI SOTTO IL CURSORE -------------
 
+            if (Input.GetKey(KeyCode.E) && hotbar.activeItemObj.itemCategory == Item.ItemCategory.Tool)
+            {
+                toolWarningTimer.Start();
+            } 
+            
             if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit,
                     pickupDistance, pickupLayerMask)
                 && raycastHit.transform.TryGetComponent(out Item item)
@@ -87,7 +102,7 @@ public class PlayerRaycast : MonoBehaviour
                 && hotbar.activeItemObj == null) {
                 clue.text = "Premi [E] per prendere in mano\nPremi [Q] per raccogliere";
                 if (hotbar.firstEmpty == 6 && !hotbar.Contains(item.itemName)) {
-                    clue.text += "\n\n Devi depositare o lasciare un oggetto per poterne raccogliere un altro"; /*Release an item to grab or collect another object!*/
+                    clue.text += "\n\nDevi depositare o lasciare un oggetto per poterne raccogliere un altro"; /*Release an item to grab or collect another object!*/
                 }
                 toOutline = raycastHit.transform;
             } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit2,
@@ -98,7 +113,7 @@ public class PlayerRaycast : MonoBehaviour
                        && item2 != hotbar.activeItemObj) {
                 clue.text = "Premi [Q] per raccogliere";
                 if (hotbar.firstEmpty == 6 && !hotbar.Contains(item2.itemName)) {
-                    clue.text += "\n\n Devi depositare o lasciare un oggetto per poterne raccogliere un altro";  /*Release an item to collect another object!*/
+                    clue.text += "\n\nDevi depositare o lasciare un oggetto per poterne raccogliere un altro";  /*Release an item to collect another object!*/
                 }
                 toOutline = raycastHit2.transform;
             } else if (Vector3.Distance(deposit.transform.position, playerCameraTransform.position) < pickupDistance
@@ -108,12 +123,15 @@ public class PlayerRaycast : MonoBehaviour
                 } else {
                     clue.text = "Questo oggetto non può essere depositato";
                 }
-            } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit3,
-                    pickupDistance, pickupLayerMask) && raycastHit3.transform.gameObject.layer == LayerMask.NameToLayer("Pipe")
-                /*&& pickupLayerMask == LayerMask.GetMask("Pipe")*/) {
+            } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit3, pickupDistance, pickupLayerMask) 
+                       && raycastHit3.transform.gameObject.layer == LayerMask.NameToLayer("Pipe")) {
                 clue.text = "Premi [L] per cambiare scenario";
             } else
                 clue.text = "";
+
+            if (toolWarningTimer.Enabled)
+                clue.text += "\n\nNon puoi rilasciare questo oggetto\nPuoi solo depositarlo";
+            
 
             //aggiunto da Pietro
             foreach (string clueText in _addedClues.Values) {
@@ -122,6 +140,11 @@ public class PlayerRaycast : MonoBehaviour
         }
 
         ManageOutline(toOutline);
+    }
+    
+    private void OnTimerElapsed(object sender, ElapsedEventArgs e)
+    {
+        toolWarningTimer.Enabled = false;
     }
 
     //aggiunto da Pietro

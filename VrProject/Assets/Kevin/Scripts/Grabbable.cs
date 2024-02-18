@@ -81,7 +81,7 @@ public class Grabbable : MonoBehaviour
         */
         
         if (objectGrabPointTransform != null) {
-            Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * 8);
+            Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * 25);
             transform.position = newPosition;
             transform.rotation = objectGrabPointTransform.rotation * Quaternion.Euler(grabRotation);
         }
