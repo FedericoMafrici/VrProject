@@ -157,7 +157,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 6c1349ece2eb04d86ac8418bb95f1810, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
+  usageSound: {fileID: 8300000, guid: ebcb58cc22a96a145b30ed77b7dba967, type: 3}
   _interactRange: 3
 --- !u!114 &1968957567844094179
 MonoBehaviour:

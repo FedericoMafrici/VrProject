@@ -256,7 +256,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 28eb29bbffe0b4c0193e2ecef3a769df, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
+  usageSound: {fileID: 8300000, guid: e7f204dbb842b7b4fbde461bb5d0d61f, type: 3}
   _clueText: Premi [CLICK SINISTRO] per piantare
   _interactDistance: 5
   crop: {fileID: 1427638128310193128, guid: e8de5db6742544c3facf359362bcb8df, type: 3}
