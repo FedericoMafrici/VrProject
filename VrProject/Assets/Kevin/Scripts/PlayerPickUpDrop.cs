@@ -133,7 +133,6 @@ public class PlayerPickUpDrop : MonoBehaviour
                            && hotbar.activeItemObj != null
                            && hotbar.activeItemObj.itemName != Item.ItemName.BucketMilk
                            && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
-                    int slot = hotbar.numSelectedButton;
                     hotbar.activeItemObj.StartFading();
                     deposit.AddItem(hotbar.activeItemObj.itemName); //aggiunto da pietro, incapsula il codice commentato sotto
                     /*
@@ -145,9 +144,6 @@ public class PlayerPickUpDrop : MonoBehaviour
                     */
                     Debug.Log(hotbar.activeItemObj + " released into the deposit");
                     Drop(false);
-                    
-                    if (hotbar.itemWrappers[slot] != null && hotbar.itemWrappers[slot].amount != 0)
-                        StartCoroutine(GrabAnother(slot));
                 }
 
             }

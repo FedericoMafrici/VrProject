@@ -259,7 +259,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 820100d431e3f4b748d9f7027b231185, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
+  usageSound: {fileID: 8300000, guid: 8f050a787242d6e41a68dc1dbadfe00d, type: 3}
   _targetType: 1
   _interactRange: 3
   _clueID: 2
