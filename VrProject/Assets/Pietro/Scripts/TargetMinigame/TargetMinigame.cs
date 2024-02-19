@@ -22,6 +22,8 @@ public class TargetMinigame : MonoBehaviour {
     private float _animationPrevSpeed;
     [Header("Audio to play when target is successfully clicked")]
     [SerializeField] AudioClip clickSound;
+    [Header("Item to remove if in inventory at the end of the minigame")]
+    [SerializeField] Item.ItemName toRemoveItemName = Item.ItemName.NoItem;
 
     //[Header("Minigame camera reference")]
     private Camera minigameCamera;
@@ -215,8 +217,14 @@ public class TargetMinigame : MonoBehaviour {
 
         //if success remove held item
         if (success) {
-            playerPickUp.deposit.AddItem(playerPickUp.hotbar.activeItemObj.itemName);
-            RemoveHeldItem();
+            
+            if (toRemoveItemName != Item.ItemName.NoItem) {
+                playerPickUp.deposit.AddItem(toRemoveItemName);
+                RemoveItem(toRemoveItemName);
+            } else {
+                playerPickUp.deposit.AddItem(playerPickUp.hotbar.activeItemObj.itemName);
+                RemoveHeldItem();
+            }
             if (resultItemPrefab != null) {
                 GameObject spawned = Spawner.Spawn(resultItemPrefab, new Vector3());
                 Item heldItem = spawned.GetComponent<Item>();
@@ -342,4 +350,31 @@ public class TargetMinigame : MonoBehaviour {
     private void RemoveHeldItem() {
         playerPickUp.hotbar.RemoveHeldItem();
     }
+
+    private void RemoveItem(Item.ItemName targetItem) {
+        Item.ItemName currentName = Item.ItemName.NoItem;
+        bool success = true;
+        bool differentThanHeld = playerPickUp.hotbar.activeItemObj.itemName != targetItem;
+        if (differentThanHeld) {
+            if (playerPickUp.hotbar.activeItemObj != null) {
+                currentName = playerPickUp.hotbar.activeItemObj.itemName;
+            }
+            
+            if (playerPickUp.hotbar.Contains(targetItem)) {
+                playerPickUp.hotbar.MakeHoldItem(playerPickUp.hotbar.FindItem(targetItem));
+            } else {
+                success = false;
+            }
+        }
+
+        if (success) {
+            playerPickUp.hotbar.RemoveHeldItem();
+        }
+
+        if (success && playerPickUp.hotbar.Contains(currentName)) {
+            playerPickUp.hotbar.MakeHoldItem(playerPickUp.hotbar.FindItem(currentName));
+        }
+    }
+
+        
 }

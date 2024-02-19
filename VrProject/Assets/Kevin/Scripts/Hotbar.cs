@@ -265,7 +265,7 @@ public class Hotbar : MonoBehaviour
         int i = 0;
         bool found = false;
         while (!found && i <itemWrappers.Length) {
-            if (itemWrappers[i].itemName == targetName) {
+            if (itemWrappers[i] != null && itemWrappers[i].itemName == targetName) {
                 found = true;
             } else {
                 i++;

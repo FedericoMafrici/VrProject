@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4566745616723347477}
   - component: {fileID: 7582299688084567343}
   - component: {fileID: 6207420454838121361}
-  - component: {fileID: 5427993518938712727}
+  - component: {fileID: 7295612847191388448}
   m_Layer: 3
   m_Name: HorseShoe
   m_TagString: Untagged
@@ -231,7 +231,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5427993518938712727
+--- !u!114 &7295612847191388448
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,7 +240,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1448041571732064648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 661438925b8ba38489827ac2b7fe73d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 754fc17baa1d64df1af38b3b3de0810c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
@@ -253,8 +253,3 @@ MonoBehaviour:
   isDeposited: 0
   grabSound: {fileID: 0}
   usageSound: {fileID: 0}
-  _positiveClueTextAppendix: ferrare il cavallo
-  _interactRange: 3
-  _animalType: 1
-  additionalRequiredItem: 3
-  _negativeClueText: Hai bisogno del martello per ferrare il cavallo!

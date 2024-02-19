@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8479377051741730557}
   - component: {fileID: 5929054645379580471}
   - component: {fileID: 3856783729008324382}
-  - component: {fileID: 5561009604795845712}
+  - component: {fileID: -1862520490683991635}
   - component: {fileID: -2519587458339846807}
   - component: {fileID: -3051953959327607044}
   - component: {fileID: 8497469558532383260}
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5561009604795845712
+--- !u!114 &-1862520490683991635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5280690162103575522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754fc17baa1d64df1af38b3b3de0810c, type: 3}
+  m_Script: {fileID: 11500000, guid: 661438925b8ba38489827ac2b7fe73d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
@@ -138,6 +138,11 @@ MonoBehaviour:
   isDeposited: 0
   grabSound: {fileID: 0}
   usageSound: {fileID: 8300000, guid: 072c2dea8025ec041a2989f77fa12d7e, type: 3}
+  _positiveClueTextAppendix: ferrare il cavallo
+  _interactRange: 3
+  _animalType: 1
+  additionalRequiredItem: 2
+  _negativeClueText: Hai bisogno di un ferro di cavallo per sostituire quello attuale
 --- !u!82 &-2519587458339846807
 AudioSource:
   m_ObjectHideFlags: 0
