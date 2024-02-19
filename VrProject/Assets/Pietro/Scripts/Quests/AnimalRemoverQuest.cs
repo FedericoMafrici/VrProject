@@ -29,11 +29,28 @@ public class AnimalRemoverQuest : Quest {
             Debug.LogWarning(transform.name + ": AnimalRemoverQuest, amount of animals participating in the quest is lower than 1, setting it to 1");
             _totalAnimals = 1;
         }
-        
+
+        //register to events
+        foreach (RemovablesCounter rc in _removablesCounterSet) {
+
+            //quest might complete during this phase, manage this case
+            if (_state == QuestState.COMPLETED)
+                break;
+            if (rc.IsEverythingRemoved()) {
+                OnAnimalCleared(rc);
+            } else {
+                rc.EverythingRemovedEvent += OnAnimalCleared;
+            }
+        }
+
         base.Init();
     }
 
     private void OnAnimalCleared(RemovablesCounter rc) {
+        if (_state == QuestState.NOT_STARTED) {
+            StartQuest();
+        }
+
         if (_state == QuestState.ACTIVE) {
             _nCompletedAnimals++;
             Progress();
@@ -52,19 +69,6 @@ public class AnimalRemoverQuest : Quest {
 
     protected override void OnQuestStart() {
         base.OnQuestStart();
-
-        //register to events
-        foreach(RemovablesCounter rc in _removablesCounterSet) {
-
-            //quest might complete during this phase, manage this case
-            if (_state == QuestState.COMPLETED)
-                break;
-            if (rc.IsEverythingRemoved()) {
-                OnAnimalCleared(rc);
-            } else {
-                rc.EverythingRemovedEvent += OnAnimalCleared;
-            }
-        }
     }
 
     private void SetAllSubscriptions(bool subscribe) {

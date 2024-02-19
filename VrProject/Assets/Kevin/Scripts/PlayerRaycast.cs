@@ -90,7 +90,7 @@ public class PlayerRaycast : MonoBehaviour
         if (InputManager.InteractionsAreEnabled()) {
             // ------------- AGGIORNAMENTO INFORMAZIONI TESTUALI SOTTO IL CURSORE -------------
 
-            if (Input.GetKey(KeyCode.E) && hotbar.activeItemObj.itemCategory == Item.ItemCategory.Tool)
+            if (Input.GetKey(KeyCode.E) && hotbar.activeItemObj != null && hotbar.activeItemObj.itemCategory == Item.ItemCategory.Tool)
             {
                 toolWarningTimer.Start();
             } 

@@ -22,15 +22,19 @@ public class PlayerUIController : MonoBehaviour
         Debug.Log(currState);
         if(currState)
         {
+                /*
             InputManager.DisableInteractions();
             InputManager.DisableMovement();
+                */
             UiManager.StartUI();
             
         }
         else
         {
+                /*
                 InputManager.EnableInteractions();
                 InputManager.EnableMovement();
+                */
                 UiManager.CloseUI();
         }
     }

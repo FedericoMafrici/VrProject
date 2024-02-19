@@ -16,7 +16,10 @@ public class Target : MonoBehaviour
                 OnTargetClicked();
 
             gameObject.GetComponent<SpriteRenderer>().sprite = greenTarget;
-
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource != null && audioSource.clip != null) { 
+                audioSource.Play();
+            }
             Collider coll = gameObject.GetComponent<Collider>();
             if (coll != null) {
                 coll.enabled = false;

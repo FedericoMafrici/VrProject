@@ -20,6 +20,8 @@ public class TargetMinigame : MonoBehaviour {
     [Header("Reference to Animator (if needed)")]
     [SerializeField] private Animator _animator;
     private float _animationPrevSpeed;
+    [Header("Audio to play when target is successfully clicked")]
+    [SerializeField] AudioClip clickSound;
 
     //[Header("Minigame camera reference")]
     private Camera minigameCamera;
@@ -149,6 +151,11 @@ public class TargetMinigame : MonoBehaviour {
         currentTarget.transform.localPosition = pos;
         //currentTarget.transform.LookAt(minigameCamera.transform.position);
         currentTarget.transform.forward = - minigameCamera.transform.forward;
+
+        AudioSource audioSource = newTargetGameObj.GetComponent<AudioSource>();
+        if (audioSource != null) {
+            audioSource.clip = clickSound;
+        }
         
 
         //subscribe to current target click event

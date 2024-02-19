@@ -80,7 +80,7 @@ public class PlayerPickUpDrop : MonoBehaviour
                     int slot = hotbar.numSelectedButton;
                     Drop();
                     item = null;
-                    if (hotbar.itemWrappers[slot].amount != 0)
+                    if (hotbar.itemWrappers[slot] != null && hotbar.itemWrappers[slot].amount != 0)
                         StartCoroutine(GrabAnother(slot));
                 }
             }

@@ -5595,6 +5595,7 @@ MonoBehaviour:
   toSpawnAtStart: {fileID: 7675544765523309526}
   resultItemPrefab: {fileID: 7577970402372723919, guid: 0b438319600ae78419447f276012a3a4, type: 3}
   _animator: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: 8a203102119e80b4e9d2fcd40efef0f2, type: 3}
 --- !u!114 &7968799644851408102
 MonoBehaviour:
   m_ObjectHideFlags: 0
