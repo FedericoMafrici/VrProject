@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-
-
-
+using UnityEngine.Audio;
 
 public class UiGameManager : MonoBehaviour {
     // Informazioni per ogni animale da aggiungere tramite inspector
@@ -106,6 +104,12 @@ public class UiGameManager : MonoBehaviour {
     // CHECKBOX TEXT
 
     private Dictionary<int, TMP_Text> descriptions = new Dictionary<int, TMP_Text>();
+
+    //AUDIO MIXER
+    [Header("Audio Mixer")]
+    [SerializeField] AudioMixer audioMixer;
+    private float volume = 0.0f;
+
 
     void Start() {
 
@@ -658,6 +662,7 @@ public class UiGameManager : MonoBehaviour {
     }
     public void MuteSounds() {
         // Trova tutti gli AudioListener nella scena
+        /*
         AudioListener[] audioListeners = FindObjectsOfType<AudioListener>();
         playerCamera.SetActive(true);
        AudioListener playerListener= playerCamera.GetComponent<AudioListener>();
@@ -675,9 +680,13 @@ public class UiGameManager : MonoBehaviour {
         foreach (AudioListener listener in audioListeners) {
             listener.enabled = false;
         }
+        */
+        audioMixer.GetFloat("Volume", out volume);
+        audioMixer.SetFloat("Volume", -80.0f);
     }
     public void EnableSounds() {
         // Trova tutti gli AudioListener nella scena
+        /*
         AudioListener[] audioListeners = FindObjectsOfType<AudioListener>();
         playerCamera.SetActive(true);
        AudioListener playerListener= playerCamera.GetComponent<AudioListener>();
@@ -695,6 +704,8 @@ public class UiGameManager : MonoBehaviour {
         foreach (AudioListener listener in audioListeners) {
             listener.enabled = true;
         }
+        */
+        audioMixer.SetFloat("Volume", volume);
     }
     public void soundON() {
         soundOn.image.sprite = soundButtonGreenON;
