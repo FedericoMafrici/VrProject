@@ -44,7 +44,7 @@ public class UiGameManager : MonoBehaviour {
     // Informazioni per i controllì
     public ControlSettingsData controlSettings;
 
-       [SerializeField] private  AudioMixer  audioMixer;
+       [SerializeField] private  AudioMixerGroup  mixerGroup;
 
        private float volume;
     //CAMERA
@@ -662,6 +662,7 @@ public class UiGameManager : MonoBehaviour {
     public void MuteSounds() {
         
         // Trova tutti gli AudioListener nella scena
+        /*
         AudioListener[] audioListeners = FindObjectsOfType<AudioListener>();
         playerCamera.SetActive(true);
        AudioListener playerListener= playerCamera.GetComponent<AudioListener>();
@@ -679,14 +680,18 @@ public class UiGameManager : MonoBehaviour {
         foreach (AudioListener listener in audioListeners) {
             listener.enabled = false;
         }
-        /*
-        audioMixer.GetFloat("Volume",out volume);
-        audioMixer.SetFloat("Volume",-80.0f);
         */
+        
+        
+        mixerGroup.audioMixer.GetFloat("Volume",out volume);
+        mixerGroup.audioMixer.SetFloat("Volume",-80.0f);
+        
+        
     }
     public void EnableSounds() {
         
         // Trova tutti gli AudioListener nella scena
+        /*
         AudioListener[] audioListeners = FindObjectsOfType<AudioListener>();
         playerCamera.SetActive(true);
        AudioListener playerListener= playerCamera.GetComponent<AudioListener>();
@@ -704,9 +709,11 @@ public class UiGameManager : MonoBehaviour {
         foreach (AudioListener listener in audioListeners) {
             listener.enabled = true;
         }
-        /*
-        audioMixer.SetFloat("Volume",volume);
         */
+        
+        mixerGroup.audioMixer.SetFloat("Volume",volume);
+        
+        
     }
     public void soundON() {
         soundOn.image.sprite = soundButtonGreenON;
