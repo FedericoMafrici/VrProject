@@ -173,7 +173,7 @@ MonoBehaviour:
   grabSound: {fileID: 0}
   usageSound: {fileID: 8300000, guid: 2a0d4af825b174a4f9d13ffc2a501d29, type: 3}
   _targetType: 2
-  _interactRange: 3
+  _interactRange: 5
   _clueID: 4
 --- !u!82 &3541076152975047687
 AudioSource:
