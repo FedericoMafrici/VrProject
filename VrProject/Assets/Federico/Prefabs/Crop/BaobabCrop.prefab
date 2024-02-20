@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8827582662374488485, guid: dd6a15e62a61b4359bf215a8febdf60f, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -328,6 +332,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8827582662374488485, guid: dd6a15e62a61b4359bf215a8febdf60f, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -349,6 +357,10 @@ PrefabInstance:
     - target: {fileID: 124470786261998497, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 202950753386087830, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
+      propertyPath: _isPlanted
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2029972923149051506, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
       propertyPath: m_LocalPosition.x
@@ -454,6 +466,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 116.34
       objectReference: {fileID: 0}
+    - target: {fileID: 2977095691628663058, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4104636342889119291, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.011698
@@ -546,9 +562,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Baobab harvestable (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6655188155157350004, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6859203758576638019, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7148441644371318342, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7478783940323614596, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
+      propertyPath: _isPlanted
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7525932274809190684, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
       propertyPath: m_LocalPosition.x
@@ -593,6 +621,10 @@ PrefabInstance:
     - target: {fileID: 8408514188197661895, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779528072424134197, guid: 7bbd63bbf52fa484cb463e73c1171205, type: 3}
+      propertyPath: _isPlanted
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -679,6 +711,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8827582662374488485, guid: dd6a15e62a61b4359bf215a8febdf60f, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -744,6 +780,10 @@ PrefabInstance:
     - target: {fileID: 4296540613559652779, guid: dd6a15e62a61b4359bf215a8febdf60f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8827582662374488485, guid: dd6a15e62a61b4359bf215a8febdf60f, type: 3}
+      propertyPath: _isPlanted
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

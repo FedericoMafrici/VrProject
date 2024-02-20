@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrot Crop harvestable
       objectReference: {fileID: 0}
+    - target: {fileID: 1875705372421573291, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2534089827287049842, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.15
@@ -299,6 +303,10 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6140124078491368569, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6431280549275161392, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.09900001
@@ -322,6 +330,10 @@ PrefabInstance:
     - target: {fileID: 7119517148629995921, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.714
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979251423131254488, guid: a358bacd1c853412faa73e535f04989f, type: 3}
+      propertyPath: _isPlanted
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8490204737031831239, guid: a358bacd1c853412faa73e535f04989f, type: 3}
       propertyPath: m_UseGravity

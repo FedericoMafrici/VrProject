@@ -64,6 +64,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3979731512709924944}
     m_Modifications:
+    - target: {fileID: 641691028595528084, guid: 2c35f21ee76364e56b828df0f2b0e48e, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197928294778770229, guid: 2c35f21ee76364e56b828df0f2b0e48e, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8516646132298929469, guid: 2c35f21ee76364e56b828df0f2b0e48e, type: 3}
       propertyPath: m_Name
       value: Apple Tree F
@@ -308,6 +316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8007140360190750796}
     m_Modifications:
+    - target: {fileID: -8021560342165685584, guid: 69a9aebcd38dd40b2a7dbc1881caf019, type: 3}
+      propertyPath: _isPlanted
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5679743894038481456, guid: 69a9aebcd38dd40b2a7dbc1881caf019, type: 3}
       propertyPath: m_UseGravity
       value: 1
