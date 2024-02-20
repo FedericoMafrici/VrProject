@@ -72,13 +72,20 @@ public class PlayerItemManager : MonoBehaviour {
                 //remove from hotbar if needed
                 _hotbar.activeItemWrapper.amount--;
                 _playerPickUp.ThrowDropEvent(_hotbar.activeItemObj);
-                _hotbar.Deselect();
+                
                 Destroy(heldItem.gameObject);
+                int slot = _hotbar.numSelectedButton;
+
                 if (_hotbar.activeItemObj)
                     _hotbar.activeItemObj = null;
+
                 if (_hotbar.activeItemWrapper.amount == 0) {
+                    _hotbar.Deselect();
                     _hotbar.Remove(_hotbar.activeItemWrapper);
+                } else if (_hotbar.itemWrappers[slot] != null && _hotbar.itemWrappers[slot].amount > 0) {
+                    StartCoroutine(_playerPickUp.GrabAnother(slot));
                 }
+                
             }
         }
         

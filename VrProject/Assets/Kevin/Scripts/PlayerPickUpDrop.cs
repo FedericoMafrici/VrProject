@@ -319,7 +319,7 @@ public class PlayerPickUpDrop : MonoBehaviour
 
     }
 
-    IEnumerator GrabAnother(int slot)
+    public IEnumerator GrabAnother(int slot)
     {
         yield return new WaitForSeconds(0.5f);
         hotbar.InstantiateItem(slot);
