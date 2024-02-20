@@ -4368,7 +4368,6 @@ GameObject:
   - component: {fileID: 4339317417508100884}
   - component: {fileID: 6300858552834186169}
   - component: {fileID: 1386825001154306165}
-  - component: {fileID: 4506111107050888897}
   - component: {fileID: 8355024213022455305}
   - component: {fileID: 7063296212705296533}
   - component: {fileID: 9186960725577283327}
@@ -4481,29 +4480,6 @@ MonoBehaviour:
   _friendshipGrowthRate: 20
   _progressBar: {fileID: 9026729702566404656}
   _heartIcon: {fileID: 8318853210806821610}
---- !u!136 &4506111107050888897
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4142796388366385343}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.41567487
-  m_Height: 1.248085
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.543773, z: 0.010045052}
 --- !u!114 &8355024213022455305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4660,7 +4636,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1096
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
