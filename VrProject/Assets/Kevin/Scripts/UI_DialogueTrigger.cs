@@ -18,7 +18,7 @@ public class DialogueTrigger : MonoBehaviour
     }
 
     private void Update() {
-        if (dialogueManager.animator.GetBool("IsOpen") && Input.GetKeyDown(KeyCode.P) && InputManager.DialoguesAreEnabled()) {
+        if (dialogueManager.animator.GetBool("IsOpen") && Input.GetKeyDown(KeyCode.E) && InputManager.DialoguesAreEnabled()) {
             TriggerDialogueManager();
         }
     }

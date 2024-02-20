@@ -8,6 +8,8 @@ using UnityEngine;
 public class FoodEater : MonoBehaviour {
     [SerializeField] private List<Item.ItemName> _targetFoodsList;
     [SerializeField] private GameObject _foodIcon;
+    [SerializeField] EmissionData hungryEmission;
+    [SerializeField] ObjectEmitter emitter;
     private HashSet<Item.ItemName> _targetFoods = new HashSet<Item.ItemName>();
     private bool _isHungry = true;
 
@@ -19,6 +21,9 @@ public class FoodEater : MonoBehaviour {
             foreach (Item.ItemName name in _targetFoodsList) {
                 _targetFoods.Add(name);
             }
+        }
+        if (emitter != null) {
+            emitter.AddEmission(hungryEmission);
         }
     }
 
@@ -52,8 +57,12 @@ public class FoodEater : MonoBehaviour {
         }
         food.Consume();
         _isHungry = false;
+        
         if (_foodIcon != null) {
             _foodIcon.gameObject.SetActive(true);
+        }
+        if (emitter!= null) {
+            emitter.RemoveEmission(hungryEmission);
         }
         AnimalAudioPlayer audioSource = GetComponent<AnimalAudioPlayer>();
         if (audioSource != null && food.usageSound != null) {
@@ -70,15 +79,24 @@ public class FoodEater : MonoBehaviour {
     IEnumerator WaitBeforeHungry() {
         yield return new WaitForSeconds(30);
         _isHungry = true;
+        
         if (_foodIcon != null) {
             _foodIcon.gameObject.SetActive(false);
+        }
+        if (emitter != null) {
+            emitter.AddEmission(hungryEmission);
         }
     }
 
     private void OnEnable() {
         _isHungry = true;
+        
         if (_foodIcon != null) {
             _foodIcon.gameObject.SetActive(false);
+        }
+        
+        if (emitter != null) {
+            emitter.AddEmission(hungryEmission);
         }
     }
 }

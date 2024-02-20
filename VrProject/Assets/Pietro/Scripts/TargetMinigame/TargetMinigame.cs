@@ -235,15 +235,17 @@ public class TargetMinigame : MonoBehaviour {
                     }
                 }
             }
+
+            if (CompleteEvent != null) {
+                CompleteEvent();
+            }
         }
 
         playerPickUp = null;
 
         minigameRunning = false;
 
-        if (CompleteEvent != null) {
-            CompleteEvent();
-        }
+        
     }
 
     private void Update() {

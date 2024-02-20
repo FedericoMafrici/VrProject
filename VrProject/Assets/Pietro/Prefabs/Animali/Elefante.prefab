@@ -5049,6 +5049,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetFoodsList: 1200000014000000
   _foodIcon: {fileID: 8459984782115228280}
+  hungryEmission:
+    frequency: 0
+    toEmitList: []
+    emissionType: 0
+    moveSpeed: 0
+    lifetime: 0
+  emitter: {fileID: 0}
 --- !u!114 &2000721083718013779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13000,7 +13007,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.12, y: 2.807854, z: 2.3479156}
-  m_LocalScale: {x: 0.266668, y: 0.266668, z: 0.266668}
+  m_LocalScale: {x: 0.12634048, y: 0.12634048, z: 0.12634048}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3635858789656530442}
@@ -13046,7 +13053,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2873afd8412734500a4afdee29aa9ac3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d301e883c214134894501fcf2e27707, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

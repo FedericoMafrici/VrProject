@@ -109,6 +109,7 @@ public class UiGameManager : MonoBehaviour {
     [Header("Audio Mixer")]
     [SerializeField] AudioMixer audioMixer;
     private float volume = 0.0f;
+    private bool audioOn = true;
 
 
     void Start() {
@@ -681,8 +682,11 @@ public class UiGameManager : MonoBehaviour {
             listener.enabled = false;
         }
         */
-        audioMixer.GetFloat("Volume", out volume);
-        audioMixer.SetFloat("Volume", -80.0f);
+        if (audioOn) {
+            audioMixer.GetFloat("Volume", out volume);
+            audioMixer.SetFloat("Volume", -80.0f);
+            audioOn= false;
+        }
     }
     public void EnableSounds() {
         // Trova tutti gli AudioListener nella scena
@@ -705,7 +709,10 @@ public class UiGameManager : MonoBehaviour {
             listener.enabled = true;
         }
         */
-        audioMixer.SetFloat("Volume", volume);
+        if (!audioOn) {
+            audioOn = true;
+            audioMixer.SetFloat("Volume", volume);
+        }
     }
     public void soundON() {
         soundOn.image.sprite = soundButtonGreenON;

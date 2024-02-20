@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject hotbar;
     [SerializeField] private GameObject _questUI;
 
+
     Coroutine _sentenceCoroutine = null; //aggiunto da Pietro
     private bool dialogueOngoing;
     void Awake()
@@ -73,6 +74,7 @@ public class DialogueManager : MonoBehaviour
         if (_sentenceCoroutine != null) {
             StopCoroutine(_sentenceCoroutine);
         }
+        
         _sentenceCoroutine = StartCoroutine(TypeSentence(sentence));
     }
 
@@ -95,6 +97,7 @@ public class DialogueManager : MonoBehaviour
             _sentenceCoroutine = null;
             //InputManager.EnableMenu();
             InputManager.EnableInteractions();
+            //StartCoroutine(EnableInputs());
             animator.SetBool("IsOpen", false);
             knob.SetActive(true);
             hotbar.SetActive(true);
@@ -107,9 +110,12 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void Update()
-    {
+    /*
+    IEnumerator EnableInputs() {
+        yield return null;
+        InputManager.EnableInteractions();
     }
+    */
 }
 
 [System.Serializable]
