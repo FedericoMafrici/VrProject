@@ -69,7 +69,7 @@ public class InterestBehaviour : MovementBehaviour {
                 
                 _agent.destination = _toMoveTransform.position;
 
-                if (_npcMover.GetState() == MovingState.VERY_CLOSE_TO_TARGET) {
+                
                     Vector3 targetDirection = _target.position - _toMoveTransform.position;
 
                     //check if agent is not facing towards the target
@@ -85,7 +85,7 @@ public class InterestBehaviour : MovementBehaviour {
                         Debug.DrawRay(_toMoveTransform.position, newDirection, Color.red);
                         _toMoveTransform.rotation = Quaternion.LookRotation(newDirection);
 
-                    } else {
+                    } else if (_npcMover.GetState() == MovingState.VERY_CLOSE_TO_TARGET) {
                         //if agent is looking at food then eat it
                         if (_targettable != null && _foodEater != null) {
                             AnimalFood food = _targettable.GetComponent<AnimalFood>();
@@ -95,7 +95,7 @@ public class InterestBehaviour : MovementBehaviour {
 
                         }
                     }
-                }
+                
 
             } else {
                 _agent.destination = _target.position;
