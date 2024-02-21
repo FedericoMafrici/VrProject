@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,8 @@ public class PatrolBehaviour : MovementBehaviour {
     private bool _targetOnNavMesh;
     private float _range = 5.0f;
     private float _toWaitForNextTarget;
+    private float _maxTimeToDestination = 10.0f;
+    private float _elapsedTimeToDestination = 0.0f;
 
     public PatrolBehaviour(Transform toMoveTransform, BoxCollider patrolArea, Vector2 delayBounds) : base(toMoveTransform) {
         _delayBounds = delayBounds;
@@ -28,8 +31,9 @@ public class PatrolBehaviour : MovementBehaviour {
         //check if target has been reached or is not reachable (not on NavMesh)
 
         if (!_agent.isStopped) {
+            _elapsedTimeToDestination += Time.deltaTime;
             if (!_targetReached) {
-                if (_agent.remainingDistance <= _agent.stoppingDistance || !_targetOnNavMesh) {
+                if (_agent.remainingDistance <= _agent.stoppingDistance || !_targetOnNavMesh || _elapsedTimeToDestination >= _maxTimeToDestination) {
                     _targetReached = true;
                 }
             }
@@ -43,7 +47,10 @@ public class PatrolBehaviour : MovementBehaviour {
                     //sample patrol area to find a new target, if no target is found re-sample during next update
                     if (GenerateRandomTarget())
                         _toWaitForNextTarget = Random.Range(_delayBounds.x, _delayBounds.y); //random delay before generating new target
-
+                    else {
+                        _toWaitForNextTarget = 0;
+                        Debug.LogWarning(_npcMover.name + " failed at generating random target, resampling at next update");
+                    }
                 }
             }
 
@@ -89,6 +96,7 @@ public class PatrolBehaviour : MovementBehaviour {
             _targetOnNavMesh = true;
             _agent.destination = _target;
             _targetReached = false;
+            _elapsedTimeToDestination = 0;
             targetAssigned= true;
         } /*else {
             _target = tmpTarget;

@@ -61,7 +61,7 @@ public class NPCMover : MonoBehaviour {
         _foodEater = GetComponent<FoodEater>();
         NavMeshAgent _agent = GetComponent<NavMeshAgent>();
         if (_agent != null ) {
-            _agent.avoidancePriority = UnityEngine.Random.Range(0, 32);
+             _agent.avoidancePriority = UnityEngine.Random.Range(0, 99);
         }
 
         foreach (TargetType type in _interestsList) {
@@ -107,7 +107,8 @@ public class NPCMover : MonoBehaviour {
             _currentBehaviour.Move();
             UpdateAnimations();
         } else {
-            Debug.LogWarning(name + " movement behaviour is null");
+            Debug.LogWarning(name + " movement behaviour was null");
+            SetBehaviour(BehaviourID.PATROL);
         }
     }
 

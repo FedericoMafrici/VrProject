@@ -5462,6 +5462,7 @@ GameObject:
   - component: {fileID: 8935378925158184706}
   - component: {fileID: 8238991926144965273}
   - component: {fileID: 8836221621832610123}
+  - component: {fileID: 7440504556433773188}
   m_Layer: 9
   m_Name: Pecora
   m_TagString: Untagged
@@ -5509,7 +5510,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.24744606
   m_Height: 0.8741423
@@ -5754,6 +5755,27 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d3ab7c49edfe148918a5330dbc72da80, type: 3}
   _minDelay: 10
   _maxDelay: 30
+--- !u!65 &7440504556433773188
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5172205576001883916}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.34527433, y: 0.76947504, z: 0.8904167}
+  m_Center: {x: -0.021481378, y: 0.4230324, z: 0.054791678}
 --- !u!1 &5190976323887124178
 GameObject:
   m_ObjectHideFlags: 0

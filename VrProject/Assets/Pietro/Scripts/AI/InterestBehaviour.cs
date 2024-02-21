@@ -8,6 +8,7 @@ using UnityEngine;
 public class InterestBehaviour : MovementBehaviour {
     //TODO: manage destruction of the target
 
+    private Transform _playerTransform;
     private FoodEater _foodEater;
     private Transform _target;
     private Targettable _targettable;
@@ -19,6 +20,11 @@ public class InterestBehaviour : MovementBehaviour {
         _target = target;
         _targettable = target.GetComponent<Targettable>();
         _foodEater = fe;
+        PlayerPickUpDrop player = Object.FindObjectOfType<PlayerPickUpDrop>();
+        if (player != null) { 
+            _playerTransform = player.transform;
+        }
+
         ValidateParameters();
         if(HasValidParameters) {
 
@@ -54,32 +60,40 @@ public class InterestBehaviour : MovementBehaviour {
 
     private void UpdateMovement() {
         if (HasValidParameters && _target != null) {
-            if (_npcMover.GetState() == MovingState.VERY_CLOSE_TO_TARGET) {
+            float playerDistance = 10;
+            Item item = _target.GetComponent<Item>();
+            if (_playerTransform != null && item != null && item.isInPlayerHand) {
+                playerDistance = (_toMoveTransform.position - _playerTransform.position).magnitude;
+            }
+            if (_npcMover.GetState() == MovingState.VERY_CLOSE_TO_TARGET || playerDistance <= 2) {
                 
                 _agent.destination = _toMoveTransform.position;
-                Vector3 targetDirection = _target.position - _toMoveTransform.position;
 
-                //check if agent is not facing towards the target
-                //if it's not rotate it towards the target
-                //otherwise destoy the target
+                if (_npcMover.GetState() == MovingState.VERY_CLOSE_TO_TARGET) {
+                    Vector3 targetDirection = _target.position - _toMoveTransform.position;
 
-                if (Vector3.Angle(_toMoveTransform.forward, targetDirection) > _rotationAngleThreshold) {
-                    //rotate towards target
+                    //check if agent is not facing towards the target
+                    //if it's not rotate it towards the target
+                    //otherwise destoy the target
 
-                    float rotationStep = 10.0f * Time.deltaTime;
-                    Vector3 newDirection = Vector3.RotateTowards(_toMoveTransform.forward, targetDirection, rotationStep, 0.0f);
-                    newDirection.y = _toMoveTransform.forward.y;
-                    Debug.DrawRay(_toMoveTransform.position, newDirection, Color.red);
-                    _toMoveTransform.rotation = Quaternion.LookRotation(newDirection);
+                    if (Vector3.Angle(_toMoveTransform.forward, targetDirection) > _rotationAngleThreshold) {
+                        //rotate towards target
 
-                } else {
-                    //if agent is looking at food then eat it
-                    if (_targettable != null && _foodEater != null) {
-                        AnimalFood food = _targettable.GetComponent<AnimalFood>();
-                        if (food != null) {
-                            _foodEater.AutoEatFood(food);
+                        float rotationStep = 10.0f * Time.deltaTime;
+                        Vector3 newDirection = Vector3.RotateTowards(_toMoveTransform.forward, targetDirection, rotationStep, 0.0f);
+                        newDirection.y = _toMoveTransform.forward.y;
+                        Debug.DrawRay(_toMoveTransform.position, newDirection, Color.red);
+                        _toMoveTransform.rotation = Quaternion.LookRotation(newDirection);
+
+                    } else {
+                        //if agent is looking at food then eat it
+                        if (_targettable != null && _foodEater != null) {
+                            AnimalFood food = _targettable.GetComponent<AnimalFood>();
+                            if (food != null) {
+                                _foodEater.AutoEatFood(food);
+                            }
+
                         }
-
                     }
                 }
 
