@@ -232,9 +232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca73ef5a0dcd534b98ff33a1d91766c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inRangeRadius: 10
-  _closeRadius: 5
-  _veryCloseRadius: 2
+  _inRangeRadius: 11
+  _closeRadius: 6
+  _veryCloseRadius: 3
   _animator: {fileID: 6740315473921005365}
   _patrolArea: {fileID: 0}
   _minPatrolDelay: 5

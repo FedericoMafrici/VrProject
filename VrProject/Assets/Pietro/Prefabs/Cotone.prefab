@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 7678127311145884599}
   - component: {fileID: 5578490243503599485}
   - component: {fileID: 9087689516929011544}
-  - component: {fileID: 8086428834902937963}
   - component: {fileID: 1934784406395586417}
   - component: {fileID: 1719237934950260655}
   - component: {fileID: 2284279905966548932}
+  - component: {fileID: 9092445200886800391}
+  - component: {fileID: 4457585453955253609}
   m_Layer: 10
   m_Name: Cotone
   m_TagString: Untagged
@@ -103,29 +104,6 @@ MonoBehaviour:
   _type: 0
   _npcMover: {fileID: 0}
   _startRemoved: 0
---- !u!136 &8086428834902937963
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6226854452908527272}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 648
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.06900082
-  m_Height: 0.28165346
-  m_Direction: 0
-  m_Center: {x: 0.0069633555, y: 0.04565252, z: 0.000937274}
 --- !u!54 &1934784406395586417
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -271,3 +249,46 @@ MonoBehaviour:
   isDeposited: 0
   grabSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}
   usageSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}
+--- !u!65 &9092445200886800391
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226854452908527272}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.27501217, y: 0.11565983, z: 0.12755121}
+  m_Center: {x: -0.0028827412, y: 0.05238864, z: 0.0009370893}
+--- !u!64 &4457585453955253609
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226854452908527272}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5856665205738455403, guid: 7b395e8d2d7ce7d4a86dae96452f0868, type: 3}
