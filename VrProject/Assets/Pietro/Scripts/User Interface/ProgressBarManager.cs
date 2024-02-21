@@ -15,12 +15,12 @@ public class ProgressBarManager : MonoBehaviour {
 
     protected void AddProgressBar(Bar pBar) {
         _progressBars.Add(pBar);
-        RepositionProgressBars();
+        //RepositionProgressBars();
     }
 
     protected void RemoveProgressBar(Bar pBar) {
         _progressBars.Remove(pBar);
-        RepositionProgressBars();
+        //RepositionProgressBars();
     }
 
     protected void RepositionProgressBars() {
