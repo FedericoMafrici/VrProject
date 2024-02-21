@@ -39,7 +39,7 @@ public class CropRemover : ItemTool {
 
         //do raycast through RaycastManager
         bool inputPressed = InputManager.InteractionsAreEnabled() ? Input.GetMouseButtonDown(0) : false;
-        InteractionResult<FarmingLand> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, HasCrop/*, LayerMask.GetMask("Animals")*/);
+        InteractionResult<FarmingLand> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, HasCrop, LayerMask.GetMask("FarmingLand"));
 
         FarmingLand land = interactionResult.currentInteracted;
 

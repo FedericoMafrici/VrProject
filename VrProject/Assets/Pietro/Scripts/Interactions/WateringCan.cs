@@ -35,7 +35,7 @@ public class WateringCan : ItemTool {
 
         //do raycast through RaycastManager
         bool inputPressed = InputManager.InteractionsAreEnabled() ? Input.GetMouseButtonDown(0) : false;
-        InteractionResult<FarmingLand> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, LandCanBeWatered);
+        InteractionResult<FarmingLand> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, LandCanBeWatered, LayerMask.GetMask("FarmingLand"));
 
         FarmingLand farmingLand = interactionResult.currentInteracted;
 

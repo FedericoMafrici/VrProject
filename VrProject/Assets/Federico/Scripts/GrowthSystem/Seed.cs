@@ -55,7 +55,7 @@ public class Seed : ItemTool
         
         //do raycast through RaycastManager
         bool inputPressed = InputManager.InteractionsAreEnabled() ? Input.GetMouseButtonDown(0) : false;
-        InteractionResult<FarmingLand> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBePlanted);
+        InteractionResult<FarmingLand> interactionResult = _raycastManager.CheckRaycast(playerCamera, inputPressed, CanBePlanted, LayerMask.GetMask("FarmingLand"));
 
         FarmingLand farmingLand = interactionResult.currentInteracted;
 

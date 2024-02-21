@@ -65,7 +65,7 @@ public class InterestBehaviour : MovementBehaviour {
             if (_playerTransform != null && item != null && item.isInPlayerHand) {
                 playerDistance = (_toMoveTransform.position - _playerTransform.position).magnitude;
             }
-            if (_npcMover.GetState() == MovingState.VERY_CLOSE_TO_TARGET || playerDistance <= 2) {
+            if (_npcMover.GetState() == MovingState.VERY_CLOSE_TO_TARGET || playerDistance <= 3) {
                 
                 _agent.destination = _toMoveTransform.position;
 
