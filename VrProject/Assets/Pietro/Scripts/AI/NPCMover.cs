@@ -53,7 +53,7 @@ public class NPCMover : MonoBehaviour {
     public event Action NPCDestinationReachedEvent;
 
     // Start is called before the first frame update
-    void Awake() {
+    void Start() {
         if (_animator == null) {
             _animator = GetComponent<Animator>();
         }
@@ -106,6 +106,8 @@ public class NPCMover : MonoBehaviour {
             */
             _currentBehaviour.Move();
             UpdateAnimations();
+        } else {
+            Debug.LogWarning(name + " movement behaviour is null");
         }
     }
 

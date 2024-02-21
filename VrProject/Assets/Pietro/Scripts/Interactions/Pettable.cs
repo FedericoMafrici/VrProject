@@ -10,7 +10,10 @@ public class Pettable : MonoBehaviour {
     private bool _isAtMaxFriendship;
     [SerializeField] private float _friendshipGrowthRate = 20f;
     [SerializeField] private Bar _progressBar;
-    [SerializeField] private GameObject _heartIcon;
+    //[SerializeField] private GameObject _heartIcon;
+    [SerializeField] private AudioSource _maxFriendshipSource;
+    [SerializeField] private ObjectEmitter _emitter;
+    [SerializeField] private EmissionData _emission;
 
 
     public event EventHandler Befriended;
@@ -33,9 +36,20 @@ public class Pettable : MonoBehaviour {
         if (_friendship < _maxFriendship) {
             _friendship += travelledDistance * _friendshipGrowthRate;
             if (_friendship >= _maxFriendship) {
+                /*
                 if (_heartIcon != null) {
                     _heartIcon.SetActive(true);
                 }
+                */
+
+                if (_maxFriendshipSource != null) {
+                    _maxFriendshipSource.gameObject.SetActive(true);
+                }
+
+                if (_emitter != null) {
+                    _emitter.AddEmission(_emission);
+                }
+
                 _friendship = _maxFriendship;
                 _isAtMaxFriendship = true;
                 

@@ -96,8 +96,8 @@ public class DialogueManager : MonoBehaviour
             StopCoroutine(_sentenceCoroutine);
             _sentenceCoroutine = null;
             //InputManager.EnableMenu();
-            InputManager.EnableInteractions();
-            //StartCoroutine(EnableInputs());
+            //InputManager.EnableInteractions();
+            StartCoroutine(EnableInputs());
             animator.SetBool("IsOpen", false);
             knob.SetActive(true);
             hotbar.SetActive(true);
@@ -110,12 +110,13 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    /*
+    
     IEnumerator EnableInputs() {
+        yield return null;
         yield return null;
         InputManager.EnableInteractions();
     }
-    */
+    
 }
 
 [System.Serializable]

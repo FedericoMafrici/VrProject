@@ -16,6 +16,7 @@ public enum EmissionType {
 [Serializable]
 public struct EmissionData {
     public float frequency;
+    public float delayRange;
     public List<GameObject> toEmitList;
     public EmissionType emissionType;
     public float moveSpeed;
@@ -25,11 +26,10 @@ public struct EmissionData {
 public class ObjectEmitter : MonoBehaviour {
 
     Dictionary<EmissionType, EmissionData> _emissionDataDict = new Dictionary<EmissionType, EmissionData>();
-    [SerializeField] float _pyramidWidth = 0.5f;
+    [SerializeField] float _pyramidWidth = 1f;
     [SerializeField] bool _setParenting = true;
     Dictionary<EmissionType, Coroutine> _emissionCoroutines = new Dictionary<EmissionType, Coroutine>();
     HashSet<GameObject> _spawnedObjects = new HashSet<GameObject>();
-    bool wasDisabled = false;
 
     void Awake() {
         if (_pyramidWidth < 0) {
@@ -74,10 +74,14 @@ public class ObjectEmitter : MonoBehaviour {
     }
 
     IEnumerator GenerateObjectsCoroutine(EmissionData emission) {
+        int index = 0;
         while (true) {
             
-            int index = UnityEngine.Random.Range(0, emission.toEmitList.Count-1);
             GameObject spawned = Instantiate(emission.toEmitList[index]);
+            index++;
+            if (index == emission.toEmitList.Count) {
+                index = 0;
+            }
             
             if (spawned) {
                 spawned.transform.position = this.transform.position;
@@ -99,7 +103,7 @@ public class ObjectEmitter : MonoBehaviour {
                 Coroutine moveCoroutine = StartCoroutine(MoveObject(spawned, direction, emission.moveSpeed));
                 StartCoroutine(DestroyObject(spawned, emission.lifetime, moveCoroutine));
 
-                yield return new WaitForSeconds(1/emission.frequency);
+                yield return new WaitForSeconds((1/emission.frequency) + UnityEngine.Random.Range(-emission.delayRange, emission.delayRange));
             } else {
                 yield break;
             }
@@ -108,11 +112,15 @@ public class ObjectEmitter : MonoBehaviour {
 
     IEnumerator MoveObject(GameObject toMove, Vector3 direction, float moveSpeed) {
         while (true) {
-            // Move the object along the direction vector
-            Vector3 toLookAt = new Vector3(Camera.main.transform.position.x, toMove.transform.position.y, Camera.main.transform.position.z);
-            toMove.transform.LookAt(toLookAt);
-            toMove.transform.Translate(direction * moveSpeed * Time.deltaTime);
-            yield return null;
+            if (toMove != null) {
+                // Move the object along the direction vector
+                if (Camera.main != null) {
+                    Vector3 toLookAt = new Vector3(Camera.main.transform.position.x, toMove.transform.position.y, Camera.main.transform.position.z);
+                    toMove.transform.LookAt(toLookAt);
+                }
+                toMove.transform.Translate(direction * moveSpeed * Time.deltaTime);
+                yield return null;
+            } else { yield break; }
         }
     }
 

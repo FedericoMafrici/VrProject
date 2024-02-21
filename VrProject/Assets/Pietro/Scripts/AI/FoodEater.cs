@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class FoodEater : MonoBehaviour {
     [SerializeField] private List<Item.ItemName> _targetFoodsList;
-    [SerializeField] private GameObject _foodIcon;
+    //[SerializeField] private GameObject _foodIcon;
     [SerializeField] EmissionData hungryEmission;
     [SerializeField] ObjectEmitter emitter;
     private HashSet<Item.ItemName> _targetFoods = new HashSet<Item.ItemName>();
@@ -57,10 +57,11 @@ public class FoodEater : MonoBehaviour {
         }
         food.Consume();
         _isHungry = false;
-        
+        /*
         if (_foodIcon != null) {
             _foodIcon.gameObject.SetActive(true);
         }
+        */
         if (emitter!= null) {
             emitter.RemoveEmission(hungryEmission);
         }
@@ -79,10 +80,11 @@ public class FoodEater : MonoBehaviour {
     IEnumerator WaitBeforeHungry() {
         yield return new WaitForSeconds(30);
         _isHungry = true;
-        
+        /*
         if (_foodIcon != null) {
             _foodIcon.gameObject.SetActive(false);
         }
+        */
         if (emitter != null) {
             emitter.AddEmission(hungryEmission);
         }
@@ -90,10 +92,11 @@ public class FoodEater : MonoBehaviour {
 
     private void OnEnable() {
         _isHungry = true;
-        
+        /*
         if (_foodIcon != null) {
             _foodIcon.gameObject.SetActive(false);
         }
+        */
         
         if (emitter != null) {
             emitter.AddEmission(hungryEmission);

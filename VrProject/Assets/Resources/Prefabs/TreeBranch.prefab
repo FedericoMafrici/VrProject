@@ -167,7 +167,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b8966ba8badca41ec9cbd3df3147c347, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}
-  usageSound: {fileID: 0}
+  usageSound: {fileID: 8300000, guid: 72feb6a17d0d5034e879708759987ae3, type: 3}
   _clueText: Premi [CLICK SINISTRO] per dare da mangiare
   _interactRange: 3
   _consumeWhenEaten: 1
