@@ -250,7 +250,7 @@ MonoBehaviour:
   isInPlayerHand: 0
   grabRotation: {x: 270, y: 224.11198, z: 0}
   itemName: 6
-  itemCategory: 1
+  itemCategory: 0
   depositPosition: {x: -23.027, y: 1.2388198, z: 22.156}
   depositRotation: {x: 270, y: 36.539997, z: 0}
   icon: {fileID: 21300000, guid: 28eb29bbffe0b4c0193e2ecef3a769df, type: 3}
