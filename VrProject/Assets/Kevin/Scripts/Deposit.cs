@@ -103,11 +103,12 @@ public class Deposit : MonoBehaviour
 
     public GameObject SpawnItem(Item.ItemName itemName) {
         if (itemAssets[itemName]) {
-            GameObject spawned = Instantiate(itemAssets[itemName],
-                itemAssets[itemName].GetComponent<Item>().depositPosition,
-                Quaternion.Euler(itemAssets[itemName].GetComponent<Item>().depositRotation));
+            GameObject spawned = Instantiate(itemAssets[itemName], transform.parent);
+            
+            spawned.transform.localPosition = itemAssets[itemName].GetComponent<Item>().depositPosition;
+            spawned.transform.localRotation = Quaternion.Euler(itemAssets[itemName].GetComponent<Item>().depositRotation);
 
-            spawned.transform.parent = transform.parent;
+            // GameObject spawned = Instantiate(itemAssets[itemName], itemAssets[itemName].GetComponent<Item>().depositPosition, Quaternion.Euler(itemAssets[itemName].GetComponent<Item>().depositRotation), transform.parent);
 
             //add reference to the instantiated object
             if (spawned) {
