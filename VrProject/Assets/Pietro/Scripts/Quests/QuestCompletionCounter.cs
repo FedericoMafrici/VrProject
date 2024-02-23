@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuestCompletionCounter : Quest {
 
     [SerializeField] List<Transform> _questParentsList= new List<Transform>();
+    [SerializeField] List<Quest> _targetQuestList = new List<Quest>();
     private HashSet<Quest> _quests = new HashSet<Quest>();
     private int _nToComplete;
     private int _nCompleted = 0;
@@ -15,6 +16,12 @@ public class QuestCompletionCounter : Quest {
                 GetQuestsFromParentTransform(parent, _quests);
             }
         }
+
+        foreach (Quest q in _targetQuestList) {
+
+            _quests.Add(q);
+        }
+
 
         _nToComplete = _quests.Count;
 
