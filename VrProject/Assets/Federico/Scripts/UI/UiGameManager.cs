@@ -23,19 +23,31 @@ public class UiGameManager : MonoBehaviour {
 
     [Header("Informazioni Piante Ui  ")]// add here the information about animal 
     [SerializeField] private List<AnimalDataUi> _plants;
+
+    [Header("Informazioni Trofei Ui  ")]// add here the information about animal 
+    [SerializeField] private List<TropheyUI> _trophey;
+
     private LinkedList<AnimalData> animalList = new LinkedList<AnimalData>();
 
     Dictionary<int, AnimalDataUi> animalMap = new Dictionary<int, AnimalDataUi>();
 
     Dictionary<int, AnimalDataUi> plantMap = new Dictionary<int, AnimalDataUi>();
+
+    [SerializeField] private TMP_Text[] tropheyDescription= new TMP_Text[5];
+    
+    [SerializeField]  private Sprite[] tropheyImages= new Sprite[5];
     //map index 
 
     private int currAnimalKey = 0;
     private int currPlantKey = 0;
 
+    private int currTropheyKey=0;
+
     private int animalNumber = 0;
 
     private int plantNumber = 0;
+
+    private int tropheyNumber=0;
     private AnimalDataUi entity = null;
     // Informazioni per i controllì
     public ControlSettingsData controlSettings;
@@ -446,6 +458,43 @@ public class UiGameManager : MonoBehaviour {
         ControlSettings.SetActive(false);
         Menu.SetActive(false);
         currNode = animalList.First;
+    }
+    public void DisplayTrophey()
+    {
+        Image tmp = PreviousPlantButton.GetComponent<Image>();
+        Color buttonColor = tmp.color;
+        buttonColor.a = 255f;
+        tmp.color = buttonColor;
+        tmp.sprite = leftArrow;
+        // same for right arrow 
+        tmp = NextPlantlButton.GetComponent<Image>();
+        buttonColor = tmp.color;
+        buttonColor.a = 255f;
+        tmp.color = buttonColor;
+        tmp.sprite = rightArrow;
+        // Animal button
+        tmp = PreviousAnimalButton.GetComponent<Image>();
+        buttonColor = tmp.color;
+        buttonColor.a = 255f;
+        tmp.color = buttonColor;
+        tmp.sprite = leftArrow;
+
+        tmp = NextAnimalButton.GetComponent<Image>();
+        buttonColor = tmp.color;
+        buttonColor.a = 255f;
+        tmp.color = buttonColor;
+        tmp.sprite = rightArrow;
+
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
+
+        //TO DO CHIAMA IL PANNELLO NUOVO METTILO AD ATTIVO 
+        ControlSettings.SetActive(false);
+        PlantsCanvas.SetActive(false);
+        AnimalsCanvas.SetActive(false);
+        Menu.SetActive(false);
+
+        // chiama la funzione displayTrophey
     }
     public void DisplayMenu() {
         // restting button 
