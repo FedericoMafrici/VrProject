@@ -57,7 +57,7 @@ public class QuestCompletionAchievement : Quest {
             if (_nCompleted >= _toReachValues[_valuesIndex]) {
                 Progress();
                 string color = _valuesIndex == 0 ? "green" : (_valuesIndex == 1 ? "yellow" : "red");
-                Debug.Log("<color=" + color + ">" + this + ": achievement unlocked" + " tier : " + _valuesIndex + 1 + ", id: " + GetID() + "</color>");
+                Debug.LogWarning("<color=" + color + ">" + this + ": achievement unlocked" + " tier : " + _valuesIndex + 1 + ", id: " + GetID() + "</color>");
                 if (_valuesIndex < _toReachValues.Count - 1) {
                     _valuesIndex++;
                 } else {
