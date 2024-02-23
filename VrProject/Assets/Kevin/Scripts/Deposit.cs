@@ -35,6 +35,7 @@ public class Deposit : MonoBehaviour
                     itemCounters.Add(itemName, GameObject.Find("ItemDepositCounter" + itemName));
                     if (itemCounters[itemName]) {
                         itemCounters[itemName].GetComponent<ItemDepositCounter>().player = player;
+                        itemCounters[itemName].GetComponent<ItemDepositCounter>().category = itemAssets[itemName].GetComponent<Item>().itemCategory;
                         //itemCounters[itemName].GetComponent<ItemDepositCounter>().transform.parent = this.transform;
                         if (_startEmpty || _addAllItems) {
                             itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 0;
