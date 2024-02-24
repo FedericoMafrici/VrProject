@@ -423,7 +423,7 @@ public class UiGameManager : MonoBehaviour {
             Debug.Log(trophey.Value.CurrTropheyTier);
             
             tropheyImages[index].sprite=trophey.Value.Tiers[trophey.Value.currTier];
-            tropheyDescription[index].text=trophey.Value.descrizione;
+            tropheyDescription[index].text=trophey.Value.descrizione[trophey.Value.currTier];
             index++;
         }
         

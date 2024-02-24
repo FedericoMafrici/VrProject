@@ -11,8 +11,9 @@ public class TropheyUI : QuestEventReceiver
         public int currTier=0;
         public GameObject Alert;
         [SerializeField] public Sprite[] Tiers =new Sprite[4];
-      
-        public string descrizione;
+        
+       [SerializeField]  public string[] descrizione =new string[4];
+        
         public Sprite CurrTropheyTier=null;
     // Start is called before the first frame update
     protected override void Awake()

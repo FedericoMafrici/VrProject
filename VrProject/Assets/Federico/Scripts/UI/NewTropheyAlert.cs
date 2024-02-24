@@ -9,8 +9,8 @@ public class NewTropheyAlert : MonoBehaviour
 {
     // Start is called before the first frame update
   
-    private const float alphaValue = 0.82f;
-    private const float waitingTime = 7f;
+    private const float alphaValue = 0.95f;
+    private const float waitingTime = 4f;
     
     private Image background;
     private TMP_Text alertText;
