@@ -254,8 +254,8 @@ MonoBehaviour:
   grabRotation: {x: 250, y: 235, z: 100}
   itemName: 7
   itemCategory: 0
-  depositPosition: {x: -24.04155, y: 1.8252, z: 22.9334}
-  depositRotation: {x: -0.00541124, y: 35.65123, z: -0.000748136}
+  depositPosition: {x: -21.547396, y: -3.1106977, z: 32.758842}
+  depositRotation: {x: 0.004006026, y: 36.449375, z: 359.30963}
   icon: {fileID: 21300000, guid: 820100d431e3f4b748d9f7027b231185, type: 3}
   isDeposited: 0
   grabSound: {fileID: 0}

@@ -35,6 +35,7 @@ public class Deposit : MonoBehaviour
                     itemCounters.Add(itemName, GameObject.Find("ItemDepositCounter" + itemName));
                     if (itemCounters[itemName]) {
                         itemCounters[itemName].GetComponent<ItemDepositCounter>().player = player;
+                        itemCounters[itemName].GetComponent<ItemDepositCounter>().category = itemAssets[itemName].GetComponent<Item>().itemCategory;
                         //itemCounters[itemName].GetComponent<ItemDepositCounter>().transform.parent = this.transform;
                         if (_startEmpty || _addAllItems) {
                             itemCounters[itemName].GetComponent<ItemDepositCounter>().counter = 0;
@@ -103,11 +104,12 @@ public class Deposit : MonoBehaviour
 
     public GameObject SpawnItem(Item.ItemName itemName) {
         if (itemAssets[itemName]) {
-            GameObject spawned = Instantiate(itemAssets[itemName],
-                itemAssets[itemName].GetComponent<Item>().depositPosition,
-                Quaternion.Euler(itemAssets[itemName].GetComponent<Item>().depositRotation));
+            GameObject spawned = Instantiate(itemAssets[itemName], transform.parent);
+            
+            spawned.transform.localPosition = itemAssets[itemName].GetComponent<Item>().depositPosition;
+            spawned.transform.localRotation = Quaternion.Euler(itemAssets[itemName].GetComponent<Item>().depositRotation);
 
-            spawned.transform.parent = transform.parent;
+            // GameObject spawned = Instantiate(itemAssets[itemName], itemAssets[itemName].GetComponent<Item>().depositPosition, Quaternion.Euler(itemAssets[itemName].GetComponent<Item>().depositRotation), transform.parent);
 
             //add reference to the instantiated object
             if (spawned) {

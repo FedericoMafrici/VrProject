@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using Unity.VisualScripting;
 
 public class UiGameManager : MonoBehaviour {
     // Informazioni per ogni animale da aggiungere tramite inspector
@@ -23,19 +24,33 @@ public class UiGameManager : MonoBehaviour {
 
     [Header("Informazioni Piante Ui  ")]// add here the information about animal 
     [SerializeField] private List<AnimalDataUi> _plants;
+
+    [Header("Informazioni Trofei Ui  ")]// add here the information about animal 
+    [SerializeField] private List<TropheyUI> _trophey;
+
     private LinkedList<AnimalData> animalList = new LinkedList<AnimalData>();
+
+    Dictionary<int,TropheyUI> tropheyMap=new Dictionary<int, TropheyUI>();
 
     Dictionary<int, AnimalDataUi> animalMap = new Dictionary<int, AnimalDataUi>();
 
     Dictionary<int, AnimalDataUi> plantMap = new Dictionary<int, AnimalDataUi>();
+
+    [SerializeField] private TMP_Text[] tropheyDescription= new TMP_Text[5];
+    
+    [SerializeField]  private Image[] tropheyImages= new Image[5];
     //map index 
 
     private int currAnimalKey = 0;
     private int currPlantKey = 0;
 
+    private int currTropheyKey=0;
+
     private int animalNumber = 0;
 
     private int plantNumber = 0;
+
+    private int tropheyNumber=0;
     private AnimalDataUi entity = null;
     // Informazioni per i controllì
     public ControlSettingsData controlSettings;
@@ -70,6 +85,8 @@ public class UiGameManager : MonoBehaviour {
     public GameObject PlantsCanvas;
     public GameObject AnimalsCanvas;
     public GameObject ControlSettings;
+    
+    public GameObject Trophey;
     public GameObject Menu;
     public PlayerUIController player;
 
@@ -131,7 +148,15 @@ public class UiGameManager : MonoBehaviour {
             }
             plantNumber = i;
         }
-
+        i=0;
+        if(_trophey!=null)
+        {
+            foreach(TropheyUI trophey in _trophey)
+            {
+                tropheyMap.Add(i++,trophey);
+            }
+            tropheyNumber=i;
+        }
 
 
         AnimalData[] animals = { leone, mucca };
@@ -250,67 +275,7 @@ public class UiGameManager : MonoBehaviour {
             NextAnimalButton.gameObject.SetActive(true);
         }
     }
-    /*
-    void DisplayAnimalData()
-    {
-         missions.text="";
-        description.text="";
-        image.sprite=null;
-
-         if (animalMap.TryGetValue(currAnimalKey, out AnimalDataUi value))
-            {
-                entity=value;
-            }
-            else 
-            {
-                return;
-            }
-
-          description.text=entity.description[entity.index];
-
-          image.sprite=entity.AnimalSprite;
-          foreach(Quest quest in entity._targetQuestSet)  
-          {
-            missions.text+="-"+quest.GetQuestDescription();
-            missions.text+="\n";
-          }   
-
-          if(currAnimalKey==0)
-          {
-           // NextAnimalButton.Sprite=null;
-           Image tmp=PreviousAnimalButton.GetComponent<Image>();
-           Color buttonColor=tmp.color;
-           buttonColor.a=0f;
-           tmp.color=buttonColor;
-          }
-          else if(currAnimalKey==animalNumber-1)
-          {
-
-            Image tmp=NextAnimalButton.GetComponent<Image>();
-            Color buttonColor=tmp.color;
-            buttonColor.a=0f;
-            tmp.color=buttonColor;
-
-            tmp.sprite=leftArrow;
-          }
-          else 
-          {
-            Image tmp=PreviousAnimalButton.GetComponent<Image>();
-            Color buttonColor=tmp.color;
-            buttonColor.a=255f;
-            tmp.color=buttonColor;
-            tmp.sprite=leftArrow;
-            // same for right arrow 
-            tmp=NextAnimalButton.GetComponent<Image>();
-            buttonColor=tmp.color;
-            buttonColor.a=255f;
-            tmp.color=buttonColor;
-            tmp.sprite=rightArrow;
-          }
-
-
-    }
-    */
+  
     public void DisplayPlantData() {
         plantMissions.text = "";
         plantDescription.text = "";
@@ -401,6 +366,7 @@ public class UiGameManager : MonoBehaviour {
         AnimalsCanvas.SetActive(true);
         PlantsCanvas.SetActive(false);
         ControlSettings.SetActive(false);
+        Trophey.SetActive(false);
         Menu.SetActive(false);
         currNode = animalList.First;
 
@@ -444,8 +410,60 @@ public class UiGameManager : MonoBehaviour {
         AnimalsCanvas.SetActive(false);
         PlantsCanvas.SetActive(true);
         ControlSettings.SetActive(false);
+        Trophey.SetActive(false);
         Menu.SetActive(false);
         currNode = animalList.First;
+    }
+    public void DisplayTropheyData()
+    {
+        int index=0;
+    
+        foreach(KeyValuePair<int, TropheyUI> trophey in tropheyMap)
+        {
+            Debug.Log(trophey.Value.CurrTropheyTier);
+            
+            tropheyImages[index].sprite=trophey.Value.Tiers[trophey.Value.currTier];
+            tropheyDescription[index].text=trophey.Value.descrizione;
+            index++;
+        }
+        
+    }
+    public void DisplayTrophey()
+    {
+        Image tmp = PreviousPlantButton.GetComponent<Image>();
+        Color buttonColor = tmp.color;
+        buttonColor.a = 255f;
+        tmp.color = buttonColor;
+        tmp.sprite = leftArrow;
+        // same for right arrow 
+        tmp = NextPlantlButton.GetComponent<Image>();
+        buttonColor = tmp.color;
+        buttonColor.a = 255f;
+        tmp.color = buttonColor;
+        tmp.sprite = rightArrow;
+        // Animal button
+        tmp = PreviousAnimalButton.GetComponent<Image>();
+        buttonColor = tmp.color;
+        buttonColor.a = 255f;
+        tmp.color = buttonColor;
+        tmp.sprite = leftArrow;
+
+        tmp = NextAnimalButton.GetComponent<Image>();
+        buttonColor = tmp.color;
+        buttonColor.a = 255f;
+        tmp.color = buttonColor;
+        tmp.sprite = rightArrow;
+
+        PreviousAnimalButton.gameObject.SetActive(true);
+        NextAnimalButton.gameObject.SetActive(true);
+        DisplayTropheyData();
+        //TO DO CHIAMA IL PANNELLO NUOVO METTILO AD ATTIVO 
+        ControlSettings.SetActive(false);
+        PlantsCanvas.SetActive(false);
+        AnimalsCanvas.SetActive(false);
+        Menu.SetActive(false);
+        Trophey.SetActive(true);
+        // chiama la funzione displayTrophey
     }
     public void DisplayMenu() {
         // restting button 
@@ -486,6 +504,7 @@ public class UiGameManager : MonoBehaviour {
         ControlSettings.SetActive(false);
         PlantsCanvas.SetActive(false);
         AnimalsCanvas.SetActive(false);
+        Trophey.SetActive(false);
         Menu.SetActive(true);
 
     }
@@ -556,6 +575,7 @@ public class UiGameManager : MonoBehaviour {
         ControlSettings.SetActive(true);
         PlantsCanvas.SetActive(false);
         Menu.SetActive(false);
+        Trophey.SetActive(false);
     }
     public void StartUI() {
         // restting button 
@@ -597,6 +617,7 @@ public class UiGameManager : MonoBehaviour {
         playerCamera.SetActive(false);
         ControlSettings.SetActive(false);
         AnimalsCanvas.SetActive(true);
+        Trophey.SetActive(false);
         Menu.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -642,6 +663,7 @@ public class UiGameManager : MonoBehaviour {
         PlantsCanvas.SetActive(false);
         ControlSettings.SetActive(false);
         AnimalsCanvas.SetActive(false);
+        Trophey.SetActive(false);
         Menu.SetActive(false);
         currNode = animalList.First;
         uiPanel.deleteMissions();

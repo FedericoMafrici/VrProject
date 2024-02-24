@@ -17,4 +17,7 @@ public class Scenario : MonoBehaviour
 
     public Vector3 playerPos;
     public Vector3 playerRot;
+
+    public Vector3 depositPosition;
+    public Vector3 depositRotation;
 }
