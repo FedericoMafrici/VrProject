@@ -19,6 +19,7 @@ public class ChangeScenario : QuestEventReceiver
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject player;
     [SerializeField] private Animator pipeAnimator;
+    [SerializeField] private GameObject deposit;
 
     public void Start()
     {
@@ -36,6 +37,9 @@ public class ChangeScenario : QuestEventReceiver
                 gameObject.transform.GetComponent<AudioSource>().Stop();
             gameObject.transform.GetComponent<AudioSource>().clip = scenarios[newScenario].soundtrack;
             gameObject.transform.GetComponent<AudioSource>().Play();
+
+            deposit.transform.position = scenarios[newScenario].depositPosition;
+            deposit.transform.rotation = Quaternion.Euler(scenarios[newScenario].depositRotation);
             
             scenarios[newScenario].scene.SetActive(true);
             if(newScenario == 0)

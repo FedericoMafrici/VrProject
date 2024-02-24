@@ -1292,6 +1292,66 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
+  - m_Index: 675
+    m_Metrics:
+      m_Width: 43.140625
+      m_Height: 68.375
+      m_HorizontalBearingX: 3.171875
+      m_HorizontalBearingY: 67.5
+      m_HorizontalAdvance: 48.640625
+    m_GlyphRect:
+      m_X: 365
+      m_Y: 389
+      m_Width: 44
+      m_Height: 69
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 29
+    m_Metrics:
+      m_Width: 43.15625
+      m_Height: 65.46875
+      m_HorizontalBearingX: 3.78125
+      m_HorizontalBearingY: 64.859375
+      m_HorizontalAdvance: 51.640625
+    m_GlyphRect:
+      m_X: 428
+      m_Y: 431
+      m_Width: 44
+      m_Height: 66
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 28
+    m_Metrics:
+      m_Width: 43.25
+      m_Height: 65.734375
+      m_HorizontalBearingX: 4.171875
+      m_HorizontalBearingY: 64.859375
+      m_HorizontalAdvance: 51.640625
+    m_GlyphRect:
+      m_X: 240
+      m_Y: 433
+      m_Width: 44
+      m_Height: 66
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 26
+    m_Metrics:
+      m_Width: 44.078125
+      m_Height: 65.515625
+      m_HorizontalBearingX: 4.390625
+      m_HorizontalBearingY: 64.640625
+      m_HorizontalAdvance: 51.640625
+    m_GlyphRect:
+      m_X: 144
+      m_Y: 466
+      m_Width: 45
+      m_Height: 66
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
   m_CharacterTable:
   - m_ElementType: 1
     m_Unicode: 32
@@ -1596,6 +1656,22 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 8230
     m_GlyphIndex: 399
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 233
+    m_GlyphIndex: 675
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 57
+    m_GlyphIndex: 29
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 56
+    m_GlyphIndex: 28
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 54
+    m_GlyphIndex: 26
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: 28204114720316640}
@@ -2020,10 +2096,6 @@ MonoBehaviour:
     m_Y: 346
     m_Width: 31
     m_Height: 65
-  - m_X: 134
-    m_Y: 411
-    m_Width: 28
-    m_Height: 612
   - m_X: 492
     m_Y: 155
     m_Width: 3
