@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e74cde4210ec211438d4cfc0f989f9f6, type: 3}
       propertyPath: m_Name
-      value: Rametto 1
+      value: TreeBranch
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e74cde4210ec211438d4cfc0f989f9f6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
