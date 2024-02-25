@@ -17,6 +17,7 @@ public class Pettable : MonoBehaviour {
 
 
     public event EventHandler Befriended;
+    public static event EventHandler StaticBefriended;
 
     private void Start() {
 
@@ -55,10 +56,14 @@ public class Pettable : MonoBehaviour {
                 
                 if (!_progressBar.IsHidden())
                     _progressBar.Hide();
+
                 if (Befriended != null) {
                     Befriended(this, EventArgs.Empty);
                 }
-                
+                if (StaticBefriended != null) {
+                    StaticBefriended(this, EventArgs.Empty);
+                }
+
             }
             _progressBar.SetValue(_friendship);
         }

@@ -12,11 +12,13 @@ public class NewTropheyAlert : MonoBehaviour
     private const float alphaValue = 0.95f;
     private const float waitingTime = 4f;
     
+    private AudioSource _audioSource;
     private Image background;
     private TMP_Text alertText;
 
     void Awake()
     {
+        _audioSource = GetComponent<AudioSource>();
         background = GetComponent<Image>();
         alertText = gameObject.transform.Find("AlertText").GetComponent<TMP_Text>();
         alertText.text = "Nuovo trofeo sbloccato!";
@@ -55,6 +57,10 @@ public class NewTropheyAlert : MonoBehaviour
 
     public void Show()
     {
+        if (_audioSource != null && !_audioSource.isPlaying) {
+            _audioSource.Play();
+        }
+
         Color c;
         if(background==null)
         {

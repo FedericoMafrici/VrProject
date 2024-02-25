@@ -15,6 +15,7 @@ public class FoodEater : MonoBehaviour {
 
 
     public event EventHandler<EatEventArgs> EatEvent;
+    public static event EventHandler<EatEventArgs> StaticEatEvent;
 
     private void Start() {
         if (_targetFoodsList != null) {
@@ -55,6 +56,10 @@ public class FoodEater : MonoBehaviour {
         if (EatEvent != null) {
             EatEvent(this, new EatEventArgs(food, transform));
         }
+        if (StaticEatEvent != null) {
+            StaticEatEvent(this, new EatEventArgs(food, transform));
+        }
+
         food.Consume();
         _isHungry = false;
         /*
