@@ -24,6 +24,9 @@ public class TargetMinigame : MonoBehaviour {
     [SerializeField] AudioClip clickSound;
     [Header("Item to remove if in inventory at the end of the minigame")]
     [SerializeField] Item.ItemName toRemoveItemName = Item.ItemName.NoItem;
+    [Header("Callbacks")]
+    [SerializeField] private List<MinigameCallback> _callbackList;
+
 
     //[Header("Minigame camera reference")]
     private Camera minigameCamera;
@@ -38,11 +41,14 @@ public class TargetMinigame : MonoBehaviour {
 
     private List<Vector3> relativePositions = new List<Vector3>();
 
+    private HashSet<MinigameCallback> _callbacks = new HashSet<MinigameCallback>();
+
     private Action updateFunction = () => { }; //function to call during update
     public Action CompleteEvent;
 
     void Awake() {
-        minigameCamera= GetComponentInChildren<Camera>();
+        _callbacks = _callbackList.ToHashSet();
+        minigameCamera = GetComponentInChildren<Camera>();
         //verify and disable camera
         if (minigameCamera == null) {
             Debug.LogError(transform.name + ": TargetMinigame, no minigame camera set");
@@ -85,10 +91,13 @@ public class TargetMinigame : MonoBehaviour {
                 Debug.LogError(transform.name + ": Target Minigame, illegal animal type specified");
                 break;
         }
-
         //hide additional item if it's provided
         SetAdditionalItem(false);
         //Target.OnTargetClicked += CheckTargetList;
+
+        foreach (MinigameCallback callback in _callbacks) {
+            callback.Init(this);
+        }
 
     }
 
@@ -101,7 +110,7 @@ public class TargetMinigame : MonoBehaviour {
         _npc.StopMoving();
 
         //animate
-        if (_animator!= null) {
+        if (_animator != null) {
             _animator.SetBool("minigameRunning", true);
             _animationPrevSpeed = _animator.speed;
             _animator.speed = 1;
@@ -137,6 +146,10 @@ public class TargetMinigame : MonoBehaviour {
             ShuffleList(relativePositions); //shuffle targets positions
         }
 
+        foreach (MinigameCallback callback in _callbacks) {
+            callback.BeginCallback();
+        }
+
         CheckTargetList();
     }
 
@@ -152,18 +165,21 @@ public class TargetMinigame : MonoBehaviour {
 
         currentTarget.transform.localPosition = pos;
         //currentTarget.transform.LookAt(minigameCamera.transform.position);
-        currentTarget.transform.forward = - minigameCamera.transform.forward;
+        currentTarget.transform.forward = -minigameCamera.transform.forward;
 
         AudioSource audioSource = newTargetGameObj.GetComponent<AudioSource>();
         if (audioSource != null) {
             audioSource.clip = clickSound;
         }
-        
 
         //subscribe to current target click event
         currentTarget.OnTargetClicked += CheckTargetList;
 
         numSpawnedTargets++;
+
+        foreach (MinigameCallback callback in _callbacks) {
+            callback.SpawnTargetCallback(currentTarget, numSpawnedTargets);
+        }
     }
 
     private void CheckTargetList() {
@@ -172,8 +188,12 @@ public class TargetMinigame : MonoBehaviour {
             currentTarget.OnTargetClicked -= CheckTargetList;
         }
 
+        foreach (MinigameCallback callback in _callbacks) {
+            callback.ProgressCallback();
+        }
+
         if (numSpawnedTargets < numTotalTargets) {
-                SpawnTarget(relativePositions[numSpawnedTargets]);
+            SpawnTarget(relativePositions[numSpawnedTargets]);
             Debug.LogWarning("Targets: " + numSpawnedTargets + "/" + numTotalTargets);
         } else {
             EndMinigame();
@@ -183,6 +203,10 @@ public class TargetMinigame : MonoBehaviour {
     private void EndMinigame(bool success = true) {
         Debug.LogWarning("Ending minigame");
         LockCursor();
+
+        foreach (MinigameCallback callback in _callbacks) {
+            callback.EndCallback(success);
+        }
 
         //disable update function
         ChangeUpdateBehaviour(false);
@@ -217,7 +241,7 @@ public class TargetMinigame : MonoBehaviour {
 
         //if success remove held item
         if (success) {
-            
+
             if (toRemoveItemName != Item.ItemName.NoItem) {
                 playerPickUp.deposit.AddItem(toRemoveItemName);
                 RemoveItem(toRemoveItemName);
@@ -245,7 +269,7 @@ public class TargetMinigame : MonoBehaviour {
 
         minigameRunning = false;
 
-        
+
     }
 
     private void Update() {
@@ -314,9 +338,9 @@ public class TargetMinigame : MonoBehaviour {
     private void ChangeUpdateBehaviour(bool activateUpdate) {
         if (activateUpdate) {
             updateFunction = () => {
-                if(Input.GetKeyDown(KeyCode.Backspace)) {
+                if (Input.GetKeyDown(KeyCode.Backspace)) {
                     //force exit minigame
-          
+
                     if (currentTarget != null) {
                         currentTarget.OnTargetClicked -= CheckTargetList;
                         if (!currentTarget.IsAlreadyClicked()) {
@@ -361,7 +385,7 @@ public class TargetMinigame : MonoBehaviour {
             if (playerPickUp.hotbar.activeItemObj != null) {
                 currentName = playerPickUp.hotbar.activeItemObj.itemName;
             }
-            
+
             if (playerPickUp.hotbar.Contains(targetItem)) {
                 playerPickUp.hotbar.MakeHoldItem(playerPickUp.hotbar.FindItem(targetItem));
             } else {
@@ -378,5 +402,8 @@ public class TargetMinigame : MonoBehaviour {
         }
     }
 
+    public int GetNumTotalTargets() {
+        return numTotalTargets;
+    }
         
 }

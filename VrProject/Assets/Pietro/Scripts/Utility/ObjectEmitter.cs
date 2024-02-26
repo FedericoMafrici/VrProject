@@ -10,7 +10,7 @@ using UnityEngine.Android;
 public enum EmissionType {
     NONE,
     FOOD,
-    HEART
+    HEART,
 }
 
 [Serializable]
