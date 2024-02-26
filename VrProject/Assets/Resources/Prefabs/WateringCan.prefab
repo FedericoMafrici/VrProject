@@ -88,6 +88,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 12b1fa2ed28487c4e8a542251f9ba1ec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6619982670354756118}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 12b1fa2ed28487c4e8a542251f9ba1ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -493530273508594899}
   m_SourcePrefab: {fileID: 100100000, guid: 12b1fa2ed28487c4e8a542251f9ba1ec, type: 3}
 --- !u!1 &7923234759584748530 stripped
 GameObject:
@@ -234,7 +237,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.2780196, y: 0.22620028, z: 0.13646656}
   m_Center: {x: -0.018256128, y: 0.10561153, z: -0.0075636953}
@@ -251,14 +254,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInPlayerHand: 0
-  grabRotation: {x: 15, y: 140, z: 0}
+  grabRotation: {x: 2.235633, y: 58.78692, z: 359.66013}
   itemName: 0
   itemCategory: 0
   depositPosition: {x: -21.885618, y: -3.1305404, z: 33.04136}
-  depositRotation: {x: 0, y: 180, z: 0}
+  depositRotation: {x: 5.9422474, y: 180.37094, z: 0.5995312}
   icon: {fileID: 21300000, guid: c6b7de9771c214683856a3a1a7592310, type: 3}
   isDeposited: 0
-  grabSound: {fileID: 0}
+  grabSound: {fileID: 8300000, guid: 6833261b1b88340e6b2fd4a9063397bf, type: 3}
   usageSound: {fileID: 8300000, guid: b2e939ada8d55fd44b539ec457e66a8e, type: 3}
   _interactDistance: 5
   _clueText: Premi [CLICK SINISTRO] per annaffiare
+--- !u!64 &-493530273508594899
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7923234759584748530}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2346428509227581198, guid: 12b1fa2ed28487c4e8a542251f9ba1ec, type: 3}

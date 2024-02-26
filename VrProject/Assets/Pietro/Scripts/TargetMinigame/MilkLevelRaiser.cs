@@ -6,6 +6,7 @@ public class MilkLevelRaiser : MinigameCallback
 {
     [SerializeField] private float _finalZ;
     [SerializeField] private float _raisingSpeed = 1f;
+    private AudioSource _audioSource;
     private Coroutine runningCoroutine = null;
     private Renderer _renderer;
     private float _zIncrement;
@@ -19,6 +20,7 @@ public class MilkLevelRaiser : MinigameCallback
     // Start is called before the first frame update
     void Start() {
         if (!_started) {
+            _audioSource = GetComponent<AudioSource>();
             bool isActive = gameObject.activeSelf;
 
             _renderer = GetComponent<Renderer>();
@@ -43,18 +45,17 @@ public class MilkLevelRaiser : MinigameCallback
         }
 
         _numSteps = minigame.GetNumTotalTargets(); 
-        Debug.LogWarning(name + "Num steps is: " + _numSteps);
         _zIncrement = Mathf.Abs(_finalZ - _startZ) / (_numSteps-1); //first and last target clicked will not make any changes
-        Debug.LogWarning(name + ": Z increment is: " + _zIncrement);
         _inited = true;
     }
 
     public override void ProgressCallback() {
 
         if (_inited) {
-            Debug.LogWarning("Processing step: " + _curStep);
             if (_curStep > 0) { //first step will do nothing
+
                 
+
                 if (_curStep == 1) {
 
                     if (_renderer != null) {
@@ -65,6 +66,9 @@ public class MilkLevelRaiser : MinigameCallback
 
                 if (_curStep < _numSteps) {
                     _toReachHeight = transform.localPosition.z + _zIncrement;
+                    if (_audioSource != null) {
+                        _audioSource.Play();
+                    }
                     if (runningCoroutine == null) {
                         StartCoroutine(RaiseLevel());
                     }

@@ -163,7 +163,13 @@ public class TargetMinigame : MonoBehaviour {
             Debug.LogError(transform.name + ": " + targetPrefab.name + " has no \"Target\" component");
         }
 
+        numSpawnedTargets++;
         currentTarget.transform.localPosition = pos;
+
+        foreach (MinigameCallback callback in _callbacks) {
+            callback.SpawnTargetCallback(currentTarget, numSpawnedTargets);
+        }
+
         //currentTarget.transform.LookAt(minigameCamera.transform.position);
         currentTarget.transform.forward = -minigameCamera.transform.forward;
 
@@ -175,11 +181,9 @@ public class TargetMinigame : MonoBehaviour {
         //subscribe to current target click event
         currentTarget.OnTargetClicked += CheckTargetList;
 
-        numSpawnedTargets++;
+        
 
-        foreach (MinigameCallback callback in _callbacks) {
-            callback.SpawnTargetCallback(currentTarget, numSpawnedTargets);
-        }
+        
     }
 
     private void CheckTargetList() {

@@ -14,6 +14,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-5393307691137744955
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: a7b51280c40847b43ac4a5d95efadb47
+  m_EffectName: Attenuation
+  m_MixLevel: 992982ddc6c252c41bee2744f2e64537
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &-4850554861649358401
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -112,6 +126,7 @@ AudioMixerController:
     - 5df4cf4adec944744b7723374f171ae9
     - eb4aaa274e420ff4fa913316dbe97f11
     - d4691e394c48e1a47a99fa07913072a8
+    - 1fd13ed6324c69648b3fc7d52c0aad7c
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -165,7 +180,27 @@ AudioMixerSnapshotController:
     087ae3a59802aa5439b0d03dc7242876: -21.302507
     94af6c584b59c974690dd418791530e3: -4.560346
     533fc7196be22b2469a8d3ab5b9aff41: -15.421314
+    6561e9cf9e8956044b10117d9b9d8c56: -10.345207
   m_TransitionOverrides: {}
+--- !u!243 &76245955466138459
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pouring
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 1fd13ed6324c69648b3fc7d52c0aad7c
+  m_Children: []
+  m_Volume: 6561e9cf9e8956044b10117d9b9d8c56
+  m_Pitch: db7ddc8b12b00fb46956e9f39bed60d4
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -5393307691137744955}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &607745526388537262
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -205,6 +240,7 @@ AudioMixerGroupController:
   m_GroupID: aa7832b937007be4f9461751c0dcfed5
   m_Children:
   - {fileID: -4850554861649358401}
+  - {fileID: 76245955466138459}
   m_Volume: 533fc7196be22b2469a8d3ab5b9aff41
   m_Pitch: 7e7642d8a0165a24cb625b8f109d3e38
   m_Send: 00000000000000000000000000000000

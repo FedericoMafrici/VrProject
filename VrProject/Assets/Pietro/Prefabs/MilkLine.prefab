@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementDirection: {x: 0, y: -1, z: 0}
-  _speed: 2
+  _speed: 1
   _maxTravelDistance: 10
   distancWrtObject: 1
   distanceReference: {fileID: 3511018866350059371}
