@@ -20,6 +20,7 @@ public class ChangeScenario : QuestEventReceiver
     [SerializeField] private GameObject player;
     [SerializeField] private Animator pipeAnimator;
     [SerializeField] private GameObject deposit;
+    [SerializeField] private List<MeshRenderer> depositMeshList;
 
     public void Start()
     {
@@ -40,6 +41,22 @@ public class ChangeScenario : QuestEventReceiver
 
             deposit.transform.position = scenarios[newScenario].depositPosition;
             deposit.transform.rotation = Quaternion.Euler(scenarios[newScenario].depositRotation);
+            foreach(MeshRenderer mesh in depositMeshList)
+            {
+                List<Material> materials = new List<Material>();
+                if (mesh.materials.Length == 1)
+                {
+                    materials.Add(scenarios[newScenario].depositMaterial);
+                }
+                else if (mesh.materials.Length == 4)
+                {
+                    materials.Add(scenarios[newScenario].depositMaterial);
+                    materials.Add(scenarios[newScenario].depositMaterial);
+                    materials.Add(scenarios[newScenario].depositMaterial);
+                    materials.Add(scenarios[newScenario].depositMaterial);
+                }
+                mesh.SetMaterials(materials);
+            }
             
             scenarios[newScenario].scene.SetActive(true);
             if(newScenario == 0)
