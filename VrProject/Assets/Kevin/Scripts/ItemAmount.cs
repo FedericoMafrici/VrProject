@@ -23,5 +23,9 @@ public class ItemAmount : MonoBehaviour
                 gameObject.GetComponent<TMP_Text>().text = amount.ToString();
             }
         }
+        else
+        {
+            gameObject.GetComponent<TMP_Text>().text = "";
+        }
     }
 }

@@ -135,20 +135,10 @@ public class PlayerPickUpDrop : MonoBehaviour
                            && hotbar.activeItemObj.itemName != Item.ItemName.OpenPomade) {
                     
                     hotbar.activeItemObj.StartFading();
-                    deposit.AddItem(hotbar.activeItemObj.itemName); //aggiunto da pietro, incapsula il codice commentato sotto
-                    /*
-                    if (deposit.itemCounters[hotbar.activeItemObj.itemName].GetComponent<ItemDepositCounter>().counter == 0) {
-                        GameObject spawnedItem = SpawnItem(hotbar.activeItemObj.itemName);
-                        spawnedItem.GetComponent<Item>().isDeposited = true;
-                    }
-                    deposit.itemCounters[hotbar.activeItemObj.itemName].GetComponent<ItemDepositCounter>().counter++;
-                    */
+                    deposit.AddItem(hotbar.activeItemObj.itemName, hotbar.activeItemWrapper.amount);
+                    DepositAll();
                     
                     Debug.Log(hotbar.activeItemObj + " released into the deposit");
-                    int slot = hotbar.numSelectedButton;
-                    Drop(false);
-                    if (hotbar.itemWrappers[slot] != null && hotbar.itemWrappers[slot].amount != 0)
-                        StartCoroutine(GrabAnother(slot));
                 }
 
             }
@@ -217,6 +207,17 @@ public class PlayerPickUpDrop : MonoBehaviour
 
         hotbar.Deselect();
         
+    }
+    
+    public void DepositAll()
+    {
+        hotbar.activeItemWrapper.amount = 0;
+        hotbar.Remove(hotbar.activeItemWrapper);
+
+        if (hotbar.activeItemObj)
+            hotbar.activeItemObj = null;
+
+        hotbar.Deselect();
     }
 
     public GameObject SpawnItem(Item.ItemName itemName)
