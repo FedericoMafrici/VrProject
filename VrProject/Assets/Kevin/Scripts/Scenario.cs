@@ -14,6 +14,7 @@ public class Scenario : MonoBehaviour
     public bool unlocked;
     public AudioSource pipeEmitter;
     public Material sky;
+    public Material depositMaterial;
 
     public Vector3 playerPos;
     public Vector3 playerRot;
