@@ -211,13 +211,23 @@ public class PlayerPickUpDrop : MonoBehaviour
     
     public void DepositAll()
     {
-        hotbar.activeItemWrapper.amount = 0;
-        hotbar.Remove(hotbar.activeItemWrapper);
+        if (hotbar.activeItemObj != null) {
+            int amount = hotbar.activeItemWrapper.amount;
 
-        if (hotbar.activeItemObj)
-            hotbar.activeItemObj = null;
+            foreach (Item itemComponent in hotbar.activeItemObj.GetComponents<Item>()) {
+                for (int i = 0; i < amount; i++) {
+                    ThrowDropEvent(itemComponent);
+                }
+            }
 
-        hotbar.Deselect();
+            hotbar.activeItemWrapper.amount = 0;
+            hotbar.Remove(hotbar.activeItemWrapper);
+
+            if (hotbar.activeItemObj)
+                hotbar.activeItemObj = null;
+
+            hotbar.Deselect();
+        }
     }
 
     public GameObject SpawnItem(Item.ItemName itemName)
