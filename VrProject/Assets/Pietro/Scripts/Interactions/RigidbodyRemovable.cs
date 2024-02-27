@@ -38,8 +38,9 @@ public class RigidbodyRemovable : RemovablePart {
             MakeNPCStopMoving(2.0f);
             _isRemoved = true;
             _rigidbody.isKinematic = false;
-            _rigidbody.AddForce(transform.forward * 1f, ForceMode.Impulse);
-            _rigidbody.AddForce(transform.up * .5f, ForceMode.Impulse);
+            Vector3 cameraDirection = (Camera.main.transform.position - transform.position).normalized;
+            _rigidbody.AddForce(cameraDirection * 1f, ForceMode.Impulse);
+            _rigidbody.AddForce(Vector3.up * .5f, ForceMode.Impulse);
             if (_isItem) {
                 //_itemComponent.enabled = true;
                 SetItemComponent(true);

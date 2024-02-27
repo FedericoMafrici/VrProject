@@ -7,16 +7,20 @@ public class CheatCodeAutoCompleter : MonoBehaviour {
     [SerializeField] private Quest _startingTutorial;
     [SerializeField] private List<Transform> _farmQuestCollections;
     [SerializeField] private List<Transform> _savannahQuestCollections;
+    [SerializeField] private List<Transform> _achievementsQuestCollections;
     [SerializeField] private List<KeyCode> _completeTutorialInputs = new List<KeyCode> {KeyCode.T, KeyCode.U, KeyCode.T, KeyCode.O, KeyCode.R, KeyCode.I, KeyCode.A, KeyCode.L};
     [SerializeField] private List<KeyCode> _completeSavannahInputs = new List<KeyCode> { KeyCode.S, KeyCode.A, KeyCode.V, KeyCode.A, KeyCode.N, KeyCode.A};
     [SerializeField] private List<KeyCode> _completeFarmInputs = new List<KeyCode> { KeyCode.F, KeyCode.A, KeyCode.R, KeyCode.M };
+    [SerializeField] private List<KeyCode> _completeAchievementInputs = new List<KeyCode> { KeyCode.P, KeyCode.L, KeyCode.A, KeyCode.T, KeyCode.I, KeyCode.N, KeyCode.O};
     [SerializeField] private List<KeyCode> _jumpInputs = new List<KeyCode> { KeyCode.J, KeyCode.U, KeyCode.M, KeyCode.P};
 
     private HashSet<Quest> _farmQuests = new HashSet<Quest>();
     private HashSet<Quest> _savannahQuests = new HashSet<Quest>();
+    private HashSet<Quest> _achievementsQuests = new HashSet<Quest>();
     private int _currentInputIdx = 0;
     private bool _tutorialCompleted = false;
     private bool _farmCompleted = false;
+    private bool _achievementsCompleted = false;
     private bool _savannahCompleted = false;
 
     private void Awake() {
@@ -27,16 +31,19 @@ public class CheatCodeAutoCompleter : MonoBehaviour {
         foreach (Transform collection in _savannahQuestCollections) {
             GetQuestsFromParentTransform(collection, _savannahQuests);
         }
+
+        foreach (Transform collection in _achievementsQuestCollections) {
+            GetQuestsFromParentTransform(collection, _achievementsQuests);
+        }
     }
 
     void Update() {
         if (Input.anyKeyDown) {
-
-            bool matchFound = false;
             int index = _currentInputIdx;
             int tutorialResult = -1;
             int farmResult = -1;
             int savannahResult = -1;
+            int achievementResult = -1;
             int jumpResult = -1;
             bool somethingTriggered = false;
 
@@ -83,7 +90,23 @@ public class CheatCodeAutoCompleter : MonoBehaviour {
                 }
             }
 
-            
+            if (!_achievementsCompleted && !somethingTriggered) {
+                achievementResult = CheckCheatCodeSequence(_completeAchievementInputs, index);
+                if (achievementResult == -2) {
+                    _achievementsCompleted = true;
+                    somethingTriggered = true;
+                    _currentInputIdx = 0;
+
+                    foreach (Quest q in _achievementsQuests) {
+                        if (q.GetState() != QuestState.COMPLETED) {
+                            q.AutoComplete();
+                        }
+                    }
+
+                }
+            }
+
+
             if (!somethingTriggered) {
                 jumpResult = CheckCheatCodeSequence(_jumpInputs, index);
                 if (jumpResult == -2) {
@@ -101,9 +124,13 @@ public class CheatCodeAutoCompleter : MonoBehaviour {
             
 
             if (!somethingTriggered) {
+                /*
                 int maxIndex = (farmResult > tutorialResult) ? farmResult : tutorialResult;
                 maxIndex = (maxIndex > savannahResult) ? maxIndex : savannahResult;
                 maxIndex = (maxIndex > jumpResult) ? maxIndex : jumpResult;
+                */
+
+                int maxIndex = Mathf.Max(farmResult, tutorialResult, savannahResult, jumpResult, achievementResult);
                 if (maxIndex <= -1) {
                     _currentInputIdx= 0;
                 } else {

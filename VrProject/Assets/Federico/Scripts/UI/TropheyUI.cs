@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using Microsoft.Unity.VisualStudio.Editor;
+#endif
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
