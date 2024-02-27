@@ -15,6 +15,7 @@ public class QuestCompletionAchievement : Quest {
     private int _nCompleted = 0;
 
     protected override void Init() {
+        _toReachValues.Sort();
         if (_questParentsList != null) {
             foreach (Transform parent in _questParentsList) {
                 GetQuestsFromParentTransform(parent, _quests);
@@ -29,6 +30,12 @@ public class QuestCompletionAchievement : Quest {
 
         //_nToComplete = _quests.Count;
 
+        if (!_isStep) {
+            _autoStart = true;
+        }
+
+        base.Init();
+
         foreach (Quest q in _quests) {
             if (q.GetState() == QuestState.COMPLETED) {
                 AdvanceCounter();
@@ -36,11 +43,15 @@ public class QuestCompletionAchievement : Quest {
                 q.QuestCompleted += OnQuestCompleteEvent;
             }
         }
+    }
 
-        _toReachValues.Sort();
-
-        _autoStart = true;
-        base.Init();
+    protected override void OnQuestStart() {
+        base.OnQuestStart();
+        foreach (Quest q in _quests) {
+            if (q.GetState() == QuestState.COMPLETED) {
+                AdvanceCounter();
+            }
+        }
     }
 
     private void OnQuestCompleteEvent(Quest quest) {
@@ -87,5 +98,21 @@ public class QuestCompletionAchievement : Quest {
         } else {
             return _description;
         }
+    }
+
+    public override bool AutoComplete() {
+        AutoCompletePreCheck();
+
+        while (_state != QuestState.COMPLETED) {
+            AdvanceCounter();
+        }
+
+        foreach (Quest q in _quests) {
+            q.QuestCompleted -= OnQuestCompleteEvent; 
+        }
+
+        AutoCompletePostCheck();
+
+        return true;
     }
 }

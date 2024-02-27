@@ -7,7 +7,7 @@ using static Unity.VisualScripting.Member;
 
 public abstract class AbstractStructuredQuest : Quest {
     [SerializeField] protected string _questCompletedDescription = "";
-
+    [SerializeField] protected bool _suppressProgressAtStepChange = false;
     protected List<Quest> _steps = new List<Quest>();
     protected int _curStepIdx = 0;
     protected Quest _currentStep = null;
@@ -84,11 +84,13 @@ public abstract class AbstractStructuredQuest : Quest {
         }
 
         if (CurrentStepIsFinal()) {
-            Progress();
+            if (!_suppressProgressAtStepChange) 
+                Progress();
             Complete();
         } else {
             AdvanceStep();
-            Progress();
+            if (!_suppressProgressAtStepChange)
+                Progress();
         }
     }
 

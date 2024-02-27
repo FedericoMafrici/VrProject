@@ -47,13 +47,6 @@ public class AnimalInteractionAchievement : Quest
         AdvanceCounter();
     }
 
-    private void OnQuestCompleteEvent(Quest quest) {
-        if (_state == QuestState.ACTIVE) {
-            quest.QuestCompleted -= OnQuestCompleteEvent;
-            AdvanceCounter();
-        }
-    }
-
     private void AdvanceCounter() {
         if (_state == QuestState.ACTIVE) {
             _nInteracted++;
@@ -65,6 +58,8 @@ public class AnimalInteractionAchievement : Quest
                 if (_valuesIndex < _toReachValues.Count - 1) {
                     _valuesIndex++;
                 } else {
+                    FoodEater.StaticEatEvent -= OnEatEvent;
+                    Pettable.StaticBefriended -= OnAnimalBefriended;
                     Complete();
                 }
             }
@@ -77,5 +72,17 @@ public class AnimalInteractionAchievement : Quest
         } else {
             return _description;
         }
+    }
+
+    public override bool AutoComplete() {
+        AutoCompletePreCheck();
+
+        while (_state != QuestState.COMPLETED) {
+            AdvanceCounter();
+        }
+
+        AutoCompletePostCheck();
+
+        return true;
     }
 }

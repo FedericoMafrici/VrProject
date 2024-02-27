@@ -42,25 +42,34 @@ public class PlantCultivationAchievement : Quest
             if (state == CropBehaviour.CropState.Harvestable) {
                 crop.GrowthEvent -= OnCropGrowth;
                 crop.CropDestroyed -= OnCropDestroyed;
-                _nGrown++;
-                Debug.LogWarning("<color=cyan>" + this + ": progress for achievement, id: " + GetID() + "</color>");
-                if (_nGrown >= _toReachValues[_valuesIndex]) {
-                    string color = _valuesIndex == 0 ? "green" : (_valuesIndex == 1 ? "yellow" : "red");
-                    Debug.LogWarning("<color=" + color + ">" + this + ": achievement unlocked" + " tier : " + _valuesIndex + 1 + ", id: " + GetID() + "</color>");
-                    Progress();
-                    if (_valuesIndex < _toReachValues.Count - 1) {
-                        _valuesIndex++;
-                    } else {
-                        Complete();
-                        foreach (FarmingLand land in _lands) {
-                            land.CropPlanted -= OnCropPlanted;
-                        }
-                    }
-                }
+
+                AdvanceCounter();
             } 
+
         } else {
             crop.GrowthEvent -= OnCropGrowth;
             crop.CropDestroyed -= OnCropDestroyed;
+        }
+    }
+
+    private void AdvanceCounter() {
+        _nGrown++;
+        Debug.LogWarning("<color=cyan>" + this + ": progress for achievement, id: " + GetID() + "</color>");
+
+        if (_nGrown >= _toReachValues[_valuesIndex]) {
+            string color = _valuesIndex == 0 ? "green" : (_valuesIndex == 1 ? "yellow" : "red");
+
+            Debug.LogWarning("<color=" + color + ">" + this + ": achievement unlocked" + " tier : " + _valuesIndex + 1 + ", id: " + GetID() + "</color>");
+            Progress();
+
+            if (_valuesIndex < _toReachValues.Count - 1) {
+                _valuesIndex++;
+            } else {
+                Complete();
+                foreach (FarmingLand land in _lands) {
+                    land.CropPlanted -= OnCropPlanted;
+                }
+            }
         }
     }
 
@@ -71,5 +80,17 @@ public class PlantCultivationAchievement : Quest
 
     public override string GetQuestDescription() {
         return _description + " " + _nGrown + "/" + _toReachValues[_valuesIndex];
+    }
+
+    public override bool AutoComplete() {
+        AutoCompletePreCheck();
+
+        while (_state != QuestState.COMPLETED) {
+            AdvanceCounter();
+        }
+
+        AutoCompletePostCheck();
+
+        return true;
     }
 }

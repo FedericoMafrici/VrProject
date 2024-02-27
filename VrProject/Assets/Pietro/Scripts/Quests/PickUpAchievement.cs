@@ -26,24 +26,41 @@ public class PickUpAchievement : Quest {
         if (_state == QuestState.ACTIVE) {
             if (_targetItemNames.Contains(itemName) && !_alreadyPickedUpList.Contains(itemName)) {
                 _alreadyPickedUpList.Add(itemName);
-                _nPickedUp++;
-                Debug.LogWarning("<color=cyan>" + this + ": progress for achievement, id: " + GetID() + "</color>");
-                if (_nPickedUp >= _toReachValues[_valuesIndex]) {
-                    Progress();
-                    string color = _valuesIndex == 0 ? "green" : (_valuesIndex == 1 ? "yellow" : "red");
-                    Debug.LogWarning("<color="+ color + ">" + this + ": achievement unlocked" + " tier : " + _valuesIndex+1 + ", id: " + GetID() + "</color>");
-                    if (_valuesIndex < _toReachValues.Count - 1) {
-                        _valuesIndex++;
-                    } else {
-                        Complete();
-                        _playerPickUp.PickUpEvent -= OnPickUp;
-                    }
-                }
+                AdvanceCounter();
+                
+            }
+        }
+    }
+
+    private void AdvanceCounter() {
+        _nPickedUp++;
+        Debug.LogWarning("<color=cyan>" + this + ": progress for achievement, id: " + GetID() + "</color>");
+        if (_nPickedUp >= _toReachValues[_valuesIndex]) {
+            Progress();
+            string color = _valuesIndex == 0 ? "green" : (_valuesIndex == 1 ? "yellow" : "red");
+            Debug.LogWarning("<color=" + color + ">" + this + ": achievement unlocked" + " tier : " + _valuesIndex + 1 + ", id: " + GetID() + "</color>");
+            if (_valuesIndex < _toReachValues.Count - 1) {
+                _valuesIndex++;
+            } else {
+                Complete();
+                _playerPickUp.PickUpEvent -= OnPickUp;
             }
         }
     }
 
     public override string GetQuestDescription() {
         return _description + " " + _nPickedUp + "/" + _toReachValues[_valuesIndex];
+    }
+
+    public override bool AutoComplete() {
+        AutoCompletePreCheck();
+
+        while (_state != QuestState.COMPLETED) {
+            AdvanceCounter();
+        }
+
+        AutoCompletePostCheck();
+
+        return true;
     }
 }
