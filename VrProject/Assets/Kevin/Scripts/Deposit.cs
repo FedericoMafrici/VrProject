@@ -116,6 +116,10 @@ public class Deposit : MonoBehaviour
                 foreach (Item itemComponent in spawned.GetComponents<Item>()) {
                     itemComponent.isDeposited = true;
                 }
+                Rigidbody rigidbody = spawned.GetComponent<Rigidbody>();
+                if (rigidbody != null) {
+                    rigidbody.isKinematic = true;
+                }
                 _spawnedItems.Add(itemName, spawned);
             }
             

@@ -125,6 +125,7 @@ public class PlayerRaycast : MonoBehaviour
                 }
             } else if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out raycastHit3, pickupDistance, pickupLayerMask) 
                        && raycastHit3.transform.gameObject.layer == LayerMask.NameToLayer("Pipe")) {
+                toOutline = raycastHit3.transform;
                 clue.text = "Premi [L] per cambiare scenario";
             } else
                 clue.text = "";
