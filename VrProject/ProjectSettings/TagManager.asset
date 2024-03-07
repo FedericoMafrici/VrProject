@@ -3,23 +3,27 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CinemachineTarget
+  - ControlSettingsUI
+  - AnimalsUI
+  - QuestsUI
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Item
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - AnimalTargets
+  - Player
+  - Ground
+  - Animals
+  - RemovablePart
+  - Pipe
+  - PipeWrapper
+  - RenderInFront
+  - FarmingLand
   - 
   - 
   - 
@@ -40,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: RenderInFront
+    uniqueID: 151279033
     locked: 0

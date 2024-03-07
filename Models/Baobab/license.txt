@@ -1,0 +1,11 @@
+Model Information:
+* title:	Rhinos on Savanna
+* source:	https://sketchfab.com/3d-models/rhinos-on-savanna-3bce37ae141e4be2a614397c2043f17b
+* author:	Skodvirr (https://sketchfab.com/skodvirr)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Rhinos on Savanna" (https://sketchfab.com/3d-models/rhinos-on-savanna-3bce37ae141e4be2a614397c2043f17b) by Skodvirr (https://sketchfab.com/skodvirr) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

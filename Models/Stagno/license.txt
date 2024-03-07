@@ -1,0 +1,11 @@
+Model Information:
+* title:	Garden pond
+* source:	https://sketchfab.com/3d-models/garden-pond-e7c5302f770a453385a5311076238ff3
+* author:	Rail_Lin (https://sketchfab.com/Rail_Lin)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Garden pond" (https://sketchfab.com/3d-models/garden-pond-e7c5302f770a453385a5311076238ff3) by Rail_Lin (https://sketchfab.com/Rail_Lin) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Federico/Scenes/UI_WithQuest_WithChecBox.unity
+    guid: 1e53fd16efbc14157892160db63a9308
+  - enabled: 0
+    path: Assets/Federico/Scenes/Farm.unity
+    guid: 37645b45b4c3b4e82be4b1c1874f932f
+  - enabled: 1
+    path: Assets/Main/Scenes/StartingScreen.unity
+    guid: 71ce2bb6098ce044e9955b0586b4e14a
+  - enabled: 1
+    path: Assets/Main/Scenes/Main_Scene.unity
+    guid: 85b0164a1ffb323478eb09a294535444
   m_configObjects: {}

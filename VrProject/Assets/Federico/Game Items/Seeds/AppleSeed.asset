@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82975288431c54f2f86d5a49b3387f8e, type: 3}
+  m_Name: AppleSeed
+  m_EditorClassIdentifier: 
+  description: 'seed logic for apple '
+  thumbnail: {fileID: 0}
+  gameModel: {fileID: 631713865696746564, guid: e08aa75121b0a4f47b168b684905c609, type: 3}
+  daysToGrow: 0
+  cropToYield: {fileID: 11400000, guid: c8337dc224ddc4ef2af19b01dfe127f9, type: 2}
+  seedling: {fileID: 7807240253720470035, guid: c6c1b30672d014edfa17db4551cebaad, type: 3}
