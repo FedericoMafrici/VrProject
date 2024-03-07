@@ -1,15 +1,6 @@
-# VrProject
+# Connecting Nature
 
-## Git rules
-La descrizione dei commit avviene scrivendo OGNI modifica fatta, con una lista di modifiche introdotta con [NEW] o [FIX] in base a cosa ho modificato. NEW vuol dire che ho aggiunto nuove classi o aggiunto nuove funzionalità. FIX indica correzione di bug o piccole modifiche.
-Esempio: 
-[NEW] Nuovo asset Mela aggiunto
-[FIX] Bug caduta oggetto risolto
-
-## Coding rules
-- is[QUALCOSA] per indicare il nome di TUTTE le variabili booleane
-- NomeClasse per indicare il nome della classe
-- NomeMetodo per indicare il nome dei metodi
-- nomeParametro per indicare il nome di un parametro passato a un metodo
-- nomeVariabile per indicare il nome di una variabile pubblica
-- _nomeVariabile per indicare il nome di una variabile privata
+## Description
+Imagine a relaxing paradise in the middle of nowhere, where you can befriend and take care of animals from across the world.
+Explore unique biomes in the creative arrangement of connected floating islands suspended in the sky, manage your little farm and satisfy the needs of the creatures of the land.
+Complete the tasks and learn facts about your new friends, get your rewards, and embark for a new journey!
